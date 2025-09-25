@@ -1,2 +1,2 @@
 # Project5 | Employees Management
-[Doxygen Documentation] (https://TylerDdao.github.io/Project5_HR/index.html)
+[Doxygen Documentation](https://TylerDdao.github.io/Project5_HR/index.html)
