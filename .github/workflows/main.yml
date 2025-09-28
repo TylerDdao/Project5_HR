@@ -1,4 +1,4 @@
-name: HR Management CI
+name: CI Pipeline
 
 on:
   push:
