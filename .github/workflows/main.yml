@@ -1,28 +1,24 @@
-name: C++ CI
+name: HR Management CI
 
 on:
   push:
-    branches: [ "main" ]   # run on push to main
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]   # run on PR to main
+    branches: [ "main" ]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest   # the runner environment (Linux)
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y cmake g++ make
+    - name: Set up MSVC Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1
 
-    - name: Configure CMake
-      run: cmake -S . -B build
+    - name: Build solution
+      run: msbuild Project5_HR.sln /p:Configuration=Release
 
-    - name: Build
-      run: cmake --build build
-
-    - name: Run tests
-      run: ctest --test-dir build
+    - name: Run unit tests
+      run: vstest.console.exe .\Project5HRTest\x64\Release\Project5HRTest.dll
