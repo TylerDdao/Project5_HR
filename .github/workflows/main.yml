@@ -7,18 +7,22 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Set up MSVC Developer Command Prompt
       uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x64
 
-    - name: Build solution
-      run: msbuild .\Project5_HR\Project5_HR.sln /p:Configuration=Release
+    - name: Build solution in Debug
+      run: msbuild "Project5_HR/Project5_HR.sln" /p:Configuration=Debug /p:Platform=x64
 
     - name: Run unit tests
-      run: vstest.console.exe .\Project5_HR\Project5HRTest\x64\Release\Project5HRTest.dll
+      run: |
+        vstest.console.exe "Project5_HR/Project5_HR_Test/x64/Debug/Project5_HR_Test.dll"
+
