@@ -18,7 +18,7 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
 
     - name: Build solution
-      run: msbuild Project5_HR.sln /p:Configuration=Release
+      run: msbuild .\Project5_HR\Project5_HR.sln /p:Configuration=Release
 
     - name: Run unit tests
-      run: vstest.console.exe .\Project5HRTest\x64\Release\Project5HRTest.dll
+      run: vstest.console.exe .\Project5_HR\Project5HRTest\x64\Release\Project5HRTest.dll
