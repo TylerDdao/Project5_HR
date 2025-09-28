@@ -20,7 +20,7 @@ jobs:
         arch: x64
 
     - name: Build solution in Debug
-      run: msbuild "Project5_HR/Project5_HR.sln" /p:Configuration=Debug /p:Platform=x64
+      run: msbuild "Project5_HR/Project5_HR.sln" /p:Configuration=Debug /p:Platform=x64 /t:Build
 
     - name: Run unit tests
       run: |
