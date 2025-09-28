@@ -1,0 +1,28 @@
+name: C++ CI
+
+on:
+  push:
+    branches: [ "main" ]   # run on push to main
+  pull_request:
+    branches: [ "main" ]   # run on PR to main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest   # the runner environment (Linux)
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y cmake g++ make
+
+    - name: Configure CMake
+      run: cmake -S . -B build
+
+    - name: Build
+      run: cmake --build build
+
+    - name: Run tests
+      run: ctest --test-dir build
