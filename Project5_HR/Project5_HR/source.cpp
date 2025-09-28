@@ -8,4 +8,5 @@ int add(int x, int y) {
 
 int main() {
 	cout << add(2, 6) << endl;
+	return 0;
 }
