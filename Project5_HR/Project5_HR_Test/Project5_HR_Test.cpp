@@ -12,7 +12,7 @@ namespace Project5HRTest
 		
 		TEST_METHOD(TestAdd)
 		{
-			int result = add(5, 4);
+			int result = add(5, 7);
 			Assert::AreEqual(6, result);
 		}
 	};
