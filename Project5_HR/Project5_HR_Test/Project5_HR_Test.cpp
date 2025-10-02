@@ -12,12 +12,8 @@ namespace Project5HRTest
 		
 		TEST_METHOD(TestAdd)
 		{
-<<<<<<< Updated upstream
-			int result = add(5, 7);
-=======
 			int result = minus(77, 1);
->>>>>>> Stashed changes
-			Assert::AreEqual(6, result);
+      Assert::AreEqual(6, result);
 		}
 	};
 }
