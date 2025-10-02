@@ -12,8 +12,8 @@ namespace Project5HRTest
 		
 		TEST_METHOD(TestAdd)
 		{
-			int result = minus(77, 1);
-      Assert::AreEqual(6, result);
+			int result = minus(7, 1);
+			Assert::AreEqual(6, result);
 		}
 	};
 }
