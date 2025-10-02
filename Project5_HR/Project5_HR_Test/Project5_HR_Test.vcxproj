@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Project5_HR\source.cpp" />
+    <ClCompile Include="Authentication_Tests.cpp" />
     <ClCompile Include="Project5_HR_Test.cpp" />
   </ItemGroup>
   <ItemGroup>
