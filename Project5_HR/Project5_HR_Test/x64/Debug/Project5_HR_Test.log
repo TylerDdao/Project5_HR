@@ -1,4 +1,14 @@
+<<<<<<< Updated upstream
 ﻿  Project5_HR_Test.cpp
   Project5_HR_Test.vcxproj -> C:\Users\baona\OneDrive - Conestoga College\School\25-26\Fall 25\Project 5\Project5_HR\Project5_HR\x64\Debug\Project5_HR_Test.dll
+=======
+﻿  source.cpp
+  Authentication_Tests.cpp
+  Project5_HR_Test.cpp
+  Generating Code...
+  LINK : C:\Users\baona\Desktop\School\25-26\Project 5\Project5_HR\Project5_HR\x64\Debug\Project5_HR_Test.dll not found or not built by the last incremental link; performing full link
+     Creating library C:\Users\baona\Desktop\School\25-26\Project 5\Project5_HR\Project5_HR\x64\Debug\Project5_HR_Test.lib and object C:\Users\baona\Desktop\School\25-26\Project 5\Project5_HR\Project5_HR\x64\Debug\Project5_HR_Test.exp
+  Project5_HR_Test.vcxproj -> C:\Users\baona\Desktop\School\25-26\Project 5\Project5_HR\Project5_HR\x64\Debug\Project5_HR_Test.dll
+>>>>>>> Stashed changes
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
