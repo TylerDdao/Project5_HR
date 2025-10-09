@@ -24,23 +24,25 @@ jobs:
       run: |
         vstest.console.exe "Project5_HR/x64/Debug/Project5_HR_Test.dll"
 
-# Check the naming convention
   clang-tidy-check:
-      runs-on: ubuntu-latest # Stick to Ubuntu for easier Python tool installation
-  
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v4
-  
-        - name: Set up Python for cpplint
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.x'
-  
-        - name: Install cpplint
-          run: pip install cpplint
-  
-        - name: Run cpplint for style checks
-          # This checks all C++ files recursively against the Google style,
+    runs-on: ubuntu-latest
+    # ... other settings
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Use an action that automatically finds and uses your .clang-tidy file
+      - name: Run Clang-Tidy for Custom Naming Conventions
+        uses: ZedThree/clang-tidy-review@v0 # Use latest stable major version tag
+        with:
+          # This command generates the compile_commands.json needed by clang-tidy
+          cmake_command: cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
+          build_dir: build
+          
+          # Crucially, you DO NOT need to specify 'checks' here 
+          # because the action will automatically defer to your .clang-tidy file
+          # for the list of checks and options.
+          token: ${{ secrets.GITHUB_TOKEN }} gainst the Google style,
           # which enforces strong naming conventions (MY_CONSTANT, MyClass, etc.)
           run: cpplint --recursive . 
