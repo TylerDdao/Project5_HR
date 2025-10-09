@@ -12,7 +12,7 @@ public:
 
 private:
 	int staffID;
-	string Password;
+	string password;
 
 };
 
