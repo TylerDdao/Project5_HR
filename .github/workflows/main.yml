@@ -25,17 +25,22 @@ jobs:
         vstest.console.exe "Project5_HR/x64/Debug/Project5_HR_Test.dll"
 
 # Check the naming convention
-  checkout-and-check-formatting:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Run clang-tidy
-      uses: HorstBaerbel/action-clang-tidy@1.2
-      with:
-        scandir: '.'
-        builddir: 'build'
-        excludedirs: ''
-        extensions: 'c,h,C,H,cpp,hpp,cc,hh,c++,h++,cxx,hxx'
-        cmakeoptions: ''
-
+  clang-tidy-check:
+      runs-on: ubuntu-latest # Stick to Ubuntu for easier Python tool installation
+  
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+  
+        - name: Set up Python for cpplint
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.x'
+  
+        - name: Install cpplint
+          run: pip install cpplint
+  
+        - name: Run cpplint for style checks
+          # This checks all C++ files recursively against the Google style,
+          # which enforces strong naming conventions (MY_CONSTANT, MyClass, etc.)
+          run: cpplint --recursive . 
