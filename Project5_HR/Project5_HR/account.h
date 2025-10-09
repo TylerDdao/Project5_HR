@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class Account
 {
 public:
@@ -10,6 +12,7 @@ public:
 
 private:
 	int staffID;
+	string password;
 
 };
 
