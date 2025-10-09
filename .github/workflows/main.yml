@@ -34,7 +34,7 @@ jobs:
       
       # Use an action that automatically finds and uses your .clang-tidy file
       - name: Run Clang-Tidy for Custom Naming Conventions
-        uses: ZedThree/clang-tidy-review@v0 # Use latest stable major version tag
+        uses: ZedThree/clang-tidy-review@v0.14.0 # Use latest stable major version tag
         with:
           # This command generates the compile_commands.json needed by clang-tidy
           cmake_command: cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
