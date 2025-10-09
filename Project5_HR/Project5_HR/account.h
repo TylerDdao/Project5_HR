@@ -9,7 +9,7 @@ public:
 	~Account();
 
 private:
-	int StaffID;
+	int staffID;
 
 };
 
