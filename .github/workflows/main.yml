@@ -42,10 +42,9 @@ jobs:
           # This command generates the compile_commands.json needed by clang-tidy
           cmake_command: cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
           build_dir: build
-          token: ${{ secrets.GITHUB_TOKEN }} 
           # Crucially, you DO NOT need to specify 'checks' here 
           # because the action will automatically defer to your .clang-tidy file
           # for the list of checks and options.
-          token: ${{ secrets.GITHUB_TOKEN }} gainst the Google style,
+          token: ${{ secrets.GITHUB_TOKEN }}
           # which enforces strong naming conventions (MY_CONSTANT, MyClass, etc.)
           run: cpplint --recursive . 
