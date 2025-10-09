@@ -1,0 +1,39 @@
+---
+Checks: >
+  -*,
+  readability-identifier-naming
+CheckOptions:
+  # --------------------
+  # 1. Variables: myVariable (camelBack / lower_case)
+  # --------------------
+  - { key: readability-identifier-naming.VariableCase,        value: camelBack }
+  - { key: readability-identifier-naming.VariablePrefix,      value: "" }
+  - { key: readability-identifier-naming.VariableSuffix,      value: "" }
+
+  # --------------------
+  # 2. Classes: MyClass (PascalCase / CamelCase)
+  # --------------------
+  - { key: readability-identifier-naming.ClassCase,           value: CamelCase }
+  - { key: readability-identifier-naming.StructCase,          value: CamelCase }
+  - { key: readability-identifier-naming.EnumCase,            value: CamelCase }
+  - { key: readability-identifier-naming.TypeAliasCase,       value: CamelCase }
+
+  # --------------------
+  # 3. Functions/Methods: MyFunction (PascalCase / CamelCase)
+  # --------------------
+  - { key: readability-identifier-naming.FunctionCase,        value: CamelCase }
+  - { key: readability-identifier-naming.MethodCase,          value: CamelCase } # for class/struct methods
+
+  # --------------------
+  # 4. Constants: MY_CONSTANT (UPPER_SNAKE_CASE)
+  # --------------------
+  - { key: readability-identifier-naming.ConstantCase,        value: UPPER_CASE }
+  - { key: readability-identifier-naming.ConstantMemberCase,  value: UPPER_CASE }
+  - { key: readability-identifier-naming.GlobalConstantCase,  value: UPPER_CASE }
+  - { key: readability-identifier-naming.ConstantMemberSuffix, value: "" }
+  
+  # Set default for other identifiers to match your preferred style, e.g., camelBack
+  - { key: readability-identifier-naming.NamespaceCase,       value: lower_case }
+  - { key: readability-identifier-naming.PrivateMemberCase,   value: camelBack }
+  - { key: readability-identifier-naming.ProtectedMemberCase, value: camelBack }
+...
