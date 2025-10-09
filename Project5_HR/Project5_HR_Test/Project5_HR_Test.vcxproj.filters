@@ -22,11 +22,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Authentication_Tests.cpp">
+    <ClCompile Include="..\Project5_HR\employeeinfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Project5_HR\test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\employeeinfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

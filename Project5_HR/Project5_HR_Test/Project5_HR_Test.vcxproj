@@ -99,7 +99,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\huiyi\OneDrive - Conestoga College\Documents\year 3\Proj V\gp proj\Project5_HR\Project5_HR_Test\x64\Debug\Project5_HR_Test.tlog;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -156,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Project5_HR\employeeinfo.cpp" />
     <ClCompile Include="..\Project5_HR\source.cpp" />
     <ClCompile Include="Authentication_Tests.cpp" />
     <ClCompile Include="Project5_HR_Test.cpp" />
@@ -166,6 +168,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Project5_HR\employeeinfo.h" />
     <ClInclude Include="..\Project5_HR\test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -19,6 +19,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="account.cpp">
+    <ClCompile Include="employeeinfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -27,6 +28,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="account.h">
+    <ClInclude Include="employeeinfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
