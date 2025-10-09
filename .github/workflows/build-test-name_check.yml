@@ -25,21 +25,16 @@ jobs:
           vstest.console.exe "Project5_HR/x64/Debug/Project5_HR_Test.dll"
 
 # Check the naming convention
-  clang-tidy-check:
-    runs-on: ubuntu-latest 
-    needs: [build-and-test]
-    
+  checkout-and-check-formatting:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run Clang-Tidy Review (includes naming checks)
-        uses: ZedThree/clang-tidy-review@v0.19.1 
-        with:
-          cmake_command: cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
-          
-          build_dir: build
-          clang_tidy_checks: '-*,readability-identifier-naming,cppcoreguidelines-*'
-
-          # Optional: Use this to get nicer annotations directly on the PR.
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v4
+    - name: Run clang-tidy
+      uses: HorstBaerbel/action-clang-tidy@1.2
+      with:
+        scandir: '.'
+        builddir: 'build'
+        excludedirs: ''
+        extensions: 'c,h,C,H,cpp,hpp,cc,hh,c++,h++,cxx,hxx'
+        cmakeoptions: ''
