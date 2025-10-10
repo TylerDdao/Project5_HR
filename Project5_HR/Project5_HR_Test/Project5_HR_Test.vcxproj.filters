@@ -21,18 +21,21 @@
     <ClCompile Include="..\Project5_HR\source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Authentication_Tests.cpp">
+    <ClCompile Include="Account_Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Project5_HR\employeeinfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Project5_HR\account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Project5_HR\test.h">
+    <ClInclude Include="..\Project5_HR\employeeinfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Project5_HR\employeeinfo.h">
+    <ClInclude Include="..\Project5_HR\account.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
