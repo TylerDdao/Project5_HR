@@ -157,9 +157,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Project5_HR\account.cpp" />
     <ClCompile Include="..\Project5_HR\employeeinfo.cpp" />
     <ClCompile Include="..\Project5_HR\source.cpp" />
-    <ClCompile Include="Authentication_Tests.cpp" />
+    <ClCompile Include="Account_Test.cpp" />
     <ClCompile Include="Employee_Info_Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,8 +169,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Project5_HR\account.h" />
     <ClInclude Include="..\Project5_HR\employeeinfo.h" />
-    <ClInclude Include="..\Project5_HR\test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
