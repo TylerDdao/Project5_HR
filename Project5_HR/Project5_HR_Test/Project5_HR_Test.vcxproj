@@ -160,7 +160,7 @@
     <ClCompile Include="..\Project5_HR\employeeinfo.cpp" />
     <ClCompile Include="..\Project5_HR\source.cpp" />
     <ClCompile Include="Authentication_Tests.cpp" />
-    <ClCompile Include="Project5_HR_Test.cpp" />
+    <ClCompile Include="Employee_Info_Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project5_HR\Project5_HR.vcxproj">
