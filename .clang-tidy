@@ -33,7 +33,7 @@ CheckOptions:
   - { key: readability-identifier-naming.ConstantMemberSuffix, value: "" }
   
   # Set default for other identifiers to match your preferred style, e.g., camelBack
-  - { key: readability-identifier-naming.NamespaceCase,       value: lower_case }
+  - { key: readability-identifier-naming.NamespaceCase,       value: Camel_Snake_Case }
   - { key: readability-identifier-naming.PrivateMemberCase,   value: camelBack }
   - { key: readability-identifier-naming.ProtectedMemberCase, value: camelBack }
 ...
