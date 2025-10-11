@@ -70,12 +70,25 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir)..\..\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)..\..\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)..\..\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)..\..\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,6 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -104,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,14 +143,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="account.cpp" />
-    <ClCompile Include="employeeinfo.cpp" />
-    <ClCompile Include="source.cpp" />
+    <!-- Main source file -->
+    <ClCompile Include="..\..\src\main.cpp" />
+    
+    <!-- Core module -->
+    <ClCompile Include="..\..\src\core\Account.cpp" />
+    <ClCompile Include="..\..\src\core\Employee.cpp" />
+    <ClCompile Include="..\..\src\core\EmployeeInfoManagement.cpp" />
+    
+    <!-- Communication module -->
+    <ClCompile Include="..\..\src\communication\Message.cpp" />
+    <ClCompile Include="..\..\src\communication\Conversation.cpp" />
+    <ClCompile Include="..\..\src\communication\CommunicationHub.cpp" />
+    
+    <!-- Persistence module -->
+    <ClCompile Include="..\..\src\persistence\FileRepository.cpp" />
+    
+    <!-- Utilities -->
+    <ClCompile Include="..\..\src\utils\DateTimeHelper.cpp" />
+    <ClCompile Include="..\..\src\utils\InputValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="account.h" />
-    <ClInclude Include="employeeinfo.h" />
-    <ClInclude Include="test.h" />
+    <!-- Core headers -->
+    <ClInclude Include="..\..\include\core\Account.h" />
+    <ClInclude Include="..\..\include\core\Employee.h" />
+    <ClInclude Include="..\..\include\core\EmployeeInfoManagement.h" />
+    
+    <!-- Communication headers -->
+    <ClInclude Include="..\..\include\communication\Message.h" />
+    <ClInclude Include="..\..\include\communication\Conversation.h" />
+    <ClInclude Include="..\..\include\communication\CommunicationHub.h" />
+    
+    <!-- Persistence headers -->
+    <ClInclude Include="..\..\include\persistence\IRepository.h" />
+    <ClInclude Include="..\..\include\persistence\FileRepository.h" />
+    
+    <!-- Utility headers -->
+    <ClInclude Include="..\..\include\utils\DateTimeHelper.h" />
+    <ClInclude Include="..\..\include\utils\InputValidator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

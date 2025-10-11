@@ -1,2 +1,12 @@
-﻿  employeeinfo.cpp
-  Project5_HR.vcxproj -> C:\Users\huiyi\OneDrive - Conestoga College\Documents\year 3\Proj V\gp proj\Project5_HR\x64\Debug\Project5_HR.exe
+﻿  main.cpp
+  Account.cpp
+  Employee.cpp
+  EmployeeInfoManagement.cpp
+  Message.cpp
+  Conversation.cpp
+  CommunicationHub.cpp
+  FileRepository.cpp
+  DateTimeHelper.cpp
+  InputValidator.cpp
+  Generating Code...
+  Project5_HR.vcxproj -> D:\Study BCS3\Project V Advanced Software Development\New folder\Project5_HR\Project5_HR\x64\Debug\Project5_HR.exe
