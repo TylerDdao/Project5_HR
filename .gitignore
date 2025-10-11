@@ -3,3 +3,28 @@
 *.suo
 *.db
 *.opendb
+
+# Build directories (including nested ones)
+**/x64/
+**/Debug/
+**/Release/
+**/Debug_x64/
+**/Release_x64/
+
+# Build outputs
+*.exe
+*.dll
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.obj
+*.tlog
+*.log
+*.idb
+*.ipdb
+*.iobj
+
+# Project-specific data files
+employees.txt
+data/

@@ -159,7 +159,14 @@
   <ItemGroup>
     <ClCompile Include="..\Project5_HR\employeeinfo.cpp" />
     <ClCompile Include="..\Project5_HR\source.cpp" />
+    <ClCompile Include="..\..\src\communication\Message.cpp" />
+    <ClCompile Include="..\..\src\communication\Conversation.cpp" />
+    <ClCompile Include="..\..\src\communication\CommunicationHub.cpp" />
+    <ClCompile Include="..\..\src\persistence\FileRepository.cpp" />
+    <ClCompile Include="..\..\src\utils\DateTimeHelper.cpp" />
+    <ClCompile Include="..\..\src\utils\InputValidator.cpp" />
     <ClCompile Include="Authentication_Tests.cpp" />
+    <ClCompile Include="Communication_Tests.cpp" />
     <ClCompile Include="Employee_Info_Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
