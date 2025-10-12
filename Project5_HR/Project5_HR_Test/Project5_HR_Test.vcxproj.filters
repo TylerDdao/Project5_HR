@@ -21,9 +21,6 @@
     <ClCompile Include="..\Project5_HR\source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Authentication_Tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Communication_Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

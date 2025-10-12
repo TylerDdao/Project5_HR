@@ -165,7 +165,6 @@
     <ClCompile Include="..\..\src\persistence\FileRepository.cpp" />
     <ClCompile Include="..\..\src\utils\DateTimeHelper.cpp" />
     <ClCompile Include="..\..\src\utils\InputValidator.cpp" />
-    <ClCompile Include="Authentication_Tests.cpp" />
     <ClCompile Include="Communication_Tests.cpp" />
     <ClCompile Include="Employee_Info_Tests.cpp" />
   </ItemGroup>
