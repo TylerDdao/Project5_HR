@@ -40,13 +40,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="bg-gray-100 min-h-screen font-sans">
-        <main className="max-w-4xl mx-auto mt-8">
-          <div className="bg-white rounded-lg shadow-md">
+      <div className="">
+        <main className="">
             <Routes>
               <Route path="/" element={<HomePage />} />
             </Routes>
-          </div>
         </main>
       </div>
     </BrowserRouter>
