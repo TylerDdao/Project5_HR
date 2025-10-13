@@ -48,7 +48,7 @@ int main() {
     else {
         Employee* currentEmployee = employeeManager.GetStaff(currentUserId);
         if (currentEmployee) {
-            cout << "\nWelcome, " << currentEmployee->getName() << "!\n";
+            cout << "\nWelcome, " << currentEmployee->GetName() << "!\n";
         }
     }
     
