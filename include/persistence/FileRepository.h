@@ -15,10 +15,10 @@ public:
     
     void SaveToFile(const string& data, const string& filename) override;
     string LoadFromFile(const string& filename) override;
-    bool fileExists(const string& filename) override;
+    bool FileExists(const string& filename) override;
     
     vector<string> ReadLines(const string& filename);
-    void writeLines(const vector<string>& lines, const string& filename);
+    void WriteLines(const vector<string>& lines, const string& filename);
 };
 
 #endif // FILE_REPOSITORY_H

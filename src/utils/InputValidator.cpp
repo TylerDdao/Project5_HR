@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int InputValidator::readInt(const string& prompt) {
+int InputValidator::ReadInt(const string& prompt) {
     int value;
     while (true) {
         cout << prompt;
@@ -20,14 +20,14 @@ int InputValidator::readInt(const string& prompt) {
     }
 }
 
-string InputValidator::readString(const string& prompt) {
+string InputValidator::ReadString(const string& prompt) {
     string value;
     cout << prompt;
     getline(cin, value);
     return value;
 }
 
-bool InputValidator::isValidInput() {
+bool InputValidator::IsValidInput() {
     return cin.good();
 }
 

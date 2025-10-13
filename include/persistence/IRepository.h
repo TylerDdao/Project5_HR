@@ -11,7 +11,7 @@ class IRepository {
 public:
     virtual void SaveToFile(const string& data, const string& filename) = 0;
     virtual string LoadFromFile(const string& filename) = 0;
-    virtual bool fileExists(const string& filename) = 0;
+    virtual bool FileExists(const string& filename) = 0;
     virtual ~IRepository() = default;
 };
 

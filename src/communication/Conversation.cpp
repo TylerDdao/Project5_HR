@@ -10,7 +10,7 @@ Conversation::Conversation()
 
 Conversation::Conversation(int convId, const vector<int>& participants, const string& type)
     : conversationId(convId), participantIds(participants), messages(), 
-      conversationType(type), createdAt(DateTimeHelper::getCurrentDateTime()) {}
+      conversationType(type), createdAt(DateTimeHelper::GetCurrentDateTime()) {}
 
 int Conversation::GetConversationId() const {
     return conversationId;

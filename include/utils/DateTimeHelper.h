@@ -10,9 +10,9 @@ using namespace std;
 
 class DateTimeHelper {
 public:
-    static string getCurrentDateTime();
-    static string formatDateTime(time_t timestamp);
-    static time_t parseDateTime(const string& dateTimeStr);
+    static string GetCurrentDateTime();
+    static string FormatDateTime(time_t timestamp);
+    static time_t ParseDateTime(const string& dateTimeStr);
 };
 
 #endif // DATETIME_HELPER_H

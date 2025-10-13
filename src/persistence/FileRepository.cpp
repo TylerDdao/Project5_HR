@@ -30,7 +30,7 @@ string FileRepository::LoadFromFile(const string& filename) {
     return buffer.str();
 }
 
-bool FileRepository::fileExists(const string& filename) {
+bool FileRepository::FileExists(const string& filename) {
     ifstream file(filename);
     return file.good();
 }
@@ -54,7 +54,7 @@ vector<string> FileRepository::ReadLines(const string& filename) {
     return lines;
 }
 
-void FileRepository::writeLines(const vector<string>& lines, const string& filename) {
+void FileRepository::WriteLines(const vector<string>& lines, const string& filename) {
     ofstream file(filename);
     if (!file) {
         cerr << "Error: Cannot open file " << filename << " for writing.\n";

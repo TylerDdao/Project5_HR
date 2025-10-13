@@ -4,12 +4,12 @@
 
 using namespace std;
 
-string DateTimeHelper::getCurrentDateTime() {
+string DateTimeHelper::GetCurrentDateTime() {
     time_t now = time(nullptr);
-    return formatDateTime(now);
+    return FormatDateTime(now);
 }
 
-string DateTimeHelper::formatDateTime(time_t timestamp) {
+string DateTimeHelper::FormatDateTime(time_t timestamp) {
     struct tm timeInfo;
     localtime_s(&timeInfo, &timestamp);
     
@@ -24,7 +24,7 @@ string DateTimeHelper::formatDateTime(time_t timestamp) {
     return oss.str();
 }
 
-time_t DateTimeHelper::parseDateTime(const string& dateTimeStr) {
+time_t DateTimeHelper::ParseDateTime(const string& dateTimeStr) {
     struct tm timeInfo = {};
     istringstream ss(dateTimeStr);
     

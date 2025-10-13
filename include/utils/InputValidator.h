@@ -9,9 +9,9 @@ using namespace std;
 
 class InputValidator {
 public:
-    static int readInt(const string& prompt);
-    static string readString(const string& prompt);
-    static bool isValidInput();
+    static int ReadInt(const string& prompt);
+    static string ReadString(const string& prompt);
+    static bool IsValidInput();
 };
 
 #endif // INPUT_VALIDATOR_H

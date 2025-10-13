@@ -38,7 +38,7 @@ int main() {
     int currentUserId = 0;
     
     cout << "\nEnter your Employee ID for this session: ";
-    currentUserId = InputValidator::readInt("");
+    currentUserId = InputValidator::ReadInt("");
     
     if (!employeeManager.EmployeeExists(currentUserId)) {
         cout << "\nWarning: Employee ID " << currentUserId 
@@ -55,7 +55,7 @@ int main() {
     int choice;
     do {
         displayMainMenu();
-        choice = InputValidator::readInt("Enter your choice: ");
+        choice = InputValidator::ReadInt("Enter your choice: ");
         
         switch (choice) {
             case 1:

@@ -57,7 +57,7 @@ int CommunicationHub::SendMessage(int convId, int senderId, const string& body) 
         return -1;
     }
     
-    string timestamp = DateTimeHelper::getCurrentDateTime();
+    string timestamp = DateTimeHelper::GetCurrentDateTime();
     Message msg(nextMsgId, senderId, body, timestamp);
     
     conv->AddMessage(msg);
@@ -202,7 +202,7 @@ void CommunicationHub::LoadFromFile() {
         return;
     }
     
-    if (!repository->fileExists(dataFilePath)) {
+    if (!repository->FileExists(dataFilePath)) {
         cout << "No existing conversation data found.\n";
         return;
     }
@@ -265,20 +265,20 @@ void CommunicationHub::ManageCommunication(int currentUserId) {
         cout << "6. View All Conversations\n";
         cout << "0. Back to Main Menu\n";
         
-        choice = InputValidator::readInt("Enter your choice: ");
+        choice = InputValidator::ReadInt("Enter your choice: ");
         
         if (choice == 1) {
-            int otherUserId = InputValidator::readInt("Enter the other participant's Employee ID: ");
+            int otherUserId = InputValidator::ReadInt("Enter the other participant's Employee ID: ");
             vector<int> participants = {currentUserId, otherUserId};
             StartConversation(participants, ONE_TO_ONE);
         }
         else if (choice == 2) {
-            int numParticipants = InputValidator::readInt("How many participants (including yourself)? ");
+            int numParticipants = InputValidator::ReadInt("How many participants (including yourself)? ");
             vector<int> participants;
             participants.push_back(currentUserId);
             
             for (int i = 1; i < numParticipants; ++i) {
-                int participantId = InputValidator::readInt("Enter Employee ID for participant " + to_string(i + 1) + ": ");
+                int participantId = InputValidator::ReadInt("Enter Employee ID for participant " + to_string(i + 1) + ": ");
                 participants.push_back(participantId);
             }
             
@@ -300,12 +300,12 @@ void CommunicationHub::ManageCommunication(int currentUserId) {
             }
         }
         else if (choice == 4) {
-            int convId = InputValidator::readInt("Enter Conversation ID: ");
-            string messageBody = InputValidator::readString("Enter your message: ");
+            int convId = InputValidator::ReadInt("Enter Conversation ID: ");
+            string messageBody = InputValidator::ReadString("Enter your message: ");
             SendMessage(convId, currentUserId, messageBody);
         }
         else if (choice == 5) {
-            int convId = InputValidator::readInt("Enter Conversation ID: ");
+            int convId = InputValidator::ReadInt("Enter Conversation ID: ");
             DisplayConversation(convId);
         }
         else if (choice == 6) {
