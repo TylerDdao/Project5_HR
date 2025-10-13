@@ -17,7 +17,7 @@ public:
     string LoadFromFile(const string& filename) override;
     bool fileExists(const string& filename) override;
     
-    vector<string> readLines(const string& filename);
+    vector<string> ReadLines(const string& filename);
     void writeLines(const vector<string>& lines, const string& filename);
 };
 

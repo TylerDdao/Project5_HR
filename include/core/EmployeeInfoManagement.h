@@ -16,7 +16,7 @@ private:
     FileRepository* repository;
     string dataFilePath;
     
-    Employee* findById(int id);
+    Employee* FindById(int id);
 
 public:
     EmployeeInfoManagement();
@@ -24,21 +24,21 @@ public:
     ~EmployeeInfoManagement();
 
     // Core CRUD operations
-    void addStaff(const Employee& e);
-    void updateStaff(int id);
-    Employee* getStaff(int id);
-    void removeStaff(int id);
-    void displayAllEmployees() const;
+    void AddStaff(const Employee& e);
+    void UpdateStaff(int id);
+    Employee* GetStaff(int id);
+    void RemoveStaff(int id);
+    void DisplayAllEmployees() const;
     
     // Check if employee exists
-    bool employeeExists(int id) const;
+    bool EmployeeExists(int id) const;
     
     // Persistence
     void SaveToFile();
     void LoadFromFile();
     
     // Management UI
-    void management();
+    void Management();
 };
 
 #endif // EMPLOYEE_INFO_MANAGEMENT_H

@@ -9,43 +9,43 @@ Employee::Employee() : staffId(0), name(), position(), phoneNum(), hireDate() {}
 Employee::Employee(int id, const string& n, const string& p, const string& num, const string& d)
     : staffId(id), name(n), position(p), phoneNum(num), hireDate(d) {}
 
-int Employee::getStaffId() const {
+int Employee::GetStaffId() const {
     return staffId;
 }
 
-string Employee::getName() const {
+string Employee::GetName() const {
     return name;
 }
 
-string Employee::getPosition() const {
+string Employee::GetPosition() const {
     return position;
 }
 
-string Employee::getPhoneNum() const {
+string Employee::GetPhoneNum() const {
     return phoneNum;
 }
 
-string Employee::getHireDate() const {
+string Employee::GetHireDate() const {
     return hireDate;
 }
 
-void Employee::setName(const string& n) {
+void Employee::SetName(const string& n) {
     name = n;
 }
 
-void Employee::setPosition(const string& p) {
+void Employee::SetPosition(const string& p) {
     position = p;
 }
 
-void Employee::setPhoneNum(const string& num) {
+void Employee::SetPhoneNum(const string& num) {
     phoneNum = num;
 }
 
-void Employee::setHireDate(const string& d) {
+void Employee::SetHireDate(const string& d) {
     hireDate = d;
 }
 
-void Employee::display() const {
+void Employee::Display() const {
     cout << "Employee ID: " << staffId << "\n"
          << "Name: " << name << "\n"
          << "Position: " << position << "\n"
@@ -53,13 +53,13 @@ void Employee::display() const {
          << "Hire Date: " << hireDate << "\n" << endl;
 }
 
-string Employee::serialize() const {
+string Employee::Serialize() const {
     stringstream ss;
     ss << staffId << "," << name << "," << position << "," << phoneNum << "," << hireDate;
     return ss.str();
 }
 
-Employee Employee::deserialize(const string& data) {
+Employee Employee::Deserialize(const string& data) {
     stringstream ss(data);
     string idStr, name, position, phone, date;
     

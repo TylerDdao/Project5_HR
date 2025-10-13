@@ -22,24 +22,24 @@ public:
     Employee(int id, const string& n, const string& p, const string& num, const string& d);
 
     // Getters
-    int getStaffId() const;
-    string getName() const;
-    string getPosition() const;
-    string getPhoneNum() const;
-    string getHireDate() const;
+    int GetStaffId() const;
+    string GetName() const;
+    string GetPosition() const;
+    string GetPhoneNum() const;
+    string GetHireDate() const;
     
     // Setters
-    void setName(const string& n);
-    void setPosition(const string& p);
-    void setPhoneNum(const string& num);
-    void setHireDate(const string& d);
+    void SetName(const string& n);
+    void SetPosition(const string& p);
+    void SetPhoneNum(const string& num);
+    void SetHireDate(const string& d);
 
     // Display
-    void display() const;
+    void Display() const;
     
     // Serialization
-    string serialize() const;
-    static Employee deserialize(const string& data);
+    string Serialize() const;
+    static Employee Deserialize(const string& data);
 };
 
 #endif // EMPLOYEE_H

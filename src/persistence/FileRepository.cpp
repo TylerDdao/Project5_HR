@@ -35,7 +35,7 @@ bool FileRepository::fileExists(const string& filename) {
     return file.good();
 }
 
-vector<string> FileRepository::readLines(const string& filename) {
+vector<string> FileRepository::ReadLines(const string& filename) {
     vector<string> lines;
     ifstream file(filename);
     

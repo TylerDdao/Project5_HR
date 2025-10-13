@@ -208,7 +208,7 @@ void CommunicationHub::LoadFromFile() {
     }
     
     conversations.clear();
-    vector<string> lines = repository->readLines(dataFilePath);
+    vector<string> lines = repository->ReadLines(dataFilePath);
     
     Conversation* currentConv = nullptr;
     

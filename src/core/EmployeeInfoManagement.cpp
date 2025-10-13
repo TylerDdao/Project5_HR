@@ -18,25 +18,25 @@ EmployeeInfoManagement::~EmployeeInfoManagement() {
     }
 }
 
-Employee* EmployeeInfoManagement::findById(int id) {
+Employee* EmployeeInfoManagement::FindById(int id) {
     for (auto& e : employees) {
-        if (e.getStaffId() == id) return &e;
+        if (e.GetStaffId() == id) return &e;
     }
     return nullptr;
 }
 
-void EmployeeInfoManagement::addStaff(const Employee& e) {
-    if (findById(e.getStaffId())) {
-        cout << "Employee with ID " << e.getStaffId() << " already exists. Add cancelled.\n";
+void EmployeeInfoManagement::AddStaff(const Employee& e) {
+    if (FindById(e.GetStaffId())) {
+        cout << "Employee with ID " << e.GetStaffId() << " already exists. Add cancelled.\n";
         return;
     }
     employees.push_back(e);
-    cout << "Employee " << e.getName() << " added successfully.\n";
+    cout << "Employee " << e.GetName() << " added successfully.\n";
     SaveToFile();
 }
 
-void EmployeeInfoManagement::updateStaff(int id) {
-    Employee* e = findById(id);
+void EmployeeInfoManagement::UpdateStaff(int id) {
+    Employee* e = FindById(id);
     if (!e) {
         cout << "Employee with ID " << id << " not found.\n";
         return;
@@ -44,8 +44,8 @@ void EmployeeInfoManagement::updateStaff(int id) {
 
     int choice;
     do {
-        cout << "\nWhat do you want to update for employee " << e->getName() 
-             << " (ID " << e->getStaffId() << ")?\n";
+        cout << "\nWhat do you want to update for employee " << e->GetName() 
+             << " (ID " << e->GetStaffId() << ")?\n";
         cout << "1. Name\n";
         cout << "2. Position\n";
         cout << "3. Phone Number\n";
@@ -56,22 +56,22 @@ void EmployeeInfoManagement::updateStaff(int id) {
 
         if (choice == 1) {
             string n = InputValidator::readString("Enter new name: ");
-            e->setName(n);
+            e->SetName(n);
             cout << "Name updated.\n";
         }
         else if (choice == 2) {
             string p = InputValidator::readString("Enter new position: ");
-            e->setPosition(p);
+            e->SetPosition(p);
             cout << "Position updated.\n";
         }
         else if (choice == 3) {
             string num = InputValidator::readString("Enter new phone number: ");
-            e->setPhoneNum(num);
+            e->SetPhoneNum(num);
             cout << "Phone number updated.\n";
         }
         else if (choice == 4) {
             string d = InputValidator::readString("Enter new hire date (YYYY-MM-DD): ");
-            e->setHireDate(d);
+            e->SetHireDate(d);
             cout << "Hire date updated.\n";
         }
         else if (choice == 0) {
@@ -85,14 +85,14 @@ void EmployeeInfoManagement::updateStaff(int id) {
     SaveToFile();
 }
 
-Employee* EmployeeInfoManagement::getStaff(int id) {
-    return findById(id);
+Employee* EmployeeInfoManagement::GetStaff(int id) {
+    return FindById(id);
 }
 
-void EmployeeInfoManagement::removeStaff(int id) {
+void EmployeeInfoManagement::RemoveStaff(int id) {
     for (auto it = employees.begin(); it != employees.end(); ++it) {
-        if (it->getStaffId() == id) {
-            cout << "Employee " << it->getName() << " removed.\n";
+        if (it->GetStaffId() == id) {
+            cout << "Employee " << it->GetName() << " removed.\n";
             employees.erase(it);
             SaveToFile();
             return;
@@ -101,20 +101,20 @@ void EmployeeInfoManagement::removeStaff(int id) {
     cout << "Employee with ID " << id << " not found.\n";
 }
 
-void EmployeeInfoManagement::displayAllEmployees() const {
+void EmployeeInfoManagement::DisplayAllEmployees() const {
     cout << "\n==== Employee List ====\n";
     if (employees.empty()) {
         cout << "No employees in the system.\n";
         return;
     }
     for (const auto& e : employees) {
-        e.display();
+        e.Display();
     }
 }
 
-bool EmployeeInfoManagement::employeeExists(int id) const {
+bool EmployeeInfoManagement::EmployeeExists(int id) const {
     for (const auto& e : employees) {
-        if (e.getStaffId() == id) return true;
+        if (e.GetStaffId() == id) return true;
     }
     return false;
 }
@@ -127,7 +127,7 @@ void EmployeeInfoManagement::SaveToFile() {
     
     stringstream ss;
     for (const auto& e : employees) {
-        ss << e.serialize() << "\n";
+        ss << e.Serialize() << "\n";
     }
     
     repository->SaveToFile(ss.str(), dataFilePath);
@@ -146,12 +146,12 @@ void EmployeeInfoManagement::LoadFromFile() {
     }
     
     employees.clear();
-    vector<string> lines = repository->readLines(dataFilePath);
+    vector<string> lines = repository->ReadLines(dataFilePath);
     
     for (const auto& line : lines) {
         if (!line.empty()) {
-            Employee e = Employee::deserialize(line);
-            if (e.getStaffId() != 0) {
+            Employee e = Employee::Deserialize(line);
+            if (e.GetStaffId() != 0) {
                 employees.push_back(e);
             }
         }
@@ -160,7 +160,7 @@ void EmployeeInfoManagement::LoadFromFile() {
     cout << "Loaded " << employees.size() << " employees from file.\n";
 }
 
-void EmployeeInfoManagement::management() {
+void EmployeeInfoManagement::Management() {
     int choice;
     do {
         cout << "\n==== Employee Info Management System ====\n";
@@ -175,7 +175,7 @@ void EmployeeInfoManagement::management() {
 
         if (choice == 1) {
             int id = InputValidator::readInt("Enter Employee ID (number only): ");
-            if (findById(id)) {
+            if (FindById(id)) {
                 cout << "Employee with ID " << id << " already exists. Add cancelled.\n";
                 continue;
             }
@@ -185,18 +185,18 @@ void EmployeeInfoManagement::management() {
             string num = InputValidator::readString("Enter phone number: ");
             string d = InputValidator::readString("Enter hire date (YYYY-MM-DD): ");
             
-            addStaff(Employee(id, n, p, num, d));
+            AddStaff(Employee(id, n, p, num, d));
         }
         else if (choice == 2) {
             int id = InputValidator::readInt("Enter Employee ID to update: ");
-            updateStaff(id);
+            UpdateStaff(id);
         }
         else if (choice == 3) {
             int id = InputValidator::readInt("Enter Employee ID to get: ");
-            Employee* e = getStaff(id);
+            Employee* e = GetStaff(id);
             if (e) {
                 cout << "\nEmployee Found:\n";
-                e->display();
+                e->Display();
             }
             else {
                 cout << "Employee with ID " << id << " not found.\n";
@@ -204,10 +204,10 @@ void EmployeeInfoManagement::management() {
         }
         else if (choice == 4) {
             int id = InputValidator::readInt("Enter Employee ID to remove: ");
-            removeStaff(id);
+            RemoveStaff(id);
         }
         else if (choice == 5) {
-            displayAllEmployees();
+            DisplayAllEmployees();
         }
         else if (choice == 0) {
             cout << "Returning to main menu...\n";

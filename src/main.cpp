@@ -40,13 +40,13 @@ int main() {
     cout << "\nEnter your Employee ID for this session: ";
     currentUserId = InputValidator::readInt("");
     
-    if (!employeeManager.employeeExists(currentUserId)) {
+    if (!employeeManager.EmployeeExists(currentUserId)) {
         cout << "\nWarning: Employee ID " << currentUserId 
              << " not found in system. You can still use the system,\n"
              << "but some features may not work properly.\n";
     }
     else {
-        Employee* currentEmployee = employeeManager.getStaff(currentUserId);
+        Employee* currentEmployee = employeeManager.GetStaff(currentUserId);
         if (currentEmployee) {
             cout << "\nWelcome, " << currentEmployee->getName() << "!\n";
         }
@@ -59,7 +59,7 @@ int main() {
         
         switch (choice) {
             case 1:
-                employeeManager.management();
+                employeeManager.Management();
                 break;
                 
             case 2:
@@ -67,7 +67,7 @@ int main() {
                 break;
                 
             case 3:
-                employeeManager.displayAllEmployees();
+                employeeManager.DisplayAllEmployees();
                 break;
                 
             case 4:
