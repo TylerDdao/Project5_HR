@@ -15,8 +15,8 @@ int main() {
 	//cout << add(2, 6) << endl;
 
 	EmployeeInfoManagement manage;
-	manage.loadFromFile();
-	manage.management();
-	manage.saveToFile();
+	manage.LoadFromFile();
+	manage.Management();
+	manage.SaveToFile();
 	return 0;
 }

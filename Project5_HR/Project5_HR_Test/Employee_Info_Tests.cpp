@@ -108,7 +108,7 @@ namespace Project5HRTest
 			remove("employees.txt");
 
 			EmployeeInfoManagement m;
-			m.loadFromFile();
+			m.LoadFromFile();
 
 			Employee* e = m.getStaff(1);
 			Assert::IsNull(e);
@@ -127,7 +127,7 @@ namespace Project5HRTest
 
 			//load new
 			EmployeeInfoManagement m2;
-			m2.loadFromFile();
+			m2.LoadFromFile();
 
 			Employee* e1 = m2.getStaff(11);
 			Employee* e2 = m2.getStaff(12);

@@ -34,8 +34,8 @@ public:
     bool employeeExists(int id) const;
     
     // Persistence
-    void saveToFile();
-    void loadFromFile();
+    void SaveToFile();
+    void LoadFromFile();
     
     // Management UI
     void management();

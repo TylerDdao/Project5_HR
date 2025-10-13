@@ -21,7 +21,7 @@ CommunicationHub::~CommunicationHub() {
     }
 }
 
-int CommunicationHub::startConversation(const vector<int>& participantIds, const string& type) {
+int CommunicationHub::StartConversation(const vector<int>& participantIds, const string& type) {
     if (participantIds.empty()) {
         cout << "Error: Cannot create conversation without participants.\n";
         return -1;
@@ -39,12 +39,12 @@ int CommunicationHub::startConversation(const vector<int>& participantIds, const
     nextConvId++;
     
     cout << "Conversation " << convId << " started successfully.\n";
-    saveToFile();
+    SaveToFile();
     
     return convId;
 }
 
-int CommunicationHub::sendMessage(int convId, int senderId, const string& body) {
+int CommunicationHub::SendMessage(int convId, int senderId, const string& body) {
     Conversation* conv = findConversationById(convId);
     
     if (!conv) {
@@ -52,7 +52,7 @@ int CommunicationHub::sendMessage(int convId, int senderId, const string& body) 
         return -1;
     }
     
-    if (!conv->hasParticipant(senderId)) {
+    if (!conv->HasParticipant(senderId)) {
         cout << "Error: Sender " << senderId << " is not a participant in this conversation.\n";
         return -1;
     }
@@ -60,18 +60,18 @@ int CommunicationHub::sendMessage(int convId, int senderId, const string& body) 
     string timestamp = DateTimeHelper::getCurrentDateTime();
     Message msg(nextMsgId, senderId, body, timestamp);
     
-    conv->addMessage(msg);
+    conv->AddMessage(msg);
     
     int msgId = nextMsgId;
     nextMsgId++;
     
     cout << "Message sent successfully. Message ID: " << msgId << "\n";
-    saveToFile();
+    SaveToFile();
     
     return msgId;
 }
 
-vector<Message> CommunicationHub::listMessages(int convId) {
+vector<Message> CommunicationHub::ListMessages(int convId) {
     Conversation* conv = findConversationById(convId);
     
     if (!conv) {
@@ -79,10 +79,10 @@ vector<Message> CommunicationHub::listMessages(int convId) {
         return vector<Message>();
     }
     
-    return conv->getMessages();
+    return conv->GetMessages();
 }
 
-void CommunicationHub::displayConversation(int convId) {
+void CommunicationHub::DisplayConversation(int convId) {
     Conversation* conv = findConversationById(convId);
     
     if (!conv) {
@@ -90,17 +90,17 @@ void CommunicationHub::displayConversation(int convId) {
         return;
     }
     
-    cout << "\n==== Conversation " << convId << " (" << conv->getConversationType() << ") ====\n";
+    cout << "\n==== Conversation " << convId << " (" << conv->GetConversationType() << ") ====\n";
     cout << "Participants: ";
-    vector<int> participants = conv->getParticipants();
+    vector<int> participants = conv->GetParticipants();
     for (size_t i = 0; i < participants.size(); ++i) {
         cout << participants[i];
         if (i < participants.size() - 1) cout << ", ";
     }
-    cout << "\nCreated: " << conv->getCreatedAt() << "\n";
-    cout << "Messages: " << conv->getMessageCount() << "\n\n";
+    cout << "\nCreated: " << conv->GetCreatedAt() << "\n";
+    cout << "Messages: " << conv->GetMessageCount() << "\n\n";
     
-    vector<Message> messages = conv->getMessages();
+    vector<Message> messages = conv->GetMessages();
     if (messages.empty()) {
         cout << "No messages in this conversation.\n";
         return;
@@ -117,7 +117,7 @@ void CommunicationHub::displayConversation(int convId) {
     }
 }
 
-void CommunicationHub::displayAllConversations() {
+void CommunicationHub::DisplayAllConversations() {
     cout << "\n==== All Conversations ====\n";
     if (conversations.empty()) {
         cout << "No conversations found.\n";
@@ -125,11 +125,11 @@ void CommunicationHub::displayAllConversations() {
     }
     
     for (const auto& conv : conversations) {
-        cout << "Conversation " << conv.getConversationId() 
-             << " (" << conv.getConversationType() << ") - "
-             << conv.getMessageCount() << " messages\n";
+        cout << "Conversation " << conv.GetConversationId() 
+             << " (" << conv.GetConversationType() << ") - "
+             << conv.GetMessageCount() << " messages\n";
         cout << "  Participants: ";
-        vector<int> participants = conv.getParticipants();
+        vector<int> participants = conv.GetParticipants();
         for (size_t i = 0; i < participants.size(); ++i) {
             cout << participants[i];
             if (i < participants.size() - 1) cout << ", ";
@@ -138,15 +138,15 @@ void CommunicationHub::displayAllConversations() {
     }
 }
 
-Conversation* CommunicationHub::getConversation(int convId) {
+Conversation* CommunicationHub::GetConversation(int convId) {
     return findConversationById(convId);
 }
 
-vector<Conversation> CommunicationHub::getConversationsByParticipant(int participantId) {
+vector<Conversation> CommunicationHub::GetConversationsByParticipant(int participantId) {
     vector<Conversation> result;
     
     for (auto& conv : conversations) {
-        if (conv.hasParticipant(participantId)) {
+        if (conv.HasParticipant(participantId)) {
             result.push_back(conv);
         }
     }
@@ -156,7 +156,7 @@ vector<Conversation> CommunicationHub::getConversationsByParticipant(int partici
 
 Conversation* CommunicationHub::findConversationById(int convId) {
     for (auto& conv : conversations) {
-        if (conv.getConversationId() == convId) {
+        if (conv.GetConversationId() == convId) {
             return &conv;
         }
     }
@@ -168,11 +168,11 @@ void CommunicationHub::generateIds() {
     nextMsgId = 1;
     
     for (const auto& conv : conversations) {
-        if (conv.getConversationId() >= nextConvId) {
-            nextConvId = conv.getConversationId() + 1;
+        if (conv.GetConversationId() >= nextConvId) {
+            nextConvId = conv.GetConversationId() + 1;
         }
         
-        for (const auto& msg : conv.getMessages()) {
+        for (const auto& msg : conv.GetMessages()) {
             if (msg.getId() >= nextMsgId) {
                 nextMsgId = msg.getId() + 1;
             }
@@ -180,7 +180,7 @@ void CommunicationHub::generateIds() {
     }
 }
 
-void CommunicationHub::saveToFile() {
+void CommunicationHub::SaveToFile() {
     if (!repository) {
         cerr << "Error: Repository not initialized.\n";
         return;
@@ -189,14 +189,14 @@ void CommunicationHub::saveToFile() {
     stringstream ss;
     
     for (const auto& conv : conversations) {
-        ss << conv.serializeHeader() << "\n";
-        ss << conv.serializeMessages();
+        ss << conv.SerializeHeader() << "\n";
+        ss << conv.SerializeMessages();
     }
     
-    repository->saveToFile(ss.str(), dataFilePath);
+    repository->SaveToFile(ss.str(), dataFilePath);
 }
 
-void CommunicationHub::loadFromFile() {
+void CommunicationHub::LoadFromFile() {
     if (!repository) {
         cerr << "Error: Repository not initialized.\n";
         return;
@@ -243,7 +243,7 @@ void CommunicationHub::loadFromFile() {
             getline(ss, msgData);
             
             Message msg = Message::deserialize(msgData);
-            currentConv->addMessage(msg);
+            currentConv->AddMessage(msg);
         }
     }
     
@@ -251,7 +251,7 @@ void CommunicationHub::loadFromFile() {
     cout << "Loaded " << conversations.size() << " conversations from file.\n";
 }
 
-void CommunicationHub::manageCommunication(int currentUserId) {
+void CommunicationHub::ManageCommunication(int currentUserId) {
     int choice;
     
     do {
@@ -270,7 +270,7 @@ void CommunicationHub::manageCommunication(int currentUserId) {
         if (choice == 1) {
             int otherUserId = InputValidator::readInt("Enter the other participant's Employee ID: ");
             vector<int> participants = {currentUserId, otherUserId};
-            startConversation(participants, ONE_TO_ONE);
+            StartConversation(participants, ONE_TO_ONE);
         }
         else if (choice == 2) {
             int numParticipants = InputValidator::readInt("How many participants (including yourself)? ");
@@ -282,10 +282,10 @@ void CommunicationHub::manageCommunication(int currentUserId) {
                 participants.push_back(participantId);
             }
             
-            startConversation(participants, GROUP);
+            StartConversation(participants, GROUP);
         }
         else if (choice == 3) {
-            vector<Conversation> myConvs = getConversationsByParticipant(currentUserId);
+            vector<Conversation> myConvs = GetConversationsByParticipant(currentUserId);
             
             if (myConvs.empty()) {
                 cout << "You have no conversations.\n";
@@ -293,23 +293,23 @@ void CommunicationHub::manageCommunication(int currentUserId) {
             else {
                 cout << "\n==== Your Conversations ====\n";
                 for (const auto& conv : myConvs) {
-                    cout << "Conversation " << conv.getConversationId()
-                         << " (" << conv.getConversationType() << ") - "
-                         << conv.getMessageCount() << " messages\n";
+                    cout << "Conversation " << conv.GetConversationId()
+                         << " (" << conv.GetConversationType() << ") - "
+                         << conv.GetMessageCount() << " messages\n";
                 }
             }
         }
         else if (choice == 4) {
             int convId = InputValidator::readInt("Enter Conversation ID: ");
             string messageBody = InputValidator::readString("Enter your message: ");
-            sendMessage(convId, currentUserId, messageBody);
+            SendMessage(convId, currentUserId, messageBody);
         }
         else if (choice == 5) {
             int convId = InputValidator::readInt("Enter Conversation ID: ");
-            displayConversation(convId);
+            DisplayConversation(convId);
         }
         else if (choice == 6) {
-            displayAllConversations();
+            DisplayAllConversations();
         }
         else if (choice == 0) {
             cout << "Returning to main menu...\n";

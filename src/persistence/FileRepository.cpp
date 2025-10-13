@@ -7,7 +7,7 @@ using namespace std;
 
 FileRepository::FileRepository() {}
 
-void FileRepository::saveToFile(const string& data, const string& filename) {
+void FileRepository::SaveToFile(const string& data, const string& filename) {
     ofstream file(filename);
     if (!file) {
         cerr << "Error: Cannot open file " << filename << " for writing.\n";
@@ -17,7 +17,7 @@ void FileRepository::saveToFile(const string& data, const string& filename) {
     file.close();
 }
 
-string FileRepository::loadFromFile(const string& filename) {
+string FileRepository::LoadFromFile(const string& filename) {
     ifstream file(filename);
     if (!file) {
         return "";

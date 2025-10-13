@@ -12,31 +12,31 @@ Conversation::Conversation(int convId, const vector<int>& participants, const st
     : conversationId(convId), participantIds(participants), messages(), 
       conversationType(type), createdAt(DateTimeHelper::getCurrentDateTime()) {}
 
-int Conversation::getConversationId() const {
+int Conversation::GetConversationId() const {
     return conversationId;
 }
 
-vector<int> Conversation::getParticipants() const {
+vector<int> Conversation::GetParticipants() const {
     return participantIds;
 }
 
-vector<Message> Conversation::getMessages() const {
+vector<Message> Conversation::GetMessages() const {
     return messages;
 }
 
-string Conversation::getConversationType() const {
+string Conversation::GetConversationType() const {
     return conversationType;
 }
 
-string Conversation::getCreatedAt() const {
+string Conversation::GetCreatedAt() const {
     return createdAt;
 }
 
-void Conversation::addMessage(const Message& msg) {
+void Conversation::AddMessage(const Message& msg) {
     messages.push_back(msg);
 }
 
-Message* Conversation::findMessageById(int msgId) {
+Message* Conversation::FindMessageById(int msgId) {
     for (auto& msg : messages) {
         if (msg.getId() == msgId) {
             return &msg;
@@ -45,21 +45,21 @@ Message* Conversation::findMessageById(int msgId) {
     return nullptr;
 }
 
-int Conversation::getMessageCount() const {
+int Conversation::GetMessageCount() const {
     return static_cast<int>(messages.size());
 }
 
-void Conversation::addParticipant(int participantId) {
-    if (!hasParticipant(participantId)) {
+void Conversation::AddParticipant(int participantId) {
+    if (!HasParticipant(participantId)) {
         participantIds.push_back(participantId);
     }
 }
 
-bool Conversation::hasParticipant(int participantId) const {
+bool Conversation::HasParticipant(int participantId) const {
     return find(participantIds.begin(), participantIds.end(), participantId) != participantIds.end();
 }
 
-string Conversation::serializeHeader() const {
+string Conversation::SerializeHeader() const {
     stringstream ss;
     ss << "CONV|" << conversationId << "|" << conversationType << "|" << createdAt << "|";
     
@@ -73,7 +73,7 @@ string Conversation::serializeHeader() const {
     return ss.str();
 }
 
-string Conversation::serializeMessages() const {
+string Conversation::SerializeMessages() const {
     stringstream ss;
     for (const auto& msg : messages) {
         ss << "MSG|" << conversationId << "|" << msg.serialize() << "\n";

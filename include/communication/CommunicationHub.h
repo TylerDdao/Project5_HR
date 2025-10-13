@@ -28,22 +28,22 @@ public:
     ~CommunicationHub();
     
     // Core methods from the design
-    int startConversation(const vector<int>& participantIds, const string& type);
-    int sendMessage(int convId, int senderId, const string& body);
-    vector<Message> listMessages(int convId);
+    int StartConversation(const vector<int>& participantIds, const string& type);
+    int SendMessage(int convId, int senderId, const string& body);
+    vector<Message> ListMessages(int convId);
     
     // Additional management methods
-    void displayConversation(int convId);
-    void displayAllConversations();
-    Conversation* getConversation(int convId);
-    vector<Conversation> getConversationsByParticipant(int participantId);
+    void DisplayConversation(int convId);
+    void DisplayAllConversations();
+    Conversation* GetConversation(int convId);
+    vector<Conversation> GetConversationsByParticipant(int participantId);
     
     // Persistence
-    void saveToFile();
-    void loadFromFile();
+    void SaveToFile();
+    void LoadFromFile();
     
     // Conversation management UI
-    void manageCommunication(int currentUserId);
+    void ManageCommunication(int currentUserId);
 };
 
 #endif // COMMUNICATION_HUB_H

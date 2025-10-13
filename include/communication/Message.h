@@ -20,24 +20,24 @@ public:
     Message(int msgId, int sender, const string& content, const string& timestamp);
     
     // Setters
-    bool setId(int msgId);
-    bool setSenderId(int sender);
-    bool setBody(const string& content);
-    bool setTime(const string& timestamp);
+    bool SetId(int msgId);
+    bool SetSenderId(int sender);
+    bool SetBody(const string& content);
+    bool SetTime(const string& timestamp);
     
     // Getters
-    int getId() const;
-    int getSenderId() const;
-    string getBody() const;
-    string getTime() const;
-    bool getIsRead() const;
+    int GetId() const;
+    int GetSenderId() const;
+    string GetBody() const;
+    string GetTime() const;
+    bool GetIsRead() const;
     
     // Mark message as read
-    bool markRead();
+    bool MarkRead();
     
     // Serialization
-    string serialize() const;
-    static Message deserialize(const string& data);
+    string Serialize() const;
+    static Message Deserialize(const string& data);
 };
 
 #endif // MESSAGE_H

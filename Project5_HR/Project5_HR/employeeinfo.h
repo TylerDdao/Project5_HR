@@ -21,38 +21,38 @@ public:
     Employee(int id, const string& n, const string& p,
         const string& num, const string& d);
 
-    int getStaffId() const;
-    void setName(const string& n);
-    string getName() const;
-    void setPosition(const string& p);
-    string getPosition() const;
-    void setPhoneNum(const string& num);
-    string getPhoneNum() const;
-    void setHireDate(const string& d);
-    string getHireDate() const;
+    int GetStaffId() const;
+    void SetName(const string& n);
+    string GetName() const;
+    void SetPosition(const string& p);
+    string GetPosition() const;
+    void SetPhoneNum(const string& num);
+    string GetPhoneNum() const;
+    void SetHireDate(const string& d);
+    string GetHireDate() const;
 
-    void display() const;
+    void Display() const;
 };
 
 class EmployeeInfoManagement {
 private:
     vector<Employee> employees;
 
-    int readInt(const string& prompt);
+    int ReadInt(const string& prompt);
 
-    Employee* findById(int id);
+    Employee* FindById(int id);
 
 public:
     EmployeeInfoManagement();
 
-    void addStaff(const Employee& e);
-    void updateStaff(int id);
-    Employee* getStaff(int id);
-    void removeStaff(int id);
-    void displayAllEmployees() const;
-    void management();
-    void saveToFile() const;
-    void loadFromFile();
+    void AddStaff(const Employee& e);
+    void UpdateStaff(int id);
+    Employee* GetStaff(int id);
+    void RemoveStaff(int id);
+    void DisplayAllEmployees() const;
+    void Management();
+    void SaveToFile() const;
+    void LoadFromFile();
 };
 
 #endif //EMPLOYEE_H

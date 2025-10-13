@@ -28,10 +28,10 @@ int main() {
     
     // Load data
     cout << "Loading employee data...\n";
-    employeeManager.loadFromFile();
+    employeeManager.LoadFromFile();
     
     cout << "Loading conversation data...\n";
-    commHub.loadFromFile();
+    commHub.LoadFromFile();
     
     // For demo purposes, we'll use a default user ID
     // In a real system, you would have authentication
@@ -63,7 +63,7 @@ int main() {
                 break;
                 
             case 2:
-                commHub.manageCommunication(currentUserId);
+                commHub.ManageCommunication(currentUserId);
                 break;
                 
             case 3:
@@ -71,13 +71,13 @@ int main() {
                 break;
                 
             case 4:
-                commHub.displayAllConversations();
+                commHub.DisplayAllConversations();
                 break;
                 
             case 0:
                 cout << "\nSaving all data...\n";
-                employeeManager.saveToFile();
-                commHub.saveToFile();
+                employeeManager.SaveToFile();
+                commHub.SaveToFile();
                 cout << "Thank you for using HR Management System. Goodbye!\n";
                 break;
                 

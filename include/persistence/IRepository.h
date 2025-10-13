@@ -9,8 +9,8 @@ using namespace std;
 
 class IRepository {
 public:
-    virtual void saveToFile(const string& data, const string& filename) = 0;
-    virtual string loadFromFile(const string& filename) = 0;
+    virtual void SaveToFile(const string& data, const string& filename) = 0;
+    virtual string LoadFromFile(const string& filename) = 0;
     virtual bool fileExists(const string& filename) = 0;
     virtual ~IRepository() = default;
 };

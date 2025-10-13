@@ -13,8 +13,8 @@ class FileRepository : public IRepository {
 public:
     FileRepository();
     
-    void saveToFile(const string& data, const string& filename) override;
-    string loadFromFile(const string& filename) override;
+    void SaveToFile(const string& data, const string& filename) override;
+    string LoadFromFile(const string& filename) override;
     bool fileExists(const string& filename) override;
     
     vector<string> readLines(const string& filename);

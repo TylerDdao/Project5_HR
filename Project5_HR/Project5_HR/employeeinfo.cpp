@@ -12,52 +12,52 @@ Employee::Employee() : staffId(0), name(), position(), phoneNum(), hireDate() {}
 Employee::Employee(int id, const string& n, const string& p, const string& num, const string& d)
     : staffId(id), name(n), position(p), phoneNum(num), hireDate(d) {}
 
-int Employee::getStaffId() const 
+int Employee::GetStaffId() const 
 { 
     return staffId;
 }
 
-void Employee::setName(const string& n) 
+void Employee::SetName(const string& n) 
 { 
     name = n; 
 }
 
-string Employee::getName() const 
+string Employee::GetName() const 
 { 
     return name; 
 }
 
-void Employee::setPosition(const string& p) 
+void Employee::SetPosition(const string& p) 
 { 
     position = p; 
 }
 
-string Employee::getPosition() const 
+string Employee::GetPosition() const 
 { 
     return position; 
 }
 
-void Employee::setPhoneNum(const string& num) 
+void Employee::SetPhoneNum(const string& num) 
 { 
     phoneNum = num; 
 }
 
-string Employee::getPhoneNum() const 
+string Employee::GetPhoneNum() const 
 { 
     return phoneNum; 
 }
 
-void Employee::setHireDate(const string& d) 
+void Employee::SetHireDate(const string& d) 
 { 
     hireDate = d; 
 }
 
-string Employee::getHireDate() const 
+string Employee::GetHireDate() const 
 { 
     return hireDate; 
 }
 
-void Employee::display() const {
+void Employee::Display() const {
     cout << "EmployeeID: " << staffId << "\n"
         << "Name: " << name << "\n"
         << "Position: " << position << "\n"
@@ -67,7 +67,7 @@ void Employee::display() const {
 
 EmployeeInfoManagement::EmployeeInfoManagement() : employees() { }
 
-int EmployeeInfoManagement::readInt(const string& prompt) {
+int EmployeeInfoManagement::ReadInt(const string& prompt) {
     int value;
     while (true) {
         cout << prompt;
@@ -84,26 +84,26 @@ int EmployeeInfoManagement::readInt(const string& prompt) {
     }
 }
 
-Employee* EmployeeInfoManagement::findById(int id) {
+Employee* EmployeeInfoManagement::FindById(int id) {
     for (auto& e : employees) {
-        if (e.getStaffId() == id) return &e;
+        if (e.GetStaffId() == id) return &e;
     }
     return nullptr;
 }
 
-void EmployeeInfoManagement::addStaff(const Employee& e) {
-    if (findById(e.getStaffId())) {
-        cout << "Employee with ID " << e.getStaffId() << " already exists. Add cancelled.\n";
+    void EmployeeInfoManagement::AddStaff(const Employee& e) {
+    if (FindById(e.GetStaffId())) {
+        cout << "Employee with ID " << e.GetStaffId() << " already exists. Add cancelled.\n";
         return;
     }
     employees.push_back(e);
-    cout << "Employee " << e.getName() << " added successfully.\n";
+    cout << "Employee " << e.GetName() << " added successfully.\n";
 
-    saveToFile();
+    SaveToFile();
 }
 
-void EmployeeInfoManagement::updateStaff(int id) {
-    Employee* e = findById(id);
+void EmployeeInfoManagement::UpdateStaff(int id) {
+    Employee* e = FindById(id);
     if (!e) {
         cout << "Employee with ID " << id << " not found.\n";
         return;
@@ -111,40 +111,40 @@ void EmployeeInfoManagement::updateStaff(int id) {
 
     int choice;
     do {
-        cout << "\nWhat do you want to update for employee " << e->getName() << " (ID " << e->getStaffId() << ")?\n";
+        cout << "\nWhat do you want to update for employee " << e->GetName() << " (ID " << e->GetStaffId() << ")?\n";
         cout << "1. Name\n";
         cout << "2. Position\n";
         cout << "3. Phone Number\n";
         cout << "4. Hire Date\n";
         cout << "0. Done/Cancel\n";
-        choice = readInt("Enter your choice: ");
+        choice = ReadInt("Enter your choice: ");
 
         if (choice == 1) {
             string n;
             cout << "Enter new name: ";
             getline(cin, n);
-            e->setName(n);
+            e->SetName(n);
             cout << "Name updated.\n";
         }
         else if (choice == 2) {
             string p;
             cout << "Enter new position: ";
             getline(cin, p);
-            e->setPosition(p);
+            e->SetPosition(p);
             cout << "Position updated.\n";
         }
         else if (choice == 3) {
             string num;
             cout << "Enter new phone number: ";
             getline(cin, num);
-            e->setPhoneNum(num);
+            e->SetPhoneNum(num);
             cout << "Phone number updated.\n";
         }
         else if (choice == 4) {
             string d;
             cout << "Enter new hire date (YYYY-MM-DD): ";
             getline(cin, d);
-            e->setHireDate(d);
+            e->SetHireDate(d);
             cout << "Hire date updated.\n";
         }
         else if (choice == 0) {
@@ -155,36 +155,36 @@ void EmployeeInfoManagement::updateStaff(int id) {
         }
     } while (choice != 0);
     
-    saveToFile();
+    SaveToFile();
 }
 
-Employee* EmployeeInfoManagement::getStaff(int id) {
-    return findById(id);
+Employee* EmployeeInfoManagement::GetStaff(int id) {
+    return FindById(id);
 }
 
-void EmployeeInfoManagement::removeStaff(int id) {
+void EmployeeInfoManagement::RemoveStaff(int id) {
     for (auto it = employees.begin(); it != employees.end(); ++it) {
-        if (it->getStaffId() == id) {
-            cout << "Employee " << it->getName() << " removed.\n";
+        if (it->GetStaffId() == id) {
+            cout << "Employee " << it->GetName() << " removed.\n";
             employees.erase(it);
 
-            saveToFile();
+            SaveToFile();
             return;
         }
     }
     cout << "Employee with ID " << id << " not found.\n";
 }
 
-void EmployeeInfoManagement::displayAllEmployees() const {
+void EmployeeInfoManagement::DisplayAllEmployees() const {
     cout << "\n==== Employee List ====\n";
     if (employees.empty()) {
         cout << "No employees in the system.\n";
         return;
     }
-    for (const auto& e : employees) e.display();
+    for (const auto& e : employees) e.Display();
 }
 
-void EmployeeInfoManagement::management() {
+void EmployeeInfoManagement::Management() {
     int choice;
     do {
         cout << "\n==== Employee Info Management System ====\n";
@@ -194,11 +194,11 @@ void EmployeeInfoManagement::management() {
         cout << "4. Remove Employee\n";
         cout << "5. Display All Employees\n";
         cout << "0. Exit\n";
-        choice = readInt("Enter your choice: ");
+        choice = ReadInt("Enter your choice: ");
 
         if (choice == 1) {
-            int id = readInt("Enter id (number only): ");
-            if (findById(id)) {
+            int id = ReadInt("Enter id (number only): ");
+            if (FindById(id)) {
                 cout << "Employee with ID " << id << " already exists. Add cancelled.\n";
                 continue;
             }
@@ -211,29 +211,29 @@ void EmployeeInfoManagement::management() {
             getline(cin, num);
             cout << "Enter hire date (YYYY-MM-DD): ";
             getline(cin, d);
-            addStaff(Employee(id, n, p, num, d));
+            AddStaff(Employee(id, n, p, num, d));
         }
         else if (choice == 2) {
-            int id = readInt("Enter id to update: ");
-            updateStaff(id);
+            int id = ReadInt("Enter id to update: ");
+                UpdateStaff(id);
         }
         else if (choice == 3) {
-            int id = readInt("Enter id to get: ");
-            Employee* e = getStaff(id);
+            int id = ReadInt("Enter id to get: ");
+            Employee* e = GetStaff(id);
             if (e) {
                 cout << "\nEmployee Found:\n";
-                e->display();
+                e->Display();
             }
             else {
                 cout << "Employee with ID " << id << " not found.\n";
             }
         }
         else if (choice == 4) {
-            int id = readInt("Enter id to remove: ");
-            removeStaff(id);
+            int id = ReadInt("Enter id to remove: ");
+            RemoveStaff(id);
         }
         else if (choice == 5) {
-            displayAllEmployees();
+            DisplayAllEmployees();
         }
         else if (choice == 0) {
             cout << "Exiting ...\n";
@@ -244,7 +244,7 @@ void EmployeeInfoManagement::management() {
     } while (choice != 0);
 }
 
-void EmployeeInfoManagement::saveToFile() const
+void EmployeeInfoManagement::SaveToFile() const
 {
     ofstream file("employees.txt");
     if (!file)
@@ -254,13 +254,13 @@ void EmployeeInfoManagement::saveToFile() const
         }
     for (const auto& e : employees)
     {
-        file << e.getStaffId() << "," << e.getName() << "," << e.getPosition() << "," << e.getPhoneNum() << "," << e.getHireDate() << "\n";
+            file << e.GetStaffId() << "," << e.GetName() << "," << e.GetPosition() << "," << e.GetPhoneNum() << "," << e.GetHireDate() << "\n";
     }
     file.close();
     cout << "Management info updated.\n";
 }
 
-void EmployeeInfoManagement::loadFromFile()
+void EmployeeInfoManagement::LoadFromFile()
 {
     ifstream file("employees.txt");
     if (!file) {

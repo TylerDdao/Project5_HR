@@ -42,10 +42,10 @@ namespace CommunicationTests
 		{
 			Message msg;
 			
-			msg.setId(5);
-			msg.setSenderId(202);
-			msg.setBody("Test message");
-			msg.setTime("2024-02-20 14:45:00");
+			msg.SetId(5);
+			msg.SetSenderId(202);
+			msg.SetBody("Test message");
+			msg.SetTime("2024-02-20 14:45:00");
 
 			Assert::AreEqual(5, msg.getId());
 			Assert::AreEqual(202, msg.getSenderId());
@@ -59,7 +59,7 @@ namespace CommunicationTests
 			
 			Assert::IsFalse(msg.getIsRead());
 			
-			msg.markRead();
+			msg.MarkRead();
 			
 			Assert::IsTrue(msg.getIsRead());
 		}
@@ -67,7 +67,7 @@ namespace CommunicationTests
 		TEST_METHOD(TestCase5_MessageSerialization)
 		{
 			Message msg(10, 505, "Important message", "2024-03-10 16:20:00");
-			msg.markRead();
+			msg.MarkRead();
 
 			string serialized = msg.serialize();
 			
@@ -117,10 +117,10 @@ namespace CommunicationTests
 		{
 			Conversation conv;
 
-			Assert::AreEqual(0, conv.getConversationId());
-			Assert::AreEqual(size_t(0), conv.getParticipants().size());
-			Assert::AreEqual(string(ONE_TO_ONE), conv.getConversationType());
-			Assert::AreEqual(0, conv.getMessageCount());
+			Assert::AreEqual(0, conv.GetConversationId());
+			Assert::AreEqual(size_t(0), conv.GetParticipants().size());
+			Assert::AreEqual(string(ONE_TO_ONE), conv.GetConversationType());
+			Assert::AreEqual(0, conv.GetMessageCount());
 		}
 
 		TEST_METHOD(TestCase10_ConversationOneToOneCreation)
@@ -128,11 +128,11 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102};
 			Conversation conv(1, participants, ONE_TO_ONE);
 
-			Assert::AreEqual(1, conv.getConversationId());
-			Assert::AreEqual(size_t(2), conv.getParticipants().size());
-			Assert::AreEqual(string(ONE_TO_ONE), conv.getConversationType());
-			Assert::IsTrue(conv.hasParticipant(101));
-			Assert::IsTrue(conv.hasParticipant(102));
+			Assert::AreEqual(1, conv.GetConversationId());
+			Assert::AreEqual(size_t(2), conv.GetParticipants().size());
+			Assert::AreEqual(string(ONE_TO_ONE), conv.GetConversationType());
+			Assert::IsTrue(conv.HasParticipant(101));
+			Assert::IsTrue(conv.HasParticipant(102));
 		}
 
 		TEST_METHOD(TestCase11_ConversationGroupCreation)
@@ -140,9 +140,9 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102, 103, 104};
 			Conversation conv(2, participants, GROUP);
 
-			Assert::AreEqual(2, conv.getConversationId());
-			Assert::AreEqual(size_t(4), conv.getParticipants().size());
-			Assert::AreEqual(string(GROUP), conv.getConversationType());
+			Assert::AreEqual(2, conv.GetConversationId());
+			Assert::AreEqual(size_t(4), conv.GetParticipants().size());
+			Assert::AreEqual(string(GROUP), conv.GetConversationType());
 		}
 
 		TEST_METHOD(TestCase12_ConversationAddMessage)
@@ -151,9 +151,9 @@ namespace CommunicationTests
 			Conversation conv(1, participants, ONE_TO_ONE);
 
 			Message msg(1, 101, "Hello", "2024-01-01 10:00:00");
-			conv.addMessage(msg);
+			conv.AddMessage(msg);
 
-			Assert::AreEqual(1, conv.getMessageCount());
+			Assert::AreEqual(1, conv.GetMessageCount());
 		}
 
 		TEST_METHOD(TestCase13_ConversationMultipleMessages)
@@ -161,13 +161,13 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102};
 			Conversation conv(1, participants, ONE_TO_ONE);
 
-			conv.addMessage(Message(1, 101, "Hello", "2024-01-01 10:00:00"));
-			conv.addMessage(Message(2, 102, "Hi there", "2024-01-01 10:01:00"));
-			conv.addMessage(Message(3, 101, "How are you?", "2024-01-01 10:02:00"));
+			conv.AddMessage(Message(1, 101, "Hello", "2024-01-01 10:00:00"));
+			conv.AddMessage(Message(2, 102, "Hi there", "2024-01-01 10:01:00"));
+			conv.AddMessage(Message(3, 101, "How are you?", "2024-01-01 10:02:00"));
 
-			Assert::AreEqual(3, conv.getMessageCount());
+			Assert::AreEqual(3, conv.GetMessageCount());
 			
-			vector<Message> messages = conv.getMessages();
+			vector<Message> messages = conv.GetMessages();
 			Assert::AreEqual(size_t(3), messages.size());
 			Assert::AreEqual(string("Hello"), messages[0].getBody());
 			Assert::AreEqual(string("Hi there"), messages[1].getBody());
@@ -179,10 +179,10 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102};
 			Conversation conv(1, participants, ONE_TO_ONE);
 
-			conv.addMessage(Message(1, 101, "First", "2024-01-01 10:00:00"));
-			conv.addMessage(Message(2, 102, "Second", "2024-01-01 10:01:00"));
+			conv.AddMessage(Message(1, 101, "First", "2024-01-01 10:00:00"));
+			conv.AddMessage(Message(2, 102, "Second", "2024-01-01 10:01:00"));
 
-			Message* found = conv.findMessageById(2);
+			Message* found = conv.FindMessageById(2);
 			
 			Assert::IsNotNull(found);
 			Assert::AreEqual(string("Second"), found->getBody());
@@ -193,7 +193,7 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102};
 			Conversation conv(1, participants, ONE_TO_ONE);
 
-			Message* found = conv.findMessageById(999);
+			Message* found = conv.FindMessageById(999);
 			
 			Assert::IsNull(found);
 		}
@@ -203,10 +203,10 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102, 103};
 			Conversation conv(1, participants, GROUP);
 
-			Assert::IsTrue(conv.hasParticipant(101));
-			Assert::IsTrue(conv.hasParticipant(102));
-			Assert::IsTrue(conv.hasParticipant(103));
-			Assert::IsFalse(conv.hasParticipant(999));
+			Assert::IsTrue(conv.HasParticipant(101));
+			Assert::IsTrue(conv.HasParticipant(102));
+			Assert::IsTrue(conv.HasParticipant(103));
+			Assert::IsFalse(conv.HasParticipant(999));
 		}
 
 		TEST_METHOD(TestCase17_ConversationAddParticipant)
@@ -214,12 +214,12 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102};
 			Conversation conv(1, participants, GROUP);
 
-			Assert::IsFalse(conv.hasParticipant(103));
+			Assert::IsFalse(conv.HasParticipant(103));
 			
-			conv.addParticipant(103);
+			conv.AddParticipant(103);
 			
-			Assert::IsTrue(conv.hasParticipant(103));
-			Assert::AreEqual(size_t(3), conv.getParticipants().size());
+			Assert::IsTrue(conv.HasParticipant(103));
+			Assert::AreEqual(size_t(3), conv.GetParticipants().size());
 		}
 
 		TEST_METHOD(TestCase18_ConversationAddDuplicateParticipant)
@@ -227,9 +227,9 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102};
 			Conversation conv(1, participants, ONE_TO_ONE);
 
-			conv.addParticipant(101); // Already exists
+			conv.AddParticipant(101); // Already exists
 			
-			Assert::AreEqual(size_t(2), conv.getParticipants().size());
+			Assert::AreEqual(size_t(2), conv.GetParticipants().size());
 		}
 
 		TEST_METHOD(TestCase19_ConversationSerializeHeader)
@@ -237,7 +237,7 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102};
 			Conversation conv(5, participants, ONE_TO_ONE);
 
-			string serialized = conv.serializeHeader();
+			string serialized = conv.SerializeHeader();
 			
 			// Should contain conversation ID, type, and participants
 			Assert::IsTrue(serialized.find("CONV|5|") != string::npos);
@@ -250,9 +250,9 @@ namespace CommunicationTests
 			vector<int> participants = {101, 102};
 			Conversation conv(1, participants, ONE_TO_ONE);
 
-			conv.addMessage(Message(1, 101, "Test", "2024-01-01 10:00:00"));
+			conv.AddMessage(Message(1, 101, "Test", "2024-01-01 10:00:00"));
 
-			string serialized = conv.serializeMessages();
+			string serialized = conv.SerializeMessages();
 			
 			Assert::IsTrue(serialized.find("MSG|1|") != string::npos);
 			Assert::IsTrue(serialized.find("Test") != string::npos);
@@ -268,13 +268,13 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102};
 
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
 
 			Assert::IsTrue(convId > 0);
 			
-			Conversation* conv = hub.getConversation(convId);
+			Conversation* conv = hub.GetConversation(convId);
 			Assert::IsNotNull(conv);
-			Assert::AreEqual(string(ONE_TO_ONE), conv->getConversationType());
+			Assert::AreEqual(string(ONE_TO_ONE), conv->GetConversationType());
 		}
 
 		TEST_METHOD(TestCase22_CommunicationHubStartGroupConversation)
@@ -282,14 +282,14 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102, 103, 104};
 
-			int convId = hub.startConversation(participants, GROUP);
+			int convId = hub.StartConversation(participants, GROUP);
 
 			Assert::IsTrue(convId > 0);
 			
-			Conversation* conv = hub.getConversation(convId);
+			Conversation* conv = hub.GetConversation(convId);
 			Assert::IsNotNull(conv);
-			Assert::AreEqual(string(GROUP), conv->getConversationType());
-			Assert::AreEqual(size_t(4), conv->getParticipants().size());
+			Assert::AreEqual(string(GROUP), conv->GetConversationType());
+			Assert::AreEqual(size_t(4), conv->GetParticipants().size());
 		}
 
 		TEST_METHOD(TestCase23_CommunicationHubStartConversationWithNoParticipants)
@@ -297,7 +297,7 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {}; // Empty
 
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
 
 			Assert::AreEqual(-1, convId); // Should fail
 		}
@@ -307,7 +307,7 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102, 103}; // 3 participants for ONE_TO_ONE
 
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
 
 			Assert::AreEqual(-1, convId); // Should fail
 		}
@@ -317,12 +317,12 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102};
 			
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
-			int msgId = hub.sendMessage(convId, 101, "Hello there");
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
+			int msgId = hub.SendMessage(convId, 101, "Hello there");
 
 			Assert::IsTrue(msgId > 0);
 			
-			vector<Message> messages = hub.listMessages(convId);
+			vector<Message> messages = hub.ListMessages(convId);
 			Assert::AreEqual(size_t(1), messages.size());
 			Assert::AreEqual(string("Hello there"), messages[0].getBody());
 		}
@@ -331,7 +331,7 @@ namespace CommunicationTests
 		{
 			CommunicationHub hub;
 			
-			int msgId = hub.sendMessage(999, 101, "Test");
+			int msgId = hub.SendMessage(999, 101, "Test");
 
 			Assert::AreEqual(-1, msgId); // Should fail
 		}
@@ -341,8 +341,8 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102};
 			
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
-			int msgId = hub.sendMessage(convId, 999, "Unauthorized message");
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
+			int msgId = hub.SendMessage(convId, 999, "Unauthorized message");
 
 			Assert::AreEqual(-1, msgId); // Should fail - sender not in conversation
 		}
@@ -352,13 +352,13 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102};
 			
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
 			
-			hub.sendMessage(convId, 101, "Message 1");
-			hub.sendMessage(convId, 102, "Message 2");
-			hub.sendMessage(convId, 101, "Message 3");
+			hub.SendMessage(convId, 101, "Message 1");
+			hub.SendMessage(convId, 102, "Message 2");
+			hub.SendMessage(convId, 101, "Message 3");
 
-			vector<Message> messages = hub.listMessages(convId);
+			vector<Message> messages = hub.ListMessages(convId);
 			Assert::AreEqual(size_t(3), messages.size());
 			Assert::AreEqual(string("Message 1"), messages[0].getBody());
 			Assert::AreEqual(string("Message 2"), messages[1].getBody());
@@ -369,7 +369,7 @@ namespace CommunicationTests
 		{
 			CommunicationHub hub;
 			
-			vector<Message> messages = hub.listMessages(999);
+			vector<Message> messages = hub.ListMessages(999);
 
 			Assert::AreEqual(size_t(0), messages.size());
 		}
@@ -379,18 +379,18 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102};
 			
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
-			Conversation* conv = hub.getConversation(convId);
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
+			Conversation* conv = hub.GetConversation(convId);
 
 			Assert::IsNotNull(conv);
-			Assert::AreEqual(convId, conv->getConversationId());
+			Assert::AreEqual(convId, conv->GetConversationId());
 		}
 
 		TEST_METHOD(TestCase31_CommunicationHubGetNonExistentConversation)
 		{
 			CommunicationHub hub;
 			
-			Conversation* conv = hub.getConversation(999);
+			Conversation* conv = hub.GetConversation(999);
 
 			Assert::IsNull(conv);
 		}
@@ -400,11 +400,11 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			
 			// Create multiple conversations with participant 101
-			hub.startConversation({101, 102}, ONE_TO_ONE);
-			hub.startConversation({101, 103}, ONE_TO_ONE);
-			hub.startConversation({102, 103}, ONE_TO_ONE); // Without 101
+			hub.StartConversation({101, 102}, ONE_TO_ONE);
+			hub.StartConversation({101, 103}, ONE_TO_ONE);
+			hub.StartConversation({102, 103}, ONE_TO_ONE); // Without 101
 
-			vector<Conversation> conversations = hub.getConversationsByParticipant(101);
+			vector<Conversation> conversations = hub.GetConversationsByParticipant(101);
 
 			Assert::AreEqual(size_t(2), conversations.size());
 		}
@@ -412,9 +412,9 @@ namespace CommunicationTests
 		TEST_METHOD(TestCase33_CommunicationHubGetConversationsByParticipantNoConversations)
 		{
 			CommunicationHub hub;
-			hub.startConversation({101, 102}, ONE_TO_ONE);
+			hub.StartConversation({101, 102}, ONE_TO_ONE);
 
-			vector<Conversation> conversations = hub.getConversationsByParticipant(999);
+			vector<Conversation> conversations = hub.GetConversationsByParticipant(999);
 
 			Assert::AreEqual(size_t(0), conversations.size());
 		}
@@ -423,17 +423,17 @@ namespace CommunicationTests
 		{
 			CommunicationHub hub;
 			
-			int conv1 = hub.startConversation({101, 102}, ONE_TO_ONE);
-			int conv2 = hub.startConversation({103, 104}, ONE_TO_ONE);
-			int conv3 = hub.startConversation({101, 103, 105}, GROUP);
+			int conv1 = hub.StartConversation({101, 102}, ONE_TO_ONE);
+			int conv2 = hub.StartConversation({103, 104}, ONE_TO_ONE);
+			int conv3 = hub.StartConversation({101, 103, 105}, GROUP);
 
 			Assert::AreNotEqual(conv1, conv2);
 			Assert::AreNotEqual(conv2, conv3);
 			Assert::AreNotEqual(conv1, conv3);
 
-			Assert::IsNotNull(hub.getConversation(conv1));
-			Assert::IsNotNull(hub.getConversation(conv2));
-			Assert::IsNotNull(hub.getConversation(conv3));
+			Assert::IsNotNull(hub.GetConversation(conv1));
+			Assert::IsNotNull(hub.GetConversation(conv2));
+			Assert::IsNotNull(hub.GetConversation(conv3));
 		}
 
 		TEST_METHOD(TestCase35_CommunicationHubGroupConversationMultipleParticipants)
@@ -441,16 +441,16 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102, 103, 104, 105};
 			
-			int convId = hub.startConversation(participants, GROUP);
+			int convId = hub.StartConversation(participants, GROUP);
 
-			Conversation* conv = hub.getConversation(convId);
+			Conversation* conv = hub.GetConversation(convId);
 			Assert::IsNotNull(conv);
 			
-			Assert::IsTrue(conv->hasParticipant(101));
-			Assert::IsTrue(conv->hasParticipant(102));
-			Assert::IsTrue(conv->hasParticipant(103));
-			Assert::IsTrue(conv->hasParticipant(104));
-			Assert::IsTrue(conv->hasParticipant(105));
+			Assert::IsTrue(conv->HasParticipant(101));
+			Assert::IsTrue(conv->HasParticipant(102));
+			Assert::IsTrue(conv->HasParticipant(103));
+			Assert::IsTrue(conv->HasParticipant(104));
+			Assert::IsTrue(conv->HasParticipant(105));
 		}
 
 		TEST_METHOD(TestCase36_CommunicationHubMessageOrderPreserved)
@@ -458,14 +458,14 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102};
 			
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
 			
-			hub.sendMessage(convId, 101, "First");
-			hub.sendMessage(convId, 102, "Second");
-			hub.sendMessage(convId, 101, "Third");
-			hub.sendMessage(convId, 102, "Fourth");
+			hub.SendMessage(convId, 101, "First");
+			hub.SendMessage(convId, 102, "Second");
+			hub.SendMessage(convId, 101, "Third");
+			hub.SendMessage(convId, 102, "Fourth");
 
-			vector<Message> messages = hub.listMessages(convId);
+			vector<Message> messages = hub.ListMessages(convId);
 			
 			Assert::AreEqual(size_t(4), messages.size());
 			Assert::AreEqual(string("First"), messages[0].getBody());
@@ -479,12 +479,12 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102};
 			
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
-			int msgId = hub.sendMessage(convId, 101, "");
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
+			int msgId = hub.SendMessage(convId, 101, "");
 
 			Assert::IsTrue(msgId > 0);
 			
-			vector<Message> messages = hub.listMessages(convId);
+			vector<Message> messages = hub.ListMessages(convId);
 			Assert::AreEqual(size_t(1), messages.size());
 			Assert::AreEqual(string(""), messages[0].getBody());
 		}
@@ -494,14 +494,14 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102};
 			
-			int convId = hub.startConversation(participants, ONE_TO_ONE);
+			int convId = hub.StartConversation(participants, ONE_TO_ONE);
 			string longMessage = string(1000, 'A'); // 1000 characters
 			
-			int msgId = hub.sendMessage(convId, 101, longMessage);
+			int msgId = hub.SendMessage(convId, 101, longMessage);
 
 			Assert::IsTrue(msgId > 0);
 			
-			vector<Message> messages = hub.listMessages(convId);
+			vector<Message> messages = hub.ListMessages(convId);
 			Assert::AreEqual(longMessage, messages[0].getBody());
 		}
 
@@ -510,20 +510,20 @@ namespace CommunicationTests
 			CommunicationHub hub;
 			vector<int> participants = {101, 102, 103};
 			
-			int convId = hub.startConversation(participants, GROUP);
-			hub.sendMessage(convId, 102, "Only message");
+			int convId = hub.StartConversation(participants, GROUP);
+			hub.SendMessage(convId, 102, "Only message");
 
-			Conversation* conv = hub.getConversation(convId);
-			Assert::AreEqual(1, conv->getMessageCount());
+			Conversation* conv = hub.GetConversation(convId);
+			Assert::AreEqual(1, conv->GetMessageCount());
 		}
 
 		TEST_METHOD(TestCase40_CommunicationHubIncrementalConversationIds)
 		{
 			CommunicationHub hub;
 			
-			int conv1 = hub.startConversation({101, 102}, ONE_TO_ONE);
-			int conv2 = hub.startConversation({103, 104}, ONE_TO_ONE);
-			int conv3 = hub.startConversation({105, 106}, ONE_TO_ONE);
+			int conv1 = hub.StartConversation({101, 102}, ONE_TO_ONE);
+			int conv2 = hub.StartConversation({103, 104}, ONE_TO_ONE);
+			int conv3 = hub.StartConversation({105, 106}, ONE_TO_ONE);
 
 			Assert::AreEqual(conv1 + 1, conv2);
 			Assert::AreEqual(conv2 + 1, conv3);

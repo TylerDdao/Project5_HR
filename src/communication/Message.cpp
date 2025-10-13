@@ -9,58 +9,58 @@ Message::Message() : id(0), senderId(0), body(""), sentAt(""), isRead(false) {}
 Message::Message(int msgId, int sender, const string& content, const string& timestamp)
     : id(msgId), senderId(sender), body(content), sentAt(timestamp), isRead(false) {}
 
-bool Message::setId(int msgId) {
+bool Message::SetId(int msgId) {
     id = msgId;
     return true;
 }
 
-bool Message::setSenderId(int sender) {
+bool Message::SetSenderId(int sender) {
     senderId = sender;
     return true;
 }
 
-bool Message::setBody(const string& content) {
+bool Message::SetBody(const string& content) {
     body = content;
     return true;
 }
 
-bool Message::setTime(const string& timestamp) {
+bool Message::SetTime(const string& timestamp) {
     sentAt = timestamp;
     return true;
 }
 
-int Message::getId() const {
+int Message::GetId() const {
     return id;
 }
 
-int Message::getSenderId() const {
+int Message::GetSenderId() const {
     return senderId;
 }
 
-string Message::getBody() const {
+string Message::GetBody() const {
     return body;
 }
 
-string Message::getTime() const {
+string Message::GetTime() const {
     return sentAt;
 }
 
-bool Message::getIsRead() const {
+bool Message::GetIsRead() const {
     return isRead;
 }
 
-bool Message::markRead() {
+bool Message::MarkRead() {
     isRead = true;
     return true;
 }
 
-string Message::serialize() const {
+string Message::Serialize() const {
     stringstream ss;
     ss << id << "|" << senderId << "|" << body << "|" << sentAt << "|" << (isRead ? "1" : "0");
     return ss.str();
 }
 
-Message Message::deserialize(const string& data) {
+Message Message::Deserialize(const string& data) {
     stringstream ss(data);
     string idStr, senderStr, body, sentAt, readStr;
     
@@ -72,7 +72,7 @@ Message Message::deserialize(const string& data) {
     
     Message msg(stoi(idStr), stoi(senderStr), body, sentAt);
     if (readStr == "1") {
-        msg.markRead();
+        msg.MarkRead();
     }
     
     return msg;

@@ -32,7 +32,7 @@ void EmployeeInfoManagement::addStaff(const Employee& e) {
     }
     employees.push_back(e);
     cout << "Employee " << e.getName() << " added successfully.\n";
-    saveToFile();
+    SaveToFile();
 }
 
 void EmployeeInfoManagement::updateStaff(int id) {
@@ -82,7 +82,7 @@ void EmployeeInfoManagement::updateStaff(int id) {
         }
     } while (choice != 0);
     
-    saveToFile();
+    SaveToFile();
 }
 
 Employee* EmployeeInfoManagement::getStaff(int id) {
@@ -94,7 +94,7 @@ void EmployeeInfoManagement::removeStaff(int id) {
         if (it->getStaffId() == id) {
             cout << "Employee " << it->getName() << " removed.\n";
             employees.erase(it);
-            saveToFile();
+            SaveToFile();
             return;
         }
     }
@@ -119,7 +119,7 @@ bool EmployeeInfoManagement::employeeExists(int id) const {
     return false;
 }
 
-void EmployeeInfoManagement::saveToFile() {
+void EmployeeInfoManagement::SaveToFile() {
     if (!repository) {
         cerr << "Error: Repository not initialized.\n";
         return;
@@ -130,11 +130,11 @@ void EmployeeInfoManagement::saveToFile() {
         ss << e.serialize() << "\n";
     }
     
-    repository->saveToFile(ss.str(), dataFilePath);
+    repository->SaveToFile(ss.str(), dataFilePath);
     cout << "Employee data saved successfully.\n";
 }
 
-void EmployeeInfoManagement::loadFromFile() {
+void EmployeeInfoManagement::LoadFromFile() {
     if (!repository) {
         cerr << "Error: Repository not initialized.\n";
         return;

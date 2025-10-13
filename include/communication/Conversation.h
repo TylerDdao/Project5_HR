@@ -26,24 +26,24 @@ public:
     Conversation(int convId, const vector<int>& participants, const string& type);
     
     // Getters
-    int getConversationId() const;
-    vector<int> getParticipants() const;
-    vector<Message> getMessages() const;
-    string getConversationType() const;
-    string getCreatedAt() const;
+    int GetConversationId() const;
+    vector<int> GetParticipants() const;
+    vector<Message> GetMessages() const;
+    string GetConversationType() const;
+    string GetCreatedAt() const;
     
     // Message management
-    void addMessage(const Message& msg);
-    Message* findMessageById(int msgId);
-    int getMessageCount() const;
+    void AddMessage(const Message& msg);
+    Message* FindMessageById(int msgId);
+    int GetMessageCount() const;
     
     // Participant management
-    void addParticipant(int participantId);
-    bool hasParticipant(int participantId) const;
+    void AddParticipant(int participantId);
+    bool HasParticipant(int participantId) const;
     
     // Serialization
-    string serializeHeader() const;
-    string serializeMessages() const;
+    string SerializeHeader() const;
+    string SerializeMessages() const;
 };
 
 #endif // CONVERSATION_H
