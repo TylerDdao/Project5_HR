@@ -107,10 +107,10 @@ void CommunicationHub::DisplayConversation(int convId) {
     }
     
     for (const auto& msg : messages) {
-        cout << "[" << msg.getTime() << "] ";
-        cout << "Employee " << msg.getSenderId() << ": ";
-        cout << msg.getBody();
-        if (msg.getIsRead()) {
+        cout << "[" << msg.GetTime() << "] ";
+        cout << "Employee " << msg.GetSenderId() << ": ";
+        cout << msg.GetBody();
+        if (msg.GetIsRead()) {
             cout << " (Read)";
         }
         cout << "\n";
@@ -173,8 +173,8 @@ void CommunicationHub::generateIds() {
         }
         
         for (const auto& msg : conv.GetMessages()) {
-            if (msg.getId() >= nextMsgId) {
-                nextMsgId = msg.getId() + 1;
+            if (msg.GetId() >= nextMsgId) {
+                nextMsgId = msg.GetId() + 1;
             }
         }
     }
@@ -242,7 +242,7 @@ void CommunicationHub::LoadFromFile() {
             getline(ss, convIdStr, '|');
             getline(ss, msgData);
             
-            Message msg = Message::deserialize(msgData);
+            Message msg = Message::Deserialize(msgData);
             currentConv->AddMessage(msg);
         }
     }

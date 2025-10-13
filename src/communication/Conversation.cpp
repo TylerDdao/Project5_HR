@@ -38,7 +38,7 @@ void Conversation::AddMessage(const Message& msg) {
 
 Message* Conversation::FindMessageById(int msgId) {
     for (auto& msg : messages) {
-        if (msg.getId() == msgId) {
+        if (msg.GetId() == msgId) {
             return &msg;
         }
     }
@@ -76,7 +76,7 @@ string Conversation::SerializeHeader() const {
 string Conversation::SerializeMessages() const {
     stringstream ss;
     for (const auto& msg : messages) {
-        ss << "MSG|" << conversationId << "|" << msg.serialize() << "\n";
+        ss << "MSG|" << conversationId << "|" << msg.Serialize() << "\n";
     }
     return ss.str();
 }

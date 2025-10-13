@@ -20,22 +20,22 @@ namespace CommunicationTests
 		{
 			Message msg;
 
-			Assert::AreEqual(0, msg.getId());
-			Assert::AreEqual(0, msg.getSenderId());
-			Assert::AreEqual(string(""), msg.getBody());
-			Assert::AreEqual(string(""), msg.getTime());
-			Assert::IsFalse(msg.getIsRead());
+			Assert::AreEqual(0, msg.GetId());
+			Assert::AreEqual(0, msg.GetSenderId());
+			Assert::AreEqual(string(""), msg.GetBody());
+			Assert::AreEqual(string(""), msg.GetTime());
+			Assert::IsFalse(msg.GetIsRead());
 		}
 
 		TEST_METHOD(TestCase2_MessageParameterizedConstructor)
 		{
 			Message msg(1, 101, "Hello World", "2024-01-15 10:30:00");
 
-			Assert::AreEqual(1, msg.getId());
-			Assert::AreEqual(101, msg.getSenderId());
-			Assert::AreEqual(string("Hello World"), msg.getBody());
-			Assert::AreEqual(string("2024-01-15 10:30:00"), msg.getTime());
-			Assert::IsFalse(msg.getIsRead());
+			Assert::AreEqual(1, msg.GetId());
+			Assert::AreEqual(101, msg.GetSenderId());
+			Assert::AreEqual(string("Hello World"), msg.GetBody());
+			Assert::AreEqual(string("2024-01-15 10:30:00"), msg.GetTime());
+			Assert::IsFalse(msg.GetIsRead());
 		}
 
 		TEST_METHOD(TestCase3_MessageSetters)
@@ -47,21 +47,21 @@ namespace CommunicationTests
 			msg.SetBody("Test message");
 			msg.SetTime("2024-02-20 14:45:00");
 
-			Assert::AreEqual(5, msg.getId());
-			Assert::AreEqual(202, msg.getSenderId());
-			Assert::AreEqual(string("Test message"), msg.getBody());
-			Assert::AreEqual(string("2024-02-20 14:45:00"), msg.getTime());
+			Assert::AreEqual(5, msg.GetId());
+			Assert::AreEqual(202, msg.GetSenderId());
+			Assert::AreEqual(string("Test message"), msg.GetBody());
+			Assert::AreEqual(string("2024-02-20 14:45:00"), msg.GetTime());
 		}
 
 		TEST_METHOD(TestCase4_MessageMarkAsRead)
 		{
 			Message msg(1, 101, "Test", "2024-01-01 12:00:00");
 			
-			Assert::IsFalse(msg.getIsRead());
+			Assert::IsFalse(msg.GetIsRead());
 			
 			msg.MarkRead();
 			
-			Assert::IsTrue(msg.getIsRead());
+			Assert::IsTrue(msg.GetIsRead());
 		}
 
 		TEST_METHOD(TestCase5_MessageSerialization)
@@ -69,7 +69,7 @@ namespace CommunicationTests
 			Message msg(10, 505, "Important message", "2024-03-10 16:20:00");
 			msg.MarkRead();
 
-			string serialized = msg.serialize();
+			string serialized = msg.Serialize();
 			
 			Assert::AreEqual(string("10|505|Important message|2024-03-10 16:20:00|1"), serialized);
 		}
@@ -78,34 +78,34 @@ namespace CommunicationTests
 		{
 			string serializedData = "25|303|Testing deserialization|2024-04-05 09:15:00|0";
 			
-			Message msg = Message::deserialize(serializedData);
+			Message msg = Message::Deserialize(serializedData);
 
-			Assert::AreEqual(25, msg.getId());
-			Assert::AreEqual(303, msg.getSenderId());
-			Assert::AreEqual(string("Testing deserialization"), msg.getBody());
-			Assert::AreEqual(string("2024-04-05 09:15:00"), msg.getTime());
-			Assert::IsFalse(msg.getIsRead());
+				Assert::AreEqual(25, msg.GetId());
+			Assert::AreEqual(303, msg.GetSenderId());
+			Assert::AreEqual(string("Testing deserialization"), msg.GetBody());
+			Assert::AreEqual(string("2024-04-05 09:15:00"), msg.GetTime());
+			Assert::IsFalse(msg.GetIsRead());
 		}
 
 		TEST_METHOD(TestCase7_MessageSerializationDeserializationRoundTrip)
 		{
 			Message original(99, 777, "Round trip test", "2024-05-15 18:30:00");
 			
-			string serialized = original.serialize();
-			Message deserialized = Message::deserialize(serialized);
+			string serialized = original.Serialize();
+			Message deserialized = Message::Deserialize(serialized);
 
-			Assert::AreEqual(original.getId(), deserialized.getId());
-			Assert::AreEqual(original.getSenderId(), deserialized.getSenderId());
-			Assert::AreEqual(original.getBody(), deserialized.getBody());
-			Assert::AreEqual(original.getTime(), deserialized.getTime());
-			Assert::AreEqual(original.getIsRead(), deserialized.getIsRead());
+			Assert::AreEqual(original.GetId(), deserialized.GetId());
+			Assert::AreEqual(original.GetSenderId(), deserialized.GetSenderId());
+			Assert::AreEqual(original.GetBody(), deserialized.GetBody());
+			Assert::AreEqual(original.GetTime(), deserialized.GetTime());
+			Assert::AreEqual(original.GetIsRead(), deserialized.GetIsRead());
 		}
 
 		TEST_METHOD(TestCase8_MessageWithEmptyBody)
 		{
 			Message msg(1, 100, "", "2024-01-01 00:00:00");
 
-			Assert::AreEqual(string(""), msg.getBody());
+			Assert::AreEqual(string(""), msg.GetBody());
 		}
 	};
 
@@ -169,9 +169,9 @@ namespace CommunicationTests
 			
 			vector<Message> messages = conv.GetMessages();
 			Assert::AreEqual(size_t(3), messages.size());
-			Assert::AreEqual(string("Hello"), messages[0].getBody());
-			Assert::AreEqual(string("Hi there"), messages[1].getBody());
-			Assert::AreEqual(string("How are you?"), messages[2].getBody());
+			Assert::AreEqual(string("Hello"), messages[0].GetBody());
+			Assert::AreEqual(string("Hi there"), messages[1].GetBody());
+			Assert::AreEqual(string("How are you?"), messages[2].GetBody());
 		}
 
 		TEST_METHOD(TestCase14_ConversationFindMessageById)
@@ -185,7 +185,7 @@ namespace CommunicationTests
 			Message* found = conv.FindMessageById(2);
 			
 			Assert::IsNotNull(found);
-			Assert::AreEqual(string("Second"), found->getBody());
+			Assert::AreEqual(string("Second"), found->GetBody());
 		}
 
 		TEST_METHOD(TestCase15_ConversationFindMessageByIdNotFound)
@@ -324,7 +324,7 @@ namespace CommunicationTests
 			
 			vector<Message> messages = hub.ListMessages(convId);
 			Assert::AreEqual(size_t(1), messages.size());
-			Assert::AreEqual(string("Hello there"), messages[0].getBody());
+			Assert::AreEqual(string("Hello there"), messages[0].GetBody());
 		}
 
 		TEST_METHOD(TestCase26_CommunicationHubSendMessageToNonExistentConversation)
@@ -360,9 +360,9 @@ namespace CommunicationTests
 
 			vector<Message> messages = hub.ListMessages(convId);
 			Assert::AreEqual(size_t(3), messages.size());
-			Assert::AreEqual(string("Message 1"), messages[0].getBody());
-			Assert::AreEqual(string("Message 2"), messages[1].getBody());
-			Assert::AreEqual(string("Message 3"), messages[2].getBody());
+			Assert::AreEqual(string("Message 1"), messages[0].GetBody());
+			Assert::AreEqual(string("Message 2"), messages[1].GetBody());
+			Assert::AreEqual(string("Message 3"), messages[2].GetBody());
 		}
 
 		TEST_METHOD(TestCase29_CommunicationHubListMessagesFromNonExistentConversation)
@@ -468,10 +468,10 @@ namespace CommunicationTests
 			vector<Message> messages = hub.ListMessages(convId);
 			
 			Assert::AreEqual(size_t(4), messages.size());
-			Assert::AreEqual(string("First"), messages[0].getBody());
-			Assert::AreEqual(string("Second"), messages[1].getBody());
-			Assert::AreEqual(string("Third"), messages[2].getBody());
-			Assert::AreEqual(string("Fourth"), messages[3].getBody());
+			Assert::AreEqual(string("First"), messages[0].GetBody());
+			Assert::AreEqual(string("Second"), messages[1].GetBody());
+			Assert::AreEqual(string("Third"), messages[2].GetBody());
+			Assert::AreEqual(string("Fourth"), messages[3].GetBody());
 		}
 
 		TEST_METHOD(TestCase37_CommunicationHubEmptyMessageBody)
@@ -486,7 +486,7 @@ namespace CommunicationTests
 			
 			vector<Message> messages = hub.ListMessages(convId);
 			Assert::AreEqual(size_t(1), messages.size());
-			Assert::AreEqual(string(""), messages[0].getBody());
+			Assert::AreEqual(string(""), messages[0].GetBody());
 		}
 
 		TEST_METHOD(TestCase38_CommunicationHubLongMessageBody)
@@ -502,7 +502,7 @@ namespace CommunicationTests
 			Assert::IsTrue(msgId > 0);
 			
 			vector<Message> messages = hub.ListMessages(convId);
-			Assert::AreEqual(longMessage, messages[0].getBody());
+						Assert::AreEqual(longMessage, messages[0].GetBody());
 		}
 
 		TEST_METHOD(TestCase39_CommunicationHubConversationWithSingleMessage)
