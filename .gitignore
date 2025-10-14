@@ -4,7 +4,6 @@
 *.db
 *.opendb
 
-
 # Build directories (including nested ones)
 **/x64/
 **/Debug/

@@ -21,21 +21,36 @@
     <ClCompile Include="..\Project5_HR\source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Account_Test.cpp">
+    <ClCompile Include="Communication_Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Project5_HR\employeeinfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Project5_HR\account.cpp">
+    <ClCompile Include="..\..\src\communication\Message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\communication\Conversation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\communication\CommunicationHub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\persistence\FileRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\DateTimeHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils\InputValidator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Project5_HR\employeeinfo.h">
+    <ClInclude Include="..\Project5_HR\test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Project5_HR\account.h">
+    <ClInclude Include="..\Project5_HR\employeeinfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
