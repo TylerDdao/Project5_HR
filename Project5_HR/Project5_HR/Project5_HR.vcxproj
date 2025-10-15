@@ -144,43 +144,38 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <!-- Main source file -->
-    <ClCompile Include="..\..\src\main.cpp" />
-    
     <!-- Core module -->
-    <ClCompile Include="..\..\src\core\Account.cpp" />
-    <ClCompile Include="..\..\src\core\Employee.cpp" />
-    <ClCompile Include="..\..\src\core\EmployeeInfoManagement.cpp" />
-    
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="Employee.cpp" />
+    <ClCompile Include="EmployeeInfoManagement.cpp" />
     <!-- Communication module -->
-    <ClCompile Include="..\..\src\communication\Message.cpp" />
-    <ClCompile Include="..\..\src\communication\Conversation.cpp" />
-    <ClCompile Include="..\..\src\communication\CommunicationHub.cpp" />
-    
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="Conversation.cpp" />
+    <ClCompile Include="CommunicationHub.cpp" />
     <!-- Persistence module -->
-    <ClCompile Include="..\..\src\persistence\FileRepository.cpp" />
-    
+    <ClCompile Include="FileRepository.cpp" />
     <!-- Utilities -->
-    <ClCompile Include="..\..\src\utils\DateTimeHelper.cpp" />
-    <ClCompile Include="..\..\src\utils\InputValidator.cpp" />
+    <ClCompile Include="DateTimeHelper.cpp" />
+    <ClCompile Include="InputValidator.cpp" />
+    <ClCompile Include="Payroll.cpp" />
+    <ClCompile Include="source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <!-- Core headers -->
-    <ClInclude Include="..\..\include\core\Account.h" />
-    <ClInclude Include="..\..\include\core\Employee.h" />
-    <ClInclude Include="..\..\include\core\EmployeeInfoManagement.h" />
-    
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="Employee.h" />
+    <ClInclude Include="EmployeeInfoManagement.h" />
     <!-- Communication headers -->
-    <ClInclude Include="..\..\include\communication\Message.h" />
-    <ClInclude Include="..\..\include\communication\Conversation.h" />
-    <ClInclude Include="..\..\include\communication\CommunicationHub.h" />
-    
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="Conversation.h" />
+    <ClInclude Include="CommunicationHub.h" />
     <!-- Persistence headers -->
-    <ClInclude Include="..\..\include\persistence\IRepository.h" />
-    <ClInclude Include="..\..\include\persistence\FileRepository.h" />
-    
+    <ClInclude Include="IRepository.h" />
+    <ClInclude Include="FileRepository.h" />
     <!-- Utility headers -->
-    <ClInclude Include="..\..\include\utils\DateTimeHelper.h" />
-    <ClInclude Include="..\..\include\utils\InputValidator.h" />
+    <ClInclude Include="DateTimeHelper.h" />
+    <ClInclude Include="InputValidator.h" />
+    <ClInclude Include="Payroll.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

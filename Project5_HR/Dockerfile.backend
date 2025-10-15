@@ -1,0 +1,17 @@
+# Use official GCC image
+FROM gcc:13
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy your backend source code
+COPY Project5_HR/ ./Project5_HR/
+
+# Compile your C++ code
+RUN g++ Project5_HR/*.cpp -o mybackend
+
+# Expose port if your backend listens on HTTP (e.g., 5000)
+EXPOSE 5000
+
+# Run your backend program
+CMD ["./mybackend"]

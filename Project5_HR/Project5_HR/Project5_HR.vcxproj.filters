@@ -18,7 +18,6 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{bebf4g4d-4567-89ab-cdef-012345678901}</UniqueIdentifier>
     </Filter>
-    
     <!-- Filters for organizing header files -->
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
@@ -36,93 +35,80 @@
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{f2fj8k8h-89ab-cdef-0123-456789012345}</UniqueIdentifier>
     </Filter>
-    
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
-  
-  <!-- Source Files -->
   <ItemGroup>
-    <ClCompile Include="..\..\src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    
-    <!-- Core module sources -->
-    <ClCompile Include="..\..\src\core\Account.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\core\Employee.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\core\EmployeeInfoManagement.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    
-    <!-- Communication module sources -->
-    <ClCompile Include="..\..\src\communication\Message.cpp">
-      <Filter>Source Files\communication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\communication\Conversation.cpp">
-      <Filter>Source Files\communication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\communication\CommunicationHub.cpp">
-      <Filter>Source Files\communication</Filter>
-    </ClCompile>
-    
-    <!-- Persistence module sources -->
-    <ClCompile Include="..\..\src\persistence\FileRepository.cpp">
+    <ClCompile Include="FileRepository.cpp">
       <Filter>Source Files\persistence</Filter>
     </ClCompile>
-    
-    <!-- Utility sources -->
-    <ClCompile Include="..\..\src\utils\DateTimeHelper.cpp">
+    <ClCompile Include="Payroll.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Account.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Employee.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="EmployeeInfoManagement.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Source Files\communication</Filter>
+    </ClCompile>
+    <ClCompile Include="Conversation.cpp">
+      <Filter>Source Files\communication</Filter>
+    </ClCompile>
+    <ClCompile Include="CommunicationHub.cpp">
+      <Filter>Source Files\communication</Filter>
+    </ClCompile>
+    <ClCompile Include="DateTimeHelper.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\utils\InputValidator.cpp">
+    <ClCompile Include="InputValidator.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="source.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  
-  <!-- Header Files -->
   <ItemGroup>
-    <!-- Core module headers -->
-    <ClInclude Include="..\..\include\core\Account.h">
+    <ClInclude Include="Payroll.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\core\Employee.h">
+    <ClInclude Include="Account.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\core\EmployeeInfoManagement.h">
+    <ClInclude Include="Employee.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    
-    <!-- Communication module headers -->
-    <ClInclude Include="..\..\include\communication\Message.h">
+    <ClInclude Include="EmployeeInfoManagement.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Conversation.h">
       <Filter>Header Files\communication</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\communication\Conversation.h">
+    <ClInclude Include="CommunicationHub.h">
       <Filter>Header Files\communication</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\communication\CommunicationHub.h">
+    <ClInclude Include="Message.h">
       <Filter>Header Files\communication</Filter>
     </ClInclude>
-    
-    <!-- Persistence module headers -->
-    <ClInclude Include="..\..\include\persistence\IRepository.h">
-      <Filter>Header Files\persistence</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\persistence\FileRepository.h">
-      <Filter>Header Files\persistence</Filter>
-    </ClInclude>
-    
-    <!-- Utility headers -->
-    <ClInclude Include="..\..\include\utils\DateTimeHelper.h">
+    <ClInclude Include="InputValidator.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\utils\InputValidator.h">
+    <ClInclude Include="DateTimeHelper.h">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="IRepository.h">
+      <Filter>Header Files\persistence</Filter>
+    </ClInclude>
+    <ClInclude Include="FileRepository.h">
+      <Filter>Header Files\persistence</Filter>
     </ClInclude>
   </ItemGroup>
+  <!-- Source Files -->
 </Project>

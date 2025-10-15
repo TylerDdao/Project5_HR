@@ -13,45 +13,108 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{62ff5858-4981-4760-96f1-b7d7a2be9e65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\persistence">
+      <UniqueIdentifier>{64481ff6-df68-4b65-a868-b4d086b4e78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{0408fea5-6ec3-4047-8d7c-73d838b0d796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\communication">
+      <UniqueIdentifier>{e8359716-9ff7-4f6f-b426-04ac715c92f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{5ba19ca4-dd2f-4d6d-b33d-32e81d01f18f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{f5f91fb1-f441-4c42-b1ac-dda40a55e5ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\communication">
+      <UniqueIdentifier>{c22e4cee-7e44-4512-b267-9196b79c4010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{6244085a-4849-44b0-b7ef-a3237ddd8049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\persistence">
+      <UniqueIdentifier>{061b851c-db97-4849-aa8d-27afce0f0041}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Employee_Info_Tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Project5_HR\source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Communication_Tests.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\Project5_HR\employeeinfo.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Employee_Info_Tests.cpp">
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\communication\Message.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Project5_HR\Account.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\communication\Conversation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Project5_HR\Employee.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\communication\CommunicationHub.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Project5_HR\EmployeeInfoManagement.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\persistence\FileRepository.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Project5_HR\Payroll.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\utils\DateTimeHelper.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Project5_HR\CommunicationHub.cpp">
+      <Filter>Source Files\communication</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\utils\InputValidator.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Project5_HR\Conversation.cpp">
+      <Filter>Source Files\communication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Project5_HR\Message.cpp">
+      <Filter>Source Files\communication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Project5_HR\DateTimeHelper.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Project5_HR\InputValidator.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Project5_HR\FileRepository.cpp">
+      <Filter>Source Files\persistence</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Project5_HR\test.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Project5_HR\Message.h">
+      <Filter>Header Files\communication</Filter>
     </ClInclude>
-    <ClInclude Include="..\Project5_HR\employeeinfo.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Project5_HR\CommunicationHub.h">
+      <Filter>Header Files\communication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\Conversation.h">
+      <Filter>Header Files\communication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\Account.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\Employee.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\EmployeeInfoManagement.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\Payroll.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\DateTimeHelper.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\InputValidator.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\FileRepository.h">
+      <Filter>Header Files\persistence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project5_HR\IRepository.h">
+      <Filter>Header Files\persistence</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -157,14 +157,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Project5_HR\employeeinfo.cpp" />
+    <ClCompile Include="..\Project5_HR\Account.cpp" />
+    <ClCompile Include="..\Project5_HR\CommunicationHub.cpp" />
+    <ClCompile Include="..\Project5_HR\Conversation.cpp" />
+    <ClCompile Include="..\Project5_HR\DateTimeHelper.cpp" />
+    <ClCompile Include="..\Project5_HR\Employee.cpp" />
+    <ClCompile Include="..\Project5_HR\EmployeeInfoManagement.cpp" />
+    <ClCompile Include="..\Project5_HR\FileRepository.cpp" />
+    <ClCompile Include="..\Project5_HR\InputValidator.cpp" />
+    <ClCompile Include="..\Project5_HR\Message.cpp" />
+    <ClCompile Include="..\Project5_HR\Payroll.cpp" />
     <ClCompile Include="..\Project5_HR\source.cpp" />
-    <ClCompile Include="..\..\src\communication\Message.cpp" />
-    <ClCompile Include="..\..\src\communication\Conversation.cpp" />
-    <ClCompile Include="..\..\src\communication\CommunicationHub.cpp" />
-    <ClCompile Include="..\..\src\persistence\FileRepository.cpp" />
-    <ClCompile Include="..\..\src\utils\DateTimeHelper.cpp" />
-    <ClCompile Include="..\..\src\utils\InputValidator.cpp" />
     <ClCompile Include="Communication_Tests.cpp" />
     <ClCompile Include="Employee_Info_Tests.cpp" />
   </ItemGroup>
@@ -174,8 +177,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Project5_HR\employeeinfo.h" />
-    <ClInclude Include="..\Project5_HR\test.h" />
+    <ClInclude Include="..\Project5_HR\Account.h" />
+    <ClInclude Include="..\Project5_HR\CommunicationHub.h" />
+    <ClInclude Include="..\Project5_HR\Conversation.h" />
+    <ClInclude Include="..\Project5_HR\DateTimeHelper.h" />
+    <ClInclude Include="..\Project5_HR\Employee.h" />
+    <ClInclude Include="..\Project5_HR\EmployeeInfoManagement.h" />
+    <ClInclude Include="..\Project5_HR\FileRepository.h" />
+    <ClInclude Include="..\Project5_HR\InputValidator.h" />
+    <ClInclude Include="..\Project5_HR\IRepository.h" />
+    <ClInclude Include="..\Project5_HR\Message.h" />
+    <ClInclude Include="..\Project5_HR\Payroll.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,9 +1,9 @@
 //#include "pch.h"
 #include "CppUnitTest.h"
-#include "../../include/communication/Message.h"
-#include "../../include/communication/Conversation.h"
-#include "../../include/communication/CommunicationHub.h"
-#include "../../include/persistence/FileRepository.h"
+#include "../Project5_HR/Message.h"
+#include "../Project5_HR/Conversation.h"
+#include "../Project5_HR/CommunicationHub.h"
+#include "../Project5_HR/FileRepository.h"
 #include <vector>
 #include <string>
 
