@@ -42,8 +42,6 @@ public:
     void SaveToFile();
     void LoadFromFile();
     
-    // Conversation management UI
-    void ManageCommunication(int currentUserId);
 };
 
 #endif // COMMUNICATION_HUB_H

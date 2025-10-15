@@ -63,7 +63,7 @@ int main() {
                 break;
                 
             case 2:
-                commHub.ManageCommunication(currentUserId);
+                commHub.DisplayAllConversations();
                 break;
                 
             case 3:
