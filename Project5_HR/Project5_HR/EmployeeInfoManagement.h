@@ -4,7 +4,7 @@
 #define EMPLOYEE_INFO_MANAGEMENT_H
 
 #include "Employee.h"
-#include "../persistence/FileRepository.h"
+#include "FileRepository.h"
 #include <vector>
 #include <string>
 

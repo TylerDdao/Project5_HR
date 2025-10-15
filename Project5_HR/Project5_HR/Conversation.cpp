@@ -1,5 +1,5 @@
-#include "../../include/communication/Conversation.h"
-#include "../../include/utils/DateTimeHelper.h"
+#include "Conversation.h"
+#include "DateTimeHelper.h"
 #include <sstream>
 #include <algorithm>
 

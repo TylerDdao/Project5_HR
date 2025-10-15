@@ -1,7 +1,7 @@
 //#include "pch.h"
 #include "CppUnitTest.h"
-#include "../Project5_HR/test.h"
-#include "../Project5_HR/employeeinfo.h"
+#include "../Project5_HR/Employee.h"
+#include "../Project5_HR/EmployeeInfoManagement.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -138,12 +138,5 @@ namespace Project5HRTest
 			Assert::AreEqual(std::string("Grace"), e1->GetName());
 			Assert::AreEqual(std::string("Angela"), e2->GetName());
 		}
-
-		//TEST_METHOD()
-		//{
-
-		//}
-
-
 	};
 }

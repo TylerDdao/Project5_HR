@@ -1,6 +1,6 @@
-#include "../../include/communication/CommunicationHub.h"
-#include "../../include/utils/DateTimeHelper.h"
-#include "../../include/utils/InputValidator.h"
+#include "CommunicationHub.h"
+#include "DateTimeHelper.h"
+#include "InputValidator.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>

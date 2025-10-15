@@ -1,5 +1,5 @@
 #include <iostream>
-#include "employeeinfo.h"
+#include "Employee.h"
 
 using namespace std;
 //int add(int x, int y) {

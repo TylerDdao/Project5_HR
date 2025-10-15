@@ -144,7 +144,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <!-- Main source file -->
-    <ClCompile Include="main.cpp" />
     <!-- Core module -->
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="Employee.cpp" />
@@ -159,6 +158,7 @@
     <ClCompile Include="DateTimeHelper.cpp" />
     <ClCompile Include="InputValidator.cpp" />
     <ClCompile Include="Payroll.cpp" />
+    <ClCompile Include="source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <!-- Core headers -->

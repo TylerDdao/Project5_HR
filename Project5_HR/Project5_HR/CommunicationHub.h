@@ -5,7 +5,7 @@
 
 #include "Conversation.h"
 #include "Message.h"
-#include "../persistence/FileRepository.h"
+#include "FileRepository.h"
 #include <vector>
 #include <string>
 

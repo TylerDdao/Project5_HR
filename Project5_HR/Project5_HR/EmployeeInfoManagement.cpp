@@ -1,5 +1,5 @@
-#include "../../include/core/EmployeeInfoManagement.h"
-#include "../../include/utils/InputValidator.h"
+#include "EmployeeInfoManagement.h"
+#include "InputValidator.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -7,10 +7,10 @@
 using namespace std;
 
 EmployeeInfoManagement::EmployeeInfoManagement() 
-    : employees(), repository(new FileRepository()), dataFilePath("data/employees.txt") {}
+    : employees(), repository(new FileRepository()), dataFilePath("employees.txt") {}
 
 EmployeeInfoManagement::EmployeeInfoManagement(FileRepository* repo)
-    : employees(), repository(repo), dataFilePath("data/employees.txt") {}
+    : employees(), repository(repo), dataFilePath("employees.txt") {}
 
 EmployeeInfoManagement::~EmployeeInfoManagement() {
     if (repository) {

@@ -1,5 +1,5 @@
-#include "../../include/communication/Message.h"
-#include "../../include/utils/DateTimeHelper.h"
+#include "Message.h"
+#include "DateTimeHelper.h"
 #include <sstream>
 
 using namespace std;
