@@ -8,7 +8,7 @@ This is a module of an enterprise-level application, this module performs HR man
 - Work records
 
 ## Documentation
-- All classes and functions are commented by doxygen, yyou can see the doxygen webpage at `/docs/html/index.html` in this repository.
+- All classes and functions are commented by doxygen, the doxygen webpage can be accesse at `/docs/html/index.html` in this repository.
 
 ## Authors
 - [Tyler Dao](https://github.com/TylerDdao)
