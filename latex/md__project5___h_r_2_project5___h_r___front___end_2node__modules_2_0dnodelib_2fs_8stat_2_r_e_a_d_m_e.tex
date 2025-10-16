@@ -1,0 +1,129 @@
+\chapter{@nodelib/fs.stat}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e}\index{"@nodelib/fs.stat@{"@nodelib/fs.stat}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md346}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md346}%
+ \begin{quote}
+Get the status of a file with some features. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md347}{}\doxysection{\texorpdfstring{\+:bulb\+: Highlights}{\+:bulb\+: Highlights}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md347}
+Wrapper around standard method {\ttfamily fs.\+lstat} and {\ttfamily fs.\+stat} with some features.
+
+
+\begin{DoxyItemize}
+\item \+:beginner\+: Normally follows symbolic link.
+\item \+:gear\+: Can safely work with broken symbolic link.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md348}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md348}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @nodelib/fs.stat}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md349}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md349}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ fsStat\ from\ '@nodelib/fs.stat';}
+\DoxyCodeLine{}
+\DoxyCodeLine{fsStat.stat('path',\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md350}{}\doxysection{\texorpdfstring{API}{API}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md350}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md351}{}\doxysubsection{\texorpdfstring{.stat(path, \mbox{[}options\+Or\+Settings\mbox{]}, callback)}{.stat(path, \mbox{[}options\+Or\+Settings\mbox{]}, callback)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md351}
+Returns an instance of {\ttfamily fs.\+Stats} class for provided path with standard callback-\/style.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fsStat.stat('path',\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+\DoxyCodeLine{fsStat.stat('path',\ \{\},\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+\DoxyCodeLine{fsStat.stat('path',\ new\ fsStat.Settings(),\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md352}{}\doxysubsection{\texorpdfstring{.stat\+Sync(path, \mbox{[}options\+Or\+Settings\mbox{]})}{.stat\+Sync(path, \mbox{[}options\+Or\+Settings\mbox{]})}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md352}
+Returns an instance of {\ttfamily fs.\+Stats} class for provided path.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ stats\ =\ fsStat.stat('path');}
+\DoxyCodeLine{const\ stats\ =\ fsStat.stat('path',\ \{\});}
+\DoxyCodeLine{const\ stats\ =\ fsStat.stat('path',\ new\ fsStat.Settings());}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md353}{}\doxysubsubsection{\texorpdfstring{path}{path}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md353}
+
+\begin{DoxyItemize}
+\item Required\+: {\ttfamily true}
+\item Type\+: {\ttfamily string \texorpdfstring{$\vert$}{|} Buffer \texorpdfstring{$\vert$}{|} URL}
+\end{DoxyItemize}
+
+A path to a file. If a URL is provided, it must use the {\ttfamily file\+:} protocol.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md354}{}\doxysubsubsection{\texorpdfstring{options\+Or\+Settings}{options\+Or\+Settings}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md354}
+
+\begin{DoxyItemize}
+\item Required\+: {\ttfamily false}
+\item Type\+: {\ttfamily Options \texorpdfstring{$\vert$}{|} Settings}
+\item Default\+: An instance of {\ttfamily Settings} class
+\end{DoxyItemize}
+
+An \`{}\+Options\`{} object or an instance of \`{}\+Settings\`{} class.
+
+\begin{quote}
+\+:book\+: When you pass a plain object, an instance of the {\ttfamily Settings} class will be created automatically. If you plan to call the method frequently, use a pre-\/created instance of the {\ttfamily Settings} class. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md355}{}\doxysubsection{\texorpdfstring{Settings(\mbox{[}options\mbox{]})}{Settings(\mbox{[}options\mbox{]})}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md355}
+A class of full settings of the package.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ settings\ =\ new\ fsStat.Settings(\{\ followSymbolicLink:\ false\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ stats\ =\ fsStat.stat('path',\ settings);}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md356}{}\doxysection{\texorpdfstring{Options}{Options}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md356}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md357}{}\doxysubsection{\texorpdfstring{{\ttfamily follow\+Symbolic\+Link}}{{\ttfamily follow\+Symbolic\+Link}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md357}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Follow symbolic link or not. Call {\ttfamily fs.\+stat} on symbolic link if {\ttfamily true}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md358}{}\doxysubsection{\texorpdfstring{{\ttfamily mark\+Symbolic\+Link}}{{\ttfamily mark\+Symbolic\+Link}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md358}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+Mark symbolic link by setting the return value of {\ttfamily is\+Symbolic\+Link} function to always {\ttfamily true} (even after {\ttfamily fs.\+stat}).
+
+\begin{quote}
+\+:book\+: Can be used if you want to know what is hidden behind a symbolic link, but still continue to know that it is a symbolic link. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md359}{}\doxysubsection{\texorpdfstring{{\ttfamily throw\+Error\+On\+Broken\+Symbolic\+Link}}{{\ttfamily throw\+Error\+On\+Broken\+Symbolic\+Link}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md359}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Throw an error when symbolic link is broken if {\ttfamily true} or safely return {\ttfamily lstat} call if {\ttfamily false}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md360}{}\doxysubsection{\texorpdfstring{{\ttfamily fs}}{{\ttfamily fs}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md360}
+
+\begin{DoxyItemize}
+\item Type\+: \href{./src/adapters/fs.ts}{\texttt{ {\ttfamily File\+System\+Adapter}}}
+\item Default\+: A default FS methods
+\end{DoxyItemize}
+
+By default, the built-\/in Node.\+js module ({\ttfamily fs}) is used to work with the file system. You can replace any method with your own.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ FileSystemAdapter\ \{}
+\DoxyCodeLine{\ \ \ \ lstat?:\ typeof\ fs.lstat;}
+\DoxyCodeLine{\ \ \ \ stat?:\ typeof\ fs.stat;}
+\DoxyCodeLine{\ \ \ \ lstatSync?:\ typeof\ fs.lstatSync;}
+\DoxyCodeLine{\ \ \ \ statSync?:\ typeof\ fs.statSync;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ settings\ =\ new\ fsStat.Settings(\{}
+\DoxyCodeLine{\ \ \ \ fs:\ \{\ lstat:\ fakeLstat\ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md361}{}\doxysection{\texorpdfstring{Changelog}{Changelog}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md361}
+See the \href{https://github.com/nodelib/nodelib/releases}{\texttt{ Releases section of our Git\+Hub project}} for changelog for each release version.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md362}{}\doxysection{\texorpdfstring{License}{License}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dnodelib_2fs_8stat_2_r_e_a_d_m_e_autotoc_md362}
+This software is released under the terms of the MIT license. 

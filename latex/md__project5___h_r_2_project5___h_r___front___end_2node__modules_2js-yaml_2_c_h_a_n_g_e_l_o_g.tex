@@ -1,0 +1,536 @@
+\chapter{Changelog}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g}\index{Changelog@{Changelog}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1807}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1807}%
+ All notable changes to this project will be documented in this file.
+
+The format is based on \href{https://keepachangelog.com/en/1.0.0/}{\texttt{ Keep a Changelog}}, and this project adheres to \href{https://semver.org/spec/v2.0.0.html}{\texttt{ Semantic Versioning}}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1808}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/4.0.0...4.1.0}{\texttt{ 4.\+1.\+0}} -\/ 2021-\/04-\/15}{\href{https://github.com/nodeca/js-yaml/compare/4.0.0...4.1.0}{\texttt{ 4.\+1.\+0}} -\/ 2021-\/04-\/15}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1808}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1809}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1809}
+
+\begin{DoxyItemize}
+\item Types are now exported as {\ttfamily yaml.\+types.\+XXX}.
+\item Every type now has {\ttfamily options} property with original arguments kept as they were (see {\ttfamily yaml.\+types.\+int.\+options} as an example).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1810}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1810}
+
+\begin{DoxyItemize}
+\item {\ttfamily Schema.\+extend()} now keeps old type order in case of conflicts (e.\+g. Schema.\+extend(\mbox{[} a, b, c \mbox{]}).extend(\mbox{[} b, a, d \mbox{]}) is now ordered as {\ttfamily abcd} instead of {\ttfamily cbad}).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1811}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.14.0...4.0.0}{\texttt{ 4.\+0.\+0}} -\/ 2021-\/01-\/03}{\href{https://github.com/nodeca/js-yaml/compare/3.14.0...4.0.0}{\texttt{ 4.\+0.\+0}} -\/ 2021-\/01-\/03}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1811}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1812}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1812}
+
+\begin{DoxyItemize}
+\item Check migration guide to see details for all breaking changes.
+\item Breaking\+: "{}unsafe"{} tags {\ttfamily !!js/function}, {\ttfamily !!js/regexp}, {\ttfamily !!js/undefined} are moved to \href{https://github.com/nodeca/js-yaml-js-types}{\texttt{ js-\/yaml-\/js-\/types}} package.
+\item Breaking\+: removed {\ttfamily safe\texorpdfstring{$\ast$}{*}} functions. Use {\ttfamily load}, {\ttfamily load\+All}, {\ttfamily dump} instead which are all now safe by default.
+\item {\ttfamily yaml.\+DEFAULT\+\_\+\+SAFE\+\_\+\+SCHEMA} and {\ttfamily yaml.\+DEFAULT\+\_\+\+FULL\+\_\+\+SCHEMA} are removed, use {\ttfamily yaml.\+DEFAULT\+\_\+\+SCHEMA} instead.
+\item {\ttfamily yaml.\+Schema.\+create(schema, tags)} is removed, use {\ttfamily schema.\+extend(tags)} instead.
+\item {\ttfamily !!binary} now always mapped to {\ttfamily Uint8\+Array} on load.
+\item Reduced nesting of {\ttfamily /lib} folder.
+\item Parse numbers according to YAML 1.\+2 instead of YAML 1.\+1 ({\ttfamily 01234} is now decimal, {\ttfamily 0o1234} is octal, {\ttfamily 1\+:23} is parsed as string instead of base60).
+\item {\ttfamily dump()} no longer quotes {\ttfamily \+:}, {\ttfamily \mbox{[}}, {\ttfamily \mbox{]}}, {\ttfamily (}, {\ttfamily )} except when necessary, \#470, \#557.
+\item Line and column in exceptions are now formatted as {\ttfamily (X\+:Y)} instead of {\ttfamily at line X, column Y} (also present in compact format), \#332.
+\item Code snippet created in exceptions now contains multiple lines with line numbers.
+\item {\ttfamily dump()} now serializes {\ttfamily undefined} as {\ttfamily null} in collections and removes keys with {\ttfamily undefined} in mappings, \#571.
+\item {\ttfamily dump()} with {\ttfamily skip\+Invalid=true} now serializes invalid items in collections as null.
+\item Custom tags starting with {\ttfamily !} are now dumped as {\ttfamily !tag} instead of {\ttfamily !\texorpdfstring{$<$}{<}!tag\texorpdfstring{$>$}{>}}, \#576.
+\item Custom tags starting with {\ttfamily tag\+:yaml.\+org,2002\+:} are now shorthanded using {\ttfamily !!}, \#258.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1813}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1813}
+
+\begin{DoxyItemize}
+\item Added {\ttfamily .mjs} (es modules) support.
+\item Added {\ttfamily quoting\+Type} and {\ttfamily force\+Quotes} options for dumper to configure string literal style, \#290, \#529.
+\item Added `styles\+: \{ '!!null\textquotesingle{}\+: \textquotesingle{}empty\textquotesingle{} \}{\ttfamily option for dumper (serializes}\{ foo\+: null \}{\ttfamily as "{}$<$/tt$>$foo\+: $<$tt$>$"{}), \#570.}
+\item {\ttfamily Added}replacer{\ttfamily option (similar to option in JSON.\+stringify), \#339.}
+\item {\ttfamily Custom}Tag\`{} can now handle all tags or multiple tags with the same prefix, \#385.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1814}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1814}
+
+\begin{DoxyItemize}
+\item Astral characters are no longer encoded by {\ttfamily dump()}, \#587.
+\item "{}duplicate mapping key"{} exception now points at the correct column, \#452.
+\item Extra commas in flow collections (e.\+g. {\ttfamily \mbox{[}foo,,bar\mbox{]}}) now throw an exception instead of producing null, \#321.
+\item {\ttfamily \+\_\+\+\_\+proto\+\_\+\+\_\+} key no longer overrides object prototype, \#164.
+\item Removed {\ttfamily bower.\+json}.
+\item Tags are now url-\/decoded in {\ttfamily load()} and url-\/encoded in {\ttfamily dump()} (previously usage of custom non-\/ascii tags may have led to invalid YAML that can\textquotesingle{}t be parsed).
+\item Anchors now work correctly with empty nodes, \#301.
+\item Fix incorrect parsing of invalid block mapping syntax, \#418.
+\item Throw an error if block sequence/mapping indent contains a tab, \#80.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1815}{}\doxysection{\texorpdfstring{\mbox{[}3.\+14.\+1\mbox{]} -\/ 2020-\/12-\/07}{\mbox{[}3.\+14.\+1\mbox{]} -\/ 2020-\/12-\/07}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1815}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1816}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1816}
+
+\begin{DoxyItemize}
+\item Fix possible code execution in (already unsafe) {\ttfamily .load()} (in \&anchor).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1817}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.13.1...3.14.0}{\texttt{ 3.\+14.\+0}} -\/ 2020-\/05-\/22}{\href{https://github.com/nodeca/js-yaml/compare/3.13.1...3.14.0}{\texttt{ 3.\+14.\+0}} -\/ 2020-\/05-\/22}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1817}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1818}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1818}
+
+\begin{DoxyItemize}
+\item Support {\ttfamily safe/load\+All(input, options)} variant of call.
+\item CI\+: drop outdated nodejs versions.
+\item Dev deps bump.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1819}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1819}
+
+\begin{DoxyItemize}
+\item Quote {\ttfamily =} in plain scalars \#519.
+\item Check the node type for {\ttfamily !\texorpdfstring{$<$}{<}?\texorpdfstring{$>$}{>}} tag in case user manually specifies it.
+\item Verify that there are no null-\/bytes in input.
+\item Fix wrong quote position when writing condensed flow, \#526.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1820}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.13.0...3.13.1}{\texttt{ 3.\+13.\+1}} -\/ 2019-\/04-\/05}{\href{https://github.com/nodeca/js-yaml/compare/3.13.0...3.13.1}{\texttt{ 3.\+13.\+1}} -\/ 2019-\/04-\/05}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1820}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1821}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1821}
+
+\begin{DoxyItemize}
+\item Fix possible code execution in (already unsafe) {\ttfamily .load()}, \#480.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1822}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.12.2...3.13.0}{\texttt{ 3.\+13.\+0}} -\/ 2019-\/03-\/20}{\href{https://github.com/nodeca/js-yaml/compare/3.12.2...3.13.0}{\texttt{ 3.\+13.\+0}} -\/ 2019-\/03-\/20}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1822}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1823}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1823}
+
+\begin{DoxyItemize}
+\item Security fix\+: {\ttfamily safe\+Load()} can hang when arrays with nested refs used as key. Now throws exception for nested arrays. \#475.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1824}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.12.1...3.12.2}{\texttt{ 3.\+12.\+2}} -\/ 2019-\/02-\/26}{\href{https://github.com/nodeca/js-yaml/compare/3.12.1...3.12.2}{\texttt{ 3.\+12.\+2}} -\/ 2019-\/02-\/26}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1824}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1825}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1825}
+
+\begin{DoxyItemize}
+\item Fix {\ttfamily no\+Array\+Indent} option for root level, \#468.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1826}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.12.0...3.12.1}{\texttt{ 3.\+12.\+1}} -\/ 2019-\/01-\/05}{\href{https://github.com/nodeca/js-yaml/compare/3.12.0...3.12.1}{\texttt{ 3.\+12.\+1}} -\/ 2019-\/01-\/05}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1826}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1827}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1827}
+
+\begin{DoxyItemize}
+\item Added {\ttfamily no\+Array\+Indent} option, \#432.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1828}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.11.0...3.12.0}{\texttt{ 3.\+12.\+0}} -\/ 2018-\/06-\/02}{\href{https://github.com/nodeca/js-yaml/compare/3.11.0...3.12.0}{\texttt{ 3.\+12.\+0}} -\/ 2018-\/06-\/02}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1828}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1829}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1829}
+
+\begin{DoxyItemize}
+\item Support arrow functions without a block statement, \#421.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1830}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.10.0...3.11.0}{\texttt{ 3.\+11.\+0}} -\/ 2018-\/03-\/05}{\href{https://github.com/nodeca/js-yaml/compare/3.10.0...3.11.0}{\texttt{ 3.\+11.\+0}} -\/ 2018-\/03-\/05}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1830}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1831}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1831}
+
+\begin{DoxyItemize}
+\item Add arrow functions suport for {\ttfamily !!js/function}.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1832}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1832}
+
+\begin{DoxyItemize}
+\item Fix dump in bin/octal/hex formats for negative integers, \#399.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1833}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.9.1...3.10.0}{\texttt{ 3.\+10.\+0}} -\/ 2017-\/09-\/10}{\href{https://github.com/nodeca/js-yaml/compare/3.9.1...3.10.0}{\texttt{ 3.\+10.\+0}} -\/ 2017-\/09-\/10}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1833}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1834}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1834}
+
+\begin{DoxyItemize}
+\item Fix {\ttfamily condense\+Flow} output (quote keys for sure, instead of spaces), \#371, \#370.
+\item Dump astrals as codepoints instead of surrogate pair, \#368.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1835}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.9.0...3.9.1}{\texttt{ 3.\+9.\+1}} -\/ 2017-\/07-\/08}{\href{https://github.com/nodeca/js-yaml/compare/3.9.0...3.9.1}{\texttt{ 3.\+9.\+1}} -\/ 2017-\/07-\/08}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1835}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1836}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1836}
+
+\begin{DoxyItemize}
+\item Ensure stack is present for custom errors in node 7.+, \#351.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1837}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.8.4...3.9.0}{\texttt{ 3.\+9.\+0}} -\/ 2017-\/07-\/08}{\href{https://github.com/nodeca/js-yaml/compare/3.8.4...3.9.0}{\texttt{ 3.\+9.\+0}} -\/ 2017-\/07-\/08}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1837}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1838}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1838}
+
+\begin{DoxyItemize}
+\item Add {\ttfamily condense\+Flow} option (to create pretty URL query params), \#346.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1839}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1839}
+
+\begin{DoxyItemize}
+\item Support array return from safe\+Load\+All/load\+All, \#350.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1840}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.8.3...3.8.4}{\texttt{ 3.\+8.\+4}} -\/ 2017-\/05-\/08}{\href{https://github.com/nodeca/js-yaml/compare/3.8.3...3.8.4}{\texttt{ 3.\+8.\+4}} -\/ 2017-\/05-\/08}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1840}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1841}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1841}
+
+\begin{DoxyItemize}
+\item Dumper\+: prevent space after dash for arrays that wrap, \#343.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1842}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.8.2...3.8.3}{\texttt{ 3.\+8.\+3}} -\/ 2017-\/04-\/05}{\href{https://github.com/nodeca/js-yaml/compare/3.8.2...3.8.3}{\texttt{ 3.\+8.\+3}} -\/ 2017-\/04-\/05}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1842}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1843}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1843}
+
+\begin{DoxyItemize}
+\item Should not allow numbers to begin and end with underscore, \#335.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1844}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.8.1...3.8.2}{\texttt{ 3.\+8.\+2}} -\/ 2017-\/03-\/02}{\href{https://github.com/nodeca/js-yaml/compare/3.8.1...3.8.2}{\texttt{ 3.\+8.\+2}} -\/ 2017-\/03-\/02}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1844}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1845}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1845}
+
+\begin{DoxyItemize}
+\item Fix {\ttfamily !!float 123} (integers) parse, \#333.
+\item Don\textquotesingle{}t allow leading zeros in floats (except 0, 0.\+xxx).
+\item Allow positive exponent without sign in floats.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1846}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.8.0...3.8.1}{\texttt{ 3.\+8.\+1}} -\/ 2017-\/02-\/07}{\href{https://github.com/nodeca/js-yaml/compare/3.8.0...3.8.1}{\texttt{ 3.\+8.\+1}} -\/ 2017-\/02-\/07}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1846}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1847}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1847}
+
+\begin{DoxyItemize}
+\item Maintenance\+: update browserified build.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1848}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.7.0...3.8.0}{\texttt{ 3.\+8.\+0}} -\/ 2017-\/02-\/07}{\href{https://github.com/nodeca/js-yaml/compare/3.7.0...3.8.0}{\texttt{ 3.\+8.\+0}} -\/ 2017-\/02-\/07}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1848}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1849}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1849}
+
+\begin{DoxyItemize}
+\item Fix reported position for {\ttfamily duplicated mapping key} errors. Now points to block start instead of block end. (\#243, thanks to @shockey).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1850}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.6.1...3.7.0}{\texttt{ 3.\+7.\+0}} -\/ 2016-\/11-\/12}{\href{https://github.com/nodeca/js-yaml/compare/3.6.1...3.7.0}{\texttt{ 3.\+7.\+0}} -\/ 2016-\/11-\/12}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1850}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1851}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1851}
+
+\begin{DoxyItemize}
+\item Support polymorphism for tags (\#300, thanks to @monken).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1852}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1852}
+
+\begin{DoxyItemize}
+\item Fix parsing of quotes followed by newlines (\#304, thanks to @dplepage).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1853}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.6.0...3.6.1}{\texttt{ 3.\+6.\+1}} -\/ 2016-\/05-\/11}{\href{https://github.com/nodeca/js-yaml/compare/3.6.0...3.6.1}{\texttt{ 3.\+6.\+1}} -\/ 2016-\/05-\/11}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1853}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1854}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1854}
+
+\begin{DoxyItemize}
+\item Fix output cut on a pipe, \#286.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1855}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.5.5...3.6.0}{\texttt{ 3.\+6.\+0}} -\/ 2016-\/04-\/16}{\href{https://github.com/nodeca/js-yaml/compare/3.5.5...3.6.0}{\texttt{ 3.\+6.\+0}} -\/ 2016-\/04-\/16}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1855}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1856}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1856}
+
+\begin{DoxyItemize}
+\item Dumper rewrite, fix multiple bugs with trailing {\ttfamily \textbackslash{}n}. Big thanks to @aepsilon!
+\item Loader\+: fix leading/trailing newlines in block scalars, @aepsilon.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1857}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.5.4...3.5.5}{\texttt{ 3.\+5.\+5}} -\/ 2016-\/03-\/17}{\href{https://github.com/nodeca/js-yaml/compare/3.5.4...3.5.5}{\texttt{ 3.\+5.\+5}} -\/ 2016-\/03-\/17}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1857}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1858}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1858}
+
+\begin{DoxyItemize}
+\item Date parse fix\+: don\textquotesingle{}t allow dates with on digit in month and day, \#268.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1859}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.5.3...3.5.4}{\texttt{ 3.\+5.\+4}} -\/ 2016-\/03-\/09}{\href{https://github.com/nodeca/js-yaml/compare/3.5.3...3.5.4}{\texttt{ 3.\+5.\+4}} -\/ 2016-\/03-\/09}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1859}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1860}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1860}
+
+\begin{DoxyItemize}
+\item {\ttfamily no\+Compat\+Mode} for dumper, to disable quoting YAML 1.\+1 values.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1861}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.5.2...3.5.3}{\texttt{ 3.\+5.\+3}} -\/ 2016-\/02-\/11}{\href{https://github.com/nodeca/js-yaml/compare/3.5.2...3.5.3}{\texttt{ 3.\+5.\+3}} -\/ 2016-\/02-\/11}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1861}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1862}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1862}
+
+\begin{DoxyItemize}
+\item Maintenance release.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1863}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.5.1...3.5.2}{\texttt{ 3.\+5.\+2}} -\/ 2016-\/01-\/11}{\href{https://github.com/nodeca/js-yaml/compare/3.5.1...3.5.2}{\texttt{ 3.\+5.\+2}} -\/ 2016-\/01-\/11}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1863}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1864}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1864}
+
+\begin{DoxyItemize}
+\item Maintenance\+: missed comma in bower config.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1865}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.5.0...3.5.1}{\texttt{ 3.\+5.\+1}} -\/ 2016-\/01-\/11}{\href{https://github.com/nodeca/js-yaml/compare/3.5.0...3.5.1}{\texttt{ 3.\+5.\+1}} -\/ 2016-\/01-\/11}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1865}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1866}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1866}
+
+\begin{DoxyItemize}
+\item Removed {\ttfamily inherit} dependency, \#239.
+\item Better browserify workaround for esprima load.
+\item Demo rewrite.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1867}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.4.6...3.5.0}{\texttt{ 3.\+5.\+0}} -\/ 2016-\/01-\/10}{\href{https://github.com/nodeca/js-yaml/compare/3.4.6...3.5.0}{\texttt{ 3.\+5.\+0}} -\/ 2016-\/01-\/10}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1867}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1868}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1868}
+
+\begin{DoxyItemize}
+\item Dumper. Fold strings only, \#217.
+\item Dumper. {\ttfamily norefs} option, to clone linked objects, \#229.
+\item Loader. Throw a warning for duplicate keys, \#166.
+\item Improved browserify support (mark {\ttfamily esprima} \& {\ttfamily Buffer} excluded).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1869}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.4.5...3.4.6}{\texttt{ 3.\+4.\+6}} -\/ 2015-\/11-\/26}{\href{https://github.com/nodeca/js-yaml/compare/3.4.5...3.4.6}{\texttt{ 3.\+4.\+6}} -\/ 2015-\/11-\/26}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1869}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1870}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1870}
+
+\begin{DoxyItemize}
+\item Use standalone {\ttfamily inherit} to keep browserified files clear.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1871}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.4.4...3.4.5}{\texttt{ 3.\+4.\+5}} -\/ 2015-\/11-\/23}{\href{https://github.com/nodeca/js-yaml/compare/3.4.4...3.4.5}{\texttt{ 3.\+4.\+5}} -\/ 2015-\/11-\/23}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1871}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1872}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1872}
+
+\begin{DoxyItemize}
+\item Added {\ttfamily line\+Width} option to dumper.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1873}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.4.3...3.4.4}{\texttt{ 3.\+4.\+4}} -\/ 2015-\/11-\/21}{\href{https://github.com/nodeca/js-yaml/compare/3.4.3...3.4.4}{\texttt{ 3.\+4.\+4}} -\/ 2015-\/11-\/21}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1873}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1874}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1874}
+
+\begin{DoxyItemize}
+\item Fixed floats dump (missed dot for scientific format), \#220.
+\item Allow non-\/printable characters inside quoted scalars, \#192.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1875}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.4.2...3.4.3}{\texttt{ 3.\+4.\+3}} -\/ 2015-\/10-\/10}{\href{https://github.com/nodeca/js-yaml/compare/3.4.2...3.4.3}{\texttt{ 3.\+4.\+3}} -\/ 2015-\/10-\/10}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1875}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1876}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1876}
+
+\begin{DoxyItemize}
+\item Maintenance release -\/ deps bump (esprima, argparse).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1877}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.4.1...3.4.2}{\texttt{ 3.\+4.\+2}} -\/ 2015-\/09-\/09}{\href{https://github.com/nodeca/js-yaml/compare/3.4.1...3.4.2}{\texttt{ 3.\+4.\+2}} -\/ 2015-\/09-\/09}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1877}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1878}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1878}
+
+\begin{DoxyItemize}
+\item Fixed serialization of duplicated entries in sequences, \#205. Thanks to @vogelsgesang.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1879}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.4.0...3.4.1}{\texttt{ 3.\+4.\+1}} -\/ 2015-\/09-\/05}{\href{https://github.com/nodeca/js-yaml/compare/3.4.0...3.4.1}{\texttt{ 3.\+4.\+1}} -\/ 2015-\/09-\/05}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1879}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1880}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1880}
+
+\begin{DoxyItemize}
+\item Fixed stacktrace handling in generated errors, for browsers (FF/\+IE).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1881}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.3.1...3.4.0}{\texttt{ 3.\+4.\+0}} -\/ 2015-\/08-\/23}{\href{https://github.com/nodeca/js-yaml/compare/3.3.1...3.4.0}{\texttt{ 3.\+4.\+0}} -\/ 2015-\/08-\/23}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1881}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1882}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1882}
+
+\begin{DoxyItemize}
+\item Don\textquotesingle{}t throw on warnings anymore. Use {\ttfamily on\+Warning} option to catch.
+\item Throw error on unknown tags (was warning before).
+\item Reworked internals of error class.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1883}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1883}
+
+\begin{DoxyItemize}
+\item Fixed multiline keys dump, \#197. Thanks to @tcr.
+\item Fixed heading line breaks in some scalars (regression).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1884}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.3.0...3.3.1}{\texttt{ 3.\+3.\+1}} -\/ 2015-\/05-\/13}{\href{https://github.com/nodeca/js-yaml/compare/3.3.0...3.3.1}{\texttt{ 3.\+3.\+1}} -\/ 2015-\/05-\/13}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1884}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1885}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1885}
+
+\begin{DoxyItemize}
+\item Added {\ttfamily .sort\+Keys} dumper option, thanks to @rjmunro.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1886}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1886}
+
+\begin{DoxyItemize}
+\item Fixed astral characters support, \#191.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1887}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.2.7...3.3.0}{\texttt{ 3.\+3.\+0}} -\/ 2015-\/04-\/26}{\href{https://github.com/nodeca/js-yaml/compare/3.2.7...3.3.0}{\texttt{ 3.\+3.\+0}} -\/ 2015-\/04-\/26}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1887}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1888}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1888}
+
+\begin{DoxyItemize}
+\item Significantly improved long strings formatting in dumper, thanks to @isaacs.
+\item Strip BOM if exists.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1889}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.2.6...3.2.7}{\texttt{ 3.\+2.\+7}} -\/ 2015-\/02-\/19}{\href{https://github.com/nodeca/js-yaml/compare/3.2.6...3.2.7}{\texttt{ 3.\+2.\+7}} -\/ 2015-\/02-\/19}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1889}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1890}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1890}
+
+\begin{DoxyItemize}
+\item Maintenance release.
+\item Updated dependencies.
+\item HISTORY.\+md -\/\texorpdfstring{$>$}{>} CHANGELOG.\+md
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1891}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.2.5...3.2.6}{\texttt{ 3.\+2.\+6}} -\/ 2015-\/02-\/07}{\href{https://github.com/nodeca/js-yaml/compare/3.2.5...3.2.6}{\texttt{ 3.\+2.\+6}} -\/ 2015-\/02-\/07}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1891}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1892}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1892}
+
+\begin{DoxyItemize}
+\item Fixed encoding of UTF-\/16 surrogate pairs. (e.\+g. "{}\textbackslash{}\+U0001\+F431"{} CAT FACE).
+\item Fixed demo dates dump (\#113, thanks to @\+Hypercubed).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1893}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.2.4...3.2.5}{\texttt{ 3.\+2.\+5}} -\/ 2014-\/12-\/28}{\href{https://github.com/nodeca/js-yaml/compare/3.2.4...3.2.5}{\texttt{ 3.\+2.\+5}} -\/ 2014-\/12-\/28}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1893}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1894}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1894}
+
+\begin{DoxyItemize}
+\item Fixed resolving of all built-\/in types on empty nodes.
+\item Fixed invalid warning on empty lines within quoted scalars and flow collections.
+\item Fixed bug\+: Tag on an empty node didn\textquotesingle{}t resolve in some cases.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1895}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.2.3...3.2.4}{\texttt{ 3.\+2.\+4}} -\/ 2014-\/12-\/19}{\href{https://github.com/nodeca/js-yaml/compare/3.2.3...3.2.4}{\texttt{ 3.\+2.\+4}} -\/ 2014-\/12-\/19}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1895}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1896}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1896}
+
+\begin{DoxyItemize}
+\item Fixed resolving of !!null tag on an empty node.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1897}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.2.2...3.2.3}{\texttt{ 3.\+2.\+3}} -\/ 2014-\/11-\/08}{\href{https://github.com/nodeca/js-yaml/compare/3.2.2...3.2.3}{\texttt{ 3.\+2.\+3}} -\/ 2014-\/11-\/08}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1897}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1898}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1898}
+
+\begin{DoxyItemize}
+\item Implemented dumping of objects with circular and cross references.
+\item Partially fixed aliasing of constructed objects. (see issue \#141 for details)
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1899}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.2.1...3.2.2}{\texttt{ 3.\+2.\+2}} -\/ 2014-\/09-\/07}{\href{https://github.com/nodeca/js-yaml/compare/3.2.1...3.2.2}{\texttt{ 3.\+2.\+2}} -\/ 2014-\/09-\/07}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1899}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1900}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1900}
+
+\begin{DoxyItemize}
+\item Fixed infinite loop on unindented block scalars.
+\item Rewritten base64 encode/decode in binary type, to keep code licence clear.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1901}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.2.0...3.2.1}{\texttt{ 3.\+2.\+1}} -\/ 2014-\/08-\/24}{\href{https://github.com/nodeca/js-yaml/compare/3.2.0...3.2.1}{\texttt{ 3.\+2.\+1}} -\/ 2014-\/08-\/24}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1901}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1902}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1902}
+
+\begin{DoxyItemize}
+\item Nothig new. Just fix npm publish error.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1903}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.1.0...3.2.0}{\texttt{ 3.\+2.\+0}} -\/ 2014-\/08-\/24}{\href{https://github.com/nodeca/js-yaml/compare/3.1.0...3.2.0}{\texttt{ 3.\+2.\+0}} -\/ 2014-\/08-\/24}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1903}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1904}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1904}
+
+\begin{DoxyItemize}
+\item Added input piping support to CLI.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1905}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1905}
+
+\begin{DoxyItemize}
+\item Fixed typo, that could cause hand on initial indent (\#139).
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1906}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.0.2...3.1.0}{\texttt{ 3.\+1.\+0}} -\/ 2014-\/07-\/07}{\href{https://github.com/nodeca/js-yaml/compare/3.0.2...3.1.0}{\texttt{ 3.\+1.\+0}} -\/ 2014-\/07-\/07}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1906}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1907}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1907}
+
+\begin{DoxyItemize}
+\item 1.\+5x-\/2x speed boost.
+\item Removed deprecated `require(\textquotesingle{}xxx.\+yml')\`{} support.
+\item Significant code cleanup and refactoring.
+\item Internal API changed. If you used custom types -\/ see updated examples. Others are not affected.
+\item Even if the input string has no trailing line break character, it will be parsed as if it has one.
+\item Added benchmark scripts.
+\item Moved bower files to /dist folder
+\item Bugfixes.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1908}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.0.1...3.0.2}{\texttt{ 3.\+0.\+2}} -\/ 2014-\/02-\/27}{\href{https://github.com/nodeca/js-yaml/compare/3.0.1...3.0.2}{\texttt{ 3.\+0.\+2}} -\/ 2014-\/02-\/27}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1908}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1909}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1909}
+
+\begin{DoxyItemize}
+\item Fixed bug\+: "{}constructor"{} string parsed as {\ttfamily null}.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1910}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/3.0.0...3.0.1}{\texttt{ 3.\+0.\+1}} -\/ 2013-\/12-\/22}{\href{https://github.com/nodeca/js-yaml/compare/3.0.0...3.0.1}{\texttt{ 3.\+0.\+1}} -\/ 2013-\/12-\/22}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1910}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1911}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1911}
+
+\begin{DoxyItemize}
+\item Fixed parsing of literal scalars. (issue \#108)
+\item Prevented adding unnecessary spaces in object dumps. (issue \#68)
+\item Fixed dumping of objects with very long (\texorpdfstring{$>$}{>} 1024 in length) keys.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1912}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.1.3...3.0.0}{\texttt{ 3.\+0.\+0}} -\/ 2013-\/12-\/16}{\href{https://github.com/nodeca/js-yaml/compare/2.1.3...3.0.0}{\texttt{ 3.\+0.\+0}} -\/ 2013-\/12-\/16}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1912}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1913}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1913}
+
+\begin{DoxyItemize}
+\item Refactored code. Changed API for custom types.
+\item Removed output colors in CLI, dump json by default.
+\item Removed big dependencies from browser version (esprima, buffer). Load {\ttfamily esprima} manually, if {\ttfamily !!js/function} needed. {\ttfamily !!bin} now returns Array in browser
+\item AMD support.
+\item Don\textquotesingle{}t quote dumped strings because of {\ttfamily -\/} \& {\ttfamily ?} (if not first char).
+\item {\bfseries{Deprecated}} loading yaml files via {\ttfamily require()}, as not recommended behaviour for node.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1914}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.1.2...2.1.3}{\texttt{ 2.\+1.\+3}} -\/ 2013-\/10-\/16}{\href{https://github.com/nodeca/js-yaml/compare/2.1.2...2.1.3}{\texttt{ 2.\+1.\+3}} -\/ 2013-\/10-\/16}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1914}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1915}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1915}
+
+\begin{DoxyItemize}
+\item Fix wrong loading of empty block scalars.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1916}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.1.1...2.1.2}{\texttt{ 2.\+1.\+2}} -\/ 2013-\/10-\/07}{\href{https://github.com/nodeca/js-yaml/compare/2.1.1...2.1.2}{\texttt{ 2.\+1.\+2}} -\/ 2013-\/10-\/07}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1916}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1917}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1917}
+
+\begin{DoxyItemize}
+\item Fix unwanted line breaks in folded scalars.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1918}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.1.0...2.1.1}{\texttt{ 2.\+1.\+1}} -\/ 2013-\/10-\/02}{\href{https://github.com/nodeca/js-yaml/compare/2.1.0...2.1.1}{\texttt{ 2.\+1.\+1}} -\/ 2013-\/10-\/02}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1918}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1919}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1919}
+
+\begin{DoxyItemize}
+\item Dumper now respects deprecated booleans syntax from YAML 1.\+0/1.1
+\item Fixed reader bug in JSON-\/like sequences/mappings.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1920}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.0.5...2.1.0}{\texttt{ 2.\+1.\+0}} -\/ 2013-\/06-\/05}{\href{https://github.com/nodeca/js-yaml/compare/2.0.5...2.1.0}{\texttt{ 2.\+1.\+0}} -\/ 2013-\/06-\/05}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1920}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1921}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1921}
+
+\begin{DoxyItemize}
+\item Add standard YAML schemas\+: Failsafe ({\ttfamily FAILSAFE\+\_\+\+SCHEMA}), JSON ({\ttfamily JSON\+\_\+\+SCHEMA}) and Core ({\ttfamily CORE\+\_\+\+SCHEMA}).
+\item Add {\ttfamily skip\+Invalid} dumper option.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1922}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1922}
+
+\begin{DoxyItemize}
+\item Rename {\ttfamily DEFAULT\+\_\+\+SCHEMA} to {\ttfamily DEFAULT\+\_\+\+FULL\+\_\+\+SCHEMA} and {\ttfamily SAFE\+\_\+\+SCHEMA} to {\ttfamily DEFAULT\+\_\+\+SAFE\+\_\+\+SCHEMA}.
+\item Use {\ttfamily safe\+Load} for {\ttfamily require} extension.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1923}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1923}
+
+\begin{DoxyItemize}
+\item Bug fix\+: export {\ttfamily NIL} constant from the public interface.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1924}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.0.4...2.0.5}{\texttt{ 2.\+0.\+5}} -\/ 2013-\/04-\/26}{\href{https://github.com/nodeca/js-yaml/compare/2.0.4...2.0.5}{\texttt{ 2.\+0.\+5}} -\/ 2013-\/04-\/26}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1924}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1925}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1925}
+
+\begin{DoxyItemize}
+\item Close security issue in !!js/function constructor. Big thanks to @nealpoole for security audit.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1926}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.0.3...2.0.4}{\texttt{ 2.\+0.\+4}} -\/ 2013-\/04-\/08}{\href{https://github.com/nodeca/js-yaml/compare/2.0.3...2.0.4}{\texttt{ 2.\+0.\+4}} -\/ 2013-\/04-\/08}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1926}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1927}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1927}
+
+\begin{DoxyItemize}
+\item Updated .npmignore to reduce package size
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1928}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.0.2...2.0.3}{\texttt{ 2.\+0.\+3}} -\/ 2013-\/02-\/26}{\href{https://github.com/nodeca/js-yaml/compare/2.0.2...2.0.3}{\texttt{ 2.\+0.\+3}} -\/ 2013-\/02-\/26}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1928}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1929}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1929}
+
+\begin{DoxyItemize}
+\item Fixed dumping of empty arrays ans objects. (\mbox{[}\mbox{]} and \{\} instead of null)
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1930}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.0.1...2.0.2}{\texttt{ 2.\+0.\+2}} -\/ 2013-\/02-\/15}{\href{https://github.com/nodeca/js-yaml/compare/2.0.1...2.0.2}{\texttt{ 2.\+0.\+2}} -\/ 2013-\/02-\/15}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1930}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1931}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1931}
+
+\begin{DoxyItemize}
+\item Fixed input validation\+: tabs are printable characters.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1932}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/2.0.0...2.0.1}{\texttt{ 2.\+0.\+1}} -\/ 2013-\/02-\/09}{\href{https://github.com/nodeca/js-yaml/compare/2.0.0...2.0.1}{\texttt{ 2.\+0.\+1}} -\/ 2013-\/02-\/09}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1932}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1933}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1933}
+
+\begin{DoxyItemize}
+\item Fixed error, when options not passed to function cass
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1934}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/1.0.3...2.0.0}{\texttt{ 2.\+0.\+0}} -\/ 2013-\/02-\/09}{\href{https://github.com/nodeca/js-yaml/compare/1.0.3...2.0.0}{\texttt{ 2.\+0.\+0}} -\/ 2013-\/02-\/09}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1934}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1935}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1935}
+
+\begin{DoxyItemize}
+\item Full rewrite. New architecture. Fast one-\/stage parsing.
+\item Changed custom types API.
+\item Added YAML dumper.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1936}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/1.0.2...1.0.3}{\texttt{ 1.\+0.\+3}} -\/ 2012-\/11-\/05}{\href{https://github.com/nodeca/js-yaml/compare/1.0.2...1.0.3}{\texttt{ 1.\+0.\+3}} -\/ 2012-\/11-\/05}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1936}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1937}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1937}
+
+\begin{DoxyItemize}
+\item Fixed utf-\/8 files loading.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1938}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/1.0.1...1.0.2}{\texttt{ 1.\+0.\+2}} -\/ 2012-\/08-\/02}{\href{https://github.com/nodeca/js-yaml/compare/1.0.1...1.0.2}{\texttt{ 1.\+0.\+2}} -\/ 2012-\/08-\/02}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1938}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1939}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1939}
+
+\begin{DoxyItemize}
+\item Pull out hand-\/written shims. Use ES5-\/\+Shims for old browsers support. See \#44.
+\item Fix timstamps incorectly parsed in local time when no time part specified.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1940}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/1.0.0...1.0.1}{\texttt{ 1.\+0.\+1}} -\/ 2012-\/07-\/07}{\href{https://github.com/nodeca/js-yaml/compare/1.0.0...1.0.1}{\texttt{ 1.\+0.\+1}} -\/ 2012-\/07-\/07}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1940}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1941}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1941}
+
+\begin{DoxyItemize}
+\item Fixes `Type\+Error\+: \textquotesingle{}undefined' is not an object\`{} under Safari. Thanks Phuong.
+\item Fix timestamps incorrectly parsed in local time. Thanks @caolan. Closes \#46.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1942}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.3.7...1.0.0}{\texttt{ 1.\+0.\+0}} -\/ 2012-\/07-\/01}{\href{https://github.com/nodeca/js-yaml/compare/0.3.7...1.0.0}{\texttt{ 1.\+0.\+0}} -\/ 2012-\/07-\/01}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1942}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1943}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1943}
+
+\begin{DoxyItemize}
+\item {\ttfamily y}, {\ttfamily yes}, {\ttfamily n}, {\ttfamily no}, {\ttfamily on}, {\ttfamily off} are not converted to Booleans anymore. Fixes \#42.
+\item {\ttfamily require(filename)} now returns a single document and throws an Error if file contains more than one document.
+\item CLI was merged back from js-\/yaml.\+bin
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1944}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.3.6...0.3.7}{\texttt{ 0.\+3.\+7}} -\/ 2012-\/02-\/28}{\href{https://github.com/nodeca/js-yaml/compare/0.3.6...0.3.7}{\texttt{ 0.\+3.\+7}} -\/ 2012-\/02-\/28}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1944}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1945}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1945}
+
+\begin{DoxyItemize}
+\item Fix export of {\ttfamily add\+Constructor()}. Closes \#39.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1946}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.3.5...0.3.6}{\texttt{ 0.\+3.\+6}} -\/ 2012-\/02-\/22}{\href{https://github.com/nodeca/js-yaml/compare/0.3.5...0.3.6}{\texttt{ 0.\+3.\+6}} -\/ 2012-\/02-\/22}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1946}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1947}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1947}
+
+\begin{DoxyItemize}
+\item Removed AMD parts -\/ too buggy to use. Need help to rewrite from scratch
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1948}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1948}
+
+\begin{DoxyItemize}
+\item Removed YUI compressor warning (renamed {\ttfamily double} variable). Closes \#40.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1949}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.3.4...0.3.5}{\texttt{ 0.\+3.\+5}} -\/ 2012-\/01-\/10}{\href{https://github.com/nodeca/js-yaml/compare/0.3.4...0.3.5}{\texttt{ 0.\+3.\+5}} -\/ 2012-\/01-\/10}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1949}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1950}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1950}
+
+\begin{DoxyItemize}
+\item Workagound for .npmignore fuckup under windows. Thanks to airportyh.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1951}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.3.3...0.3.4}{\texttt{ 0.\+3.\+4}} -\/ 2011-\/12-\/24}{\href{https://github.com/nodeca/js-yaml/compare/0.3.3...0.3.4}{\texttt{ 0.\+3.\+4}} -\/ 2011-\/12-\/24}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1951}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1952}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1952}
+
+\begin{DoxyItemize}
+\item Fixes str\mbox{[}\mbox{]} for old\+IEs support.
+\item Adds better has change support for browserified demo.
+\item improves compact output of Error. Closes \#33.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1953}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.3.2...0.3.3}{\texttt{ 0.\+3.\+3}} -\/ 2011-\/12-\/20}{\href{https://github.com/nodeca/js-yaml/compare/0.3.2...0.3.3}{\texttt{ 0.\+3.\+3}} -\/ 2011-\/12-\/20}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1953}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1954}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1954}
+
+\begin{DoxyItemize}
+\item adds {\ttfamily compact} stringification of Errors.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1955}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1955}
+
+\begin{DoxyItemize}
+\item jsyaml executable moved to separate module.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1956}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.3.1...0.3.2}{\texttt{ 0.\+3.\+2}} -\/ 2011-\/12-\/16}{\href{https://github.com/nodeca/js-yaml/compare/0.3.1...0.3.2}{\texttt{ 0.\+3.\+2}} -\/ 2011-\/12-\/16}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1956}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1957}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1957}
+
+\begin{DoxyItemize}
+\item Added jsyaml executable.
+\item Added !!js/function support. Closes \#12.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1958}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1958}
+
+\begin{DoxyItemize}
+\item Fixes ug with block style scalars. Closes \#26.
+\item All sources are passing JSLint now.
+\item Fixes bug in Safari. Closes \#28.
+\item Fixes bug in Opers. Closes \#29.
+\item Improves browser support. Closes \#20.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1959}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.3.0...0.3.1}{\texttt{ 0.\+3.\+1}} -\/ 2011-\/11-\/18}{\href{https://github.com/nodeca/js-yaml/compare/0.3.0...0.3.1}{\texttt{ 0.\+3.\+1}} -\/ 2011-\/11-\/18}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1959}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1960}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1960}
+
+\begin{DoxyItemize}
+\item Added AMD support for browserified version.
+\item Added permalinks for online demo YAML snippets. Now we have YPaste service, lol.
+\item Added !!js/regexp and !!js/undefined types. Partially solves \#12.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1961}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1961}
+
+\begin{DoxyItemize}
+\item Wrapped browserified js-\/yaml into closure.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1962}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1962}
+
+\begin{DoxyItemize}
+\item Fixed the resolvement of non-\/specific tags. Closes \#17.
+\item Fixed !!set mapping.
+\item Fixed month parse in dates. Closes \#19.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1963}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.2.2...0.3.0}{\texttt{ 0.\+3.\+0}} -\/ 2011-\/11-\/09}{\href{https://github.com/nodeca/js-yaml/compare/0.2.2...0.3.0}{\texttt{ 0.\+3.\+0}} -\/ 2011-\/11-\/09}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1963}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1964}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1964}
+
+\begin{DoxyItemize}
+\item Added browserified version. Closes \#13.
+\item Added live demo of browserified version.
+\item Ported some of the Py\+YAML tests. See \#14.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1965}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1965}
+
+\begin{DoxyItemize}
+\item Removed JS.\+Class dependency. Closes \#3.
+\item Fixed timestamp bug when fraction was given.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1966}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.2.1...0.2.2}{\texttt{ 0.\+2.\+2}} -\/ 2011-\/11-\/06}{\href{https://github.com/nodeca/js-yaml/compare/0.2.1...0.2.2}{\texttt{ 0.\+2.\+2}} -\/ 2011-\/11-\/06}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1966}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1967}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1967}
+
+\begin{DoxyItemize}
+\item Fixed crash on docs without ---. Closes \#8.
+\item Fixed multiline string parse
+\item Fixed tests/comments for using array as key
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1968}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/compare/0.2.0...0.2.1}{\texttt{ 0.\+2.\+1}} -\/ 2011-\/11-\/02}{\href{https://github.com/nodeca/js-yaml/compare/0.2.0...0.2.1}{\texttt{ 0.\+2.\+1}} -\/ 2011-\/11-\/02}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1968}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1969}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1969}
+
+\begin{DoxyItemize}
+\item Fixed short file read (\texorpdfstring{$<$}{<}4k). Closes \#9.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1970}{}\doxysection{\texorpdfstring{\href{https://github.com/nodeca/js-yaml/releases/tag/0.2.0}{\texttt{ 0.\+2.\+0}} -\/ 2011-\/11-\/02}{\href{https://github.com/nodeca/js-yaml/releases/tag/0.2.0}{\texttt{ 0.\+2.\+0}} -\/ 2011-\/11-\/02}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1970}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1971}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2js-yaml_2_c_h_a_n_g_e_l_o_g_autotoc_md1971}
+
+\begin{DoxyItemize}
+\item First public release 
+\end{DoxyItemize}

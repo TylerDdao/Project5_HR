@@ -1,0 +1,147 @@
+\chapter{\texorpdfstring{$<$}{<}tt\texorpdfstring{$>$}{>}\textbackslash{}@humanfs/core\texorpdfstring{$<$}{<}/tt\texorpdfstring{$>$}{>}}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e}\index{$<$tt$>$\textbackslash{}"@humanfs/core$<$/tt$>$@{$<$tt$>$\textbackslash{}"@humanfs/core$<$/tt$>$}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md247}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md247}%
+ by \href{https://humanwhocodes.com}{\texttt{ Nicholas C. Zakas}}
+
+If you find this useful, please consider supporting my work with a \href{https://humanwhocodes.com/donate}{\texttt{ donation}} or \href{https://stars.github.com/nominate/}{\texttt{ nominate me}} for a Git\+Hub Star.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md248}{}\doxysection{\texorpdfstring{Description}{Description}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md248}
+The core functionality for humanfs that is shared across all implementations for all runtimes. The contents of this package are intentionally runtime agnostic and are not intended to be used alone.
+
+Currently, this package simply exports the {\ttfamily Hfs} class, which is an abstract base class intended to be inherited from in runtime-\/specific hfs packages (like {\ttfamily @humanfs/node}).
+
+\begin{quote}
+\mbox{[}!\+WARNING\mbox{]} This project is {\bfseries{experimental}} and may change significantly before v1.\+0.\+0. Use at your own caution and definitely not in production! \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md249}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md249}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md250}{}\doxysubsection{\texorpdfstring{Node.\+js}{Node.\+js}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md250}
+Install using your favorite package manager for Node.\+js\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @humanfs/core}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{pnpm\ install\ @humanfs/core}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{yarn\ add\ @humanfs/core}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{bun\ install\ @humanfs/core}
+
+\end{DoxyCode}
+
+
+Then you can import the {\ttfamily Hfs} and {\ttfamily Path} classes like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ Hfs,\ Path\ \}\ from\ "{}@humanfs/core"{};}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md251}{}\doxysubsection{\texorpdfstring{Deno}{Deno}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md251}
+Install using \href{https://jsr.io}{\texttt{ JSR}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{deno\ add\ @humanfs/core}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsr\ add\ @humanfs/core}
+
+\end{DoxyCode}
+
+
+Then you can import the {\ttfamily Hfs} class like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ Hfs,\ Path\ \}\ from\ "{}@humanfs/core"{};}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md252}{}\doxysubsection{\texorpdfstring{Browser}{Browser}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md252}
+It\textquotesingle{}s recommended to import the minified version to save bandwidth\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ Hfs,\ Path\ \}\ from\ "{}https://cdn.skypack.dev/@humanfs/core?min"{};}
+
+\end{DoxyCode}
+
+
+However, you can also import the unminified version for debugging purposes\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ Hfs,\ Path\ \}\ from\ "{}https://cdn.skypack.dev/@humanfs/core"{};}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md253}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md253}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md254}{}\doxysubsection{\texorpdfstring{{\ttfamily Hfs} Class}{{\ttfamily Hfs} Class}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md254}
+The {\ttfamily Hfs} class contains all of the basic functionality for an {\ttfamily Hfs} instance {\itshape without} a predefined impl. This class is mostly used for creating runtime-\/specific impls, such as {\ttfamily Node\+Hfs} and {\ttfamily Deno\+Hfs}.
+
+You can create your own instance by providing an {\ttfamily impl} directly\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ hfs\ =\ new\ Hfs(\{\ impl:\ \{\ async\ text()\ \{\}\ \}\});}
+
+\end{DoxyCode}
+
+
+The specified {\ttfamily impl} becomes the base impl for the instance, meaning you can always reset back to it using {\ttfamily reset\+Impl()}.
+
+You can also inherit from {\ttfamily Hfs} to create your own class with a preconfigured impl, such as\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{class\ MyHfs\ extends\ Hfs\ \{}
+\DoxyCodeLine{\ \ \ \ constructor()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ super(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ impl:\ myImpl}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md255}{}\doxysubsection{\texorpdfstring{{\ttfamily Path} Class}{{\ttfamily Path} Class}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md255}
+The {\ttfamily Path} class represents the path to a directory or file within a file system. It\textquotesingle{}s an abstract representation that can be used even outside of traditional file systems where string paths might not make sense.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ myPath\ =\ new\ Path(["{}dir"{},\ "{}subdir"{}]);}
+\DoxyCodeLine{console.log(myPath.toString());\ \ \ \ \ //\ "{}dir/subdir"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ add\ another\ step}
+\DoxyCodeLine{myPath.push("{}file.txt"{});}
+\DoxyCodeLine{console.log(myPath.toString());\ \ \ \ \ //\ "{}dir/subdir/file.txt"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ get\ just\ the\ last\ step}
+\DoxyCodeLine{console.log(myPath.name);\ \ \ \ \ \ \ \ \ \ \ //\ "{}file.txt"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ change\ just\ the\ last\ step}
+\DoxyCodeLine{myPath.name\ =\ "{}file.json"{};}
+\DoxyCodeLine{console.log(myPath.name);\ \ \ \ \ \ \ \ \ \ \ //\ "{}file.json"{}}
+\DoxyCodeLine{console.log(myPath.toString());\ \ \ \ \ //\ "{}dir/subdir/file.json"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ get\ the\ size\ of\ the\ path}
+\DoxyCodeLine{console.log(myPath.size);\ \ \ \ \ \ \ \ \ \ \ //\ 3}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ remove\ the\ last\ step}
+\DoxyCodeLine{myPath.pop();}
+\DoxyCodeLine{console.log(myPath.toString());\ \ \ \ \ //\ "{}dir/subdir"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ iterate\ over\ the\ steps}
+\DoxyCodeLine{for\ (const\ step\ of\ myPath)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ do\ something}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ a\ new\ path\ from\ a\ string}
+\DoxyCodeLine{const\ newPath\ =\ Path.fromString("{}/foo/bar"{});}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md256}{}\doxysection{\texorpdfstring{License}{License}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0dhumanfs_2core_2_r_e_a_d_m_e_autotoc_md256}
+Apache 2.\+0 

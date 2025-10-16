@@ -1,0 +1,202 @@
+\chapter{@eslint-\/community/regexpp}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e}\index{"@eslint-\/community/regexpp@{"@eslint-\/community/regexpp}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md163}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md163}%
+ \href{https://www.npmjs.com/package/@eslint-community/regexpp}{\texttt{ }} \href{http://www.npmtrends.com/@eslint-community/regexpp}{\texttt{ }} \href{https://github.com/eslint-community/regexpp/actions}{\texttt{ }} \href{https://codecov.io/gh/eslint-community/regexpp}{\texttt{ }}
+
+A regular expression parser for ECMAScript.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md164}{}\doxysection{\texorpdfstring{💿 Installation}{💿 Installation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md164}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ @eslint-\/community/regexpp}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item require Node@\texorpdfstring{$^\wedge$}{\string^}12.0.\+0 \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$^\wedge$}{\string^}14.0.\+0 \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$>$}{>}=16.\+0.\+0.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md165}{}\doxysection{\texorpdfstring{📖 Usage}{📖 Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md165}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{}
+\DoxyCodeLine{\ \ \ \ AST,}
+\DoxyCodeLine{\ \ \ \ RegExpParser,}
+\DoxyCodeLine{\ \ \ \ RegExpValidator,}
+\DoxyCodeLine{\ \ \ \ RegExpVisitor,}
+\DoxyCodeLine{\ \ \ \ parseRegExpLiteral,}
+\DoxyCodeLine{\ \ \ \ validateRegExpLiteral,}
+\DoxyCodeLine{\ \ \ \ visitRegExpAST}
+\DoxyCodeLine{\}\ from\ "{}@eslint-\/community/regexpp"{}}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md166}{}\doxysubsection{\texorpdfstring{parse\+Reg\+Exp\+Literal(source, options?)}{parse\+Reg\+Exp\+Literal(source, options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md166}
+Parse a given regular expression literal then make AST object.
+
+This is equivalent to {\ttfamily new Reg\+Exp\+Parser(options).parse\+Literal(source)}.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string \texorpdfstring{$\vert$}{|} Reg\+Exp}) The source code to parse.
+\item {\ttfamily options?} (\href{src/parser.ts\#L743}{\texttt{ {\ttfamily Reg\+Exp\+Parser.\+Options}}}) The options to parse.
+\end{DoxyItemize}
+\item {\bfseries{Return\+:}}
+\begin{DoxyItemize}
+\item The AST of the regular expression.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md167}{}\doxysubsection{\texorpdfstring{validate\+Reg\+Exp\+Literal(source, options?)}{validate\+Reg\+Exp\+Literal(source, options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md167}
+Validate a given regular expression literal.
+
+This is equivalent to {\ttfamily new Reg\+Exp\+Validator(options).validate\+Literal(source)}.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to validate.
+\item {\ttfamily options?} (\href{src/validator.ts\#L220}{\texttt{ {\ttfamily Reg\+Exp\+Validator.\+Options}}}) The options to validate.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md168}{}\doxysubsection{\texorpdfstring{visit\+Reg\+Exp\+AST(ast, handlers)}{visit\+Reg\+Exp\+AST(ast, handlers)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md168}
+Visit each node of a given AST.
+
+This is equivalent to {\ttfamily new Reg\+Exp\+Visitor(handlers).visit(ast)}.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily ast} (\href{src/ast.ts\#L4}{\texttt{ {\ttfamily AST.\+Node}}}) The AST to visit.
+\item {\ttfamily handlers} (\href{src/visitor.ts\#L291}{\texttt{ {\ttfamily Reg\+Exp\+Visitor.\+Handlers}}}) The callbacks.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md169}{}\doxysubsection{\texorpdfstring{Reg\+Exp\+Parser}{Reg\+Exp\+Parser}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md169}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md170}{}\doxysubsubsection{\texorpdfstring{new Reg\+Exp\+Parser(options?)}{new Reg\+Exp\+Parser(options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md170}
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily options?} (\href{src/parser.ts\#L743}{\texttt{ {\ttfamily Reg\+Exp\+Parser.\+Options}}}) The options to parse.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md171}{}\doxysubsubsection{\texorpdfstring{parser.\+parse\+Literal(source, start?, end?)}{parser.\+parse\+Literal(source, start?, end?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md171}
+Parse a regular expression literal.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to parse. E.\+g. {\ttfamily "{}/abc/g"{}}.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\end{DoxyItemize}
+\item {\bfseries{Return\+:}}
+\begin{DoxyItemize}
+\item The AST of the regular expression.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md172}{}\doxysubsubsection{\texorpdfstring{parser.\+parse\+Pattern(source, start?, end?, flags?)}{parser.\+parse\+Pattern(source, start?, end?, flags?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md172}
+Parse a regular expression pattern.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to parse. E.\+g. {\ttfamily "{}abc"{}}.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\item {\ttfamily flags?} ({\ttfamily \{ unicode?\+: boolean, unicode\+Sets?\+: boolean \}}) The flags to enable Unicode mode, and Unicode Set mode.
+\end{DoxyItemize}
+\item {\bfseries{Return\+:}}
+\begin{DoxyItemize}
+\item The AST of the regular expression pattern.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md173}{}\doxysubsubsection{\texorpdfstring{parser.\+parse\+Flags(source, start?, end?)}{parser.\+parse\+Flags(source, start?, end?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md173}
+Parse a regular expression flags.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to parse. E.\+g. {\ttfamily "{}gim"{}}.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\end{DoxyItemize}
+\item {\bfseries{Return\+:}}
+\begin{DoxyItemize}
+\item The AST of the regular expression flags.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md174}{}\doxysubsection{\texorpdfstring{Reg\+Exp\+Validator}{Reg\+Exp\+Validator}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md174}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md175}{}\doxysubsubsection{\texorpdfstring{new Reg\+Exp\+Validator(options)}{new Reg\+Exp\+Validator(options)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md175}
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily options} (\href{src/validator.ts\#L220}{\texttt{ {\ttfamily Reg\+Exp\+Validator.\+Options}}}) The options to validate.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md176}{}\doxysubsubsection{\texorpdfstring{validator.\+validate\+Literal(source, start, end)}{validator.\+validate\+Literal(source, start, end)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md176}
+Validate a regular expression literal.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to validate.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md177}{}\doxysubsubsection{\texorpdfstring{validator.\+validate\+Pattern(source, start, end, flags)}{validator.\+validate\+Pattern(source, start, end, flags)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md177}
+Validate a regular expression pattern.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to validate.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\item {\ttfamily flags?} ({\ttfamily \{ unicode?\+: boolean, unicode\+Sets?\+: boolean \}}) The flags to enable Unicode mode, and Unicode Set mode.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md178}{}\doxysubsubsection{\texorpdfstring{validator.\+validate\+Flags(source, start, end)}{validator.\+validate\+Flags(source, start, end)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md178}
+Validate a regular expression flags.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to validate.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md179}{}\doxysubsection{\texorpdfstring{Reg\+Exp\+Visitor}{Reg\+Exp\+Visitor}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md179}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md180}{}\doxysubsubsection{\texorpdfstring{new Reg\+Exp\+Visitor(handlers)}{new Reg\+Exp\+Visitor(handlers)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md180}
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily handlers} (\href{src/visitor.ts\#L291}{\texttt{ {\ttfamily Reg\+Exp\+Visitor.\+Handlers}}}) The callbacks.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md181}{}\doxysubsubsection{\texorpdfstring{visitor.\+visit(ast)}{visitor.\+visit(ast)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md181}
+Validate a regular expression literal.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily ast} (\href{src/ast.ts\#L4}{\texttt{ {\ttfamily AST.\+Node}}}) The AST to visit.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md182}{}\doxysection{\texorpdfstring{📰 Changelog}{📰 Changelog}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md182}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/eslint-community/regexpp/releases}{\texttt{ Git\+Hub Releases}}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md183}{}\doxysection{\texorpdfstring{🍻 Contributing}{🍻 Contributing}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md183}
+Welcome contributing!
+
+Please use Git\+Hub\textquotesingle{}s Issues/\+PRs.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md184}{}\doxysubsection{\texorpdfstring{Development Tools}{Development Tools}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0deslint-community_2regexpp_2_r_e_a_d_m_e_autotoc_md184}
+
+\begin{DoxyItemize}
+\item {\ttfamily npm test} runs tests and measures coverage.
+\item {\ttfamily npm run build} compiles Type\+Script source code to {\ttfamily index.\+js}, {\ttfamily index.\+js.\+map}, and {\ttfamily index.\+d.\+ts}.
+\item {\ttfamily npm run clean} removes the temporary files which are created by {\ttfamily npm test} and {\ttfamily npm run build}.
+\item {\ttfamily npm run lint} runs ESLint.
+\item {\ttfamily npm run update\+:test} updates test fixtures.
+\item {\ttfamily npm run update\+:ids} updates {\ttfamily src/unicode/ids.\+ts}.
+\item {\ttfamily npm run watch} runs tests with {\ttfamily -\/-\/watch} option. 
+\end{DoxyItemize}

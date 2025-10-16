@@ -1,0 +1,21 @@
+\chapter{tinyglobby}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tinyglobby_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tinyglobby_2_r_e_a_d_m_e}\index{tinyglobby@{tinyglobby}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tinyglobby_2_r_e_a_d_m_e_autotoc_md3085}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tinyglobby_2_r_e_a_d_m_e_autotoc_md3085}%
+ \href{https://npmjs.com/package/tinyglobby}{\texttt{ }} \href{https://npmjs.com/package/tinyglobby}{\texttt{ }}
+
+A fast and minimal alternative to globby and fast-\/glob, meant to behave the same way.
+
+Both globby and fast-\/glob present some behavior no other globbing lib has, which makes it hard to manually replace with something smaller and better.
+
+This library uses only two subdependencies, compared to {\ttfamily globby}\textquotesingle{}s \href{https://npmgraph.js.org/?q=globby@14.1.0}{\texttt{ 23}} and {\ttfamily fast-\/glob}\textquotesingle{}s \href{https://npmgraph.js.org/?q=fast-glob@3.3.3}{\texttt{ 17}}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tinyglobby_2_r_e_a_d_m_e_autotoc_md3086}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tinyglobby_2_r_e_a_d_m_e_autotoc_md3086}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ glob,\ globSync\ \}\ from\ 'tinyglobby';}
+\DoxyCodeLine{}
+\DoxyCodeLine{await\ glob(['files/*.ts',\ '!**/*.d.ts'],\ \{\ cwd:\ 'src'\ \});}
+\DoxyCodeLine{globSync('src/**/*.ts',\ \{\ ignore:\ '**/*.d.ts'\ \});}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tinyglobby_2_r_e_a_d_m_e_autotoc_md3087}{}\doxysection{\texorpdfstring{Documentation}{Documentation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tinyglobby_2_r_e_a_d_m_e_autotoc_md3087}
+Visit \href{https://superchupu.dev/tinyglobby}{\texttt{ https\+://superchupu.\+dev/tinyglobby}} to read the full documentation. 

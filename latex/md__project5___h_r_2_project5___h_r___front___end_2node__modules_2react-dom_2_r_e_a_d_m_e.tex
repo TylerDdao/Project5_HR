@@ -1,0 +1,51 @@
+\chapter{\texorpdfstring{$<$}{<}tt\texorpdfstring{$>$}{>}react-\/dom\texorpdfstring{$<$}{<}/tt\texorpdfstring{$>$}{>}}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e}\index{$<$tt$>$react-\/dom$<$/tt$>$@{$<$tt$>$react-\/dom$<$/tt$>$}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2539}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2539}%
+ This package serves as the entry point to the DOM and server renderers for React. It is intended to be paired with the generic React package, which is shipped as {\ttfamily react} to npm.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2540}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2540}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ react\ react-\/dom}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2541}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2541}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2542}{}\doxysubsection{\texorpdfstring{In the browser}{In the browser}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2542}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ createRoot\ \}\ from\ 'react-\/dom/client';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ App()\ \{}
+\DoxyCodeLine{\ \ return\ <div>Hello\ World</div>;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ root\ =\ createRoot(document.getElementById('root'));}
+\DoxyCodeLine{root.render(<App\ />);}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2543}{}\doxysubsection{\texorpdfstring{On the server}{On the server}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2543}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ renderToPipeableStream\ \}\ from\ 'react-\/dom/server';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ App()\ \{}
+\DoxyCodeLine{\ \ return\ <div>Hello\ World</div>;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ handleRequest(res)\ \{}
+\DoxyCodeLine{\ \ //\ ...\ in\ your\ server\ handler\ ...}
+\DoxyCodeLine{\ \ const\ stream\ =\ renderToPipeableStream(<App\ />,\ \{}
+\DoxyCodeLine{\ \ \ \ onShellReady()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ res.statusCode\ =\ 200;}
+\DoxyCodeLine{\ \ \ \ \ \ res.setHeader('Content-\/type',\ 'text/html');}
+\DoxyCodeLine{\ \ \ \ \ \ stream.pipe(res);}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ //\ ...}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2544}{}\doxysection{\texorpdfstring{API}{API}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2544}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2545}{}\doxysubsection{\texorpdfstring{{\ttfamily react-\/dom}}{{\ttfamily react-\/dom}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2545}
+See \href{https://react.dev/reference/react-dom}{\texttt{ https\+://react.\+dev/reference/react-\/dom}}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2546}{}\doxysubsection{\texorpdfstring{{\ttfamily react-\/dom/client}}{{\ttfamily react-\/dom/client}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2546}
+See \href{https://react.dev/reference/react-dom/client}{\texttt{ https\+://react.\+dev/reference/react-\/dom/client}}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2547}{}\doxysubsection{\texorpdfstring{{\ttfamily react-\/dom/server}}{{\ttfamily react-\/dom/server}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2react-dom_2_r_e_a_d_m_e_autotoc_md2547}
+See \href{https://react.dev/reference/react-dom/server}{\texttt{ https\+://react.\+dev/reference/react-\/dom/server}} 

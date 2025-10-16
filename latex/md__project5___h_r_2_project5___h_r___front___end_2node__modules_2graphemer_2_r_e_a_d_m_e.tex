@@ -1,0 +1,140 @@
+\chapter{Graphemer\+: Unicode Character Splitter 🪓}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e}\index{Graphemer: Unicode Character Splitter 🪓@{Graphemer: Unicode Character Splitter 🪓}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1659}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1659}%
+ \hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1660}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1660}
+This library continues the work of \href{https://github.com/orling/grapheme-splitter}{\texttt{ Grapheme Splitter}} and supports the following unicode versions\+:
+
+
+\begin{DoxyItemize}
+\item Unicode 15 and below {\ttfamily \mbox{[}v1.\+4.\+0\mbox{]}}
+\item Unicode 14 and below {\ttfamily \mbox{[}v1.\+3.\+0\mbox{]}}
+\item Unicode 13 and below {\ttfamily \mbox{[}v1.\+1.\+0\mbox{]}}
+\item Unicode 11 and below {\ttfamily \mbox{[}v1.\+0.\+0\mbox{]}} (Unicode 10 supported by {\ttfamily grapheme-\/splitter})
+\end{DoxyItemize}
+
+In Java\+Script there is not always a one-\/to-\/one relationship between string characters and what a user would call a separate visual "{}letter"{}. Some symbols are represented by several characters. This can cause issues when splitting strings and inadvertently cutting a multi-\/char letter in half, or when you need the actual number of letters in a string.
+
+For example, emoji characters like "{}🌷"{},"{}🎁"{},"{}💩"{},"{}😜"{} and "{}👍"{} are represented by two Java\+Script characters each (high surrogate and low surrogate). That is,
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'🌷'.length\ ==\ 2;}
+
+\end{DoxyCode}
+
+
+The combined emoji are even longer\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'🏳️‍🌈'.length\ ==\ 6;}
+
+\end{DoxyCode}
+
+
+What\textquotesingle{}s more, some languages often include combining marks -\/ characters that are used to modify the letters before them. Common examples are the German letter ü and the Spanish letter ñ. Sometimes they can be represented alternatively both as a single character and as a letter + combining mark, with both forms equally valid\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ two\ =\ 'ñ';\ //\ unnormalized\ two-\/char\ n+◌̃,\ i.e.\ "{}\(\backslash\)u006E\(\backslash\)u0303"{};}
+\DoxyCodeLine{var\ one\ =\ 'ñ';\ //\ normalized\ single-\/char,\ i.e.\ "{}\(\backslash\)u00F1"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(one\ !=\ two);\ //\ prints\ 'true'}
+
+\end{DoxyCode}
+
+
+Unicode normalization, as performed by the popular punycode.\+js library or ECMAScript 6\textquotesingle{}s String.\+normalize, can {\bfseries{sometimes}} fix those differences and turn two-\/char sequences into single characters. But it is {\bfseries{not}} enough in all cases. Some languages like Hindi make extensive use of combining marks on their letters, that have no dedicated single-\/codepoint Unicode sequences, due to the sheer number of possible combinations. For example, the Hindi word "{}अनुच्छेद"{} is comprised of 5 letters and 3 combining marks\+:
+
+अ + न + ु + च + ् + छ + े + द
+
+which is in fact just 5 user-\/perceived letters\+:
+
+अ + नु + च् + छे + द
+
+and which Unicode normalization would not combine properly. There are also the unusual letter+combining mark combinations which have no dedicated Unicode codepoint. The string Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍\+A̴̵̜̰͔ͫ͗͢\+L̠ͨͧͩ͘\+G̴̻͈͍͔̹̑͗̎̅͛́\+Ǫ̵̹̻̝̳͂̌̌͘ obviously has 5 separate letters, but is in fact comprised of 58 Java\+Script characters, most of which are combining marks.
+
+Enter the {\ttfamily graphemer} library. It can be used to properly split Java\+Script strings into what a human user would call separate letters (or "{}extended grapheme clusters"{} in Unicode terminology), no matter what their internal representation is. It is an implementation on the \href{http://unicode.org/reports/tr29/\#Default_Grapheme_Cluster_Table}{\texttt{ Default Grapheme Cluster Boundary}} of \href{http://www.unicode.org/reports/tr29/}{\texttt{ UAX \#29}}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1661}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1661}
+Install {\ttfamily graphemer} using the NPM command below\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ i\ graphemer}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1662}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1662}
+If you\textquotesingle{}re using \href{https://www.typescriptlang.org/}{\texttt{ Typescript}} or a compiler like \href{https://babeljs.io/}{\texttt{ Babel}} (or something like Create React App) things are pretty simple; just import, initialize and use!
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ Graphemer\ from\ 'graphemer';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ splitter\ =\ new\ Graphemer();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ split\ the\ string\ to\ an\ array\ of\ grapheme\ clusters\ (one\ string\ each)}
+\DoxyCodeLine{const\ graphemes\ =\ splitter.splitGraphemes(string);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ iterate\ the\ string\ to\ an\ iterable\ iterator\ of\ grapheme\ clusters\ (one\ string\ each)}
+\DoxyCodeLine{const\ graphemeIterator\ =\ splitter.iterateGraphemes(string);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ or\ do\ this\ if\ you\ just\ need\ their\ number}
+\DoxyCodeLine{const\ graphemeCount\ =\ splitter.countGraphemes(string);}
+
+\end{DoxyCode}
+
+
+If you\textquotesingle{}re using vanilla Node you can use the {\ttfamily require()} method.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ Graphemer\ =\ require('graphemer').default;}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ splitter\ =\ new\ Graphemer();}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ graphemes\ =\ splitter.splitGraphemes(string);}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1663}{}\doxysection{\texorpdfstring{Examples}{Examples}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1663}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ Graphemer\ from\ 'graphemer';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ splitter\ =\ new\ Graphemer();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ plain\ latin\ alphabet\ -\/\ nothing\ spectacular}
+\DoxyCodeLine{splitter.splitGraphemes('abcd');\ //\ returns\ ["{}a"{},\ "{}b"{},\ "{}c"{},\ "{}d"{}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ two-\/char\ emojis\ and\ six-\/char\ combined\ emoji}
+\DoxyCodeLine{splitter.splitGraphemes('🌷🎁💩😜👍🏳️‍🌈');\ //\ returns\ ["{}🌷"{},"{}🎁"{},"{}💩"{},"{}😜"{},"{}👍"{},"{}🏳️‍🌈"{}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ diacritics\ as\ combining\ marks,\ 10\ JavaScript\ chars}
+\DoxyCodeLine{splitter.splitGraphemes('Ĺo͂řȩm̅');\ //\ returns\ ["{}Ĺ"{},"{}o͂"{},"{}ř"{},"{}ȩ"{},"{}m̅"{}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ individual\ Korean\ characters\ (Jamo),\ 4\ JavaScript\ chars}
+\DoxyCodeLine{splitter.splitGraphemes('뎌쉐');\ //\ returns\ ["{}뎌"{},"{}쉐"{}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Hindi\ text\ with\ combining\ marks,\ 8\ JavaScript\ chars}
+\DoxyCodeLine{splitter.splitGraphemes('अनुच्छेद');\ //\ returns\ ["{}अ"{},"{}नु"{},"{}च्"{},"{}छे"{},"{}द"{}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ demonic\ multiple\ combining\ marks,\ 75\ JavaScript\ chars}
+\DoxyCodeLine{splitter.splitGraphemes('Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞');\ //\ returns\ ["{}Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍"{},"{}A̴̵̜̰͔ͫ͗͢"{},"{}L̠ͨͧͩ͘"{},"{}G̴̻͈͍͔̹̑͗̎̅͛́"{},"{}Ǫ̵̹̻̝̳͂̌̌͘"{},"{}!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞"{}]}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1664}{}\doxysection{\texorpdfstring{Type\+Script}{Type\+Script}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1664}
+Graphemer is built with Type\+Script and, of course, includes type declarations.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ Graphemer\ from\ 'graphemer';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ splitter\ =\ new\ Graphemer();}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ split:\ string[]\ =\ splitter.splitGraphemes('Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞');}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1665}{}\doxysection{\texorpdfstring{Contributing}{Contributing}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1665}
+See Contribution Guide.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1666}{}\doxysection{\texorpdfstring{Acknowledgements}{Acknowledgements}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2graphemer_2_r_e_a_d_m_e_autotoc_md1666}
+This library is a fork of the incredible work done by Orlin Georgiev and Huáng Jùnliàng at \href{https://github.com/orling/grapheme-splitter}{\texttt{ https\+://github.\+com/orling/grapheme-\/splitter}}.
+
+The original library was heavily influenced by Devon Govett\textquotesingle{}s excellent \href{https://github.com/devongovett/grapheme-breaker}{\texttt{ grapheme-\/breaker}} Coffee\+Script library. 

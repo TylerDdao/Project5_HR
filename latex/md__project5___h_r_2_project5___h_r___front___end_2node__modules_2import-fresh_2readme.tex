@@ -1,0 +1,59 @@
+\chapter{import-\/fresh}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme}\index{import-\/fresh@{import-\/fresh}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1696}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1696}%
+ \begin{quote}
+Import a module while bypassing the \href{https://nodejs.org/api/modules.html\#modules_caching}{\texttt{ cache}} \end{quote}
+Useful for testing purposes when you need to freshly import a module.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1697}{}\doxysection{\texorpdfstring{ESM}{ESM}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1697}
+For ESM, you can use this snippet\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ importFresh\ =\ moduleName\ =>\ import(`\$\{moduleName\}?\$\{Date.now()\}`);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \{default:\ foo\}\ =\ await\ importFresh('foo');}
+
+\end{DoxyCode}
+
+
+{\bfseries{This snippet causes a memory leak, so only use it for short-\/lived tests.}}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1698}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1698}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ import-\/fresh}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1699}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1699}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ foo.js}
+\DoxyCodeLine{let\ i\ =\ 0;}
+\DoxyCodeLine{module.exports\ =\ ()\ =>\ ++i;}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ importFresh\ =\ require('import-\/fresh');}
+\DoxyCodeLine{}
+\DoxyCodeLine{require('./foo')();}
+\DoxyCodeLine{//=>\ 1}
+\DoxyCodeLine{}
+\DoxyCodeLine{require('./foo')();}
+\DoxyCodeLine{//=>\ 2}
+\DoxyCodeLine{}
+\DoxyCodeLine{importFresh('./foo')();}
+\DoxyCodeLine{//=>\ 1}
+\DoxyCodeLine{}
+\DoxyCodeLine{importFresh('./foo')();}
+\DoxyCodeLine{//=>\ 1}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1700}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2import-fresh_2readme_autotoc_md1700}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/clear-module}{\texttt{ clear-\/module}} -\/ Clear a module from the import cache
+\item \href{https://github.com/sindresorhus/import-from}{\texttt{ import-\/from}} -\/ Import a module from a given path
+\item \href{https://github.com/sindresorhus/import-cwd}{\texttt{ import-\/cwd}} -\/ Import a module from the current working directory
+\item \href{https://github.com/sindresorhus/import-lazy}{\texttt{ import-\/lazy}} -\/ Import modules lazily 
+\end{DoxyItemize}

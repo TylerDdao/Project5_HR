@@ -1,0 +1,85 @@
+\chapter{@rolldown/pluginutils}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e}\index{"@rolldown/pluginutils@{"@rolldown/pluginutils}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md388}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md388}%
+ A utility library for building flexible, composable filter expressions that can be used in plugin hook filters of Rolldown/\+Vite/\+Rollup/\+Unplugin plugins.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md389}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md389}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pnpm\ add\ @rolldown/pluginutils}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md390}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md390}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md391}{}\doxysubsection{\texorpdfstring{Simple Filters}{Simple Filters}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md391}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{}
+\DoxyCodeLine{\ \ exactRegex,}
+\DoxyCodeLine{\ \ makeIdFiltersToMatchWithQuery,}
+\DoxyCodeLine{\ \ prefixRegex,}
+\DoxyCodeLine{\}\ from\ '@rolldown/pluginutils';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Match\ exactly\ 'foo.js'}
+\DoxyCodeLine{const\ filter\ =\ exactRegex('foo.js');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Match\ any\ id\ starting\ with\ 'lib/'}
+\DoxyCodeLine{const\ prefix\ =\ prefixRegex('lib/');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Match\ ids\ with\ query\ params\ (e.g.\ 'foo.js?bar')}
+\DoxyCodeLine{const\ idFilters\ =\ makeIdFiltersToMatchWithQuery(['**/*.js',\ /\(\backslash\).ts\$/]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Usage\ in\ a\ plugin\ to\ define\ a\ hook\ filter}
+\DoxyCodeLine{const\ myPlugin\ =\ \{}
+\DoxyCodeLine{\ \ resolveId:\ \{}
+\DoxyCodeLine{\ \ \ \ filter:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ id:\ [exactRegex('MY\_ID\_TO\_CHECK'),\ /some-\/other-\/regex/],}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ handler(id)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Your\ code\ here}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md392}{}\doxysubsection{\texorpdfstring{Composable Filters}{Composable Filters}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md392}
+\begin{quote}
+\mbox{[}!\+WARNING\mbox{]} Composable filters are not yet supported in Vite, Rolldown-\/\+Vite or unplugin. They can be used in Rolldown plugins only. \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ and,\ id,\ include,\ moduleType,\ query\ \}\ from\ '@rolldown/pluginutils';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Build\ a\ filter\ expression}
+\DoxyCodeLine{const\ filterExpr\ =\ and(}
+\DoxyCodeLine{\ \ id(/\(\backslash\).ts\$/),}
+\DoxyCodeLine{\ \ moduleType('ts'),}
+\DoxyCodeLine{\ \ query('foo',\ true),}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Usage\ in\ a\ plugin\ to\ define\ a\ hook\ filter}
+\DoxyCodeLine{const\ myPlugin\ =\ \{}
+\DoxyCodeLine{\ \ transform:\ \{}
+\DoxyCodeLine{\ \ \ \ filter:\ [include(filterExpr)],}
+\DoxyCodeLine{\ \ \ \ handler(code,\ id,\ options)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Your\ code\ here}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md393}{}\doxysection{\texorpdfstring{API Reference}{API Reference}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md393}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md394}{}\doxysubsection{\texorpdfstring{Simple Filters}{Simple Filters}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md394}
+
+\begin{DoxyItemize}
+\item {\ttfamily exact\+Regex(str\+: string, flags?\+: string)\+: Reg\+Exp} — Matches the exact string.
+\item {\ttfamily prefix\+Regex(str\+: string, flags?\+: string)\+: Reg\+Exp} — Matches values with the given prefix.
+\item {\ttfamily make\+Id\+Filters\+To\+Match\+With\+Query(input\+: string \texorpdfstring{$\vert$}{|} Reg\+Exp \texorpdfstring{$\vert$}{|} (string \texorpdfstring{$\vert$}{|} Reg\+Exp)\mbox{[}\mbox{]})\+: string \texorpdfstring{$\vert$}{|} Reg\+Exp \texorpdfstring{$\vert$}{|} (string \texorpdfstring{$\vert$}{|} Reg\+Exp)\mbox{[}\mbox{]}} — Adapts filters to match ids with query params.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md395}{}\doxysubsection{\texorpdfstring{Composable Filters}{Composable Filters}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2_0drolldown_2pluginutils_2_r_e_a_d_m_e_autotoc_md395}
+
+\begin{DoxyItemize}
+\item {\ttfamily and(...\+exprs)} / {\ttfamily or(...\+exprs)} / {\ttfamily not(expr)} — Logical composition of filter expressions.
+\item {\ttfamily id(pattern, params?)} — Filter by id (string or Reg\+Exp).
+\item {\ttfamily module\+Type(type)} — Filter by module type (e.\+g. \textquotesingle{}js\textquotesingle{}, \textquotesingle{}tsx\textquotesingle{}, or \textquotesingle{}json\textquotesingle{}).
+\item {\ttfamily code(pattern)} — Filter by code content.
+\item {\ttfamily query(key, pattern)} — Filter by query parameter.
+\item {\ttfamily include(expr)} / {\ttfamily exclude(expr)} — Top-\/level include/exclude wrappers.
+\item {\ttfamily queries(obj)} — Compose multiple query filters. 
+\end{DoxyItemize}

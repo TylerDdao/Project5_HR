@@ -1,0 +1,54 @@
+\chapter{resolve-\/from \texorpdfstring{$<$}{<}a href="{}https\+://travis-\/ci.\+org/sindresorhus/resolve-\/from"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://travis-\/ci.\+org/sindresorhus/resolve-\/from.\+svg?branch=master"{} alt="{}\+Build Status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme}\index{resolve-\/from $<$a href="{}https://travis-\/ci.org/sindresorhus/resolve-\/from"{} $>$$<$img src="{}https://travis-\/ci.org/sindresorhus/resolve-\/from.svg?branch=master"{} alt="{}Build Status"{}/$>$$<$/a$>$@{resolve-\/from $<$a href=""https://travis-\/ci.org/sindresorhus/resolve-\/from"" $>$$<$img src=""https://travis-\/ci.org/sindresorhus/resolve-\/from.svg?branch=master"" alt=""Build Status""/$>$$<$/a$>$}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2740}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2740}%
+ \begin{quote}
+Resolve the path of a module like \href{https://nodejs.org/api/globals.html\#globals_require_resolve}{\texttt{ {\ttfamily require.\+resolve()}}} but from a given path \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2741}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2741}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ resolve-\/from}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2742}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2742}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ resolveFrom\ =\ require('resolve-\/from');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ There\ is\ a\ file\ at\ \`{}./foo/bar.js`}
+\DoxyCodeLine{}
+\DoxyCodeLine{resolveFrom('foo',\ './bar');}
+\DoxyCodeLine{//=>\ '/Users/sindresorhus/dev/test/foo/bar.js'}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2743}{}\doxysection{\texorpdfstring{API}{API}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2743}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2744}{}\doxysubsection{\texorpdfstring{resolve\+From(from\+Dir, module\+Id)}{resolve\+From(from\+Dir, module\+Id)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2744}
+Like {\ttfamily require()}, throws when the module can\textquotesingle{}t be found.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2745}{}\doxysubsection{\texorpdfstring{resolve\+From.\+silent(from\+Dir, module\+Id)}{resolve\+From.\+silent(from\+Dir, module\+Id)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2745}
+Returns {\ttfamily null} instead of throwing when the module can\textquotesingle{}t be found.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2746}{}\doxysubsubsection{\texorpdfstring{from\+Dir}{from\+Dir}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2746}
+Type\+: {\ttfamily string}
+
+Directory to resolve from.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2747}{}\doxysubsubsection{\texorpdfstring{module\+Id}{module\+Id}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2747}
+Type\+: {\ttfamily string}
+
+What you would use in {\ttfamily require()}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2748}{}\doxysection{\texorpdfstring{Tip}{Tip}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2748}
+Create a partial using a bound function if you want to resolve from the same {\ttfamily from\+Dir} multiple times\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ resolveFromFoo\ =\ resolveFrom.bind(null,\ 'foo');}
+\DoxyCodeLine{}
+\DoxyCodeLine{resolveFromFoo('./bar');}
+\DoxyCodeLine{resolveFromFoo('./baz');}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2749}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2749}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/resolve-cwd}{\texttt{ resolve-\/cwd}} -\/ Resolve the path of a module from the current working directory
+\item \href{https://github.com/sindresorhus/import-from}{\texttt{ import-\/from}} -\/ Import a module from a given path
+\item \href{https://github.com/sindresorhus/import-cwd}{\texttt{ import-\/cwd}} -\/ Import a module from the current working directory
+\item \href{https://github.com/sindresorhus/resolve-pkg}{\texttt{ resolve-\/pkg}} -\/ Resolve the path of a package regardless of it having an entry point
+\item \href{https://github.com/sindresorhus/import-lazy}{\texttt{ import-\/lazy}} -\/ Import a module lazily
+\item \href{https://github.com/sindresorhus/resolve-global}{\texttt{ resolve-\/global}} -\/ Resolve the path of a globally installed module
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2750}{}\doxysection{\texorpdfstring{License}{License}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2resolve-from_2readme_autotoc_md2750}
+MIT © \href{https://sindresorhus.com}{\texttt{ Sindre Sorhus}} 

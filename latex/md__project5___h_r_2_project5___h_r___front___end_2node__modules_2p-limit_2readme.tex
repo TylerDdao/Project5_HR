@@ -1,0 +1,69 @@
+\chapter{p-\/limit}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme}\index{p-\/limit@{p-\/limit}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2377}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2377}%
+ \begin{quote}
+Run multiple promise-\/returning \& async functions with limited concurrency \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2378}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2378}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ p-\/limit}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2379}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2379}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ pLimit\ =\ require('p-\/limit');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ limit\ =\ pLimit(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ input\ =\ [}
+\DoxyCodeLine{\ \ \ \ limit(()\ =>\ fetchSomething('foo')),}
+\DoxyCodeLine{\ \ \ \ limit(()\ =>\ fetchSomething('bar')),}
+\DoxyCodeLine{\ \ \ \ limit(()\ =>\ doSomething())}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Only\ one\ promise\ is\ run\ at\ once}
+\DoxyCodeLine{\ \ \ \ const\ result\ =\ await\ Promise.all(input);}
+\DoxyCodeLine{\ \ \ \ console.log(result);}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2380}{}\doxysection{\texorpdfstring{API}{API}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2380}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2381}{}\doxysubsection{\texorpdfstring{p\+Limit(concurrency)}{p\+Limit(concurrency)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2381}
+Returns a {\ttfamily limit} function.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2382}{}\doxysubsubsection{\texorpdfstring{concurrency}{concurrency}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2382}
+Type\+: {\ttfamily number}\textbackslash{} Minimum\+: {\ttfamily 1}\textbackslash{} Default\+: {\ttfamily Infinity}
+
+Concurrency limit.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2383}{}\doxysubsection{\texorpdfstring{limit(fn, ...\+args)}{limit(fn, ...\+args)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2383}
+Returns the promise returned by calling {\ttfamily fn(...\+args)}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2384}{}\doxysubsubsection{\texorpdfstring{fn}{fn}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2384}
+Type\+: {\ttfamily Function}
+
+Promise-\/returning/async function.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2385}{}\doxysubsubsection{\texorpdfstring{args}{args}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2385}
+Any arguments to pass through to {\ttfamily fn}.
+
+Support for passing arguments on to the {\ttfamily fn} is provided in order to be able to avoid creating unnecessary closures. You probably don\textquotesingle{}t need this optimization unless you\textquotesingle{}re pushing a {\itshape lot} of functions.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2386}{}\doxysubsection{\texorpdfstring{limit.\+active\+Count}{limit.\+active\+Count}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2386}
+The number of promises that are currently running.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2387}{}\doxysubsection{\texorpdfstring{limit.\+pending\+Count}{limit.\+pending\+Count}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2387}
+The number of promises that are waiting to run (i.\+e. their internal {\ttfamily fn} was not called yet).\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2388}{}\doxysubsection{\texorpdfstring{limit.\+clear\+Queue()}{limit.\+clear\+Queue()}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2388}
+Discard pending promises that are waiting to run.
+
+This might be useful if you want to teardown the queue at the end of your program\textquotesingle{}s lifecycle or discard any function calls referencing an intermediary state of your app.
+
+Note\+: This does not cancel promises that are already running.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2389}{}\doxysection{\texorpdfstring{FAQ}{FAQ}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2389}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2390}{}\doxysubsection{\texorpdfstring{How is this different from the \href{https://github.com/sindresorhus/p-queue}{\texttt{ {\ttfamily p-\/queue}}} package?}{How is this different from the \href{https://github.com/sindresorhus/p-queue}{\texttt{ {\ttfamily p-\/queue}}} package?}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2390}
+This package is only about limiting the number of concurrent executions, while {\ttfamily p-\/queue} is a fully featured queue implementation with lots of different options, introspection, and ability to pause the queue.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2391}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2p-limit_2readme_autotoc_md2391}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/p-queue}{\texttt{ p-\/queue}} -\/ Promise queue with concurrency control
+\item \href{https://github.com/sindresorhus/p-throttle}{\texttt{ p-\/throttle}} -\/ Throttle promise-\/returning \& async functions
+\item \href{https://github.com/sindresorhus/p-debounce}{\texttt{ p-\/debounce}} -\/ Debounce promise-\/returning \& async functions
+\item \href{https://github.com/sindresorhus/p-all}{\texttt{ p-\/all}} -\/ Run promise-\/returning \& async functions concurrently with optional limited concurrency
+\item \href{https://github.com/sindresorhus/promise-fun}{\texttt{ More…}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-p-limit?utm_source=npm-p-limit&utm_medium=referral&utm_campaign=readme}{\texttt{ Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

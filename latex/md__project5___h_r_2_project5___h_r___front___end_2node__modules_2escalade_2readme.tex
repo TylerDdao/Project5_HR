@@ -1,0 +1,208 @@
+\chapter{escalade \texorpdfstring{$<$}{<}a href="{}https\+://github.\+com/lukeed/escalade/actions"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://github.\+com/lukeed/escalade/workflows/\+CI/badge.\+svg"{} alt="{}\+CI"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://licenses.\+dev/npm/escalade"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://licenses.\+dev/b/npm/escalade"{} alt="{}licenses"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://codecov.\+io/gh/lukeed/escalade"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://badgen.\+now.\+sh/codecov/c/github/lukeed/escalade"{} alt="{}codecov"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme}\index{escalade $<$a href="{}https://github.com/lukeed/escalade/actions"{} $>$$<$img src="{}https://github.com/lukeed/escalade/workflows/CI/badge.svg"{} alt="{}CI"{}/$>$$<$/a$>$ $<$a href="{}https://licenses.dev/npm/escalade"{} $>$$<$img src="{}https://licenses.dev/b/npm/escalade"{} alt="{}licenses"{}/$>$$<$/a$>$ $<$a href="{}https://codecov.io/gh/lukeed/escalade"{} $>$$<$img src="{}https://badgen.now.sh/codecov/c/github/lukeed/escalade"{} alt="{}codecov"{}/$>$$<$/a$>$@{escalade $<$a href=""https://github.com/lukeed/escalade/actions"" $>$$<$img src=""https://github.com/lukeed/escalade/workflows/CI/badge.svg"" alt=""CI""/$>$$<$/a$>$ $<$a href=""https://licenses.dev/npm/escalade"" $>$$<$img src=""https://licenses.dev/b/npm/escalade"" alt=""licenses""/$>$$<$/a$>$ $<$a href=""https://codecov.io/gh/lukeed/escalade"" $>$$<$img src=""https://badgen.now.sh/codecov/c/github/lukeed/escalade"" alt=""codecov""/$>$$<$/a$>$}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1203}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1203}%
+ \begin{quote}
+A tiny (183B to 210B) and fast utility to ascend parent directories \end{quote}
+With \href{https://en.wikipedia.org/wiki/Escalade}{\texttt{ escalade}}, you can scale parent directories until you\textquotesingle{}ve found what you\textquotesingle{}re looking for.~\newline
+Given an input file or directory, {\ttfamily escalade} will continue executing your callback function until either\+:
+
+1) the callback returns a truthy value 2) {\ttfamily escalade} has reached the system root directory (eg, {\ttfamily /})
+
+\begin{quote}
+{\bfseries{Important\+:}}~\newline
+Please note that {\ttfamily escalade} only deals with direct ancestry – it will not dive into parents\textquotesingle{} sibling directories. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1204}{}\doxysection{\texorpdfstring{}{}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1204}
+{\bfseries{Notice\+:}} As of v3.\+1.\+0, {\ttfamily escalade} now includes \href{http://deno.land/x/escalade}{\texttt{ Deno support}}! Please see Deno Usage below.
+
+\DoxyHorRuler{0}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1206}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1206}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/-\/save\ escalade}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1207}{}\doxysection{\texorpdfstring{Modes}{Modes}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1207}
+There are two "{}versions"{} of {\ttfamily escalade} available\+:\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1208}{}\doxysubsubsection{\texorpdfstring{"{}async"{}}{"{}async"{}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1208}
+\begin{quote}
+{\bfseries{Node.\+js\+:}} \texorpdfstring{$>$}{>}= 8.\+x~\newline
+ {\bfseries{Size (gzip)\+:}} 210 bytes~\newline
+ {\bfseries{Availability\+:}} \href{https://unpkg.com/escalade/dist/index.js}{\texttt{ Common\+JS}}, \href{https://unpkg.com/escalade/dist/index.mjs}{\texttt{ ES Module}} \end{quote}
+This is the primary/default mode. It makes use of {\ttfamily async}/{\ttfamily await} and \href{https://nodejs.org/api/util.html\#util_util_promisify_original}{\texttt{ {\ttfamily util.\+promisify}}}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1209}{}\doxysubsubsection{\texorpdfstring{"{}sync"{}}{"{}sync"{}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1209}
+\begin{quote}
+{\bfseries{Node.\+js\+:}} \texorpdfstring{$>$}{>}= 6.\+x~\newline
+ {\bfseries{Size (gzip)\+:}} 183 bytes~\newline
+ {\bfseries{Availability\+:}} \href{https://unpkg.com/escalade/sync/index.js}{\texttt{ Common\+JS}}, \href{https://unpkg.com/escalade/sync/index.mjs}{\texttt{ ES Module}} \end{quote}
+This is the opt-\/in mode, ideal for scenarios where {\ttfamily async} usage cannot be supported.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1210}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1210}
+{\itshape {\bfseries{Example Structure}}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/Users/lukeed}
+\DoxyCodeLine{\ \ └──\ oss}
+\DoxyCodeLine{\ \ \ \ ├──\ license}
+\DoxyCodeLine{\ \ \ \ └──\ escalade}
+\DoxyCodeLine{\ \ \ \ \ \ ├──\ package.json}
+\DoxyCodeLine{\ \ \ \ \ \ └──\ test}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ fixtures}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ ├──\ index.js}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ └──\ foobar}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ └──\ demo.js}
+
+\end{DoxyCode}
+
+
+{\itshape {\bfseries{Example Usage}}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\string~>\ demo.js}
+\DoxyCodeLine{import\ \{\ join\ \}\ from\ 'path';}
+\DoxyCodeLine{import\ escalade\ from\ 'escalade';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ input\ =\ join(\_\_dirname,\ 'demo.js');}
+\DoxyCodeLine{//\ or:\ const\ input\ =\ \_\_dirname;}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ pkg\ =\ await\ escalade(input,\ (dir,\ names)\ =>\ \{}
+\DoxyCodeLine{\ \ console.log('\string~>\ dir:',\ dir);}
+\DoxyCodeLine{\ \ console.log('\string~>\ names:',\ names);}
+\DoxyCodeLine{\ \ console.log('-\/-\/-\/');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ if\ (names.includes('package.json'))\ \{}
+\DoxyCodeLine{\ \ \ \ //\ will\ be\ resolved\ into\ absolute}
+\DoxyCodeLine{\ \ \ \ return\ 'package.json';}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss/escalade/test/fixtures/foobar}
+\DoxyCodeLine{//\string~>\ names:\ ['demo.js']}
+\DoxyCodeLine{//-\/-\/-\/}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss/escalade/test/fixtures}
+\DoxyCodeLine{//\string~>\ names:\ ['index.js',\ 'foobar']}
+\DoxyCodeLine{//-\/-\/-\/}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss/escalade/test}
+\DoxyCodeLine{//\string~>\ names:\ ['fixtures']}
+\DoxyCodeLine{//-\/-\/-\/}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss/escalade}
+\DoxyCodeLine{//\string~>\ names:\ ['package.json',\ 'test']}
+\DoxyCodeLine{//-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(pkg);}
+\DoxyCodeLine{//=>\ /Users/lukeed/oss/escalade/package.json}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Now\ search\ for\ "{}missing123.txt"{}}
+\DoxyCodeLine{//\ (Assume\ it\ doesn't\ exist\ anywhere!)}
+\DoxyCodeLine{const\ missing\ =\ await\ escalade(input,\ (dir,\ names)\ =>\ \{}
+\DoxyCodeLine{\ \ console.log('\string~>\ dir:',\ dir);}
+\DoxyCodeLine{\ \ return\ names.includes('missing123.txt')\ \&\&\ 'missing123.txt';}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss/escalade/test/fixtures/foobar}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss/escalade/test/fixtures}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss/escalade/test}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss/escalade}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed/oss}
+\DoxyCodeLine{//\string~>\ dir:\ /Users/lukeed}
+\DoxyCodeLine{//\string~>\ dir:\ /Users}
+\DoxyCodeLine{//\string~>\ dir:\ /}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(missing);}
+\DoxyCodeLine{//=>\ undefined}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+{\bfseries{Note\+:}} To run the above example with "{}sync"{} mode, import from {\ttfamily escalade/sync} and remove the {\ttfamily await} keyword. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1211}{}\doxysection{\texorpdfstring{API}{API}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1211}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1212}{}\doxysubsection{\texorpdfstring{escalade(input, callback)}{escalade(input, callback)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1212}
+Returns\+: {\ttfamily string\texorpdfstring{$\vert$}{|}void} or {\ttfamily Promise\texorpdfstring{$<$}{<}string\texorpdfstring{$\vert$}{|}void\texorpdfstring{$>$}{>}}
+
+When your {\ttfamily callback} locates a file, {\ttfamily escalade} will resolve/return with an absolute path.~\newline
+ If your {\ttfamily callback} was never satisfied, then {\ttfamily escalade} will resolve/return with nothing (undefined).
+
+\begin{quote}
+{\bfseries{Important\+:}}~\newline
+The {\ttfamily sync} and {\ttfamily async} versions share the same API.~\newline
+The {\bfseries{only}} difference is that {\ttfamily sync} is not Promise-\/based. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1213}{}\doxysubsubsection{\texorpdfstring{input}{input}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1213}
+Type\+: {\ttfamily string}
+
+The path from which to start ascending.
+
+This may be a file or a directory path.~\newline
+However, when {\ttfamily input} is a file, {\ttfamily escalade} will begin with its parent directory.
+
+\begin{quote}
+{\bfseries{Important\+:}} Unless given an absolute path, {\ttfamily input} will be resolved from {\ttfamily process.\+cwd()} location. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1214}{}\doxysubsubsection{\texorpdfstring{callback}{callback}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1214}
+Type\+: {\ttfamily Function}
+
+The callback to execute for each ancestry level. It always is given two arguments\+:
+
+1) {\ttfamily dir} -\/ an absolute path of the current parent directory 2) {\ttfamily names} -\/ a list ({\ttfamily string\mbox{[}\mbox{]}}) of contents {\itshape relative to} the {\ttfamily dir} parent
+
+\begin{quote}
+{\bfseries{Note\+:}} The {\ttfamily names} list can contain names of files {\itshape and} directories. \end{quote}
+When your callback returns a {\itshape falsey} value, then {\ttfamily escalade} will continue with {\ttfamily dir}\textquotesingle{}s parent directory, re-\/invoking your callback with new argument values.
+
+When your callback returns a string, then {\ttfamily escalade} stops iteration immediately.~\newline
+ If the string is an absolute path, then it\textquotesingle{}s left as is. Otherwise, the string is resolved into an absolute path {\itshape from} the {\ttfamily dir} that housed the satisfying condition.
+
+\begin{quote}
+{\bfseries{Important\+:}} Your {\ttfamily callback} can be a {\ttfamily Promise/\+Async\+Function} when using the "{}async"{} version of {\ttfamily escalade}. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1215}{}\doxysection{\texorpdfstring{Benchmarks}{Benchmarks}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1215}
+\begin{quote}
+Running on Node.\+js v10.\+13.\+0 \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Load\ Time}
+\DoxyCodeLine{\ \ find-\/up\ \ \ \ \ \ \ \ \ 3.891ms}
+\DoxyCodeLine{\ \ escalade\ \ \ \ \ \ \ \ 0.485ms}
+\DoxyCodeLine{\ \ escalade/sync\ \ \ 0.309ms}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Levels:\ 6\ (target\ =\ "{}foo.txt"{}):}
+\DoxyCodeLine{\ \ find-\/up\ \ \ \ \ \ \ \ \ \ x\ 24,856\ ops/sec\ ±6.46\%\ (55\ runs\ sampled)}
+\DoxyCodeLine{\ \ escalade\ \ \ \ \ \ \ \ \ x\ 73,084\ ops/sec\ ±4.23\%\ (73\ runs\ sampled)}
+\DoxyCodeLine{\ \ find-\/up.sync\ \ \ \ \ x\ \ 3,663\ ops/sec\ ±1.12\%\ (83\ runs\ sampled)}
+\DoxyCodeLine{\ \ escalade/sync\ \ \ \ x\ \ 9,360\ ops/sec\ ±0.62\%\ (88\ runs\ sampled)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Levels:\ 12\ (target\ =\ "{}package.json"{}):}
+\DoxyCodeLine{\ \ find-\/up\ \ \ \ \ \ \ \ \ \ x\ 29,300\ ops/sec\ ±10.68\%\ (70\ runs\ sampled)}
+\DoxyCodeLine{\ \ escalade\ \ \ \ \ \ \ \ \ x\ 73,685\ ops/sec\ ±\ 5.66\%\ (66\ runs\ sampled)}
+\DoxyCodeLine{\ \ find-\/up.sync\ \ \ \ \ x\ \ 1,707\ ops/sec\ ±\ 0.58\%\ (91\ runs\ sampled)}
+\DoxyCodeLine{\ \ escalade/sync\ \ \ \ x\ \ 4,667\ ops/sec\ ±\ 0.68\%\ (94\ runs\ sampled)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Levels:\ 18\ (target\ =\ "{}missing123.txt"{}):}
+\DoxyCodeLine{\ \ find-\/up\ \ \ \ \ \ \ \ \ \ x\ 21,818\ ops/sec\ ±17.37\%\ (14\ runs\ sampled)}
+\DoxyCodeLine{\ \ escalade\ \ \ \ \ \ \ \ \ x\ 67,101\ ops/sec\ ±21.60\%\ (20\ runs\ sampled)}
+\DoxyCodeLine{\ \ find-\/up.sync\ \ \ \ \ x\ \ 1,037\ ops/sec\ ±\ 2.86\%\ (88\ runs\ sampled)}
+\DoxyCodeLine{\ \ escalade/sync\ \ \ \ x\ \ 1,248\ ops/sec\ ±\ 0.50\%\ (93\ runs\ sampled)}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1216}{}\doxysection{\texorpdfstring{Deno}{Deno}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1216}
+As of v3.\+1.\+0, {\ttfamily escalade} is available on the Deno registry.
+
+Please note that the API is identical and that there are still two modes from which to choose\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Choose\ "{}async"{}\ mode}
+\DoxyCodeLine{import\ escalade\ from\ 'https://deno.land/escalade/async.ts';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Choose\ "{}sync"{}\ mode}
+\DoxyCodeLine{import\ escalade\ from\ 'https://deno.land/escalade/sync.ts';}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+{\bfseries{Important\+:}} The {\ttfamily allow-\/read} permission is required! \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1217}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1217}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/lukeed/premove}{\texttt{ premove}} -\/ A tiny (247B) utility to remove items recursively
+\item \href{https://github.com/lukeed/totalist}{\texttt{ totalist}} -\/ A tiny (195B to 224B) utility to recursively list all (total) files in a directory
+\item \href{https://github.com/lukeed/mk-dirs}{\texttt{ mk-\/dirs}} -\/ A tiny (420B) utility to make a directory and its parents, recursively
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1218}{}\doxysection{\texorpdfstring{License}{License}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2escalade_2readme_autotoc_md1218}
+MIT © \href{https://lukeed.com}{\texttt{ Luke Edwards}} 

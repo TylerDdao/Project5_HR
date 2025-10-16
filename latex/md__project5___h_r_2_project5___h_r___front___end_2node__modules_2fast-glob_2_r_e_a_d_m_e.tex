@@ -1,0 +1,959 @@
+\chapter{fast-\/glob}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e}\index{fast-\/glob@{fast-\/glob}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1411}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1411}%
+ \begin{quote}
+It\textquotesingle{}s a very fast and efficient \href{https://en.wikipedia.org/wiki/Glob_(programming)}{\texttt{ glob}} library for \href{https://nodejs.org/en}{\texttt{ Node.\+js}}. \end{quote}
+This package provides methods for traversing the file system and returning pathnames that matched a defined set of a specified pattern according to the rules used by the Unix Bash shell with some simplifications, meanwhile results are returned in {\bfseries{arbitrary order}}. Quick, simple, effective.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1412}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1412}
+
+
+{\bfseries{{\bfseries{Details}}}}\begin{adjustwidth}{1em}{0em}
+
+
+
+\begin{DoxyItemize}
+\item Highlights
+\item Old and modern mode
+\item Pattern syntax
+\begin{DoxyItemize}
+\item Basic syntax
+\item Advanced syntax
+\end{DoxyItemize}
+\item Installation
+\item API
+\begin{DoxyItemize}
+\item Asynchronous
+\item Synchronous
+\item Stream
+\begin{DoxyItemize}
+\item patterns
+\item \mbox{[}options\mbox{]}
+\end{DoxyItemize}
+\item Helpers
+\begin{DoxyItemize}
+\item generate\+Tasks
+\item is\+Dynamic\+Pattern
+\item escape\+Path
+\item convert\+Path\+To\+Pattern
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Options
+\begin{DoxyItemize}
+\item Common
+\begin{DoxyItemize}
+\item \doxylink{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fastq_2_r_e_a_d_m_e_concurrency}{concurrency}
+\item cwd
+\item deep
+\item follow\+Symbolic\+Links
+\item fs
+\item ignore
+\item suppress\+Errors
+\item throw\+Error\+On\+Broken\+Symbolic\+Link
+\end{DoxyItemize}
+\item Output control
+\begin{DoxyItemize}
+\item absolute
+\item mark\+Directories
+\item object\+Mode
+\item only\+Directories
+\item only\+Files
+\item stats
+\item unique
+\end{DoxyItemize}
+\item Matching control
+\begin{DoxyItemize}
+\item brace\+Expansion
+\item case\+Sensitive\+Match
+\item dot
+\item extglob
+\item globstar
+\item base\+Name\+Match
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item FAQ
+\begin{DoxyItemize}
+\item What is a static or dynamic pattern?
+\item How to write patterns on Windows?
+\item Why are parentheses match wrong?
+\item How to exclude directory from reading?
+\item How to use UNC path?
+\item Compatible with \`{}node-\/glob\`{}?
+\end{DoxyItemize}
+\item Benchmarks
+\begin{DoxyItemize}
+\item Server
+\item Nettop
+\end{DoxyItemize}
+\item Changelog
+\item License
+\end{DoxyItemize}
+
+\end{adjustwidth}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1413}{}\doxysection{\texorpdfstring{Highlights}{Highlights}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1413}
+
+\begin{DoxyItemize}
+\item Fast. Probably the fastest.
+\item Supports multiple and negative patterns.
+\item Synchronous, Promise and Stream API.
+\item Object mode. Can return more than just strings.
+\item Error-\/tolerant.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1414}{}\doxysection{\texorpdfstring{Old and modern mode}{Old and modern mode}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1414}
+This package works in two modes, depending on the environment in which it is used.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Old mode}}. Node.\+js below 10.\+10 or when the \`{}stats\`{} option is {\itshape enabled}.
+\item {\bfseries{Modern mode}}. Node.\+js 10.\+10+ and the \`{}stats\`{} option is {\itshape disabled}.
+\end{DoxyItemize}
+
+The modern mode is faster. Learn more about the \href{https://github.com/nodelib/nodelib/blob/master/packages/fs/fs.scandir/README.md\#old-and-modern-mode}{\texttt{ internal mechanism}}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1415}{}\doxysection{\texorpdfstring{Pattern syntax}{Pattern syntax}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1415}
+\begin{quote}
+\+:warning\+: Always use forward-\/slashes in glob expressions (patterns and \`{}ignore\`{} option). Use backslashes for escaping characters. \end{quote}
+There is more than one form of syntax\+: basic and advanced. Below is a brief overview of the supported features. Also pay attention to our FAQ.
+
+\begin{quote}
+\+:book\+: This package uses \href{https://github.com/micromatch/micromatch}{\texttt{ {\ttfamily micromatch}}} as a library for pattern matching. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1416}{}\doxysubsection{\texorpdfstring{Basic syntax}{Basic syntax}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1416}
+
+\begin{DoxyItemize}
+\item An asterisk ({\ttfamily \texorpdfstring{$\ast$}{*}}) — matches everything except slashes (path separators), hidden files (names starting with {\ttfamily .}).
+\item A double star or globstar ({\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}) — matches zero or more directories.
+\item Question mark ({\ttfamily ?}) – matches any single character except slashes (path separators).
+\item Sequence ({\ttfamily \mbox{[}seq\mbox{]}}) — matches any character in sequence.
+\end{DoxyItemize}
+
+\begin{quote}
+\+:book\+: A few additional words about the \href{https://github.com/micromatch/picomatch\#matching-behavior-vs-bash}{\texttt{ basic matching behavior}}. \end{quote}
+Some examples\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily src/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\texorpdfstring{$\ast$}{*}.js} — matches all files in the {\ttfamily src} directory (any level of nesting) that have the {\ttfamily .js} extension.
+\item {\ttfamily src/\texorpdfstring{$\ast$}{*}.??} — matches all files in the {\ttfamily src} directory (only first level of nesting) that have a two-\/character extension.
+\item {\ttfamily file-\/\mbox{[}01\mbox{]}.js} — matches files\+: {\ttfamily file-\/0.\+js}, {\ttfamily file-\/1.\+js}.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1417}{}\doxysubsection{\texorpdfstring{Advanced syntax}{Advanced syntax}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1417}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/micromatch/micromatch\#backslashes}{\texttt{ Escapes characters}} ({\ttfamily \textbackslash{}\textbackslash{}}) — matching special characters ({\ttfamily \$\texorpdfstring{$^\wedge$}{\string^}\texorpdfstring{$\ast$}{*}+?()\mbox{[}\mbox{]}}) as literals.
+\item \href{https://github.com/micromatch/picomatch\#posix-brackets}{\texttt{ POSIX character classes}} ({\ttfamily \mbox{[}\mbox{[}\+:digit\+:\mbox{]}\mbox{]}}).
+\item \href{https://github.com/micromatch/micromatch\#extglobs}{\texttt{ Extended globs}} ({\ttfamily ?(pattern-\/list)}).
+\item \href{https://github.com/micromatch/braces}{\texttt{ Bash style brace expansions}} ({\ttfamily \{\}}).
+\item \href{https://github.com/micromatch/micromatch\#regex-character-classes}{\texttt{ Regexp character classes}} ({\ttfamily \mbox{[}1-\/5\mbox{]}}).
+\item \href{https://www.regular-expressions.info/brackets.html}{\texttt{ Regex groups}} ({\ttfamily (a\texorpdfstring{$\vert$}{|}b)}).
+\end{DoxyItemize}
+
+\begin{quote}
+\+:book\+: A few additional words about the \href{https://github.com/micromatch/micromatch\#extended-globbing}{\texttt{ advanced matching behavior}}. \end{quote}
+Some examples\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily src/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\texorpdfstring{$\ast$}{*}.\{css,scss\}} — matches all files in the {\ttfamily src} directory (any level of nesting) that have the {\ttfamily .css} or {\ttfamily .scss} extension.
+\item {\ttfamily file-\/\mbox{[}\mbox{[}\+:digit\+:\mbox{]}\mbox{]}.js} — matches files\+: {\ttfamily file-\/0.\+js}, {\ttfamily file-\/1.\+js}, …, {\ttfamily file-\/9.\+js}.
+\item {\ttfamily file-\/\{1..3\}.js} — matches files\+: {\ttfamily file-\/1.\+js}, {\ttfamily file-\/2.\+js}, {\ttfamily file-\/3.\+js}.
+\item {\ttfamily file-\/(1\texorpdfstring{$\vert$}{|}2)} — matches files\+: {\ttfamily file-\/1.\+js}, {\ttfamily file-\/2.\+js}.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1418}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1418}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ fast-\/glob}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1419}{}\doxysection{\texorpdfstring{API}{API}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1419}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1420}{}\doxysubsection{\texorpdfstring{Asynchronous}{Asynchronous}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1420}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg(patterns,\ [options])}
+\DoxyCodeLine{fg.async(patterns,\ [options])}
+\DoxyCodeLine{fg.glob(patterns,\ [options])}
+
+\end{DoxyCode}
+
+
+Returns a {\ttfamily Promise} with an array of matching entries.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ fg\ =\ require('fast-\/glob');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ entries\ =\ await\ fg(['.editorconfig',\ '**/index.js'],\ \{\ dot:\ true\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ ['.editorconfig',\ 'services/index.js']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1421}{}\doxysubsection{\texorpdfstring{Synchronous}{Synchronous}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1421}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync(patterns,\ [options])}
+\DoxyCodeLine{fg.globSync(patterns,\ [options])}
+
+\end{DoxyCode}
+
+
+Returns an array of matching entries.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ fg\ =\ require('fast-\/glob');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ entries\ =\ fg.sync(['.editorconfig',\ '**/index.js'],\ \{\ dot:\ true\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ ['.editorconfig',\ 'services/index.js']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1422}{}\doxysubsection{\texorpdfstring{Stream}{Stream}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1422}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.stream(patterns,\ [options])}
+\DoxyCodeLine{fg.globStream(patterns,\ [options])}
+
+\end{DoxyCode}
+
+
+Returns a \href{https://nodejs.org/api/stream.html\#stream_readable_streams}{\texttt{ {\ttfamily Readable\+Stream}}} when the {\ttfamily data} event will be emitted with matching entry.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ fg\ =\ require('fast-\/glob');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ stream\ =\ fg.stream(['.editorconfig',\ '**/index.js'],\ \{\ dot:\ true\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{for\ await\ (const\ entry\ of\ stream)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ .editorconfig}
+\DoxyCodeLine{\ \ \ \ //\ services/index.js}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1423}{}\doxysubsubsection{\texorpdfstring{patterns}{patterns}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1423}
+
+\begin{DoxyItemize}
+\item Required\+: {\ttfamily true}
+\item Type\+: {\ttfamily string \texorpdfstring{$\vert$}{|} string\mbox{[}\mbox{]}}
+\end{DoxyItemize}
+
+Any correct pattern(s).
+
+\begin{quote}
+\+:1234\+: Pattern syntax
+
+\+:warning\+: This package does not respect the order of patterns. First, all the negative patterns are applied, and only then the positive patterns. If you want to get a certain order of records, use sorting or split calls. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1424}{}\doxysubsubsection{\texorpdfstring{\mbox{[}options\mbox{]}}{\mbox{[}options\mbox{]}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1424}
+
+\begin{DoxyItemize}
+\item Required\+: {\ttfamily false}
+\item Type\+: \`{}\+Options\`{}
+\end{DoxyItemize}
+
+See Options section.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1425}{}\doxysubsection{\texorpdfstring{Helpers}{Helpers}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1425}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1426}{}\doxysubsubsection{\texorpdfstring{{\ttfamily generate\+Tasks(patterns, \mbox{[}options\mbox{]})}}{{\ttfamily generate\+Tasks(patterns, \mbox{[}options\mbox{]})}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1426}
+Returns the internal representation of patterns (\href{./src/managers/tasks.ts}{\texttt{ {\ttfamily Task}}} is a combining patterns by base directory).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.generateTasks('*');}
+\DoxyCodeLine{}
+\DoxyCodeLine{[\{}
+\DoxyCodeLine{\ \ \ \ base:\ '.',\ //\ Parent\ directory\ for\ all\ patterns\ inside\ this\ task}
+\DoxyCodeLine{\ \ \ \ dynamic:\ true,\ //\ Dynamic\ or\ static\ patterns\ are\ in\ this\ task}
+\DoxyCodeLine{\ \ \ \ patterns:\ ['*'],}
+\DoxyCodeLine{\ \ \ \ positive:\ ['*'],}
+\DoxyCodeLine{\ \ \ \ negative:\ []}
+\DoxyCodeLine{\}]}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1427}{}\doxyparagraph{\texorpdfstring{patterns}{patterns}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1427}
+
+\begin{DoxyItemize}
+\item Required\+: {\ttfamily true}
+\item Type\+: {\ttfamily string \texorpdfstring{$\vert$}{|} string\mbox{[}\mbox{]}}
+\end{DoxyItemize}
+
+Any correct pattern(s).\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1428}{}\doxyparagraph{\texorpdfstring{\mbox{[}options\mbox{]}}{\mbox{[}options\mbox{]}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1428}
+
+\begin{DoxyItemize}
+\item Required\+: {\ttfamily false}
+\item Type\+: \`{}\+Options\`{}
+\end{DoxyItemize}
+
+See Options section.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1429}{}\doxysubsubsection{\texorpdfstring{{\ttfamily is\+Dynamic\+Pattern(pattern, \mbox{[}options\mbox{]})}}{{\ttfamily is\+Dynamic\+Pattern(pattern, \mbox{[}options\mbox{]})}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1429}
+Returns {\ttfamily true} if the passed pattern is a dynamic pattern.
+
+\begin{quote}
+\+:1234\+: What is a static or dynamic pattern? \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.isDynamicPattern('*');\ //\ true}
+\DoxyCodeLine{fg.isDynamicPattern('abc');\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1430}{}\doxyparagraph{\texorpdfstring{pattern}{pattern}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1430}
+
+\begin{DoxyItemize}
+\item Required\+: {\ttfamily true}
+\item Type\+: {\ttfamily string}
+\end{DoxyItemize}
+
+Any correct pattern.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1431}{}\doxyparagraph{\texorpdfstring{\mbox{[}options\mbox{]}}{\mbox{[}options\mbox{]}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1431}
+
+\begin{DoxyItemize}
+\item Required\+: {\ttfamily false}
+\item Type\+: \`{}\+Options\`{}
+\end{DoxyItemize}
+
+See Options section.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1432}{}\doxysubsubsection{\texorpdfstring{{\ttfamily escape\+Path(path)}}{{\ttfamily escape\+Path(path)}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1432}
+Returns the path with escaped special characters depending on the platform.
+
+
+\begin{DoxyItemize}
+\item Posix\+:
+\begin{DoxyItemize}
+\item {\ttfamily \texorpdfstring{$\ast$}{*}?\texorpdfstring{$\vert$}{|}()\{\}\mbox{[}\mbox{]}};
+\item {\ttfamily !} at the beginning of line;
+\item {\ttfamily @+!} before the opening parenthesis;
+\item {\ttfamily \textbackslash{}\textbackslash{}} before non-\/special characters;
+\end{DoxyItemize}
+\item Windows\+:
+\begin{DoxyItemize}
+\item {\ttfamily ()\{\}\mbox{[}\mbox{]}}
+\item {\ttfamily !} at the beginning of line;
+\item {\ttfamily @+!} before the opening parenthesis;
+\item Characters like {\ttfamily \texorpdfstring{$\ast$}{*}?\texorpdfstring{$\vert$}{|}} cannot be used in the path (\href{https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file\#naming-conventions}{\texttt{ windows\+\_\+naming\+\_\+conventions}}), so they will not be escaped;
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.escapePath('!abc');}
+\DoxyCodeLine{//\ \(\backslash\)\(\backslash\)!abc}
+\DoxyCodeLine{fg.escapePath('[OpenSource]\ mrmlnc\ –\ fast-\/glob\ (Deluxe\ Edition)\ 2014')\ +\ '/*.flac'}
+\DoxyCodeLine{//\ \(\backslash\)\(\backslash\)[OpenSource\(\backslash\)\(\backslash\)]\ mrmlnc\ –\ fast-\/glob\ \(\backslash\)\(\backslash\)(Deluxe\ Edition\(\backslash\)\(\backslash\))\ 2014/*.flac}
+\DoxyCodeLine{}
+\DoxyCodeLine{fg.posix.escapePath('C:\(\backslash\)\(\backslash\)Program\ Files\ (x86)\(\backslash\)\(\backslash\)**\(\backslash\)\(\backslash\)*');}
+\DoxyCodeLine{//\ C:\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)Program\ Files\ \(\backslash\)\(\backslash\)(x86\(\backslash\)\(\backslash\))\(\backslash\)\(\backslash\)*\(\backslash\)\(\backslash\)*\(\backslash\)\(\backslash\)*}
+\DoxyCodeLine{fg.win32.escapePath('C:\(\backslash\)\(\backslash\)Program\ Files\ (x86)\(\backslash\)\(\backslash\)**\(\backslash\)\(\backslash\)*');}
+\DoxyCodeLine{//\ Windows:\ C:\(\backslash\)\(\backslash\)Program\ Files\ \(\backslash\)\(\backslash\)(x86\(\backslash\)\(\backslash\))\(\backslash\)\(\backslash\)**\(\backslash\)\(\backslash\)*}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1433}{}\doxysubsubsection{\texorpdfstring{{\ttfamily convert\+Path\+To\+Pattern(path)}}{{\ttfamily convert\+Path\+To\+Pattern(path)}}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1433}
+Converts a path to a pattern depending on the platform, including special character escaping.
+
+
+\begin{DoxyItemize}
+\item Posix. Works similarly to the {\ttfamily fg.\+posix.\+escape\+Path} method.
+\item Windows. Works similarly to the {\ttfamily fg.\+win32.\+escape\+Path} method, additionally converting backslashes to forward slashes in cases where they are not escape characters ({\ttfamily !()+@\{\}\mbox{[}\mbox{]}}).
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.convertPathToPattern('[OpenSource]\ mrmlnc\ –\ fast-\/glob\ (Deluxe\ Edition)\ 2014')\ +\ '/*.flac';}
+\DoxyCodeLine{//\ \(\backslash\)\(\backslash\)[OpenSource\(\backslash\)\(\backslash\)]\ mrmlnc\ –\ fast-\/glob\ \(\backslash\)\(\backslash\)(Deluxe\ Edition\(\backslash\)\(\backslash\))\ 2014/*.flac}
+\DoxyCodeLine{}
+\DoxyCodeLine{fg.convertPathToPattern('C:/Program\ Files\ (x86)/**/*');}
+\DoxyCodeLine{//\ Posix:\ C:/Program\ Files\ \(\backslash\)\(\backslash\)(x86\(\backslash\)\(\backslash\))/\(\backslash\)\(\backslash\)*\(\backslash\)\(\backslash\)*/\(\backslash\)\(\backslash\)*}
+\DoxyCodeLine{//\ Windows:\ C:/Program\ Files\ \(\backslash\)\(\backslash\)(x86\(\backslash\)\(\backslash\))/**/*}
+\DoxyCodeLine{}
+\DoxyCodeLine{fg.convertPathToPattern('C:\(\backslash\)\(\backslash\)Program\ Files\ (x86)\(\backslash\)\(\backslash\)**\(\backslash\)\(\backslash\)*');}
+\DoxyCodeLine{//\ Posix:\ C:\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)Program\ Files\ \(\backslash\)\(\backslash\)(x86\(\backslash\)\(\backslash\))\(\backslash\)\(\backslash\)*\(\backslash\)\(\backslash\)*\(\backslash\)\(\backslash\)*}
+\DoxyCodeLine{//\ Windows:\ C:/Program\ Files\ \(\backslash\)\(\backslash\)(x86\(\backslash\)\(\backslash\))/**/*}
+\DoxyCodeLine{}
+\DoxyCodeLine{fg.posix.convertPathToPattern('\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)?\(\backslash\)\(\backslash\)c:\(\backslash\)\(\backslash\)Program\ Files\ (x86)')\ +\ '/**/*';}
+\DoxyCodeLine{//\ Posix:\ \(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)?\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)c:\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)Program\ Files\ \(\backslash\)\(\backslash\)(x86\(\backslash\)\(\backslash\))/**/*\ (broken\ pattern)}
+\DoxyCodeLine{fg.win32.convertPathToPattern('\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)?\(\backslash\)\(\backslash\)c:\(\backslash\)\(\backslash\)Program\ Files\ (x86)')\ +\ '/**/*';}
+\DoxyCodeLine{//\ Windows:\ //?/c:/Program\ Files\ \(\backslash\)\(\backslash\)(x86\(\backslash\)\(\backslash\))/**/*}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1434}{}\doxysection{\texorpdfstring{Options}{Options}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1434}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1435}{}\doxysubsection{\texorpdfstring{Common options}{Common options}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1435}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1436}{}\doxysubsubsection{\texorpdfstring{concurrency}{concurrency}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1436}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily number}
+\item Default\+: {\ttfamily os.\+cpus().length}
+\end{DoxyItemize}
+
+Specifies the maximum number of concurrent requests from a reader to read directories.
+
+\begin{quote}
+\+:book\+: The higher the number, the higher the performance and load on the file system. If you want to read in quiet mode, set the value to a comfortable number or {\ttfamily 1}. \end{quote}
+
+
+{\bfseries{More details}}\begin{adjustwidth}{1em}{0em}
+
+
+
+
+In Node, there are \href{https://nodejs.org/en/docs/guides/dont-block-the-event-loop}{\texttt{ two types of threads}}\+: Event Loop (code) and a Thread Pool (fs, dns, …). The thread pool size controlled by the {\ttfamily UV\+\_\+\+THREADPOOL\+\_\+\+SIZE} environment variable. Its default size is 4 (\href{http://docs.libuv.org/en/v1.x/threadpool.html}{\texttt{ documentation}}). The pool is one for all tasks within a single Node process.
+
+Any code can make 4 real concurrent accesses to the file system. The rest of the FS requests will wait in the queue.
+
+\begin{quote}
+\+:book\+: Each new instance of FG in the same Node process will use the same Thread pool. \end{quote}
+But this package also has the {\ttfamily concurrency} option. This option allows you to control the number of concurrent accesses to the FS at the package level. By default, this package has a value equal to the number of cores available for the current Node process. This allows you to set a value smaller than the pool size ({\ttfamily concurrency\+: 1}) or, conversely, to prepare tasks for the pool queue more quickly ({\ttfamily concurrency\+: Number.\+POSITIVE\+\_\+\+INFINITY}).
+
+So, in fact, this package can {\bfseries{only make 4 concurrent requests to the FS}}. You can increase this value by using an environment variable ({\ttfamily UV\+\_\+\+THREADPOOL\+\_\+\+SIZE}), but in practice this does not give a multiple advantage.
+
+\end{adjustwidth}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1437}{}\doxysubsubsection{\texorpdfstring{cwd}{cwd}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1437}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily string}
+\item Default\+: {\ttfamily process.\+cwd()}
+\end{DoxyItemize}
+
+The current working directory in which to search.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1438}{}\doxysubsubsection{\texorpdfstring{deep}{deep}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1438}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily number}
+\item Default\+: {\ttfamily Infinity}
+\end{DoxyItemize}
+
+Specifies the maximum depth of a read directory relative to the start directory.
+
+For example, you have the following tree\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{└──\ one/\ \ \ \ \ \ \ \ \ \ \ \ //\ 1}
+\DoxyCodeLine{\ \ \ \ └──\ two/\ \ \ \ \ \ \ \ //\ 2}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ file.js\ //\ 3}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ With\ base\ directory}
+\DoxyCodeLine{fg.sync('dir/**',\ \{\ onlyFiles:\ false,\ deep:\ 1\ \});\ //\ ['dir/one']}
+\DoxyCodeLine{fg.sync('dir/**',\ \{\ onlyFiles:\ false,\ deep:\ 2\ \});\ //\ ['dir/one',\ 'dir/one/two']}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ With\ cwd\ option}
+\DoxyCodeLine{fg.sync('**',\ \{\ onlyFiles:\ false,\ cwd:\ 'dir',\ deep:\ 1\ \});\ //\ ['one']}
+\DoxyCodeLine{fg.sync('**',\ \{\ onlyFiles:\ false,\ cwd:\ 'dir',\ deep:\ 2\ \});\ //\ ['one',\ 'one/two']}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+\+:book\+: If you specify a pattern with some base directory, this directory will not participate in the calculation of the depth of the found directories. Think of it as a \`{}cwd\`{} option. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1439}{}\doxysubsubsection{\texorpdfstring{follow\+Symbolic\+Links}{follow\+Symbolic\+Links}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1439}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Indicates whether to traverse descendants of symbolic link directories when expanding {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}} patterns.
+
+\begin{quote}
+\+:book\+: Note that this option does not affect the base directory of the pattern. For example, if {\ttfamily ./a} is a symlink to directory {\ttfamily ./b} and you specified `\mbox{[}'./a\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textquotesingle{}, \textquotesingle{}./b/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textquotesingle{}\mbox{]}{\ttfamily patterns, then directory}./a{\ttfamily will still be read. \texorpdfstring{$<$}{<}/blockquote\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}blockquote\texorpdfstring{$>$}{>}\&zwj;\+:book\+: If the \mbox{[}}stats{\ttfamily \mbox{]}(\#stats) option is specified, the information about the symbolic link (}fs.\+lstat{\ttfamily ) will be replaced with information about the entry (}fs.\+stat\`{}) behind it. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1440}{}\doxysubsubsection{\texorpdfstring{fs}{fs}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1440}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily File\+System\+Adapter}
+\item Default\+: {\ttfamily fs.\texorpdfstring{$\ast$}{*}}
+\end{DoxyItemize}
+
+Custom implementation of methods for working with the file system. Supports objects with enumerable properties only.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ interface\ FileSystemAdapter\ \{}
+\DoxyCodeLine{\ \ \ \ lstat?:\ typeof\ fs.lstat;}
+\DoxyCodeLine{\ \ \ \ stat?:\ typeof\ fs.stat;}
+\DoxyCodeLine{\ \ \ \ lstatSync?:\ typeof\ fs.lstatSync;}
+\DoxyCodeLine{\ \ \ \ statSync?:\ typeof\ fs.statSync;}
+\DoxyCodeLine{\ \ \ \ readdir?:\ typeof\ fs.readdir;}
+\DoxyCodeLine{\ \ \ \ readdirSync?:\ typeof\ fs.readdirSync;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1441}{}\doxysubsubsection{\texorpdfstring{ignore}{ignore}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1441}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily string\mbox{[}\mbox{]}}
+\item Default\+: {\ttfamily \mbox{[}\mbox{]}}
+\end{DoxyItemize}
+
+An array of glob patterns to exclude matches. This is an alternative way to use negative patterns.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{├──\ package-\/lock.json}
+\DoxyCodeLine{└──\ package.json}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync(['*.json',\ '!package-\/lock.json']);\ \ \ \ \ \ \ \ \ \ \ \ //\ ['package.json']}
+\DoxyCodeLine{fg.sync('*.json',\ \{\ ignore:\ ['package-\/lock.json']\ \});\ //\ ['package.json']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1442}{}\doxysubsubsection{\texorpdfstring{suppress\+Errors}{suppress\+Errors}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1442}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+By default this package suppress only {\ttfamily ENOENT} errors. Set to {\ttfamily true} to suppress any error.
+
+\begin{quote}
+\+:book\+: Can be useful when the directory has entries with a special level of access. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1443}{}\doxysubsubsection{\texorpdfstring{throw\+Error\+On\+Broken\+Symbolic\+Link}{throw\+Error\+On\+Broken\+Symbolic\+Link}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1443}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+Throw an error when symbolic link is broken if {\ttfamily true} or safely return {\ttfamily lstat} call if {\ttfamily false}.
+
+\begin{quote}
+\+:book\+: This option has no effect on errors when reading the symbolic link directory. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1444}{}\doxysubsection{\texorpdfstring{Output control}{Output control}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1444}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1445}{}\doxysubsubsection{\texorpdfstring{absolute}{absolute}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1445}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+Return the absolute path for entries.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*.js',\ \{\ absolute:\ false\ \});\ //\ ['index.js']}
+\DoxyCodeLine{fg.sync('*.js',\ \{\ absolute:\ true\ \});\ \ //\ ['/home/user/index.js']}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+\+:book\+: This option is required if you want to use negative patterns with absolute path, for example, {\ttfamily !\$\{\+\_\+\+\_\+dirname\}/\texorpdfstring{$\ast$}{*}.js}. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1446}{}\doxysubsubsection{\texorpdfstring{mark\+Directories}{mark\+Directories}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1446}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+Mark the directory path with the final slash.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*',\ \{\ onlyFiles:\ false,\ markDirectories:\ false\ \});\ //\ ['index.js',\ 'controllers']}
+\DoxyCodeLine{fg.sync('*',\ \{\ onlyFiles:\ false,\ markDirectories:\ true\ \});\ \ //\ ['index.js',\ 'controllers/']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1447}{}\doxysubsubsection{\texorpdfstring{object\+Mode}{object\+Mode}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1447}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+Returns objects (instead of strings) describing entries.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*',\ \{\ objectMode:\ false\ \});\ //\ ['src/index.js']}
+\DoxyCodeLine{fg.sync('*',\ \{\ objectMode:\ true\ \});\ \ //\ [\{\ name:\ 'index.js',\ path:\ 'src/index.js',\ dirent:\ <fs.Dirent>\ \}]}
+
+\end{DoxyCode}
+
+
+The object has the following fields\+:
+
+
+\begin{DoxyItemize}
+\item name ({\ttfamily string}) — the last part of the path (basename)
+\item path ({\ttfamily string}) — full path relative to the pattern base directory
+\item dirent (\href{https://nodejs.org/api/fs.html\#fs_class_fs_dirent}{\texttt{ {\ttfamily fs.\+Dirent}}}) — instance of {\ttfamily fs.\+Dirent}
+\end{DoxyItemize}
+
+\begin{quote}
+\+:book\+: An object is an internal representation of entry, so getting it does not affect performance. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1448}{}\doxysubsubsection{\texorpdfstring{only\+Directories}{only\+Directories}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1448}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+Return only directories.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*',\ \{\ onlyDirectories:\ false\ \});\ //\ ['index.js',\ 'src']}
+\DoxyCodeLine{fg.sync('*',\ \{\ onlyDirectories:\ true\ \});\ \ //\ ['src']}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+\+:book\+: If {\ttfamily true}, the \`{}only\+Files\`{} option is automatically {\ttfamily false}. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1449}{}\doxysubsubsection{\texorpdfstring{only\+Files}{only\+Files}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1449}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Return only files.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*',\ \{\ onlyFiles:\ false\ \});\ //\ ['index.js',\ 'src']}
+\DoxyCodeLine{fg.sync('*',\ \{\ onlyFiles:\ true\ \});\ \ //\ ['index.js']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1450}{}\doxysubsubsection{\texorpdfstring{stats}{stats}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1450}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+Enables an object mode with an additional field\+:
+
+
+\begin{DoxyItemize}
+\item stats (\href{https://nodejs.org/api/fs.html\#fs_class_fs_stats}{\texttt{ {\ttfamily fs.\+Stats}}}) — instance of {\ttfamily fs.\+Stats}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*',\ \{\ stats:\ false\ \});\ //\ ['src/index.js']}
+\DoxyCodeLine{fg.sync('*',\ \{\ stats:\ true\ \});\ \ //\ [\{\ name:\ 'index.js',\ path:\ 'src/index.js',\ dirent:\ <fs.Dirent>,\ stats:\ <fs.Stats>\ \}]}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+\+:book\+: Returns {\ttfamily fs.\+stat} instead of {\ttfamily fs.\+lstat} for symbolic links when the \`{}follow\+Symbolic\+Links\`{} option is specified.
+
+\+:warning\+: Unlike object mode this mode requires additional calls to the file system. On average, this mode is slower at least twice. See old and modern mode for more details. \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1451}{}\doxysubsubsection{\texorpdfstring{unique}{unique}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1451}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Ensures that the returned entries are unique.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync(['*.json',\ 'package.json'],\ \{\ unique:\ false\ \});\ //\ ['package.json',\ 'package.json']}
+\DoxyCodeLine{fg.sync(['*.json',\ 'package.json'],\ \{\ unique:\ true\ \});\ \ //\ ['package.json']}
+
+\end{DoxyCode}
+
+
+If {\ttfamily true} and similar entries are found, the result is the first found.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1452}{}\doxysubsection{\texorpdfstring{Matching control}{Matching control}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1452}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1453}{}\doxysubsubsection{\texorpdfstring{brace\+Expansion}{brace\+Expansion}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1453}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Enables Bash-\/like brace expansion.
+
+\begin{quote}
+\+:1234\+: \href{https://wiki.bash-hackers.org/syntax/expansion/brace}{\texttt{ Syntax description}} or more \href{https://github.com/micromatch/braces}{\texttt{ detailed description}}. \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{├──\ abd}
+\DoxyCodeLine{├──\ acd}
+\DoxyCodeLine{└──\ a\{b,c\}d}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('a\{b,c\}d',\ \{\ braceExpansion:\ false\ \});\ //\ ['a\{b,c\}d']}
+\DoxyCodeLine{fg.sync('a\{b,c\}d',\ \{\ braceExpansion:\ true\ \});\ \ //\ ['abd',\ 'acd']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1454}{}\doxysubsubsection{\texorpdfstring{case\+Sensitive\+Match}{case\+Sensitive\+Match}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1454}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Enables a \href{https://en.wikipedia.org/wiki/Case_sensitivity}{\texttt{ case-\/sensitive}} mode for matching files.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{├──\ file.txt}
+\DoxyCodeLine{└──\ File.txt}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('file.txt',\ \{\ caseSensitiveMatch:\ false\ \});\ //\ ['file.txt',\ 'File.txt']}
+\DoxyCodeLine{fg.sync('file.txt',\ \{\ caseSensitiveMatch:\ true\ \});\ \ //\ ['file.txt']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1455}{}\doxysubsubsection{\texorpdfstring{dot}{dot}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1455}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+Allow patterns to match entries that begin with a period ({\ttfamily .}).
+
+\begin{quote}
+\+:book\+: Note that an explicit dot in a portion of the pattern will always match dot files. \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{├──\ .editorconfig}
+\DoxyCodeLine{└──\ package.json}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*',\ \{\ dot:\ false\ \});\ //\ ['package.json']}
+\DoxyCodeLine{fg.sync('*',\ \{\ dot:\ true\ \});\ \ //\ ['.editorconfig',\ 'package.json']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1456}{}\doxysubsubsection{\texorpdfstring{extglob}{extglob}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1456}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Enables Bash-\/like {\ttfamily extglob} functionality.
+
+\begin{quote}
+\+:1234\+: \href{https://github.com/micromatch/micromatch\#extglobs}{\texttt{ Syntax description}}. \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{├──\ README.md}
+\DoxyCodeLine{└──\ package.json}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*.+(json|md)',\ \{\ extglob:\ false\ \});\ //\ []}
+\DoxyCodeLine{fg.sync('*.+(json|md)',\ \{\ extglob:\ true\ \});\ \ //\ ['README.md',\ 'package.json']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1457}{}\doxysubsubsection{\texorpdfstring{globstar}{globstar}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1457}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily true}
+\end{DoxyItemize}
+
+Enables recursively repeats a pattern containing {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}. If {\ttfamily false}, {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}} behaves exactly like {\ttfamily \texorpdfstring{$\ast$}{*}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{└──\ a}
+\DoxyCodeLine{\ \ \ \ └──\ b}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('**',\ \{\ onlyFiles:\ false,\ globstar:\ false\ \});\ //\ ['a']}
+\DoxyCodeLine{fg.sync('**',\ \{\ onlyFiles:\ false,\ globstar:\ true\ \});\ \ //\ ['a',\ 'a/b']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1458}{}\doxysubsubsection{\texorpdfstring{base\+Name\+Match}{base\+Name\+Match}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1458}
+
+\begin{DoxyItemize}
+\item Type\+: {\ttfamily boolean}
+\item Default\+: {\ttfamily false}
+\end{DoxyItemize}
+
+If set to {\ttfamily true}, then patterns without slashes will be matched against the basename of the path if it contains slashes.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{└──\ one/}
+\DoxyCodeLine{\ \ \ \ └──\ file.md}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync('*.md',\ \{\ baseNameMatch:\ false\ \});\ //\ []}
+\DoxyCodeLine{fg.sync('*.md',\ \{\ baseNameMatch:\ true\ \});\ \ //\ ['one/file.md']}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1459}{}\doxysection{\texorpdfstring{FAQ}{FAQ}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1459}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1460}{}\doxysection{\texorpdfstring{What is a static or dynamic pattern?}{What is a static or dynamic pattern?}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1460}
+All patterns can be divided into two types\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{static}}. A pattern is considered static if it can be used to get an entry on the file system without using matching mechanisms. For example, the {\ttfamily file.\+js} pattern is a static pattern because we can just verify that it exists on the file system.
+\item {\bfseries{dynamic}}. A pattern is considered dynamic if it cannot be used directly to find occurrences without using a matching mechanisms. For example, the {\ttfamily \texorpdfstring{$\ast$}{*}} pattern is a dynamic pattern because we cannot use this pattern directly.
+\end{DoxyItemize}
+
+A pattern is considered dynamic if it contains the following characters ({\ttfamily …} — any characters or their absence) or options\+:
+
+
+\begin{DoxyItemize}
+\item The \`{}case\+Sensitive\+Match\`{} option is disabled
+\item {\ttfamily \textbackslash{}\textbackslash{}} (the escape character)
+\item {\ttfamily \texorpdfstring{$\ast$}{*}}, {\ttfamily ?}, {\ttfamily !} (at the beginning of line)
+\item {\ttfamily \mbox{[}…\mbox{]}}
+\item {\ttfamily (…\texorpdfstring{$\vert$}{|}…)}
+\item {\ttfamily @(…)}, {\ttfamily !(…)}, {\ttfamily \texorpdfstring{$\ast$}{*}(…)}, {\ttfamily ?(…)}, {\ttfamily +(…)} (respects the \`{}extglob\`{} option)
+\item {\ttfamily \{…,…\}}, {\ttfamily \{…..…\}} (respects the \`{}brace\+Expansion\`{} option)
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1461}{}\doxysection{\texorpdfstring{How to write patterns on Windows?}{How to write patterns on Windows?}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1461}
+Always use forward-\/slashes in glob expressions (patterns and \`{}ignore\`{} option). Use backslashes for escaping characters. With the \`{}cwd\`{} option use a convenient format.
+
+{\bfseries{Bad}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \ \ 'directory\(\backslash\)\(\backslash\)*',}
+\DoxyCodeLine{\ \ \ \ path.join(process.cwd(),\ '**')}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+{\bfseries{Good}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \ \ 'directory/*',}
+\DoxyCodeLine{\ \ \ \ fg.convertPathToPattern(process.cwd())\ +\ '/**'}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+\+:book\+: Use the \`{}.convert\+Path\+To\+Pattern\`{} package to convert Windows-\/style path to a Unix-\/style path. \end{quote}
+Read more about \href{https://github.com/micromatch/micromatch\#backslashes}{\texttt{ matching with backslashes}}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1462}{}\doxysection{\texorpdfstring{Why are parentheses match wrong?}{Why are parentheses match wrong?}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1462}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dir/}
+\DoxyCodeLine{└──\ (special-\/*file).txt}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync(['(special-\/*file).txt'])\ //\ []}
+
+\end{DoxyCode}
+
+
+Refers to Bash. You need to escape special characters\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync(['\(\backslash\)\(\backslash\)(special-\/*file\(\backslash\)\(\backslash\)).txt'])\ //\ ['(special-\/*file).txt']}
+
+\end{DoxyCode}
+
+
+Read more about \href{https://github.com/micromatch/picomatch\#matching-special-characters-as-literals}{\texttt{ matching special characters as literals}}. Or use the \`{}.escape\+Path\`{}.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1463}{}\doxysection{\texorpdfstring{How to exclude directory from reading?}{How to exclude directory from reading?}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1463}
+You can use a negative pattern like this\+: {\ttfamily !\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/node\+\_\+modules} or {\ttfamily !\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/node\+\_\+modules/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}. Also you can use \`{}ignore\`{} option. Just look at the example below.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{first/}
+\DoxyCodeLine{├──\ file.md}
+\DoxyCodeLine{└──\ second/}
+\DoxyCodeLine{\ \ \ \ └──\ file.txt}
+
+\end{DoxyCode}
+
+
+If you don\textquotesingle{}t want to read the {\ttfamily second} directory, you must write the following pattern\+: {\ttfamily !\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/second} or {\ttfamily !\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/second/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fg.sync(['**/*.md',\ '!**/second']);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ ['first/file.md']}
+\DoxyCodeLine{fg.sync(['**/*.md'],\ \{\ ignore:\ ['**/second/**']\ \});\ //\ ['first/file.md']}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+\+:warning\+: When you write {\ttfamily !\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/second/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\texorpdfstring{$\ast$}{*}} it means that the directory will be {\bfseries{read}}, but all the entries will not be included in the results. \end{quote}
+You have to understand that if you write the pattern to exclude directories, then the directory will not be read under any circumstances.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1464}{}\doxysection{\texorpdfstring{How to use UNC path?}{How to use UNC path?}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1464}
+You cannot use \href{https://learn.microsoft.com/openspecs/windows_protocols/ms-dtyp/62e862f4-2a51-452e-8eeb-dc4ff5ee33cc}{\texttt{ Uniform Naming Convention (UNC)}} paths as patterns (due to syntax) directly, but you can use them as \`{}cwd\`{} directory or use the {\ttfamily fg.\+convert\+Path\+To\+Pattern} method.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ cwd}
+\DoxyCodeLine{fg.sync('*',\ \{\ cwd:\ '\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)?\(\backslash\)\(\backslash\)C:\(\backslash\)\(\backslash\)Python27'\ /*\ or\ //?/C:/Python27\ */\ \});}
+\DoxyCodeLine{fg.sync('Python27/*',\ \{\ cwd:\ '\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)?\(\backslash\)\(\backslash\)C:\(\backslash\)\(\backslash\)'\ /*\ or\ //?/C:/\ */\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ .convertPathToPattern}
+\DoxyCodeLine{fg.sync(fg.convertPathToPattern('\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)?\(\backslash\)\(\backslash\)c:\(\backslash\)\(\backslash\)Python27')\ +\ '/*');}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1465}{}\doxysection{\texorpdfstring{Compatible with {\ttfamily node-\/glob}?}{Compatible with {\ttfamily node-\/glob}?}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1465}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ node-\/glob   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ fast-\/glob    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ node-\/glob   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ fast-\/glob    }\\\cline{1-2}
+\endhead
+\PBS\centering {\ttfamily cwd}   &\PBS\centering \`{}cwd\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily root}   &\PBS\centering –    \\\cline{1-2}
+\PBS\centering {\ttfamily dot}   &\PBS\centering \`{}dot\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily nomount}   &\PBS\centering –    \\\cline{1-2}
+\PBS\centering {\ttfamily mark}   &\PBS\centering \`{}mark\+Directories\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily nosort}   &\PBS\centering –    \\\cline{1-2}
+\PBS\centering {\ttfamily nounique}   &\PBS\centering \`{}unique\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily nobrace}   &\PBS\centering \`{}brace\+Expansion\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily noglobstar}   &\PBS\centering \`{}globstar\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily noext}   &\PBS\centering \`{}extglob\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily nocase}   &\PBS\centering \`{}case\+Sensitive\+Match\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily match\+Base}   &\PBS\centering \`{}base\+Name\+Match\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily nodir}   &\PBS\centering \`{}only\+Files\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily ignore}   &\PBS\centering \`{}ignore\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily follow}   &\PBS\centering \`{}follow\+Symbolic\+Links\`{}    \\\cline{1-2}
+\PBS\centering {\ttfamily realpath}   &\PBS\centering –    \\\cline{1-2}
+\PBS\centering {\ttfamily absolute}   &\PBS\centering \`{}absolute\`{}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1466}{}\doxysection{\texorpdfstring{Benchmarks}{Benchmarks}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1466}
+You can see results \href{https://github.com/mrmlnc/fast-glob/actions/workflows/benchmark.yml?query=branch\%3Amaster}{\texttt{ here}} for every commit into the {\ttfamily main} branch.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Product benchmark}} – comparison with the main competitors.
+\item {\bfseries{Regress benchmark}} – regression between the current version and the version from the npm registry.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1467}{}\doxysection{\texorpdfstring{Changelog}{Changelog}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1467}
+See the \href{https://github.com/mrmlnc/fast-glob/releases}{\texttt{ Releases section of our Git\+Hub project}} for changelog for each release version.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1468}{}\doxysection{\texorpdfstring{License}{License}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2fast-glob_2_r_e_a_d_m_e_autotoc_md1468}
+This software is released under the terms of the MIT license. 

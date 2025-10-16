@@ -1,0 +1,114 @@
+\chapter{⚡️ Lightning CSS}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e}\index{⚡️ Lightning CSS@{⚡️ Lightning CSS}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e_autotoc_md2114}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e_autotoc_md2114}%
+ An extremely fast CSS parser, transformer, and minifier written in Rust. Use it with \href{https://parceljs.org}{\texttt{ Parcel}}, as a standalone library or CLI, or via a plugin with any other tool.
+
+ \hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e_autotoc_md2115}{}\doxysection{\texorpdfstring{Features}{Features}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e_autotoc_md2115}
+
+\begin{DoxyItemize}
+\item {\bfseries{Extremely fast}} – Parsing and minifying large files is completed in milliseconds, often with significantly smaller output than other tools. See benchmarks below.
+\item {\bfseries{Typed property values}} – many other CSS parsers treat property values as an untyped series of tokens. This means that each transformer that wants to do something with these values must interpret them itself, leading to duplicate work and inconsistencies. Lightning CSS parses all values using the grammar from the CSS specification, and exposes a specific value type for each property.
+\item {\bfseries{Browser-\/grade parser}} – Lightning CSS is built on the \href{https://github.com/servo/rust-cssparser}{\texttt{ cssparser}} and \href{https://github.com/servo/stylo/tree/main/selectors}{\texttt{ selectors}} crates created by Mozilla and used by Firefox and Servo. These provide a solid general purpose CSS-\/parsing foundation on top of which Lightning CSS implements support for all specific CSS rules and properties.
+\item {\bfseries{Minification}} – One of the main purposes of Lightning CSS is to minify CSS to make it smaller. This includes many optimizations including\+:
+\begin{DoxyItemize}
+\item Combining longhand properties into shorthands where possible.
+\item Merging adjacent rules with the same selectors or declarations when it is safe to do so.
+\item Combining CSS transforms into a single matrix or vice versa when smaller.
+\item Removing vendor prefixes that are not needed, based on the provided browser targets.
+\item Reducing {\ttfamily calc()} expressions where possible.
+\item Converting colors to shorter hex notation where possible.
+\item Minifying gradients.
+\item Minifying CSS grid templates.
+\item Normalizing property value order.
+\item Removing default property sub-\/values which will be inferred by browsers.
+\item Many micro-\/optimizations, e.\+g. converting to shorter units, removing unnecessary quotation marks, etc.
+\end{DoxyItemize}
+\item {\bfseries{Vendor prefixing}} – Lightning CSS accepts a list of browser targets, and automatically adds (and removes) vendor prefixes.
+\item {\bfseries{Browserslist configuration}} – Lightning CSS supports opt-\/in browserslist configuration discovery to resolve browser targets and integrate with your existing tools and config setup.
+\item {\bfseries{Syntax lowering}} – Lightning CSS parses modern CSS syntax, and generates more compatible output where needed, based on browser targets.
+\begin{DoxyItemize}
+\item CSS Nesting
+\item Custom media queries (draft spec)
+\item Logical properties
+\item \href{https://drafts.csswg.org/css-color-5/}{\texttt{ Color Level 5}}
+\begin{DoxyItemize}
+\item {\ttfamily color-\/mix()} function
+\item Relative color syntax, e.\+g. {\ttfamily lab(from purple calc(l \texorpdfstring{$\ast$}{*} .8) a b)}
+\end{DoxyItemize}
+\item \href{https://drafts.csswg.org/css-color-4/}{\texttt{ Color Level 4}}
+\begin{DoxyItemize}
+\item {\ttfamily lab()}, {\ttfamily lch()}, {\ttfamily oklab()}, and {\ttfamily oklch()} colors
+\item {\ttfamily color()} function supporting predefined color spaces such as {\ttfamily display-\/p3} and {\ttfamily xyz}
+\item Space separated components in {\ttfamily rgb} and {\ttfamily hsl} functions
+\item Hex with alpha syntax
+\item {\ttfamily hwb()} color syntax
+\item Percent syntax for opacity
+\item {\ttfamily \#rgba} and {\ttfamily \#rrggbbaa} hex colors
+\end{DoxyItemize}
+\item Selectors
+\begin{DoxyItemize}
+\item {\ttfamily \+:not} with multiple arguments
+\item {\ttfamily \+:lang} with multiple arguments
+\item {\ttfamily \+:dir}
+\item {\ttfamily \+:is}
+\end{DoxyItemize}
+\item Double position gradient stops (e.\+g. {\ttfamily red 40\% 80\%})
+\item {\ttfamily clamp()}, {\ttfamily round()}, {\ttfamily rem()}, and {\ttfamily mod()} math functions
+\item Alignment shorthands (e.\+g. {\ttfamily place-\/items})
+\item Two-\/value {\ttfamily overflow} shorthand
+\item Media query range syntax (e.\+g. {\ttfamily @media (width \texorpdfstring{$<$}{<}= 100px)} or {\ttfamily @media (100px \texorpdfstring{$<$}{<} width \texorpdfstring{$<$}{<} 500px)})
+\item Multi-\/value {\ttfamily display} property (e.\+g. {\ttfamily inline flex})
+\item {\ttfamily system-\/ui} font family fallbacks
+\end{DoxyItemize}
+\item {\bfseries{CSS modules}} – Lightning CSS supports compiling a subset of \href{https://github.com/css-modules/css-modules}{\texttt{ CSS modules}} features.
+\begin{DoxyItemize}
+\item Locally scoped class and id selectors
+\item Locally scoped custom identifiers, e.\+g. {\ttfamily @keyframes} names, grid lines/areas, {\ttfamily @counter-\/style} names, etc.
+\item Opt-\/in support for locally scoped CSS variables and other dashed identifiers.
+\item {\ttfamily \+:local()} and {\ttfamily \+:global()} selectors
+\item The {\ttfamily composes} property
+\end{DoxyItemize}
+\item {\bfseries{Custom transforms}} – The Lightning CSS visitor API can be used to implement custom transform plugins.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e_autotoc_md2116}{}\doxysection{\texorpdfstring{Documentation}{Documentation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e_autotoc_md2116}
+Lightning CSS can be used from \href{https://parceljs.org}{\texttt{ Parcel}}, as a standalone library from Java\+Script or Rust, using a standalone CLI, or wrapped as a plugin within any other tool. See the \href{https://lightningcss.dev/docs.html}{\texttt{ Lightning CSS website}} for documentation.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e_autotoc_md2117}{}\doxysection{\texorpdfstring{Benchmarks}{Benchmarks}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2lightningcss_2_r_e_a_d_m_e_autotoc_md2117}
+ 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ node\ bench.js\ bootstrap-\/4.css}
+\DoxyCodeLine{cssnano:\ 544.809ms}
+\DoxyCodeLine{159636\ bytes}
+\DoxyCodeLine{}
+\DoxyCodeLine{esbuild:\ 17.199ms}
+\DoxyCodeLine{160332\ bytes}
+\DoxyCodeLine{}
+\DoxyCodeLine{lightningcss:\ 4.16ms}
+\DoxyCodeLine{143091\ bytes}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$\ node\ bench.js\ animate.css}
+\DoxyCodeLine{cssnano:\ 283.105ms}
+\DoxyCodeLine{71723\ bytes}
+\DoxyCodeLine{}
+\DoxyCodeLine{esbuild:\ 11.858ms}
+\DoxyCodeLine{72183\ bytes}
+\DoxyCodeLine{}
+\DoxyCodeLine{lightningcss:\ 1.973ms}
+\DoxyCodeLine{23666\ bytes}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$\ node\ bench.js\ tailwind.css}
+\DoxyCodeLine{cssnano:\ 2.198s}
+\DoxyCodeLine{1925626\ bytes}
+\DoxyCodeLine{}
+\DoxyCodeLine{esbuild:\ 107.668ms}
+\DoxyCodeLine{1961642\ bytes}
+\DoxyCodeLine{}
+\DoxyCodeLine{lightningcss:\ 43.368ms}
+\DoxyCodeLine{1824130\ bytes}
+
+\end{DoxyCode}
+
+
+For more benchmarks comparing more tools and input, see \href{http://goalsmashers.github.io/css-minification-benchmark/}{\texttt{ here}}. Note that some of the tools shown perform unsafe optimizations that may change the behavior of the original CSS in favor of smaller file size. Lightning CSS does not do this – the output CSS should always behave identically to the input. Keep this in mind when comparing file sizes between tools. 

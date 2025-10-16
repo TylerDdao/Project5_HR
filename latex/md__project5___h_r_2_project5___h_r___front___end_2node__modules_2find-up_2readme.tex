@@ -1,0 +1,109 @@
+\chapter{find-\/up \texorpdfstring{$<$}{<}a href="{}https\+://travis-\/ci.\+com/github/sindresorhus/find-\/up"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://travis-\/ci.\+com/sindresorhus/find-\/up.\+svg?branch=master"{} alt="{}\+Build Status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme}\index{find-\/up $<$a href="{}https://travis-\/ci.com/github/sindresorhus/find-\/up"{} $>$$<$img src="{}https://travis-\/ci.com/sindresorhus/find-\/up.svg?branch=master"{} alt="{}Build Status"{}/$>$$<$/a$>$@{find-\/up $<$a href=""https://travis-\/ci.com/github/sindresorhus/find-\/up"" $>$$<$img src=""https://travis-\/ci.com/sindresorhus/find-\/up.svg?branch=master"" alt=""Build Status""/$>$$<$/a$>$}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1562}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1562}%
+ \begin{quote}
+Find a file or directory by walking up parent directories \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1563}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1563}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ find-\/up}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1564}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1564}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/}
+\DoxyCodeLine{└──\ Users}
+\DoxyCodeLine{\ \ \ \ └──\ sindresorhus}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ unicorn.png}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ foo}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ └──\ bar}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ baz}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └──\ example.js}
+
+\end{DoxyCode}
+
+
+{\ttfamily example.\+js}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ path\ =\ require('path');}
+\DoxyCodeLine{const\ findUp\ =\ require('find-\/up');}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(await\ findUp('unicorn.png'));}
+\DoxyCodeLine{\ \ \ \ //=>\ '/Users/sindresorhus/unicorn.png'}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ console.log(await\ findUp(['rainbow.png',\ 'unicorn.png']));}
+\DoxyCodeLine{\ \ \ \ //=>\ '/Users/sindresorhus/unicorn.png'}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ console.log(await\ findUp(async\ directory\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ hasUnicorns\ =\ await\ findUp.exists(path.join(directory,\ 'unicorn.png'));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ hasUnicorns\ \&\&\ directory;}
+\DoxyCodeLine{\ \ \ \ \},\ \{type:\ 'directory'\}));}
+\DoxyCodeLine{\ \ \ \ //=>\ '/Users/sindresorhus'}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1565}{}\doxysection{\texorpdfstring{API}{API}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1565}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1566}{}\doxysubsection{\texorpdfstring{find\+Up(name, options?)}{find\+Up(name, options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1566}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1567}{}\doxysubsection{\texorpdfstring{find\+Up(matcher, options?)}{find\+Up(matcher, options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1567}
+Returns a {\ttfamily Promise} for either the path or {\ttfamily undefined} if it couldn\textquotesingle{}t be found.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1568}{}\doxysubsection{\texorpdfstring{find\+Up(\mbox{[}...name\mbox{]}, options?)}{find\+Up(\mbox{[}...name\mbox{]}, options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1568}
+Returns a {\ttfamily Promise} for either the first path found (by respecting the order of the array) or {\ttfamily undefined} if none could be found.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1569}{}\doxysubsection{\texorpdfstring{find\+Up.\+sync(name, options?)}{find\+Up.\+sync(name, options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1569}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1570}{}\doxysubsection{\texorpdfstring{find\+Up.\+sync(matcher, options?)}{find\+Up.\+sync(matcher, options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1570}
+Returns a path or {\ttfamily undefined} if it couldn\textquotesingle{}t be found.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1571}{}\doxysubsection{\texorpdfstring{find\+Up.\+sync(\mbox{[}...name\mbox{]}, options?)}{find\+Up.\+sync(\mbox{[}...name\mbox{]}, options?)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1571}
+Returns the first path found (by respecting the order of the array) or {\ttfamily undefined} if none could be found.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1572}{}\doxysubsubsection{\texorpdfstring{name}{name}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1572}
+Type\+: {\ttfamily string}
+
+Name of the file or directory to find.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1573}{}\doxysubsubsection{\texorpdfstring{matcher}{matcher}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1573}
+Type\+: {\ttfamily Function}
+
+A function that will be called with each directory until it returns a {\ttfamily string} with the path, which stops the search, or the root directory has been reached and nothing was found. Useful if you want to match files with certain patterns, set of permissions, or other advanced use-\/cases.
+
+When using async mode, the {\ttfamily matcher} may optionally be an async or promise-\/returning function that returns the path.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1574}{}\doxysubsubsection{\texorpdfstring{options}{options}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1574}
+Type\+: {\ttfamily object}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1575}{}\doxyparagraph{\texorpdfstring{cwd}{cwd}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1575}
+Type\+: {\ttfamily string}\textbackslash{} Default\+: {\ttfamily process.\+cwd()}
+
+Directory to start from.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1576}{}\doxyparagraph{\texorpdfstring{type}{type}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1576}
+Type\+: {\ttfamily string}\textbackslash{} Default\+: `\textquotesingle{}file'{\ttfamily \textbackslash{} Values\+:}\textquotesingle{}file\textquotesingle{}\textquotesingle{}directory\textquotesingle{}\`{}
+
+The type of paths that can match.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1577}{}\doxyparagraph{\texorpdfstring{allow\+Symlinks}{allow\+Symlinks}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1577}
+Type\+: {\ttfamily boolean}\textbackslash{} Default\+: {\ttfamily true}
+
+Allow symbolic links to match if they point to the chosen path type.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1578}{}\doxysubsection{\texorpdfstring{find\+Up.\+exists(path)}{find\+Up.\+exists(path)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1578}
+Returns a {\ttfamily Promise\texorpdfstring{$<$}{<}boolean\texorpdfstring{$>$}{>}} of whether the path exists.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1579}{}\doxysubsection{\texorpdfstring{find\+Up.\+sync.\+exists(path)}{find\+Up.\+sync.\+exists(path)}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1579}
+Returns a {\ttfamily boolean} of whether the path exists.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1580}{}\doxysubsubsection{\texorpdfstring{path}{path}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1580}
+Type\+: {\ttfamily string}
+
+Path to a file or directory.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1581}{}\doxysubsection{\texorpdfstring{find\+Up.\+stop}{find\+Up.\+stop}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1581}
+A \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol}{\texttt{ {\ttfamily Symbol}}} that can be returned by a {\ttfamily matcher} function to stop the search and cause {\ttfamily find\+Up} to immediately return {\ttfamily undefined}. Useful as a performance optimization in case the current working directory is deeply nested in the filesystem.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ path\ =\ require('path');}
+\DoxyCodeLine{const\ findUp\ =\ require('find-\/up');}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ await\ findUp(directory\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ path.basename(directory)\ ===\ 'work'\ ?\ findUp.stop\ :\ 'logo.png';}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1582}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2find-up_2readme_autotoc_md1582}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/find-up-cli}{\texttt{ find-\/up-\/cli}} -\/ CLI for this module
+\item \href{https://github.com/sindresorhus/pkg-up}{\texttt{ pkg-\/up}} -\/ Find the closest package.\+json file
+\item \href{https://github.com/sindresorhus/pkg-dir}{\texttt{ pkg-\/dir}} -\/ Find the root directory of an npm package
+\item \href{https://github.com/sindresorhus/resolve-from}{\texttt{ resolve-\/from}} -\/ Resolve the path of a module like {\ttfamily require.\+resolve()} but from a given path
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-find-up?utm_source=npm-find-up&utm_medium=referral&utm_campaign=readme}{\texttt{ Get professional support for \textquotesingle{}find-\/up\textquotesingle{} with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  
