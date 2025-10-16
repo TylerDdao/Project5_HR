@@ -1,0 +1,57 @@
+\chapter{run-\/parallel \texorpdfstring{$<$}{<}a href="{}https\+://travis-\/ci.\+org/feross/run-\/parallel"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/travis/feross/run-\/parallel/master.\+svg"{} alt="{}travis"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://npmjs.\+org/package/run-\/parallel"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/npm/v/run-\/parallel.\+svg"{} alt="{}npm"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://npmjs.\+org/package/run-\/parallel"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/npm/dm/run-\/parallel.\+svg"{} alt="{}downloads"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://standardjs.\+com"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/badge/code\+\_\+style-\/standard-\/brightgreen.\+svg"{} alt="{}javascript style guide"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e}\index{run-\/parallel $<$a href="{}https://travis-\/ci.org/feross/run-\/parallel"{} $>$$<$img src="{}https://img.shields.io/travis/feross/run-\/parallel/master.svg"{} alt="{}travis"{}/$>$$<$/a$>$ $<$a href="{}https://npmjs.org/package/run-\/parallel"{} $>$$<$img src="{}https://img.shields.io/npm/v/run-\/parallel.svg"{} alt="{}npm"{}/$>$$<$/a$>$ $<$a href="{}https://npmjs.org/package/run-\/parallel"{} $>$$<$img src="{}https://img.shields.io/npm/dm/run-\/parallel.svg"{} alt="{}downloads"{}/$>$$<$/a$>$ $<$a href="{}https://standardjs.com"{} $>$$<$img src="{}https://img.shields.io/badge/code\_style-\/standard-\/brightgreen.svg"{} alt="{}javascript style guide"{}/$>$$<$/a$>$@{run-\/parallel $<$a href=""https://travis-\/ci.org/feross/run-\/parallel"" $>$$<$img src=""https://img.shields.io/travis/feross/run-\/parallel/master.svg"" alt=""travis""/$>$$<$/a$>$ $<$a href=""https://npmjs.org/package/run-\/parallel"" $>$$<$img src=""https://img.shields.io/npm/v/run-\/parallel.svg"" alt=""npm""/$>$$<$/a$>$ $<$a href=""https://npmjs.org/package/run-\/parallel"" $>$$<$img src=""https://img.shields.io/npm/dm/run-\/parallel.svg"" alt=""downloads""/$>$$<$/a$>$ $<$a href=""https://standardjs.com"" $>$$<$img src=""https://img.shields.io/badge/code\_style-\/standard-\/brightgreen.svg"" alt=""javascript style guide""/$>$$<$/a$>$}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2835}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2835}%
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2836}{}\doxysubsection{\texorpdfstring{Run an array of functions in parallel}{Run an array of functions in parallel}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2836}
+ \href{https://saucelabs.com/u/run-parallel}{\texttt{ }}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2837}{}\doxysubsection{\texorpdfstring{install}{install}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2837}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ run-\/parallel}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2838}{}\doxysubsection{\texorpdfstring{usage}{usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2838}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2839}{}\doxysubsubsection{\texorpdfstring{parallel(tasks, \mbox{[}callback\mbox{]})}{parallel(tasks, \mbox{[}callback\mbox{]})}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2839}
+Run the {\ttfamily tasks} array of functions in parallel, without waiting until the previous function has completed. If any of the functions pass an error to its callback, the main {\ttfamily callback} is immediately called with the value of the error. Once the {\ttfamily tasks} have completed, the results are passed to the final {\ttfamily callback} as an array.
+
+It is also possible to use an object instead of an array. Each property will be run as a function and the results will be passed to the final {\ttfamily callback} as an object instead of an array. This can be a more readable way of handling the results.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2840}{}\doxyparagraph{\texorpdfstring{arguments}{arguments}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2840}
+
+\begin{DoxyItemize}
+\item {\ttfamily tasks} -\/ An array or object containing functions to run. Each function is passed a {\ttfamily callback(err, result)} which it must call on completion with an error {\ttfamily err} (which can be {\ttfamily null}) and an optional {\ttfamily result} value.
+\item {\ttfamily callback(err, results)} -\/ An optional callback to run once all the functions have completed. This function gets a results array (or object) containing all the result arguments passed to the task callbacks.
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2841}{}\doxyparagraph{\texorpdfstring{example}{example}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2841}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ parallel\ =\ require('run-\/parallel')}
+\DoxyCodeLine{}
+\DoxyCodeLine{parallel([}
+\DoxyCodeLine{\ \ function\ (callback)\ \{}
+\DoxyCodeLine{\ \ \ \ setTimeout(function\ ()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ callback(null,\ 'one')}
+\DoxyCodeLine{\ \ \ \ \},\ 200)}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ function\ (callback)\ \{}
+\DoxyCodeLine{\ \ \ \ setTimeout(function\ ()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ callback(null,\ 'two')}
+\DoxyCodeLine{\ \ \ \ \},\ 100)}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{],}
+\DoxyCodeLine{//\ optional\ callback}
+\DoxyCodeLine{function\ (err,\ results)\ \{}
+\DoxyCodeLine{\ \ //\ the\ results\ array\ will\ equal\ ['one','two']\ even\ though}
+\DoxyCodeLine{\ \ //\ the\ second\ function\ had\ a\ shorter\ timeout.}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+This module is basically equavalent to \href{https://github.com/caolan/async\#paralleltasks-callback}{\texttt{ {\ttfamily async.\+parallel}}}, but it\textquotesingle{}s handy to just have the one function you need instead of the kitchen sink. Modularity! Especially handy if you\textquotesingle{}re serving to the browser and need to reduce your javascript bundle size.
+
+Works great in the browser with \href{http://browserify.org/}{\texttt{ browserify}}!\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2842}{}\doxysubsection{\texorpdfstring{see also}{see also}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2842}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/feross/run-auto}{\texttt{ run-\/auto}}
+\item \href{https://github.com/feross/run-parallel-limit}{\texttt{ run-\/parallel-\/limit}}
+\item \href{https://github.com/feross/run-series}{\texttt{ run-\/series}}
+\item \href{https://github.com/feross/run-waterfall}{\texttt{ run-\/waterfall}}
+\end{DoxyItemize}\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2843}{}\doxysubsection{\texorpdfstring{license}{license}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2run-parallel_2_r_e_a_d_m_e_autotoc_md2843}
+MIT. Copyright (c) \href{http://feross.org}{\texttt{ Feross Aboukhadijeh}}. 

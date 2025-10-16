@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['savetofile_0',['SaveToFile',['../class_communication_hub.html#a1d7d413745e6ee0d5b65ae9bd0a31717',1,'CommunicationHub::SaveToFile()'],['../class_employee_info_management.html#adda23a8b693ad801dc3263d10c03d479',1,'EmployeeInfoManagement::SaveToFile()'],['../class_file_repository.html#af6cbb987129cf98108d06779528630aa',1,'FileRepository::SaveToFile()'],['../class_i_repository.html#aa6e88f4b31b40a39d0c302ef61e098f2',1,'IRepository::SaveToFile()']]],
+  ['sendmessage_1',['SendMessage',['../class_communication_hub.html#a1a380fd9e962570abaa41e3f314240ce',1,'CommunicationHub']]],
+  ['serialize_2',['Serialize',['../class_employee.html#af080b62ede0f3840abd97e296478c176',1,'Employee::Serialize()'],['../class_message.html#ad0d6ab8c4a5aa2b041068ead191d2d82',1,'Message::Serialize()']]],
+  ['serializeheader_3',['SerializeHeader',['../class_conversation.html#a5360f172f9dfc298c29895a1b819d480',1,'Conversation']]],
+  ['serializemessages_4',['SerializeMessages',['../class_conversation.html#abafb9a7d7b76cf3a80d13d35d69e6de8',1,'Conversation']]],
+  ['setaccounttype_5',['setAccountType',['../class_account.html#aedf7b57eaf2dbea452b12267867d26fc',1,'Account']]],
+  ['setbody_6',['SetBody',['../class_message.html#aee4a190c1dad2a0ae06a9a828b2ebf79',1,'Message']]],
+  ['setbonus_7',['setBonus',['../class_payroll.html#a5bf4d4a9be46ed3049e0ad5b793909a3',1,'Payroll']]],
+  ['setdeduction_8',['setDeduction',['../class_payroll.html#a7ddd46bbc789e336a14b9feee3987aee',1,'Payroll']]],
+  ['sethiredate_9',['SetHireDate',['../class_employee.html#acd835546f3960faf51ab5e55a426511f',1,'Employee']]],
+  ['sethourworked_10',['setHourWorked',['../class_payroll.html#a7ad8168408a02475aa0d2180eb4e6a1c',1,'Payroll']]],
+  ['setid_11',['SetId',['../class_message.html#a20af041d35adc32fdd9e5a01a3eff551',1,'Message']]],
+  ['setname_12',['SetName',['../class_employee.html#a138cb50df18c84225857d092fe27ef7c',1,'Employee']]],
+  ['setpassword_13',['setPassword',['../class_account.html#a015a5c54ce03ad1776a599cc66ddf22f',1,'Account']]],
+  ['setphonenum_14',['SetPhoneNum',['../class_employee.html#a7a5684b05e9fd3b1785936cd2f1ab144',1,'Employee']]],
+  ['setposition_15',['SetPosition',['../class_employee.html#ab503e85d705a788424d8b7cfa26d68b6',1,'Employee']]],
+  ['setsenderid_16',['SetSenderId',['../class_message.html#a265b9bd682ce5f0809a16bac99407678',1,'Message']]],
+  ['setstaffid_17',['setStaffId',['../class_account.html#a06cb922448b64de86a27961f459ea9d9',1,'Account::setStaffId()'],['../class_payroll.html#a0ddc3a25e121f5f11be799ef71ecbbc9',1,'Payroll::setStaffId()']]],
+  ['settime_18',['SetTime',['../class_message.html#a887433a81773043b14a8c361d06144c4',1,'Message']]],
+  ['settotalearned_19',['setTotalEarned',['../class_payroll.html#a50bdc73db97402ee805f60e4f9dfa43b',1,'Payroll']]],
+  ['setwagerate_20',['setWageRate',['../class_payroll.html#ad770b39a6c2bc8635065fb906876921a',1,'Payroll']]],
+  ['startconversation_21',['StartConversation',['../class_communication_hub.html#adbf910950c190177c3374544c1e9513b',1,'CommunicationHub']]],
+  ['stringify_22',['stringify',['../class_flatted.html#a02948b06481bc3d2118b61f83ccc26e8',1,'Flatted\stringify()'],['../namespaceflatted.html#a0f956bd4567258719b6151c1cb2f3220',1,'flatted.stringify()']]]
+];

@@ -1,0 +1,31 @@
+\chapter{shebang-\/regex \texorpdfstring{$<$}{<}a href="{}https\+://travis-\/ci.\+org/sindresorhus/shebang-\/regex"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://travis-\/ci.\+org/sindresorhus/shebang-\/regex.\+svg?branch=master"{} alt="{}\+Build Status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme}\index{shebang-\/regex $<$a href="{}https://travis-\/ci.org/sindresorhus/shebang-\/regex"{} $>$$<$img src="{}https://travis-\/ci.org/sindresorhus/shebang-\/regex.svg?branch=master"{} alt="{}Build Status"{}/$>$$<$/a$>$@{shebang-\/regex $<$a href=""https://travis-\/ci.org/sindresorhus/shebang-\/regex"" $>$$<$img src=""https://travis-\/ci.org/sindresorhus/shebang-\/regex.svg?branch=master"" alt=""Build Status""/$>$$<$/a$>$}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme_autotoc_md2874}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme_autotoc_md2874}%
+ \begin{quote}
+Regular expression for matching a \href{https://en.wikipedia.org/wiki/Shebang_(Unix)}{\texttt{ shebang}} line \end{quote}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme_autotoc_md2875}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme_autotoc_md2875}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ shebang-\/regex}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme_autotoc_md2876}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme_autotoc_md2876}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ shebangRegex\ =\ require('shebang-\/regex');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ string\ =\ '\#!/usr/bin/env\ node\(\backslash\)nconsole.log("{}unicorns"{});';}
+\DoxyCodeLine{}
+\DoxyCodeLine{shebangRegex.test(string);}
+\DoxyCodeLine{//=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{shebangRegex.exec(string)[0];}
+\DoxyCodeLine{//=>\ '\#!/usr/bin/env\ node'}
+\DoxyCodeLine{}
+\DoxyCodeLine{shebangRegex.exec(string)[1];}
+\DoxyCodeLine{//=>\ '/usr/bin/env\ node'}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme_autotoc_md2877}{}\doxysection{\texorpdfstring{License}{License}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2shebang-regex_2readme_autotoc_md2877}
+MIT © \href{https://sindresorhus.com}{\texttt{ Sindre Sorhus}} 

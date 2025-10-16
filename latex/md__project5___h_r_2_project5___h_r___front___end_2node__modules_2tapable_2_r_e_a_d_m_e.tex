@@ -1,0 +1,362 @@
+\chapter{Tapable}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e}{}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e}\index{Tapable@{Tapable}}
+\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2940}%
+\Hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2940}%
+ The tapable package exposes many Hook classes, which can be used to create hooks for plugins.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{}
+\DoxyCodeLine{\ \ \ \ AsyncParallelBailHook,}
+\DoxyCodeLine{\ \ \ \ AsyncParallelHook,}
+\DoxyCodeLine{\ \ \ \ AsyncSeriesBailHook,}
+\DoxyCodeLine{\ \ \ \ AsyncSeriesHook,}
+\DoxyCodeLine{\ \ \ \ AsyncSeriesWaterfallHook,}
+\DoxyCodeLine{\ \ \ \ SyncBailHook,}
+\DoxyCodeLine{\ \ \ \ SyncHook,}
+\DoxyCodeLine{\ \ \ \ SyncLoopHook,}
+\DoxyCodeLine{\ \ \ \ SyncWaterfallHook}
+\DoxyCodeLine{\}\ =\ require("{}tapable"{});}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2941}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2941}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ -\/-\/save\ tapable}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2942}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2942}
+All Hook constructors take one optional argument, which is a list of argument names as strings.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ hook\ =\ new\ SyncHook(["{}arg1"{},\ "{}arg2"{},\ "{}arg3"{}]);}
+
+\end{DoxyCode}
+
+
+The best practice is to expose all hooks of a class in a {\ttfamily hooks} property\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{class\ Car\ \{}
+\DoxyCodeLine{\ \ \ \ constructor()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.hooks\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ accelerate:\ new\ SyncHook(["{}newSpeed"{}]),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ brake:\ new\ SyncHook(),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ calculateRoutes:\ new\ AsyncParallelHook(["{}source"{},\ "{}target"{},\ "{}routesList"{}])}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ /*\ ...\ */}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Other people can now use these hooks\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ myCar\ =\ new\ Car();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Use\ the\ tap\ method\ to\ add\ a\ consument}
+\DoxyCodeLine{myCar.hooks.brake.tap("{}WarningLampPlugin"{},\ ()\ =>\ warningLamp.on());}
+
+\end{DoxyCode}
+
+
+It\textquotesingle{}s required to pass a name to identify the plugin/reason.
+
+You may receive arguments\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myCar.hooks.accelerate.tap("{}LoggerPlugin"{},\ (newSpeed)\ =>}
+\DoxyCodeLine{\ \ \ \ console.log(`Accelerating\ to\ \$\{newSpeed\}`)}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+
+
+For sync hooks, {\ttfamily tap} is the only valid method to add a plugin. Async hooks also support async plugins\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myCar.hooks.calculateRoutes.tapPromise(}
+\DoxyCodeLine{\ \ \ \ "{}GoogleMapsPlugin"{},}
+\DoxyCodeLine{\ \ \ \ (source,\ target,\ routesList)\ =>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ return\ a\ promise}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ google.maps.findRoute(source,\ target).then((route)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ routesList.add(route);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{);}
+\DoxyCodeLine{myCar.hooks.calculateRoutes.tapAsync(}
+\DoxyCodeLine{\ \ \ \ "{}BingMapsPlugin"{},}
+\DoxyCodeLine{\ \ \ \ (source,\ target,\ routesList,\ callback)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ bing.findRoute(source,\ target,\ (err,\ route)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (err)\ return\ callback(err);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ routesList.add(route);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ call\ the\ callback}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ callback();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ You\ can\ still\ use\ sync\ plugins}
+\DoxyCodeLine{myCar.hooks.calculateRoutes.tap(}
+\DoxyCodeLine{\ \ \ \ "{}CachedRoutesPlugin"{},}
+\DoxyCodeLine{\ \ \ \ (source,\ target,\ routesList)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ cachedRoute\ =\ cache.get(source,\ target);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (cachedRoute)\ routesList.add(cachedRoute);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+
+
+The class declaring these hooks needs to call them\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{class\ Car\ \{}
+\DoxyCodeLine{\ \ \ \ /**}
+\DoxyCodeLine{\ \ \ \ \ *\ You\ won't\ get\ returned\ value\ from\ SyncHook\ or\ AsyncParallelHook,}
+\DoxyCodeLine{\ \ \ \ \ *\ to\ do\ that,\ use\ SyncWaterfallHook\ and\ AsyncSeriesWaterfallHook\ respectively}
+\DoxyCodeLine{\ \ \ \ \ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ setSpeed(newSpeed)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ following\ call\ returns\ undefined\ even\ when\ you\ returned\ values}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.hooks.accelerate.call(newSpeed);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ useNavigationSystemPromise(source,\ target)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ routesList\ =\ new\ List();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ this.hooks.calculateRoutes}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ .promise(source,\ target,\ routesList)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ .then((res)\ =>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ res\ is\ undefined\ for\ AsyncParallelHook}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ routesList.getRoutes()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ useNavigationSystemAsync(source,\ target,\ callback)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ routesList\ =\ new\ List();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.hooks.calculateRoutes.callAsync(source,\ target,\ routesList,\ (err)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (err)\ return\ callback(err);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ callback(null,\ routesList.getRoutes());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The Hook will compile a method with the most efficient way of running your plugins. It generates code depending on\+:
+
+
+\begin{DoxyItemize}
+\item The number of registered plugins (none, one, many)
+\item The kind of registered plugins (sync, async, promise)
+\item The used call method (sync, async, promise)
+\item The number of arguments
+\item Whether interception is used
+\end{DoxyItemize}
+
+This ensures fastest possible execution.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2943}{}\doxysection{\texorpdfstring{Hook types}{Hook types}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2943}
+Each hook can be tapped with one or several functions. How they are executed depends on the hook type\+:
+
+
+\begin{DoxyItemize}
+\item Basic hook (without “\+Waterfall”, “\+Bail” or “\+Loop” in its name). This hook simply calls every function it tapped in a row.
+\item {\bfseries{Waterfall}}. A waterfall hook also calls each tapped function in a row. Unlike the basic hook, it passes a return value from each function to the next function.
+\item {\bfseries{Bail}}. A bail hook allows exiting early. When any of the tapped function returns anything, the bail hook will stop executing the remaining ones.
+\item {\bfseries{Loop}}. When a plugin in a loop hook returns a non-\/undefined value the hook will restart from the first plugin. It will loop until all plugins return undefined.
+\end{DoxyItemize}
+
+Additionally, hooks can be synchronous or asynchronous. To reflect this, there’re “\+Sync”, “\+Async\+Series”, and “\+Async\+Parallel” hook classes\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Sync}}. A sync hook can only be tapped with synchronous functions (using {\ttfamily my\+Hook.\+tap()}).
+\item {\bfseries{Async\+Series}}. An async-\/series hook can be tapped with synchronous, callback-\/based and promise-\/based functions (using {\ttfamily my\+Hook.\+tap()}, {\ttfamily my\+Hook.\+tap\+Async()} and {\ttfamily my\+Hook.\+tap\+Promise()}). They call each async method in a row.
+\item {\bfseries{Async\+Parallel}}. An async-\/parallel hook can also be tapped with synchronous, callback-\/based and promise-\/based functions (using {\ttfamily my\+Hook.\+tap()}, {\ttfamily my\+Hook.\+tap\+Async()} and {\ttfamily my\+Hook.\+tap\+Promise()}). However, they run each async method in parallel.
+\end{DoxyItemize}
+
+The hook type is reflected in its class name. E.\+g., {\ttfamily Async\+Series\+Waterfall\+Hook} allows asynchronous functions and runs them in series, passing each function’s return value into the next function.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2944}{}\doxysection{\texorpdfstring{Interception}{Interception}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2944}
+All Hooks offer an additional interception API\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myCar.hooks.calculateRoutes.intercept(\{}
+\DoxyCodeLine{\ \ \ \ call:\ (source,\ target,\ routesList)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ console.log("{}Starting\ to\ calculate\ routes"{});}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ register:\ (tapInfo)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ tapInfo\ =\ \{\ type:\ "{}promise"{},\ name:\ "{}GoogleMapsPlugin"{},\ fn:\ ...\ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ console.log(`\$\{tapInfo.name\}\ is\ doing\ its\ job`);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ tapInfo;\ //\ may\ return\ a\ new\ tapInfo\ object}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+{\bfseries{call}}\+: {\ttfamily (...args) =\texorpdfstring{$>$}{>} void} Adding {\ttfamily call} to your interceptor will trigger when hooks are triggered. You have access to the hooks arguments.
+
+{\bfseries{tap}}\+: {\ttfamily (tap\+: Tap) =\texorpdfstring{$>$}{>} void} Adding {\ttfamily tap} to your interceptor will trigger when a plugin taps into a hook. Provided is the {\ttfamily Tap} object. {\ttfamily Tap} object can\textquotesingle{}t be changed.
+
+{\bfseries{loop}}\+: {\ttfamily (...args) =\texorpdfstring{$>$}{>} void} Adding {\ttfamily loop} to your interceptor will trigger for each loop of a looping hook.
+
+{\bfseries{register}}\+: {\ttfamily (tap\+: Tap) =\texorpdfstring{$>$}{>} Tap \texorpdfstring{$\vert$}{|} undefined} Adding {\ttfamily register} to your interceptor will trigger for each added {\ttfamily Tap} and allows to modify it.\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2945}{}\doxysection{\texorpdfstring{Context}{Context}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2945}
+Plugins and interceptors can opt-\/in to access an optional {\ttfamily context} object, which can be used to pass arbitrary values to subsequent plugins and interceptors.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myCar.hooks.accelerate.intercept(\{}
+\DoxyCodeLine{\ \ \ \ context:\ true,}
+\DoxyCodeLine{\ \ \ \ tap:\ (context,\ tapInfo)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ tapInfo\ =\ \{\ type:\ "{}sync"{},\ name:\ "{}NoisePlugin"{},\ fn:\ ...\ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ console.log(`\$\{tapInfo.name\}\ is\ doing\ it's\ job`);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ \`{}context`\ starts\ as\ an\ empty\ object\ if\ at\ least\ one\ plugin\ uses\ \`{}context:\ true`.}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ If\ no\ plugins\ use\ \`{}context:\ true`,\ then\ \`{}context`\ is\ undefined.}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (context)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ Arbitrary\ properties\ can\ be\ added\ to\ \`{}context`,\ which\ plugins\ can\ then\ access.}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ context.hasMuffler\ =\ true;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{myCar.hooks.accelerate.tap(}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}NoisePlugin"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ context:\ true}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ (context,\ newSpeed)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (context\ \&\&\ context.hasMuffler)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ console.log("{}Silence..."{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ console.log("{}Vroom!"{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2946}{}\doxysection{\texorpdfstring{Hook\+Map}{Hook\+Map}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2946}
+A Hook\+Map is a helper class for a Map with Hooks
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ keyedHook\ =\ new\ HookMap((key)\ =>\ new\ SyncHook(["{}arg"{}]));}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{keyedHook.for("{}some-\/key"{}).tap("{}MyPlugin"{},\ (arg)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ /*\ ...\ */}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{keyedHook.for("{}some-\/key"{}).tapAsync("{}MyPlugin"{},\ (arg,\ callback)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ /*\ ...\ */}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{keyedHook.for("{}some-\/key"{}).tapPromise("{}MyPlugin"{},\ (arg)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ /*\ ...\ */}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ hook\ =\ keyedHook.get("{}some-\/key"{});}
+\DoxyCodeLine{if\ (hook\ !==\ undefined)\ \{}
+\DoxyCodeLine{\ \ \ \ hook.callAsync("{}arg"{},\ (err)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ /*\ ...\ */}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2947}{}\doxysection{\texorpdfstring{Hook/\+Hook\+Map interface}{Hook/\+Hook\+Map interface}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2947}
+Public\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ Hook\ \{}
+\DoxyCodeLine{\ \ \ \ tap:\ (name:\ string\ |\ Tap,\ fn:\ (context?,\ ...args)\ =>\ Result)\ =>\ void;}
+\DoxyCodeLine{\ \ \ \ tapAsync:\ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ string\ |\ Tap,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fn:\ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ context?,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ...args,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ callback:\ (err:\ Error\ |\ null,\ result:\ Result)\ =>\ void}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )\ =>\ void}
+\DoxyCodeLine{\ \ \ \ )\ =>\ void;}
+\DoxyCodeLine{\ \ \ \ tapPromise:\ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ string\ |\ Tap,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fn:\ (context?,\ ...args)\ =>\ Promise<Result>}
+\DoxyCodeLine{\ \ \ \ )\ =>\ void;}
+\DoxyCodeLine{\ \ \ \ intercept:\ (interceptor:\ HookInterceptor)\ =>\ void;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{interface\ HookInterceptor\ \{}
+\DoxyCodeLine{\ \ \ \ call:\ (context?,\ ...args)\ =>\ void;}
+\DoxyCodeLine{\ \ \ \ loop:\ (context?,\ ...args)\ =>\ void;}
+\DoxyCodeLine{\ \ \ \ tap:\ (context?,\ tap:\ Tap)\ =>\ void;}
+\DoxyCodeLine{\ \ \ \ register:\ (tap:\ Tap)\ =>\ Tap;}
+\DoxyCodeLine{\ \ \ \ context:\ boolean;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{interface\ HookMap\ \{}
+\DoxyCodeLine{\ \ \ \ for:\ (key:\ any)\ =>\ Hook;}
+\DoxyCodeLine{\ \ \ \ intercept:\ (interceptor:\ HookMapInterceptor)\ =>\ void;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{interface\ HookMapInterceptor\ \{}
+\DoxyCodeLine{\ \ \ \ factory:\ (key:\ any,\ hook:\ Hook)\ =>\ Hook;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{interface\ Tap\ \{}
+\DoxyCodeLine{\ \ \ \ name:\ string;}
+\DoxyCodeLine{\ \ \ \ type:\ string;}
+\DoxyCodeLine{\ \ \ \ fn:\ Function;}
+\DoxyCodeLine{\ \ \ \ stage:\ number;}
+\DoxyCodeLine{\ \ \ \ context:\ boolean;}
+\DoxyCodeLine{\ \ \ \ before?:\ string\ |\ Array;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Protected (only for the class containing the hook)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ Hook\ \{}
+\DoxyCodeLine{\ \ \ \ isUsed:\ ()\ =>\ boolean;}
+\DoxyCodeLine{\ \ \ \ call:\ (...args)\ =>\ Result;}
+\DoxyCodeLine{\ \ \ \ promise:\ (...args)\ =>\ Promise<Result>;}
+\DoxyCodeLine{\ \ \ \ callAsync:\ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ...args,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ callback:\ (err:\ Error\ |\ null,\ result:\ Result)\ =>\ void}
+\DoxyCodeLine{\ \ \ \ )\ =>\ void;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{interface\ HookMap\ \{}
+\DoxyCodeLine{\ \ \ \ get:\ (key:\ any)\ =>\ Hook\ |\ undefined;}
+\DoxyCodeLine{\ \ \ \ for:\ (key:\ any)\ =>\ Hook;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2948}{}\doxysection{\texorpdfstring{Multi\+Hook}{Multi\+Hook}}\label{md__project5___h_r_2_project5___h_r___front___end_2node__modules_2tapable_2_r_e_a_d_m_e_autotoc_md2948}
+A helper Hook-\/like class to redirect taps to multiple other hooks\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ MultiHook\ \}\ =\ require("{}tapable"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{this.hooks.allHooks\ =\ new\ MultiHook([this.hooks.hookA,\ this.hooks.hookB]);}
+
+\end{DoxyCode}
+ 
