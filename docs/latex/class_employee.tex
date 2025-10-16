@@ -2,11 +2,42 @@
 \hypertarget{class_employee}{}\label{class_employee}\index{Employee@{Employee}}
 
 
-{\ttfamily \#include $<$employeeinfo.\+h$>$}
+This is the \doxylink{class_employee}{Employee} Class.  
+
+
+
+
+{\ttfamily \#include $<$Employee.\+h$>$}
 
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{class_employee_a003c7bd08c40924e381eb0750cbb906f}{Employee}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_employee_a55f088512a30df390d7a37e8e4d8b3a8}{Employee}} (int id, const string \&n, const string \&p, const string \&num, const string \&d)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_employee_a2912c360976c676353199b2d32908225}{Get\+Staff\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Get employee ID. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_employee_a60586813a391dbf933101e41d9a2c5f5}{Get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Get employee name. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_employee_ad354ff6e4d28a592adb5eb5ddb0a158c}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get employee position. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_employee_ab68a7e1d9e02dc9fb93dce1032b630da}{Get\+Phone\+Num}} () const
+\begin{DoxyCompactList}\small\item\em Get employee phone number. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_employee_a3bbb28cba219bb6a5f1897a0a054438f}{Get\+Hire\+Date}} () const
+\begin{DoxyCompactList}\small\item\em Get employee hire date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_employee_a138cb50df18c84225857d092fe27ef7c}{Set\+Name}} (const string \&n)
+\begin{DoxyCompactList}\small\item\em Set employee name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_employee_ab503e85d705a788424d8b7cfa26d68b6}{Set\+Position}} (const string \&p)
+\begin{DoxyCompactList}\small\item\em Set employee position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_employee_a7a5684b05e9fd3b1785936cd2f1ab144}{Set\+Phone\+Num}} (const string \&num)
+\begin{DoxyCompactList}\small\item\em Set employee phone number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_employee_acd835546f3960faf51ab5e55a426511f}{Set\+Hire\+Date}} (const string \&d)
+\begin{DoxyCompactList}\small\item\em Set employee hire date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_employee_a965631c5c5ffc14e61c3d0b0354cae2d}{Display}} () const
+\begin{DoxyCompactList}\small\item\em Display employee details. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_employee_af080b62ede0f3840abd97e296478c176}{Serialize}} () const
+\begin{DoxyCompactList}\small\item\em Convert employee data into CSV string format. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_employee_a003c7bd08c40924e381eb0750cbb906f}{Employee}} ()
 \item 
 \mbox{\hyperlink{class_employee_a55f088512a30df390d7a37e8e4d8b3a8}{Employee}} (int id, const string \&n, const string \&p, const string \&num, const string \&d)
@@ -31,87 +62,300 @@ string \mbox{\hyperlink{class_employee_aac514a30308fb17147ac1b465534c8f0}{get\+H
 \item 
 void \mbox{\hyperlink{class_employee_a22070e3e30adad670303e7ed7d348fbc}{display}} () const
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_employee}{Employee}} \mbox{\hyperlink{class_employee_aa04db8189db2c881b2b6e764fe4dd4fb}{Deserialize}} (const string \&data)
+\begin{DoxyCompactList}\small\item\em Create an \doxylink{class_employee}{Employee} object from a CSV string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+This is the \doxylink{class_employee}{Employee} Class. 
+
+\label{doc-constructors}
+\Hypertarget{class_employee_doc-constructors}
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{class_employee_a003c7bd08c40924e381eb0750cbb906f}\label{class_employee_a003c7bd08c40924e381eb0750cbb906f} 
+\Hypertarget{class_employee_a003c7bd08c40924e381eb0750cbb906f}\index{Employee@{Employee}!Employee@{Employee}}
 \index{Employee@{Employee}!Employee@{Employee}}
-\index{Employee@{Employee}!Employee@{Employee}}
-\doxysubsubsection{\texorpdfstring{Employee()}{Employee()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Employee\+::\+Employee (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-\Hypertarget{class_employee_a55f088512a30df390d7a37e8e4d8b3a8}\label{class_employee_a55f088512a30df390d7a37e8e4d8b3a8} 
-\index{Employee@{Employee}!Employee@{Employee}}
-\index{Employee@{Employee}!Employee@{Employee}}
-\doxysubsubsection{\texorpdfstring{Employee()}{Employee()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Employee\+::\+Employee (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{const string \&}]{n,  }\item[{const string \&}]{p,  }\item[{const string \&}]{num,  }\item[{const string \&}]{d }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{Employee()}{Employee()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{class_employee_a003c7bd08c40924e381eb0750cbb906f} 
+Employee\+::\+Employee (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
+Default constructor. 
+
+\Hypertarget{class_employee_a55f088512a30df390d7a37e8e4d8b3a8}\index{Employee@{Employee}!Employee@{Employee}}
+\index{Employee@{Employee}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{Employee()}{Employee()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{class_employee_a55f088512a30df390d7a37e8e4d8b3a8} 
+Employee\+::\+Employee (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const string \&}]{n}{, }\item[{const string \&}]{p}{, }\item[{const string \&}]{num}{, }\item[{const string \&}]{d}{}\end{DoxyParamCaption})}
+
+
+
+Parameterized constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \doxylink{class_employee}{Employee} ID \\
+\hline
+{\em n} & \doxylink{class_employee}{Employee} name \\
+\hline
+{\em p} & \doxylink{class_employee}{Employee} position \\
+\hline
+{\em num} & \doxylink{class_employee}{Employee} phone number \\
+\hline
+{\em d} & \doxylink{class_employee}{Employee} hire date \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_employee_a003c7bd08c40924e381eb0750cbb906f}\index{Employee@{Employee}!Employee@{Employee}}
+\index{Employee@{Employee}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{Employee()}{Employee()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{class_employee_a003c7bd08c40924e381eb0750cbb906f} 
+Employee\+::\+Employee (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_employee_a55f088512a30df390d7a37e8e4d8b3a8}\index{Employee@{Employee}!Employee@{Employee}}
+\index{Employee@{Employee}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{Employee()}{Employee()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{class_employee_a55f088512a30df390d7a37e8e4d8b3a8} 
+Employee\+::\+Employee (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const string \&}]{n}{, }\item[{const string \&}]{p}{, }\item[{const string \&}]{num}{, }\item[{const string \&}]{d}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_employee_doc-func-members}
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_employee_a22070e3e30adad670303e7ed7d348fbc}\label{class_employee_a22070e3e30adad670303e7ed7d348fbc} 
-\index{Employee@{Employee}!display@{display}}
+\Hypertarget{class_employee_aa04db8189db2c881b2b6e764fe4dd4fb}\index{Employee@{Employee}!Deserialize@{Deserialize}}
+\index{Deserialize@{Deserialize}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{Deserialize()}{Deserialize()}}
+{\footnotesize\ttfamily \label{class_employee_aa04db8189db2c881b2b6e764fe4dd4fb} 
+\mbox{\hyperlink{class_employee}{Employee}} Employee\+::\+Deserialize (\begin{DoxyParamCaption}\item[{const string \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create an \doxylink{class_employee}{Employee} object from a CSV string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & CSV data string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_employee}{Employee} object 
+\end{DoxyReturn}
+\Hypertarget{class_employee_a965631c5c5ffc14e61c3d0b0354cae2d}\index{Employee@{Employee}!Display@{Display}}
+\index{Display@{Display}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{Display()}{Display()}}
+{\footnotesize\ttfamily \label{class_employee_a965631c5c5ffc14e61c3d0b0354cae2d} 
+void Employee\+::\+Display (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Display employee details. 
+
+\Hypertarget{class_employee_a22070e3e30adad670303e7ed7d348fbc}\index{Employee@{Employee}!display@{display}}
 \index{display@{display}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{display()}{display()}}
-{\footnotesize\ttfamily void Employee\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_employee_a22070e3e30adad670303e7ed7d348fbc} 
+void Employee\+::display (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
 
-\Hypertarget{class_employee_aac514a30308fb17147ac1b465534c8f0}\label{class_employee_aac514a30308fb17147ac1b465534c8f0} 
-\index{Employee@{Employee}!getHireDate@{getHireDate}}
+\Hypertarget{class_employee_a3bbb28cba219bb6a5f1897a0a054438f}\index{Employee@{Employee}!GetHireDate@{GetHireDate}}
+\index{GetHireDate@{GetHireDate}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{GetHireDate()}{GetHireDate()}}
+{\footnotesize\ttfamily \label{class_employee_a3bbb28cba219bb6a5f1897a0a054438f} 
+string Employee\+::\+Get\+Hire\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get employee hire date. 
+
+\begin{DoxyReturn}{Returns}
+hire\+Date\+:string 
+\end{DoxyReturn}
+\Hypertarget{class_employee_aac514a30308fb17147ac1b465534c8f0}\index{Employee@{Employee}!getHireDate@{getHireDate}}
 \index{getHireDate@{getHireDate}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{getHireDate()}{getHireDate()}}
-{\footnotesize\ttfamily string Employee\+::get\+Hire\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_employee_aac514a30308fb17147ac1b465534c8f0} 
+string Employee\+::get\+Hire\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
 
-\Hypertarget{class_employee_a8e7c3870f6b4b08a5c7ccccd32ca8f37}\label{class_employee_a8e7c3870f6b4b08a5c7ccccd32ca8f37} 
-\index{Employee@{Employee}!getName@{getName}}
+\Hypertarget{class_employee_a60586813a391dbf933101e41d9a2c5f5}\index{Employee@{Employee}!GetName@{GetName}}
+\index{GetName@{GetName}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily \label{class_employee_a60586813a391dbf933101e41d9a2c5f5} 
+string Employee\+::\+Get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get employee name. 
+
+\begin{DoxyReturn}{Returns}
+name\+:string 
+\end{DoxyReturn}
+\Hypertarget{class_employee_a8e7c3870f6b4b08a5c7ccccd32ca8f37}\index{Employee@{Employee}!getName@{getName}}
 \index{getName@{getName}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{getName()}{getName()}}
-{\footnotesize\ttfamily string Employee\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_employee_a8e7c3870f6b4b08a5c7ccccd32ca8f37} 
+string Employee\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
 
-\Hypertarget{class_employee_a6a2f0ad419fa694b4c23b2f644a8cc66}\label{class_employee_a6a2f0ad419fa694b4c23b2f644a8cc66} 
-\index{Employee@{Employee}!getPhoneNum@{getPhoneNum}}
+\Hypertarget{class_employee_ab68a7e1d9e02dc9fb93dce1032b630da}\index{Employee@{Employee}!GetPhoneNum@{GetPhoneNum}}
+\index{GetPhoneNum@{GetPhoneNum}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{GetPhoneNum()}{GetPhoneNum()}}
+{\footnotesize\ttfamily \label{class_employee_ab68a7e1d9e02dc9fb93dce1032b630da} 
+string Employee\+::\+Get\+Phone\+Num (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get employee phone number. 
+
+\begin{DoxyReturn}{Returns}
+phone\+Num\+:string 
+\end{DoxyReturn}
+\Hypertarget{class_employee_a6a2f0ad419fa694b4c23b2f644a8cc66}\index{Employee@{Employee}!getPhoneNum@{getPhoneNum}}
 \index{getPhoneNum@{getPhoneNum}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{getPhoneNum()}{getPhoneNum()}}
-{\footnotesize\ttfamily string Employee\+::get\+Phone\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_employee_a6a2f0ad419fa694b4c23b2f644a8cc66} 
+string Employee\+::get\+Phone\+Num (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
 
-\Hypertarget{class_employee_ae96de976f5e0a93fd4eee8735f798deb}\label{class_employee_ae96de976f5e0a93fd4eee8735f798deb} 
-\index{Employee@{Employee}!getPosition@{getPosition}}
+\Hypertarget{class_employee_ad354ff6e4d28a592adb5eb5ddb0a158c}\index{Employee@{Employee}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily \label{class_employee_ad354ff6e4d28a592adb5eb5ddb0a158c} 
+string Employee\+::\+Get\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get employee position. 
+
+\begin{DoxyReturn}{Returns}
+position\+:string 
+\end{DoxyReturn}
+\Hypertarget{class_employee_ae96de976f5e0a93fd4eee8735f798deb}\index{Employee@{Employee}!getPosition@{getPosition}}
 \index{getPosition@{getPosition}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
-{\footnotesize\ttfamily string Employee\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_employee_ae96de976f5e0a93fd4eee8735f798deb} 
+string Employee\+::get\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
 
-\Hypertarget{class_employee_afc5a581f785aeff60763be47337c1b6e}\label{class_employee_afc5a581f785aeff60763be47337c1b6e} 
-\index{Employee@{Employee}!getStaffId@{getStaffId}}
+\Hypertarget{class_employee_a2912c360976c676353199b2d32908225}\index{Employee@{Employee}!GetStaffId@{GetStaffId}}
+\index{GetStaffId@{GetStaffId}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{GetStaffId()}{GetStaffId()}}
+{\footnotesize\ttfamily \label{class_employee_a2912c360976c676353199b2d32908225} 
+int Employee\+::\+Get\+Staff\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get employee ID. 
+
+\begin{DoxyReturn}{Returns}
+staff\+Id\+:int 
+\end{DoxyReturn}
+\Hypertarget{class_employee_afc5a581f785aeff60763be47337c1b6e}\index{Employee@{Employee}!getStaffId@{getStaffId}}
 \index{getStaffId@{getStaffId}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{getStaffId()}{getStaffId()}}
-{\footnotesize\ttfamily int Employee\+::get\+Staff\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_employee_afc5a581f785aeff60763be47337c1b6e} 
+int Employee\+::get\+Staff\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
 
-\Hypertarget{class_employee_afa6a515263e5676811e5b25933310954}\label{class_employee_afa6a515263e5676811e5b25933310954} 
-\index{Employee@{Employee}!setHireDate@{setHireDate}}
+\Hypertarget{class_employee_af080b62ede0f3840abd97e296478c176}\index{Employee@{Employee}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{Serialize()}{Serialize()}}
+{\footnotesize\ttfamily \label{class_employee_af080b62ede0f3840abd97e296478c176} 
+string Employee\+::\+Serialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Convert employee data into CSV string format. 
+
+\begin{DoxyReturn}{Returns}
+Serialized employee data 
+\end{DoxyReturn}
+\Hypertarget{class_employee_acd835546f3960faf51ab5e55a426511f}\index{Employee@{Employee}!SetHireDate@{SetHireDate}}
+\index{SetHireDate@{SetHireDate}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{SetHireDate()}{SetHireDate()}}
+{\footnotesize\ttfamily \label{class_employee_acd835546f3960faf51ab5e55a426511f} 
+void Employee\+::\+Set\+Hire\+Date (\begin{DoxyParamCaption}\item[{const string \&}]{d}{}\end{DoxyParamCaption})}
+
+
+
+Set employee hire date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & \doxylink{class_employee}{Employee} hire date \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_employee_afa6a515263e5676811e5b25933310954}\index{Employee@{Employee}!setHireDate@{setHireDate}}
 \index{setHireDate@{setHireDate}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{setHireDate()}{setHireDate()}}
-{\footnotesize\ttfamily void Employee\+::set\+Hire\+Date (\begin{DoxyParamCaption}\item[{const string \&}]{d }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_employee_afa6a515263e5676811e5b25933310954} 
+void Employee\+::set\+Hire\+Date (\begin{DoxyParamCaption}\item[{const string \&}]{d}{}\end{DoxyParamCaption})}
 
-\Hypertarget{class_employee_a7a4460d3a6ec37ea06281e45ee396def}\label{class_employee_a7a4460d3a6ec37ea06281e45ee396def} 
-\index{Employee@{Employee}!setName@{setName}}
+\Hypertarget{class_employee_a138cb50df18c84225857d092fe27ef7c}\index{Employee@{Employee}!SetName@{SetName}}
+\index{SetName@{SetName}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{SetName()}{SetName()}}
+{\footnotesize\ttfamily \label{class_employee_a138cb50df18c84225857d092fe27ef7c} 
+void Employee\+::\+Set\+Name (\begin{DoxyParamCaption}\item[{const string \&}]{n}{}\end{DoxyParamCaption})}
+
+
+
+Set employee name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & \doxylink{class_employee}{Employee} name \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_employee_a7a4460d3a6ec37ea06281e45ee396def}\index{Employee@{Employee}!setName@{setName}}
 \index{setName@{setName}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{setName()}{setName()}}
-{\footnotesize\ttfamily void Employee\+::set\+Name (\begin{DoxyParamCaption}\item[{const string \&}]{n }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_employee_a7a4460d3a6ec37ea06281e45ee396def} 
+void Employee\+::set\+Name (\begin{DoxyParamCaption}\item[{const string \&}]{n}{}\end{DoxyParamCaption})}
 
-\Hypertarget{class_employee_a5dad61a5654c5a71612a9570b0c4a1a5}\label{class_employee_a5dad61a5654c5a71612a9570b0c4a1a5} 
-\index{Employee@{Employee}!setPhoneNum@{setPhoneNum}}
+\Hypertarget{class_employee_a7a5684b05e9fd3b1785936cd2f1ab144}\index{Employee@{Employee}!SetPhoneNum@{SetPhoneNum}}
+\index{SetPhoneNum@{SetPhoneNum}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{SetPhoneNum()}{SetPhoneNum()}}
+{\footnotesize\ttfamily \label{class_employee_a7a5684b05e9fd3b1785936cd2f1ab144} 
+void Employee\+::\+Set\+Phone\+Num (\begin{DoxyParamCaption}\item[{const string \&}]{num}{}\end{DoxyParamCaption})}
+
+
+
+Set employee phone number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & \doxylink{class_employee}{Employee} phone number \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_employee_a5dad61a5654c5a71612a9570b0c4a1a5}\index{Employee@{Employee}!setPhoneNum@{setPhoneNum}}
 \index{setPhoneNum@{setPhoneNum}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{setPhoneNum()}{setPhoneNum()}}
-{\footnotesize\ttfamily void Employee\+::set\+Phone\+Num (\begin{DoxyParamCaption}\item[{const string \&}]{num }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_employee_a5dad61a5654c5a71612a9570b0c4a1a5} 
+void Employee\+::set\+Phone\+Num (\begin{DoxyParamCaption}\item[{const string \&}]{num}{}\end{DoxyParamCaption})}
 
-\Hypertarget{class_employee_abf2a375e8421c8bc96a20283222cac46}\label{class_employee_abf2a375e8421c8bc96a20283222cac46} 
-\index{Employee@{Employee}!setPosition@{setPosition}}
+\Hypertarget{class_employee_ab503e85d705a788424d8b7cfa26d68b6}\index{Employee@{Employee}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!Employee@{Employee}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}}
+{\footnotesize\ttfamily \label{class_employee_ab503e85d705a788424d8b7cfa26d68b6} 
+void Employee\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{const string \&}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Set employee position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \doxylink{class_employee}{Employee} position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_employee_abf2a375e8421c8bc96a20283222cac46}\index{Employee@{Employee}!setPosition@{setPosition}}
 \index{setPosition@{setPosition}!Employee@{Employee}}
 \doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
-{\footnotesize\ttfamily void Employee\+::set\+Position (\begin{DoxyParamCaption}\item[{const string \&}]{p }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_employee_abf2a375e8421c8bc96a20283222cac46} 
+void Employee\+::set\+Position (\begin{DoxyParamCaption}\item[{const string \&}]{p}{}\end{DoxyParamCaption})}
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
+Project5\+\_\+\+HR/\+Project5\+\_\+\+HR/\mbox{\hyperlink{_employee_8h}{Employee.\+h}}\item 
 Project5\+\_\+\+HR/\+Project5\+\_\+\+HR/\mbox{\hyperlink{employeeinfo_8h}{employeeinfo.\+h}}\item 
+Project5\+\_\+\+HR/\+Project5\+\_\+\+HR/\mbox{\hyperlink{_employee_8cpp}{Employee.\+cpp}}\item 
 Project5\+\_\+\+HR/\+Project5\+\_\+\+HR/\mbox{\hyperlink{employeeinfo_8cpp}{employeeinfo.\+cpp}}\end{DoxyCompactItemize}

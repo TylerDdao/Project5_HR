@@ -4,6 +4,7 @@
 #include "../Project5_HR/EmployeeInfoManagement.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace std;
 
 namespace Project5HRTest
 {
@@ -17,17 +18,19 @@ namespace Project5HRTest
 			Assert::AreEqual(6, result);
 		}*/
 
+		/// @brief Test employee constructor initializes correctly
 		TEST_METHOD(TestCase1_InitializeConstructor)
 		{
 			Employee e(1, "Ying", "Manager", "123-456-7891", "2022-08-08");
 
 			Assert::AreEqual(1, e.GetStaffId());
-			Assert::AreEqual(std::string("Ying"), e.GetName());
-			Assert::AreEqual(std::string("Manager"), e.GetPosition());
-			Assert::AreEqual(std::string("123-456-7891"), e.GetPhoneNum());
-			Assert::AreEqual(std::string("2022-08-08"), e.GetHireDate());
+			Assert::AreEqual(string("Ying"), e.GetName());
+			Assert::AreEqual(string("Manager"), e.GetPosition());
+			Assert::AreEqual(string("123-456-7891"), e.GetPhoneNum());
+			Assert::AreEqual(string("2022-08-08"), e.GetHireDate());
 		}
 
+		/// @brief Test employee setters and getters
 		TEST_METHOD(TTestCase2_TestingSetters)
 		{
 			Employee e(2, "Jessie", "KitchenStaff", "198-765-4321", "2023-09-09");
@@ -37,12 +40,13 @@ namespace Project5HRTest
 			e.SetPhoneNum("234-567-8911");
 			e.SetHireDate("2022-05-05");
 
-			Assert::AreEqual(std::string("Dain"), e.GetName());
-			Assert::AreEqual(std::string("Supervisor"), e.GetPosition());
-			Assert::AreEqual(std::string("234-567-8911"), e.GetPhoneNum());
-			Assert::AreEqual(std::string("2022-05-05"), e.GetHireDate());
+			Assert::AreEqual(string("Dain"), e.GetName());
+			Assert::AreEqual(string("Supervisor"), e.GetPosition());
+			Assert::AreEqual(string("234-567-8911"), e.GetPhoneNum());
+			Assert::AreEqual(string("2022-05-05"), e.GetHireDate());
 		}
 
+		/// @brief Test adding a new employee successfully
 		TEST_METHOD(TestCase3_AddingNewStaffSuccessfully)
 		{
 			EmployeeInfoManagement m;
@@ -54,6 +58,7 @@ namespace Project5HRTest
 			Assert::AreEqual(std::string("Carla"), found->GetName());
 		}
 
+		/// @brief Test duplicate employee ID is rejected
 		TEST_METHOD(TestCase4_StaffIDCannotBeDuplicate)
 		{
 			EmployeeInfoManagement m;
@@ -67,6 +72,7 @@ namespace Project5HRTest
 			Assert::AreEqual(std::string("Carla"), found->GetName());
 		}
 
+		/// @brief Test updating employee information
 		TEST_METHOD(TestCase5_UpdatingStaffInfo)
 		{
 			EmployeeInfoManagement m;
@@ -86,6 +92,7 @@ namespace Project5HRTest
 			Assert::AreEqual(std::string("2022-04-08"), e->GetHireDate());
 		}
 
+		/// @brief Test removing an employee record
 		TEST_METHOD(TestCase6_RemovingStaff)
 		{
 			EmployeeInfoManagement m;
@@ -96,6 +103,7 @@ namespace Project5HRTest
 			Assert::IsNull(m.GetStaff(2));
 		}
 
+		/// @brief Test handling a non-existent employee ID
 		TEST_METHOD(TestCase7_StaffIDDoesNotExist)
 		{
 			EmployeeInfoManagement m;
@@ -103,6 +111,7 @@ namespace Project5HRTest
 			Assert::IsNull(e);
 		}
 
+		/// @brief Test loading file when file is missing
 		TEST_METHOD(TestCase8_Load_FileMissingNoIssue)
 		{
 			remove("employees.txt");
@@ -114,6 +123,7 @@ namespace Project5HRTest
 			Assert::IsNull(e);
 		}
 
+		/// @brief Test saving and loading employees (data persistence)
 		TEST_METHOD(TestCase9_SaveAndLoadDataPersistence)
 		{
 			remove("employees.txt");

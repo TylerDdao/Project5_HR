@@ -1,0 +1,56 @@
+\doxysection{Employee\+Info\+Management.\+h}
+\hypertarget{_employee_info_management_8h_source}{}\label{_employee_info_management_8h_source}\index{Project5\_HR/Project5\_HR/EmployeeInfoManagement.h@{Project5\_HR/Project5\_HR/EmployeeInfoManagement.h}}
+\mbox{\hyperlink{_employee_info_management_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ EMPLOYEE\_INFO\_MANAGEMENT\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ EMPLOYEE\_INFO\_MANAGEMENT\_H}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_employee_8h}{Employee.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_file_repository_8h}{FileRepository.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_employee_info_management}{EmployeeInfoManagement}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ vector<Employee>\ employees;\ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_file_repository}{FileRepository}}*\ repository;\ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{string}\ dataFilePath;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_employee}{Employee}}*\ FindById(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_employee_info_management_a64a5092f4cc5fd5bedbfb931a1896e77}{EmployeeInfoManagement}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_employee_info_management_a64a5092f4cc5fd5bedbfb931a1896e77}{EmployeeInfoManagement}}(\mbox{\hyperlink{class_file_repository}{FileRepository}}*\ repo);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_employee_info_management_a5906ed2c1c537c1c4d8467758d27a76f}{\string~EmployeeInfoManagement}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Core\ CRUD\ operations}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_employee_info_management_a76483084214347ffc58f68102c341b05}{AddStaff}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_employee}{Employee}}\&\ e);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_employee_info_management_a7c4a7e05b24002447b3bca505ddbafac}{UpdateStaff}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_employee}{Employee}}*\ \mbox{\hyperlink{class_employee_info_management_a233b7a9c50b5f55e9cfe04edc7fb9ce6}{GetStaff}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_employee_info_management_a53241a2be6dc07e9969fdfa9bce61e0f}{RemoveStaff}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_employee_info_management_ae96edbbca203194a96907a879a0d0442}{DisplayAllEmployees}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_employee_info_management_a3ff72c2dea437ead15f3adaf605d35c5}{EmployeeExists}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Persistence}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_employee_info_management_adda23a8b693ad801dc3263d10c03d479}{SaveToFile}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_employee_info_management_ad64008f6c966f7968e2c7eb34a39e8e7}{LoadFromFile}}();}
+\DoxyCodeLine{00068\ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_employee_info_management_a539260f04b98de4054621112cddcd603}{Management}}();}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EMPLOYEE\_INFO\_MANAGEMENT\_H}}
+\DoxyCodeLine{00074\ }
+
+\end{DoxyCode}

@@ -68,7 +68,7 @@ Employee Employee::Deserialize(const string& data) {
     getline(ss, position, ',');
     getline(ss, phone, ',');
     getline(ss, date, ',');
-    
+
     if (!idStr.empty()) {
         return Employee(stoi(idStr), name, position, phone, date);
     }

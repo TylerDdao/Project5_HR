@@ -6,7 +6,7 @@
 
 using namespace std;
 
-EmployeeInfoManagement::EmployeeInfoManagement() 
+EmployeeInfoManagement::EmployeeInfoManagement()
     : employees(), repository(new FileRepository()), dataFilePath("employees.txt") {}
 
 EmployeeInfoManagement::EmployeeInfoManagement(FileRepository* repo)
@@ -44,14 +44,14 @@ void EmployeeInfoManagement::UpdateStaff(int id) {
 
     int choice;
     do {
-        cout << "\nWhat do you want to update for employee " << e->GetName() 
-             << " (ID " << e->GetStaffId() << ")?\n";
+        cout << "\nWhat do you want to update for employee " << e->GetName()
+            << " (ID " << e->GetStaffId() << ")?\n";
         cout << "1. Name\n";
         cout << "2. Position\n";
         cout << "3. Phone Number\n";
         cout << "4. Hire Date\n";
         cout << "0. Done/Cancel\n";
-        
+
         choice = InputValidator::ReadInt("Enter your choice: ");
 
         if (choice == 1) {
@@ -81,7 +81,7 @@ void EmployeeInfoManagement::UpdateStaff(int id) {
             cout << "Invalid choice. Try again.\n";
         }
     } while (choice != 0);
-    
+
     SaveToFile();
 }
 
@@ -124,12 +124,12 @@ void EmployeeInfoManagement::SaveToFile() {
         cerr << "Error: Repository not initialized.\n";
         return;
     }
-    
+
     stringstream ss;
     for (const auto& e : employees) {
         ss << e.Serialize() << "\n";
     }
-    
+
     repository->SaveToFile(ss.str(), dataFilePath);
     cout << "Employee data saved successfully.\n";
 }
@@ -139,15 +139,15 @@ void EmployeeInfoManagement::LoadFromFile() {
         cerr << "Error: Repository not initialized.\n";
         return;
     }
-    
+
     if (!repository->FileExists(dataFilePath)) {
         cout << "No existing employee data found.\n";
         return;
     }
-    
+
     employees.clear();
     vector<string> lines = repository->ReadLines(dataFilePath);
-    
+
     for (const auto& line : lines) {
         if (!line.empty()) {
             Employee e = Employee::Deserialize(line);
@@ -156,7 +156,7 @@ void EmployeeInfoManagement::LoadFromFile() {
             }
         }
     }
-    
+
     cout << "Loaded " << employees.size() << " employees from file.\n";
 }
 
@@ -170,7 +170,7 @@ void EmployeeInfoManagement::Management() {
         cout << "4. Remove Employee\n";
         cout << "5. Display All Employees\n";
         cout << "0. Back to Main Menu\n";
-        
+
         choice = InputValidator::ReadInt("Enter your choice: ");
 
         if (choice == 1) {
@@ -179,12 +179,12 @@ void EmployeeInfoManagement::Management() {
                 cout << "Employee with ID " << id << " already exists. Add cancelled.\n";
                 continue;
             }
-            
+
             string n = InputValidator::ReadString("Enter name: ");
             string p = InputValidator::ReadString("Enter position: ");
             string num = InputValidator::ReadString("Enter phone number: ");
             string d = InputValidator::ReadString("Enter hire date (YYYY-MM-DD): ");
-            
+
             AddStaff(Employee(id, n, p, num, d));
         }
         else if (choice == 2) {

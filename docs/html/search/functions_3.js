@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['getaccounttype_0',['getAccountType',['../class_account.html#a8f76009f9f13ed9046e4d40f3280235b',1,'Account']]],
-  ['gethiredate_1',['getHireDate',['../class_employee.html#aac514a30308fb17147ac1b465534c8f0',1,'Employee']]],
-  ['getname_2',['getName',['../class_employee.html#a8e7c3870f6b4b08a5c7ccccd32ca8f37',1,'Employee']]],
-  ['getpassword_3',['getPassword',['../class_account.html#a4ceee3a414012198fa0f9c9c6e2b9c7c',1,'Account']]],
-  ['getphonenum_4',['getPhoneNum',['../class_employee.html#a6a2f0ad419fa694b4c23b2f644a8cc66',1,'Employee']]],
-  ['getposition_5',['getPosition',['../class_employee.html#ae96de976f5e0a93fd4eee8735f798deb',1,'Employee']]],
-  ['getstaff_6',['getStaff',['../class_employee_info_management.html#a33a71792519a68b739f6e9b6045747ea',1,'EmployeeInfoManagement']]],
-  ['getstaffid_7',['getStaffId',['../class_account.html#a64601d702912f1ab74ab4bd11aa8ba74',1,'Account::getStaffId()'],['../class_employee.html#afc5a581f785aeff60763be47337c1b6e',1,'Employee::getStaffId()']]]
+  ['employee_0',['Employee',['../class_employee.html#a003c7bd08c40924e381eb0750cbb906f',1,'Employee::Employee()'],['../class_employee.html#a55f088512a30df390d7a37e8e4d8b3a8',1,'Employee::Employee(int id, const string &amp;n, const string &amp;p, const string &amp;num, const string &amp;d)'],['../class_employee.html#a003c7bd08c40924e381eb0750cbb906f',1,'Employee::Employee()'],['../class_employee.html#a55f088512a30df390d7a37e8e4d8b3a8',1,'Employee::Employee(int id, const string &amp;n, const string &amp;p, const string &amp;num, const string &amp;d)']]],
+  ['employeeexists_1',['EmployeeExists',['../class_employee_info_management.html#a3ff72c2dea437ead15f3adaf605d35c5',1,'EmployeeInfoManagement']]],
+  ['employeeinfomanagement_2',['EmployeeInfoManagement',['../class_employee_info_management.html#a64a5092f4cc5fd5bedbfb931a1896e77',1,'EmployeeInfoManagement::EmployeeInfoManagement()'],['../class_employee_info_management.html#a64a5092f4cc5fd5bedbfb931a1896e77',1,'EmployeeInfoManagement::EmployeeInfoManagement()'],['../class_employee_info_management.html#aace7a4fb17b8f919889a237506aedb24',1,'EmployeeInfoManagement::EmployeeInfoManagement(FileRepository *repo)']]]
 ];

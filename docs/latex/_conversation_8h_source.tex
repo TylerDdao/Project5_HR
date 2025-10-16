@@ -1,0 +1,56 @@
+\doxysection{Conversation.\+h}
+\hypertarget{_conversation_8h_source}{}\label{_conversation_8h_source}\index{Project5\_HR/Project5\_HR/Conversation.h@{Project5\_HR/Project5\_HR/Conversation.h}}
+\mbox{\hyperlink{_conversation_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ CONVERSATION\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ CONVERSATION\_H}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_message_8h}{Message.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Constants\ for\ conversation\ types}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{_conversation_8h_a487ea05427e9b2e5af154c69f19df9de}{ONE\_TO\_ONE}}\ =\ \textcolor{stringliteral}{"{}ONE\_TO\_ONE"{}};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{_conversation_8h_ad4a5f586c00dc49ab3b3983ee8062802}{GROUP}}\ =\ \textcolor{stringliteral}{"{}GROUP"{}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_conversation_aef6cde38cb587ab72c687512302ad3a0}{Conversation}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ conversationId;}
+\DoxyCodeLine{00019\ \ \ \ \ vector<int>\ participantIds;}
+\DoxyCodeLine{00020\ \ \ \ \ vector<Message>\ messages;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{string}\ conversationType;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{string}\ createdAt;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_conversation_aef6cde38cb587ab72c687512302ad3a0}{Conversation}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_conversation_aef6cde38cb587ab72c687512302ad3a0}{Conversation}}(\textcolor{keywordtype}{int}\ convId,\ \textcolor{keyword}{const}\ vector<int>\&\ participants,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ type);}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_conversation_a88dc41a3084cdcd18e5d30b5f19b9c70}{GetConversationId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \ \ \ \ vector<int>\ \mbox{\hyperlink{class_conversation_ad2cbacb5865f57794697782686aff377}{GetParticipants}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ vector<Message>\ \mbox{\hyperlink{class_conversation_ad10aa2338b420337ab93f81ca0bd19d8}{GetMessages}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_conversation_a637e26f7275613f89766ff3d3d12157b}{GetConversationType}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_conversation_a7054fd4aabf02c201eea20d21396aa29}{GetCreatedAt}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Message\ management}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_conversation_a448860a43377001bc23738b7ddc91b40}{AddMessage}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_message}{Message}}\&\ msg);}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_message}{Message}}*\ \mbox{\hyperlink{class_conversation_ada8c0296dea4a46aeb0532313db4d9e4}{FindMessageById}}(\textcolor{keywordtype}{int}\ msgId);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_conversation_a51ba09e914c5fd6abad8c8909fee7d2e}{GetMessageCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Participant\ management}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_conversation_a422d5ac0484f0a7d83776b594b3f3843}{AddParticipant}}(\textcolor{keywordtype}{int}\ participantId);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_conversation_acf5a4c24a2ba5b7e33a327920d72c64e}{HasParticipant}}(\textcolor{keywordtype}{int}\ participantId)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Serialization}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_conversation_a5360f172f9dfc298c29895a1b819d480}{SerializeHeader}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_conversation_abafb9a7d7b76cf3a80d13d35d69e6de8}{SerializeMessages}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CONVERSATION\_H}}
+\DoxyCodeLine{00050\ }
+
+\end{DoxyCode}
