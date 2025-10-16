@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['project5_20employees_20management_0',['Project5 | Employees Management',['../md__r_e_a_d_m_e.html',1,'']]]
+  ['react_20compiler_0',['React Compiler',['../D:/Study BCS3/Project V Advanced Software Development/New folder/Project5_HR/Project5_HR/Project5_HR_Front_End/README.md#autotoc_md1',1,'']]],
+  ['react_20typescript_20vite_1',['React + TypeScript + Vite',['../D:/Study BCS3/Project V Advanced Software Development/New folder/Project5_HR/Project5_HR/Project5_HR_Front_End/README.md#autotoc_md0',1,'']]]
 ];
