@@ -1,5 +1,3 @@
-
-
 const HomePage = () => (
   <div className="p-8">
     <h1 className="text-md font-bold text-gray-800 mb-4">Home Page</h1>
