@@ -74,6 +74,12 @@
     <ClCompile Include="source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DateTime.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Shift.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Payroll.h">
@@ -108,6 +114,15 @@
     </ClInclude>
     <ClInclude Include="FileRepository.h">
       <Filter>Header Files\persistence</Filter>
+    </ClInclude>
+    <ClInclude Include="Shift.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="DateTime.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="ShiftRecord.h">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>
   <!-- Source Files -->

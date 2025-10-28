@@ -1,13 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-charcoal: rgba(45, 55, 72, 1);
+  --color-accent_blue: rgba(66, 153, 225, 1);
+  --color-medium_gray: rgba(160, 174, 192, 1);
+  --color-light_gray: rgba(247, 250, 252, 1);
+  --color-tomato_red: rgba(229, 62, 62, 1);
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  /* line-height: 1.5; */
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(45, 55, 72, 1);
+  background-color: rgba(247, 250, 252, 1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,48 +26,66 @@
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  color: rgba(66, 153, 225, 1);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.code {
+  font-family: monospace;
+  padding: 2px;
+  width: min-content;
+  height: min-content;
+  border-radius: 5px;
+  background: rgba(160, 174, 192, 1);
 }
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: rgba(66, 153, 225, 1);
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 @media (prefers-color-scheme: light) {
-  :root {
+  /* :root {
     color: #213547;
     background-color: #ffffff;
   }
@@ -66,5 +94,5 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
-  }
+  } */
 }

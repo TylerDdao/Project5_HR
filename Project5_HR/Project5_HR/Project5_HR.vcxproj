@@ -146,6 +146,7 @@
     <!-- Main source file -->
     <!-- Core module -->
     <ClCompile Include="Account.cpp" />
+    <ClCompile Include="DateTime.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="EmployeeInfoManagement.cpp" />
     <!-- Communication module -->
@@ -158,11 +159,13 @@
     <ClCompile Include="DateTimeHelper.cpp" />
     <ClCompile Include="InputValidator.cpp" />
     <ClCompile Include="Payroll.cpp" />
+    <ClCompile Include="Shift.cpp" />
     <ClCompile Include="source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <!-- Core headers -->
     <ClInclude Include="Account.h" />
+    <ClInclude Include="DateTime.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmployeeInfoManagement.h" />
     <!-- Communication headers -->
@@ -176,6 +179,8 @@
     <ClInclude Include="DateTimeHelper.h" />
     <ClInclude Include="InputValidator.h" />
     <ClInclude Include="Payroll.h" />
+    <ClInclude Include="Shift.h" />
+    <ClInclude Include="ShiftRecord.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,6 +6,11 @@ class Payroll
 public:
 	Payroll();
 
+	/// @brief This is a set payroll id function
+	/// @param payrollId 
+	/// @return boolean
+	bool setPayrollId(int payrollId);
+
 	/// @brief This is a set staff id function
 	/// @param staffId 
 	/// @return boolean
@@ -36,6 +41,11 @@ public:
 	/// @return boolean
 	bool setTotalEarned();
 
+	/// @brief This is a set payroll id function
+	/// @param payrollId 
+	/// @return boolean
+	bool getPayrollId(int payrollId);
+
 	/// @brief This is a get staff id function
 	/// @return staffId:int
 	int getStaffId();
@@ -63,6 +73,7 @@ public:
 	~Payroll();
 
 private:
+	int payrollId;
 	int staffId;
 	float wageRate;
 	float hourWorked;

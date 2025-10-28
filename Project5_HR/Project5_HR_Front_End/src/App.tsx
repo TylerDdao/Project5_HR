@@ -34,6 +34,7 @@
 
 // export default App
 
+import DesignPage from './pages/design';
 import HomePage from './pages/home'; // Notice you don't need to write '/index.tsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -44,6 +45,7 @@ export default function App() {
         <main className="">
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path='/design' element={<DesignPage/>}/>
             </Routes>
         </main>
       </div>
