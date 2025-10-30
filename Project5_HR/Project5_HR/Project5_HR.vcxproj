@@ -161,6 +161,7 @@
     <ClCompile Include="InputValidator.cpp" />
     <ClCompile Include="Payroll.cpp" />
     <ClCompile Include="Shift.cpp" />
+    <ClCompile Include="ShiftRecord.cpp" />
     <ClCompile Include="source.cpp" />
   </ItemGroup>
   <ItemGroup>

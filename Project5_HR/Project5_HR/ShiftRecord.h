@@ -20,17 +20,9 @@ public:
 	~ShiftRecord();
 
 private:
-	int shiftId();
-	int staffId();
+	int shiftId;
+	int staffId;
 	Time inTime;
 	Time outTime;
 	Date date;
 };
-
-ShiftRecord::ShiftRecord()
-{
-}
-
-ShiftRecord::~ShiftRecord()
-{
-}

@@ -2,7 +2,7 @@ FROM node:20
 
 WORKDIR /app
 
-COPY Project5_HR_Front_End/ .
+COPY Project5_HR/Project5_HR_Front_End/ ./
 
 RUN npm install
 RUN npm run build

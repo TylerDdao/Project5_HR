@@ -26,17 +26,20 @@
 
 #include <iostream>
 #include <pqxx/pqxx>
+#include "crow.h"
 
 int main() {
     try {
-        std::string conn_str =
-            "user=postgres "
-            "password=password "
-            "host=127.0.0.1 "
-            "port=5432 "
-            "dbname=test";
+        //std::string conn_str =
+        //    "user=postgres "
+        //    "password=Nam@326389 "
+        //    "host=127.0.0.1 "
+        //    "port=5432 "
+        //    "dbname=test";
+        std::string conn="host=host.docker.internal port=5432 dbname=test user=postgres password=ChangeYourPassWord";
 
-        pqxx::connection c(conn_str);
+
+        pqxx::connection c(conn);
 
         if (c.is_open()) {
             std::cout << "Connected to " << c.dbname() << " successfully.\n";
@@ -54,3 +57,17 @@ int main() {
 
     return 0;
 }
+
+
+//#include "crow.h"
+//
+//int main()
+//{
+//    crow::SimpleApp app;
+//
+//    CROW_ROUTE(app, "/")([]() {
+//        return "Hello world";
+//        });
+//
+//    app.port(18080).run();
+//}

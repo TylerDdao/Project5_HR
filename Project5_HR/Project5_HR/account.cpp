@@ -2,7 +2,7 @@
 
 Account::Account()
 {
-	this->staffID = NULL;
+	this->staffID = 0;
 	this->password = "";
 	this->accountType = "";
 }

@@ -13,7 +13,11 @@ string DateTimeHelper::GetCurrentDateTime() {
 
 string DateTimeHelper::FormatDateTime(time_t timestamp) {
     struct tm timeInfo;
-    localtime_s(&timeInfo, &timestamp);
+    #ifdef _WIN32
+        localtime_s(&timeInfo, &timestamp);
+    #else
+        localtime_r(&timestamp, &timeInfo);
+    #endif
     
     ostringstream oss;
     oss << (timeInfo.tm_year + 1900) << "-"
