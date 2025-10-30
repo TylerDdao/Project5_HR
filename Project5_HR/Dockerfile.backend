@@ -1,17 +1,36 @@
-# Use official GCC image
+# 1. Base image with GCC
 FROM gcc:13
 
-# Set working directory inside container
+# 2. Set working directory
 WORKDIR /app
 
-# Copy your backend source code
+# 3. Install dependencies
+RUN apt-get update && apt-get install -y \
+    git cmake curl pkg-config \
+    libpq-dev libpqxx-dev
+
+# 4. Install Crow (header-only library)
+RUN git clone https://github.com/CrowCpp/Crow.git /crow
+
+# Install standalone Asio (header-only)
+RUN git clone https://github.com/chriskohlhoff/asio.git /asio
+
+# 5. Copy your project files
 COPY Project5_HR/ ./Project5_HR/
 
-# Compile your C++ code
-RUN g++ Project5_HR/*.cpp -o mybackend
-
-# Expose port if your backend listens on HTTP (e.g., 5000)
+# 6. Build backend
+# - Add include path for Crow and your project
+# - Add link for libpqxx and libpq
+RUN g++ \
+    -I/crow/include \
+    -I/asio/asio/include \
+    -I/app/Project5_HR/Project5_HR \
+    /app/Project5_HR/Project5_HR/*.cpp \
+    -o /app/mybackend \
+    -lpqxx -lpq -pthread
+    
+# 7. Expose the API port (Crow defaults to 18080, change if needed)
 EXPOSE 5000
 
-# Run your backend program
+# 8. Run the compiled binary
 CMD ["./mybackend"]

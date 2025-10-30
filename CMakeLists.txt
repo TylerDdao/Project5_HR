@@ -18,12 +18,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Collect all source files from the new structure
 file(GLOB_RECURSE PROJECT_SOURCES
-    "${CMAKE_SOURCE_DIR}/src/core/*.cpp"
-    "${CMAKE_SOURCE_DIR}/src/communication/*.cpp"
-    "${CMAKE_SOURCE_DIR}/src/persistence/*.cpp"
-    "${CMAKE_SOURCE_DIR}/src/utils/*.cpp"
-    "${CMAKE_SOURCE_DIR}/src/main.cpp"
-)
+    "${CMAKE_SOURCE_DIR}/Project5_HR/Project5_HR/*.cpp"
 
 # Define the main executable target
 add_executable(Project5_HR_Executable ${PROJECT_SOURCES})
@@ -33,7 +28,7 @@ target_compile_features(Project5_HR_Executable PRIVATE cxx_std_17)
 
 # --- Unit Test Target (Optional) ---
 # If you have unit tests, uncomment and configure below
-set(TEST_DIR "${CMAKE_SOURCE_DIR}/tests")
+set(TEST_DIR "${CMAKE_SOURCE_DIR}/Project5_HR/Project5_HR_Test")
 
 if(EXISTS ${TEST_DIR})
     file(GLOB_RECURSE TEST_SOURCES

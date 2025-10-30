@@ -80,6 +80,9 @@
     <ClCompile Include="Shift.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
+    <ClCompile Include="ShiftRecord.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Payroll.h">
