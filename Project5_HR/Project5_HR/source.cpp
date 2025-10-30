@@ -31,7 +31,7 @@ int main() {
     try {
         std::string conn_str =
             "user=postgres "
-            "password=Nam@326389 "
+            "password=password "
             "host=127.0.0.1 "
             "port=5432 "
             "dbname=test";
