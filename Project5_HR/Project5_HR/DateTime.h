@@ -39,11 +39,3 @@ private:
 	int month;
 	int year;
 };
-
-Date::Date()
-{
-}
-
-Date::~Date()
-{
-}
