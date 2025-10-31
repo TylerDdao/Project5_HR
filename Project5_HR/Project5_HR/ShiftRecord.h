@@ -1,28 +1,28 @@
 #pragma once
 #include "DateTime.h"
+#include <string>
 class ShiftRecord
 {
 public:
 	ShiftRecord();
+	ShiftRecord(int staffId, int shiftId, std::string checkIn, std::string checkOut);
 
 	bool setShiftId(int shiftId);
 	bool setStaffId(int staffId);
-	bool setInTime(Time inTime);
-	bool setOutTime(Time outTime);
-	bool setDate(Date date);
+	bool setCheckIn(std::string checkIn);
+	bool setCheckOut(std::string checkOut);
+
 
 	int getShiftId();
 	int getStaffId();
-	Time getInTime();
-	Time getOutTime();
-	Date getDate();
+	std::string getCheckIn();
+	std::string getCheckOut();
 
 	~ShiftRecord();
 
 private:
 	int shiftId;
 	int staffId;
-	Time inTime;
-	Time outTime;
-	Date date;
+	std::string checkIn;
+	std::string checkOut;
 };

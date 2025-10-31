@@ -1,31 +1,36 @@
 #include "Shift.h"
 
-//Shift::Shift() {
-//
-//}
+Shift::Shift()
+{
+	this->shiftId = 0;
+	this->startTime = "";
+	this, endTime = "";
+}
+
 Shift::Shift(int shiftId) {
 	this->shiftId = shiftId;
 }
-bool Shift::setDate(Date date) {
+bool Shift::setShiftId(int shiftId) {
+	this->shiftId = shiftId;
 	return true;
 }
-bool Shift::setStartTime(Time time) {
+
+bool Shift::setStartTime(std::string startTime) {
+	this->startTime = startTime;
 	return true;
 }
-bool Shift::setEndTime(Time time) {
+bool Shift::setEndTime(std::string endTime) {
+	this->endTime = endTime;
 	return true;
 }
 
 int Shift::getShiftId() {
-	return 0;
+	return this->shiftId;
 }
-Date Shift::getDate() {
-	return this->date;
-}
-Time Shift::getStartTime() {
+std::string Shift::getStartTime() {
 	return this->startTime;
 }
-Time Shift::getEndTime(){
+std::string Shift::getEndTime(){
 	return this->endTime;
 }
 Shift::~Shift() {

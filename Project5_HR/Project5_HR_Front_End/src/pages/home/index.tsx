@@ -1,9 +1,6 @@
-import DeleteIcon from '@mui/icons-material/Delete';
-import AlarmIcon from '@mui/icons-material/Alarm';
-import { IconButton } from '@mui/material';
-
 const HomePage = () => (
   <div className='p-5'>
+    Welcome to HR module - Project 5
   </div>
 );
 

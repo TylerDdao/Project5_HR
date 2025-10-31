@@ -3,31 +3,41 @@
 
 ShiftRecord::ShiftRecord()
 {
+	this->staffId = 0;
+	this->shiftId = 0;
+	this->checkIn = "";
+	this->checkOut = "";
+}
+
+ShiftRecord::ShiftRecord(int staffId, int shiftId, std::string checkIn, std::string checkOut) {
+	this->staffId = staffId;
+	this->shiftId = shiftId;
+	this->checkIn = checkIn;
+	this->checkOut = checkOut;
 }
 
 bool ShiftRecord::setShiftId(int shiftId)
 {
-	return false;
+	this->shiftId = shiftId;
+	return true;
 }
 
 bool ShiftRecord::setStaffId(int staffId)
 {
-	return false;
+	this->staffId = staffId;
+	return true;
 }
 
-bool ShiftRecord::setInTime(Time inTime)
+bool ShiftRecord::setCheckIn(std::string checkIn)
 {
-	return false;
+	this->checkIn = checkIn;
+	return true;
 }
 
-bool ShiftRecord::setOutTime(Time outTime)
+bool ShiftRecord::setCheckOut(std::string checkOut)
 {
-	return false;
-}
-
-bool ShiftRecord::setDate(Date date)
-{
-	return false;
+	this->checkOut = checkOut;
+	return true;
 }
 
 int ShiftRecord::getShiftId()
@@ -40,19 +50,14 @@ int ShiftRecord::getStaffId()
 	return 0;
 }
 
-Time ShiftRecord::getInTime()
+std::string ShiftRecord::getCheckIn()
 {
-	return Time();
+	return this->checkIn;
 }
 
-Time ShiftRecord::getOutTime()
+std::string ShiftRecord::getCheckOut()
 {
-	return Time();
-}
-
-Date ShiftRecord::getDate()
-{
-	return Date();
+	return this->checkOut;
 }
 
 ShiftRecord::~ShiftRecord()

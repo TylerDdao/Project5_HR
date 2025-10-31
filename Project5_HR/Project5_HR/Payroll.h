@@ -5,6 +5,7 @@ class Payroll
 {
 public:
 	Payroll();
+	Payroll(int staffId, float wageRate, float hourWorked, float bonus, float deduction);
 
 	/// @brief This is a set payroll id function
 	/// @param payrollId 
@@ -44,7 +45,7 @@ public:
 	/// @brief This is a set payroll id function
 	/// @param payrollId 
 	/// @return boolean
-	bool getPayrollId(int payrollId);
+	int getPayrollId();
 
 	/// @brief This is a get staff id function
 	/// @return staffId:int
@@ -81,11 +82,3 @@ private:
 	float totalEarned;
 	float deduction;
 };
-
-Payroll::Payroll()
-{
-}
-
-Payroll::~Payroll()
-{
-}
