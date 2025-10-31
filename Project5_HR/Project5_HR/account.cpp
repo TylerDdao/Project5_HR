@@ -7,8 +7,22 @@ Account::Account()
 	this->accountType = "";
 }
 
+Account::Account(int accountId, int staffId, string password, string accountType)
+{
+	this->accountType = accountType;
+	this->staffID = staffId;
+	this->accountId = accountId;
+	this->password = password;
+}
+
 Account::~Account()
 {
+}
+
+bool Account::setAccountId(int accountId)
+{
+	this->accountId = accountId;
+	return true;
 }
 
 bool Account::setStaffId(int staffId)
@@ -29,17 +43,22 @@ bool Account::setAccountType(string accountType)
 	return true;
 }
 
+int Account::getAccountId()
+{
+	return this->accountId;
+}
+
 int Account::getStaffId()
 {
-	return staffID;
+	return this->staffID;
 }
 
 string Account::getPassword()
 {
-	return password;
+	return this->password;
 }
 
 string Account::getAccountType()
 {
-	return accountType;
+	return this->accountType;
 }
