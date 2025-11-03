@@ -84,9 +84,10 @@
 #include "DatabaseControl.h"
 int main()
 {
-    crow::SimpleApp app;
     DatabaseControl db("postgres", "Nam@326389", "127.0.0.1", "5432", "project5_hr");
 
+
+    crow::SimpleApp app;
 
     CROW_ROUTE(app, "/")([]() {
         return "Hello world";
@@ -122,23 +123,36 @@ int main()
 
         }
         catch (const std::exception& e) {
-            return crow::response(500, std::string("Server error: ") + e.what());
+            crow::json::wvalue result;
+            result["success"] = false;
+            result["message"] = e.what();
+            return crow::response(500, result);
+            //return crow::response(500, std::string("Server error: ") + e.what());
         }
         });
 
     app.port(18080).run();
 
 
-    Employee employee;
-    employee.SetName("Tyler");
-    employee.SetPosition("Manager");
-    employee.SetHireDate("2025-10-31");
-    employee.SetPhoneNum("5483843681");
-    //db.setConnection();
-    int staff = db.insertEmployee(employee);
-    std::cout <<"Staff ID: "<< staff << std::endl;
-    Payroll payroll(staff, 18, 5, 0, 0);
-    int payrollId = db.insertPayroll(payroll);
-    std::cout << "Payroll ID: " << payrollId << std::endl;
-    return 0;
+    //Employee employee;
+    //employee.SetName("Tyler");
+    //employee.SetPosition("Manager");
+    //employee.SetHireDate("2025-10-31");
+    //employee.SetPhoneNum("5483843681");
+
+    ////db.setConnection();
+    //int staffId = db.insertEmployee(employee);
+    //std::cout <<"Staff ID: "<< staffId << std::endl;
+
+    //Account account;
+    //account.setStaffId(staffId);
+    //account.setAccountType("Manager");
+    //account.setPassword("123");
+    //int accountId = db.insertAccount(account);
+    //std::cout << "Account ID: " << accountId << std::endl;
+
+    //Payroll payroll(staffId, 18, 5, 0, 0);
+    //int payrollId = db.insertPayroll(payroll);
+    //std::cout << "Payroll ID: " << payrollId << std::endl;
+    //return 0;
 }

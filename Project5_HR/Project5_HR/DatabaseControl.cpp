@@ -92,7 +92,6 @@ int DatabaseControl::insertAccount(Account account)
             txn.quote(account.getAccountType()) +
             ") RETURNING account_id;";
 
-        txn.exec(query);
         pqxx::result r = txn.exec(query);
 
         int accountId = r[0][0].as<int>();
@@ -129,7 +128,6 @@ int DatabaseControl::insertPayroll(Payroll payroll)
             txn.quote(payroll.getDeduction()) +
             ") RETURNING payroll_id;";
 
-        txn.exec(query);
         pqxx::result r = txn.exec(query);
 
         int newPayrollId = r[0][0].as<int>();
