@@ -147,6 +147,7 @@
     <!-- Main source file -->
     <!-- Core module -->
     <ClCompile Include="Account.cpp" />
+    <ClCompile Include="DatabaseControl.cpp" />
     <ClCompile Include="DateTime.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="EmployeeInfoManagement.cpp" />
@@ -167,6 +168,7 @@
   <ItemGroup>
     <!-- Core headers -->
     <ClInclude Include="Account.h" />
+    <ClInclude Include="DatabaseControl.h" />
     <ClInclude Include="DateTime.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmployeeInfoManagement.h" />

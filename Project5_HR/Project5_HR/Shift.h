@@ -1,23 +1,22 @@
 #pragma once
 #include "DateTime.h"
+#include <string>
 class Shift
 {
 public:
 	Shift();
 	Shift(int shiftId);
-	bool setDate(Date date);
-	bool setStartTime(Time time);
-	bool setEndTime(Time time);
+	bool setShiftId(int shiftId);
+	bool setStartTime(std::string time);
+	bool setEndTime(std::string time);
 
 	int getShiftId();
-	Date getDate();
-	Time getStartTime();
-	Time getEndTime();
+	std::string getStartTime();
+	std::string getEndTime();
 	~Shift();
 
 private:
 	int shiftId;
-	Date date;
-	Time startTime;
-	Time endTime;
+	std::string startTime;
+	std::string endTime;
 };

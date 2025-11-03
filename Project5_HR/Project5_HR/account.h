@@ -9,7 +9,13 @@ class Account
 {
 public:
 	Account();
+	Account(int accountId, int staffId, string password, string accountType);
 	~Account();
+
+	/// @brief This is a set account id function
+	/// @param accountId 
+	/// @return boolean
+	bool setAccountId(int accountId);
 
 	/// @brief This is a set staff id function
 	/// @param staffId 
@@ -26,6 +32,10 @@ public:
 	/// @return boolean
 	bool setAccountType(string accountType);
 
+	/// @brief This is a get account id function
+	/// @return accountId:int
+	int getAccountId();
+
 	/// @brief This is a get staff id function
 	/// @return staffId:int
 	int getStaffId();
@@ -39,6 +49,7 @@ public:
 	string getAccountType();
 
 private:
+	int accountId;
 	int staffID;
 	string password;
 	string accountType;
