@@ -35,3 +35,7 @@ export function extractTime(timeString?: string | Date): string {
     hour12: true,
   });
 }
+
+export function caculateWorkTime(startTime: string): string {
+    
+}
