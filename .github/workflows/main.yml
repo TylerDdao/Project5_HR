@@ -18,7 +18,7 @@ jobs:
           cd vcpkg
           .\bootstrap-vcpkg.bat
           .\vcpkg integrate install
-          .\vcpkg install libpqxx:x64-windows
+          .\vcpkg install libpqxx:x64-windows --classic
 
       - name: Download Crow header
         run: |
