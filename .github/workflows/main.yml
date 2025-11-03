@@ -9,42 +9,50 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up MSVC Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1
-      with:
-        arch: x64
+      - name: Setup vcpkg
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          cd vcpkg
+          .\bootstrap-vcpkg.bat
+          .\vcpkg integrate install
+          .\vcpkg install libpqxx:x64-windows
 
-    - name: Build solution in Debug
-      run: msbuild "Project5_HR/Project5_HR.sln" /p:Configuration=Debug /p:Platform=x64 /t:Build
+      - name: Download Crow header
+        run: |
+          mkdir include\crow
+          curl -L https://raw.githubusercontent.com/CrowCpp/Crow/master/include/crow_all.h -o include\crow\crow_all.h
 
-    - name: Run unit tests
-      run: |
-        vstest.console.exe "Project5_HR/x64/Debug/Project5_HR_Test.dll"
+      - name: Set up MSVC Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Build solution in Debug
+        env:
+          VCPKG_ROOT: ${{ github.workspace }}\vcpkg
+        run: msbuild "Project5_HR/Project5_HR.sln" /p:Configuration=Debug /p:Platform=x64 /t:Build
+
+      - name: Run unit tests
+        run: |
+          vstest.console.exe "Project5_HR/x64/Debug/Project5_HR_Test.dll"
 
   clang-tidy-check:
     runs-on: ubuntu-latest
-    # ... other settings
     permissions:
-      contents: read   # Needed to checkout the code
-      pull-requests: write # Needed to post comments/reviews on the PR
+      contents: read
+      pull-requests: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      # Use an action that automatically finds and uses your .clang-tidy file
-      - name: Run Clang-Tidy for Custom Naming Conventions
-        uses: ZedThree/clang-tidy-review@v0.21.0 # Use latest stable major version tag
+      - name: Run Clang-Tidy
+        uses: ZedThree/clang-tidy-review@v0.21.0
         with:
-          # This command generates the compile_commands.json needed by clang-tidy
           cmake_command: cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
           build_dir: build
-          # Crucially, you DO NOT need to specify 'checks' here 
-          # because the action will automatically defer to your .clang-tidy file
-          # for the list of checks and options.
           token: ${{ secrets.GITHUB_TOKEN }}
-          # which enforces strong naming conventions (MY_CONSTANT, MyClass, etc.)
-          run: cpplint --recursive . 
+          run: cpplint --recursive .
