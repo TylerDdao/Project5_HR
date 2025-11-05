@@ -14,7 +14,7 @@ jobs:
 
       # --- Setup vcpkg (manifest mode) ---
       - name: Setup vcpkg
-        uses: microsoft/setup-vcpkg@v1
+        uses: ${{ github.workspace }}/vcpkg/vcpkg install
         with:
           vcpkgGitCommitId: 71538f2694db93da4668782d094768ba74c45991  # Example version
 
