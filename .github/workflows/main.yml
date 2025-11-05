@@ -12,29 +12,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # --- Setup vcpkg (manifest mode) ---
       - name: Setup vcpkg
-        run: |
-          git clone https://github.com/microsoft/vcpkg.git
-          cd vcpkg
-          .\bootstrap-vcpkg.bat
-          .\vcpkg integrate install
-          .\vcpkg install libpqxx:x64-windows --classic
+        uses: microsoft/setup-vcpkg@v1
+        with:
+          vcpkgGitCommitId: 71538f2694db93da4668782d094768ba74c45991  # Example version
 
-      - name: Download Crow header
-        run: |
-          mkdir include\crow
-          curl -L https://raw.githubusercontent.com/CrowCpp/Crow/master/include/crow_all.h -o include\crow\crow_all.h
-
-      - name: Set up MSVC Developer Command Prompt
+      # --- Setup Visual Studio Developer Command Prompt ---
+      - name: Setup MSVC Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
 
+      # --- Build your Visual Studio Solution ---
       - name: Build solution in Debug
-        env:
-          VCPKG_ROOT: ${{ github.workspace }}\vcpkg
         run: msbuild "Project5_HR/Project5_HR.sln" /p:Configuration=Debug /p:Platform=x64 /t:Build
 
+      # --- Run Unit Tests ---
       - name: Run unit tests
         run: |
           vstest.console.exe "Project5_HR/x64/Debug/Project5_HR_Test.dll"
@@ -49,10 +43,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
+      # --- Run Clang-Tidy ---
       - name: Run Clang-Tidy
         uses: ZedThree/clang-tidy-review@v0.21.0
         with:
-          cmake_command: cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
+          cmake_command: cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
           build_dir: build
           token: ${{ secrets.GITHUB_TOKEN }}
-          run: cpplint --recursive .
+
+      # --- Run cpplint (optional code style check) ---
+      - name: Run cpplint
+        run: |
+          pip install cpplint
+          cpplint --recursive .
