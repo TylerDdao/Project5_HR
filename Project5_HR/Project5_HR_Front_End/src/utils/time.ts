@@ -36,6 +36,12 @@ export function extractTime(timeString?: string | Date): string {
   });
 }
 
-export function caculateWorkTime(startTime: string): string {
-    
+export function caculateWorkTime(startTime: string | Date, endTime: string | Date): { hours: number, minutes: number} {
+    const start = new Date(startTime).getTime();
+    const end = new Date(endTime).getTime()
+    const millisecDiff = end - start;
+    const totalSeconds: number = Math.floor(millisecDiff / 1000);
+    const hours: number = Math.floor(totalSeconds / 3600);
+    const minutes: number = Math.floor((totalSeconds % 3600) / 60);
+    return {hours, minutes};
 }
