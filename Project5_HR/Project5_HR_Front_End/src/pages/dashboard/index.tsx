@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { extractDate, extractTime, getCurrentDateTime } from '../../utils/time';
+import { caculateWorkTime, extractDate, extractTime, getCurrentDateTime } from '../../utils/time';
 import NavBar from '../../components/navBar';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import type { Shift } from '../../data/type';
-import { simulatedThisWeek } from '../../data/dummyData';
+import type { Shift, Staff } from '../../data/type';
+import { simulatedThisWeek, staffs } from '../../data/dummyData';
 
 const HomePage: React.FC = () => {
   const [currentDateTime, setCurrentDateTime] = useState(getCurrentDateTime());
+  const [staff, setCurrentStaff] = useState<Staff>();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -25,7 +26,9 @@ const HomePage: React.FC = () => {
   const [nextWeekShifts, setNextWeekShifts] = useState<Shift[]>([]);
 
   useEffect(()=>{
+    console.log(new Date().getDate())
     setThisWeekShifts(simulatedThisWeek);
+    setCurrentStaff(staffs[0]);
   })
 
   return (
@@ -49,7 +52,7 @@ const HomePage: React.FC = () => {
               thisWeekShifts.map((shift)=>(
                 <div key={shift.id} className='p-5 shadow-md rounded-[8px]'>
                   <h3>{extractDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
-
+                  <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
                 </div>
               ))
             ) : (
