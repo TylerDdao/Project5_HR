@@ -2,7 +2,7 @@
   "name": "project5-hr-module",
   "version-string": "1.0.0",
   "dependencies": [
-    "crow",
-    "libpqxx"
+    "libpqxx",
+    "crow"
   ]
 }
