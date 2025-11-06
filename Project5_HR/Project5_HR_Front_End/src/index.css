@@ -80,6 +80,7 @@ button {
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-family: inherit;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 input {

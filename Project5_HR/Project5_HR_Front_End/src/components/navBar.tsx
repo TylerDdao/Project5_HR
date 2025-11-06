@@ -34,7 +34,7 @@ const NavBar: React.FC = () => {
     const location = useLocation(); // ✅ get current URL path
 
     return (
-        <div className="w-[400px] h-screen bg-charcoal p-5 flex flex-col">
+        <div className="fixed left-0 top-0 w-[400px] h-screen bg-charcoal p-5 flex flex-col">
         <div className="flex items-center justify-center">
             <AssignmentIndIcon className="text-light_gray !text-[37.5px] mr-[10px]" />
             <div className="text-light_gray">
