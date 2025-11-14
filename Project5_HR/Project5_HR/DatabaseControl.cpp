@@ -215,6 +215,45 @@ bool DatabaseControl::getAccount(int staff_id, Account& account)
     }
 }
 
+bool DatabaseControl::getEmployee(int staff_id, Employee& employee)
+{
+    try
+    {
+        setConnection();
+        if (!c || !c->is_open())
+        {
+            std::cerr << "Database connection not open.\n";
+            return false;
+        }
+
+        pqxx::work txn(*c);
+
+        pqxx::result r = txn.exec_params(
+            "SELECT * FROM employees WHERE staff_id = $1;",
+            staff_id
+        );
+
+        int accountId = r[0]["staff_id"].as<int>();
+        string name = r[0]["name"].as<string>();
+        string position = r[0]["position"].as<string>();
+        string phone = r[0]["phone_number"].as<string>();
+        string hireDate = r[0]["hire_date"].as<string>();
+
+        txn.commit();
+        employee.SetName(name);
+        employee.SetPosition(position);
+        employee.SetPhoneNum(phone);
+        employee.SetHireDate(hireDate);
+
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Error getting employee: " << e.what() << std::endl;
+        return false;
+    }
+}
+
 DatabaseControl::~DatabaseControl()
 {
 }

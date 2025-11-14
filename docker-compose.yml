@@ -8,6 +8,8 @@ services:
       - "5000:5000"
     networks:
       - app-network
+    env_file:
+      - ./Project5_HR/.env
 
   frontend:
     build:

@@ -10,7 +10,6 @@ export async function verifyLogin(staffId: string, password: string): Promise<vo
     const result = await response.json();
 
     if (response.ok && result.success) {
-      console.log(result.message);
       window.location.href = "/dashboard";
     } 
     else {

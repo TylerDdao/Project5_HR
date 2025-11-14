@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { caculateWorkTime, extractDate, extractFullDate, extractTime, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay } from '../../utils/time';
-import NavBar from '../../components/navBar';
+import { caculateWorkTime, extractDate, extractFullDate, extractTime, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay } from '../../../utils/time';
+import NavBar from '../../../components/navBar';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
-import type { Shift, Staff } from '../../data/type';
-import { shifts, shiftsStaffs, staffs } from '../../data/dummyData';
+import type { Shift, Staff } from '../../../data/type';
+import { shifts, shiftsStaffs, staffs } from '../../../data/dummyData';
 import { Link } from 'react-router-dom';
 
-const SchedulePage: React.FC = () => {
+const CreateShift: React.FC = () => {
     const [staff, setCurrentStaff] = useState<Staff>();
 
     const [thisWeekDates, setThisWeekDates] = useState<Date[]>([]);
@@ -65,6 +65,8 @@ const SchedulePage: React.FC = () => {
     setNextWeekDates(nextWeekDates);
   }, [staff])
 
+
+  const [currentShifts, setCurrentShifts] = useState<Shift[]>([]);
   const [currentDateTime, setCurrentDateTime] = useState(getCurrentDateTime());
 
   useEffect(() => {
@@ -75,14 +77,11 @@ const SchedulePage: React.FC = () => {
     return () => clearInterval(timer); // cleanup on unmount
   }, []);
 
-  const [currentShifts, setCurrentShifts] = useState<Shift[]>([]);
-
   useEffect(() => {
     const timer = setInterval(() => {
-        const now = new Date()
         const todayShift: Shift[] = [];
         thisWeekShifts.map((shift) => {
-            if(shift.startTime.toDateString() == now.toDateString() && shift.startTime.getTime() <= now.getTime() && shift.endTime.getTime() > now.getTime()){
+            if(shift.startTime.toDateString() == new Date().toDateString()){
                 todayShift.push(shift);
             }
         });
@@ -117,14 +116,12 @@ const SchedulePage: React.FC = () => {
                             <div className='mb-[10px]'>
                                 <h3>{extractFullDate(date)}</h3>
                                 {todayShift.length >0 ? (
-                                    <div className='flex flex-col space-y-[10px]'>
-                                        {todayShift.map((shift)=>(
-                                            <div key={shift.id} className='p-5 shadow rounded-[8px]'>
-                                                <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
-                                                <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
-                                            </div>
-                                        ))}
-                                    </div>
+                                todayShift.map((shift)=>(
+                                        <div key={shift.id} className='p-5 shadow-md rounded-[8px]'>
+                                            <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
+                                            <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
+                                        </div>
+                                    ))
                                 ):(
                                     <div><FreeBreakfastIcon/> No Shift</div>
                                 )}
@@ -145,14 +142,12 @@ const SchedulePage: React.FC = () => {
                             <div className='mb-[10px]'>
                                 <h3>{extractFullDate(date)}</h3>
                                 {todayShift.length >0 ? (
-                                <div className='flex flex-col space-y-[10px]'>
-                                    {todayShift.map((shift)=>(
-                                        <div key={shift.id} className='p-5 shadow rounded-[8px]'>
+                                todayShift.map((shift)=>(
+                                        <div key={shift.id} className='p-5 shadow-md rounded-[8px]'>
                                             <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
                                             <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
                                         </div>
-                                    ))}
-                                </div>
+                                    ))
                                 ):(
                                     <div><FreeBreakfastIcon/> No Shift</div>
                                 )}
@@ -165,17 +160,14 @@ const SchedulePage: React.FC = () => {
                     <div className='flex flex-col space-y-[10px]'>
                         <h1>Active Shift</h1>
                         {currentShifts.length>0?(
-                            <div className='flex flex-col space-y-[10px]'>
-                                {currentShifts.map((shift)=>(
-                                    <div>
-                                        <div key={shift.id} className='p-5 bg-accent_blue shadow rounded-[8px] text-light_gray'>
-                                            <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
-                                            <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
-                                            <p>Expected work time left: {caculateWorkTime(new Date(), shift.endTime).hours} hours {caculateWorkTime(new Date(), shift.endTime).minutes + 1} minutes</p>
-                                        </div>
+                            currentShifts.map((shift)=>(
+                                <div>
+                                    <div key={shift.id} className='p-5 bg-accent_blue shadow-md rounded-[8px] text-light_gray'>
+                                        <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
+                                        <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
                                     </div>
-                                ))}
-                            </div>
+                                </div>
+                            ))
                         ):(
                             <div><FreeBreakfastIcon/> No Shift</div>
                         )}
@@ -185,8 +177,8 @@ const SchedulePage: React.FC = () => {
                         <div className='flex flex-col space-y-[10px]'>
                             <h1>Shift Management</h1>
                             <div className='flex space-x-[10px]'>
-                                <Link to={"/schedule/create-shift"}><button className='bg-accent_blue text-light_gray'><p>Create Shift</p></button></Link>
-                                <Link to={"/schedule/shift-list"}><button className='bg-light_gray text-accent_blue'><p>Modify Shift</p></button></Link>
+                                <Link to={"/shift/create_shift"}><button className='bg-accent_blue text-light_gray'><p>Create Shift</p></button></Link>
+                                <Link to={"/shift/modify_shift"}><button className='bg-light_gray text-accent_blue'><p>Modify Shift</p></button></Link>
                             </div>
                         </div>
                     )}
@@ -198,4 +190,4 @@ const SchedulePage: React.FC = () => {
     );
 };
 
-export default SchedulePage;
+export default CreateShift;

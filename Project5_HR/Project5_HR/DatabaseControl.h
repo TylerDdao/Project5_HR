@@ -21,6 +21,7 @@ public:
 
 	//Selecters
 	bool getAccount(int staff_id, Account& account);
+	bool getEmployee(int staff_id, Employee& employee);
 
 	~DatabaseControl();
 

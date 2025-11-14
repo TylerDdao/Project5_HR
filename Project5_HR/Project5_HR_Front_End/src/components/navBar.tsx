@@ -47,7 +47,7 @@ const NavBar: React.FC = () => {
 
         <div className="flex flex-col space-y-[10px] justify-center items-center">
             {links.map((link) => {
-            const isActive = location.pathname === link.path;
+            const isActive = location.pathname.startsWith(link.path);
             return (
                 <Link
                 key={link.path}

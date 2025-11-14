@@ -40,6 +40,9 @@ import LoginPage from './pages/login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SchedulePage from './pages/schedule';
 import HomePage from './pages/home';
+import ShiftListPage from './pages/schedule/shift-list';
+import CreateShiftPage from './pages/schedule/create-shift';
+import ShiftDetailPage from './pages/schedule/shift-detail';
 
 export default function App() {
   return (
@@ -49,7 +52,12 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
+              
               <Route path="/schedule" element={<SchedulePage/>}/>
+              <Route path="/schedule/shift-list" element={<ShiftListPage/>}/>
+              <Route path="/schedule/create-shift" element={<CreateShiftPage/>}/>
+              <Route path="/schedule/:shiftId" element={<ShiftDetailPage/>}/>
+
               <Route path="/login" element={<LoginPage />} />
               <Route path='/design' element={<DesignPage/>}/>
             </Routes>
