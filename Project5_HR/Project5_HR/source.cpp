@@ -3,6 +3,7 @@
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <crow.h>
+#include <crow/middlewares/cors.h>
 #include <cstdlib>
 #include "Payroll.h"
 #include "DatabaseControl.h"
@@ -28,6 +29,12 @@ bool tokenChecker(auto auth) {
     }
 }
 
+auto tokenDeconder(auto auth) {
+    std::string token = auth.substr(7);
+    auto decoded = jwt::decode(token);
+    return decoded;
+}
+
 int main()
 {
     DatabaseControl db("postgres", "Nam@326389", "127.0.0.1", "5432", "project5_hr");
@@ -40,7 +47,15 @@ int main()
 
     //std::cout << std::getenv("SECRET_KEY") << std::endl;
 
-    crow::SimpleApp app;
+    crow::App<crow::CORSHandler> app;
+
+    auto& cors = app.get_middleware<crow::CORSHandler>();
+   /* cors.global()
+        .origin("http://localhost:5173");*/
+
+    cors.global()
+        .origin("http://localhost:5173")  //frontend host
+        .allow_credentials();
 
     CROW_ROUTE(app, "/")([]() {
         return "Hello world";
@@ -73,8 +88,7 @@ int main()
         try {
             auto auth = req.get_header_value("Authorization");
             if (tokenChecker(auth)) {
-                std::string token = auth.substr(7);
-                auto decoded = jwt::decode(token);
+                auto decoded = tokenDeconder(auth);
 
                 nlohmann::json user = nlohmann::json::parse(decoded.get_payload_claim("user").as_string());
                 nlohmann::json account = nlohmann::json::parse(decoded.get_payload_claim("account").as_string());
@@ -95,7 +109,6 @@ int main()
             return crow::response(401, err);
         }
     });
-
 
     CROW_ROUTE(app, "/login").methods(crow::HTTPMethod::Post)([&db](const crow::request& req) {
         try {
@@ -136,7 +149,7 @@ int main()
                 result["success"] = false;
                 result["message"] = "Invalid staff ID or password";
                 return crow::response(401, result);
-            }
+            } 
 
         }
         catch (const std::exception& e) {

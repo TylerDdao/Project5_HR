@@ -36,7 +36,22 @@ const DashboardPage: React.FC = () => {
 
     setThisWeekShifts(thisWeekShifts);
     setNextWeekShifts(nextWeekShift);
-    setCurrentStaff(staffs[0]);
+    // let staff: Staff = {} as Staff;
+    // staff.name = sessionStorage.getItem("name") || undefined;
+    // staff.id = Number(sessionStorage.getItem("staff_id")) || undefined;
+    // staff.phoneNumber = sessionStorage.getItem("phone_num") || undefined;
+    // staff.position = sessionStorage.getItem("role") || "Employee";
+    // const hireDateStr = sessionStorage.getItem("hire_date");
+    // staff.hireDate = hireDateStr ? new Date(hireDateStr) : undefined;
+    
+    const staffStr = sessionStorage.getItem("staff");
+    if (staffStr) {
+      const staff = JSON.parse(staffStr) as Staff;
+      console.log(staff.name); // Tyler
+      console.log(staff.hire_date); // "2025-10-31"
+      setCurrentStaff(staff);
+    }
+
   }, [])
 
   return (

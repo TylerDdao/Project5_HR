@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import { verifyLogin } from './script'; // adjust path as needed
+import { hashSHA256 } from '../../utils/security';
 
 const LoginPage = () => {
   const [staffId, setStaffId] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    verifyLogin(staffId, password);
+  const handleLogin = async () => {
+    if(!password){
+      alert("Please enter password!");
+      return;
+    }
+    const hashed = await hashSHA256(password);
+    verifyLogin(staffId, hashed);
   };
 
   return (

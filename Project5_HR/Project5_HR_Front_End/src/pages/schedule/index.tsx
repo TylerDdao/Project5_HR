@@ -4,12 +4,13 @@ import NavBar from '../../components/navBar';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
-import type { Shift, Staff } from '../../data/type';
+import type { Account, Shift, Staff } from '../../data/type';
 import { shifts, shiftsStaffs, staffs } from '../../data/dummyData';
 import { Link } from 'react-router-dom';
 
 const SchedulePage: React.FC = () => {
     const [staff, setCurrentStaff] = useState<Staff>();
+    const [account, setCurrentAccount] = useState<Account>();
 
     const [thisWeekDates, setThisWeekDates] = useState<Date[]>([]);
     const [nextWeekDates, setNextWeekDates] = useState<Date[]>([]);
@@ -18,8 +19,12 @@ const SchedulePage: React.FC = () => {
     const [nextWeekShifts, setNextWeekShifts] = useState<Shift[]>([]);
 
     useEffect(()=>{
-        setCurrentStaff(staffs[0])
-    }, [staff?.position])
+        const accountStr = sessionStorage.getItem("account");
+        if(accountStr){
+            const account = JSON.parse(accountStr) as Account;
+            setCurrentAccount(account)
+        }
+    }, [account?.role])
 
   useEffect(()=>{
     if (!staff) return;
@@ -181,7 +186,7 @@ const SchedulePage: React.FC = () => {
                         )}
                     </div>
 
-                    {staff?.position == "Manager" && (
+                    {account?.role == "Manager" && (
                         <div className='flex flex-col space-y-[10px]'>
                             <h1>Shift Management</h1>
                             <div className='flex space-x-[10px]'>
@@ -191,7 +196,6 @@ const SchedulePage: React.FC = () => {
                         </div>
                     )}
                 </div>
-
             </div>
         </div>
     </div>

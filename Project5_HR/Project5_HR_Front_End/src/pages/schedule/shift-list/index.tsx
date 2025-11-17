@@ -2,16 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { caculateWorkTime, extractDate, extractFullDate, extractTime, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay } from '../../../utils/time';
 import NavBar from '../../../components/navBar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import type { Shift, Staff } from '../../../data/type';
+import type {  Account,  Shift, Staff } from '../../../data/type';
 import { shifts, shiftsStaffs, staffs } from '../../../data/dummyData';
 import { Link } from 'react-router-dom';
 
 const ShiftListPage: React.FC = () => {
     const [staff, setCurrentStaff] = useState<Staff>();
+    const [account, setCurrentAccount] = useState<Account>();
 
     useEffect(()=>{
-        setCurrentStaff(staffs[0])
-    }, [staff?.position])
+        if(account?.role != "Manager"){
+            alert("You don't have permission to access this page");
+            window.location.href = "/dashboad"
+        }
+    })
+
+    useEffect(()=>{
+        const accountStr = sessionStorage.getItem("account");
+        if(accountStr){
+            const account = JSON.parse(accountStr) as Account;
+            setCurrentAccount(account)
+        }
+    }, [account?.role])
 
     const [shiftList, setShiftList] = useState<Shift[]>([]);
 

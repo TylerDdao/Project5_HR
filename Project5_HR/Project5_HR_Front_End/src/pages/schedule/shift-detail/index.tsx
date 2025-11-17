@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { caculateWorkTime, extractDate, extractFullDate, extractTime, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay } from '../../../utils/time';
 import NavBar from '../../../components/navBar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import type { Shift, Staff } from '../../../data/type';
+import type { Account, Shift, Staff } from '../../../data/type';
 import { shifts, shiftsStaffs, staffs } from '../../../data/dummyData';
 import { Link, useParams } from 'react-router-dom';
 
@@ -10,16 +10,25 @@ const ShiftDetailPage: React.FC = () => {
     const {shiftId} = useParams<{ shiftId: string }>()
 
     const [staff, setCurrentStaff] = useState<Staff>();
+        const [account, setCurrentAccount] = useState<Account>();
 
     useEffect(()=>{
-        setCurrentStaff(staffs[0])
-    }, [staff?.position])
+        const accountStr = sessionStorage.getItem("account");
+        if(accountStr){
+            const account = JSON.parse(accountStr) as Account;
+            setCurrentAccount(account)
+        }
+    }, [account?.role])
 
     const [shift, setShift] = useState<Shift>();
     const [isActive, setIsActive] = useState<Boolean>(false)
+    const [associatedStaffs, setAssociatedStaffs] = useState<Staff[]>();
 
     useEffect(()=>{
         setShift(shifts.find((shift)=>{return(shift.id.toString() == shiftId)}))
+
+        const staffIds = shiftsStaffs.filter((ss)=>{return(ss.shiftId == shift?.id)})
+        console.log(staffIds);
     }, [])
 
     useEffect(()=>{
