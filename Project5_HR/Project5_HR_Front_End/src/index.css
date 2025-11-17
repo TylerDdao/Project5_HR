@@ -75,11 +75,16 @@ p {
   background: rgba(160, 174, 192, 1);
 }
 
+.shadow{
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-family: inherit;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 input {

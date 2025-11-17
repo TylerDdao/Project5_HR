@@ -1,36 +1,39 @@
-# 1. Base image with GCC
+# 1. Base image with GCC and CMake (for building)
 FROM gcc:13
 
 # 2. Set working directory
 WORKDIR /app
 
-# 3. Install dependencies
-RUN apt-get update && apt-get install -y \
+# 3. Install system dependencies in a single layer
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git cmake curl pkg-config \
-    libpq-dev libpqxx-dev
+    libpq-dev libpqxx-dev \
+ && rm -rf /var/lib/apt/lists/*
 
-# 4. Install Crow (header-only library)
-RUN git clone https://github.com/CrowCpp/Crow.git /crow
-
-# Install standalone Asio (header-only)
-RUN git clone https://github.com/chriskohlhoff/asio.git /asio
+# 4. Clone header-only libraries (Crow, Asio, jwt-cpp) in one layer
+RUN git clone --depth 1 https://github.com/CrowCpp/Crow.git /crow \
+ && git clone --depth 1 https://github.com/chriskohlhoff/asio.git /asio \
+ && git clone --depth 1 https://github.com/Thalhammer/jwt-cpp.git /jwt-cpp \
+ && git clone --depth 1 https://github.com/nlohmann/json.git /nlohmann-json
 
 # 5. Copy your project files
 COPY Project5_HR/ ./Project5_HR/
 
 # 6. Build backend
-# - Add include path for Crow and your project
-# - Add link for libpqxx and libpq
-RUN g++ \
+# - Include all header-only libraries
+# - Link libpqxx and libpq
+RUN g++ -std=c++17 \
     -I/crow/include \
     -I/asio/asio/include \
+    -I/jwt-cpp/include \
+    -I/nlohmann-json/single_include \
     -I/app/Project5_HR/Project5_HR \
     /app/Project5_HR/Project5_HR/*.cpp \
     -o /app/mybackend \
-    -lpqxx -lpq -pthread
-    
-# 7. Expose the API port (Crow defaults to 18080, change if needed)
+    -lpqxx -lpq -pthread -lssl -lcrypto
+
+# 7. Expose API port
 EXPOSE 5000
 
 # 8. Run the compiled binary
-CMD ["./mybackend"]
+CMD ["/app/mybackend"]

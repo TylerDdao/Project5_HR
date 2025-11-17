@@ -26,6 +26,16 @@ export function extractDate(dateString?: string | Date): string{
     })
 }
 
+export function extractFullDate(dateString?: string | Date): string{
+    const date = dateString ? new Date(dateString) : new Date();
+    return date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric'
+    })
+}
+
 export function extractTime(timeString?: string | Date): string {
   const time = timeString ? new Date(timeString) : new Date();
 
@@ -44,4 +54,49 @@ export function caculateWorkTime(startTime: string | Date, endTime: string | Dat
     const hours: number = Math.floor(totalSeconds / 3600);
     const minutes: number = Math.floor((totalSeconds % 3600) / 60);
     return {hours, minutes};
+}
+
+export function getTodayWeekDay(): number{
+  if(new Date().getDay() == 0){
+    return 6;
+  }
+  else{
+    return(new Date().getDay()-1);
+  }
+}
+
+export function getStartOfWeekDate(): Date{
+  const date = new Date().getDate() - getTodayWeekDay();
+  const month = new Date().getMonth();
+  const year = new Date().getFullYear();
+  const startWeek = new Date();
+  startWeek.setDate(date);
+  startWeek.setMonth(month);
+  startWeek.setFullYear(year);
+  startWeek.setHours(0, 0, 0, 0);
+  return startWeek;
+}
+
+export function getEndOfWeekDate(): Date{
+  const date = new Date().getDate() + (6-getTodayWeekDay());
+  const month = new Date().getMonth();
+  const year = new Date().getFullYear();
+  const endWeek = new Date()
+  endWeek.setDate(date);
+  endWeek.setMonth(month);
+  endWeek.setFullYear(year);
+  endWeek.setHours(23, 59, 59, 999);
+  return endWeek;
+}
+
+export function getStartOfNextWeekDate(): Date{
+  const startWeek = getEndOfWeekDate();
+  startWeek.setDate(getEndOfWeekDate().getDate() + 1);
+  return startWeek;
+}
+
+export function getEndOfNextWeekDate(): Date{
+  const endWeek = getEndOfWeekDate();
+  endWeek.setDate(getEndOfWeekDate().getDate() + 7);
+  return endWeek;
 }

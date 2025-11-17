@@ -1,0 +1,15 @@
+CREATE TABLE employees(staff_id SERIAL PRIMARY KEY, name TEXT, position TEXT, phone_number TEXT, hire_date DATE);
+
+CREATE TABLE payrolls(payroll_id SERIAL PRIMARY KEY, staff_id INT REFERENCES employees(staff_id), wage_rate REAL, hour_worked REAL, bonus REAL, deduction REAL, created_at TIMESTAMPTZ);
+
+CREATE TABLE accounts(account_id SERIAL PRIMARY KEY, staff_id INT REFERENCES employees(staff_id), password TEXT, account_type TEXT);
+
+CREATE TABLE announcements(announcement_id SERIAL PRIMARY KEY, staff_id INT REFERENCES employees(staff_id), header TEXT, body TEXT, created_at TIMESTAMPTZ);
+
+CREATE TABLE shifts(shift_id SERIAL PRIMARY KEY, start_time TIMESTAMPTZ, end_time TIMESTAMPTZ);
+
+CREATE TABLE shifts_staffs(shift_id INT REFERENCES shifts(shift_id), staff_id INT REFERENCES employees(staff_id), PRIMARY KEY(shift_id, staff_id));
+
+CREATE TABLE shift_records(shift_id INT REFERENCES shifts(shift_id), staff_id INT REFERENCES employees(staff_id), check_in TIMESTAMPTZ, check_out TIMESTAMPTZ, PRIMARY KEY(shift_id, staff_id));
+
+CREATE TABLE communications(communication_id SERIAL PRIMARY KEY, sender_id INT REFERENCES employees(staff_id), recipient_id INT REFERENCES employees(staff_id), subject TEXT, body TEXT, created_at TIMESTAMPTZ, read_at TIMESTAMPTZ);
