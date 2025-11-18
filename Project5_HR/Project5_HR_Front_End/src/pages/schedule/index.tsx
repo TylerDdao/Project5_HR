@@ -12,19 +12,37 @@ const SchedulePage: React.FC = () => {
     const [staff, setCurrentStaff] = useState<Staff>();
     const [account, setCurrentAccount] = useState<Account>();
 
+    useEffect(() => {
+        const accountStr = sessionStorage.getItem("account");
+        const staffStr = sessionStorage.getItem("staff");
+
+        if (accountStr) {
+            const parsedAccount = JSON.parse(accountStr) as Account;
+            setCurrentAccount(parsedAccount);
+
+            if (parsedAccount.role !== "Manager") {
+                alert("You don't have permission to access this page");
+                window.location.href = "/dashboard";
+            }
+        } else {
+            alert("You are not logged in");
+            window.location.href = "/dashboard";
+        }
+
+        if (staffStr) {
+            const parsedStaff = JSON.parse(staffStr) as Staff;
+            setCurrentStaff({
+                ...parsedStaff,
+                hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
+            });
+        }
+    }, []);
+
     const [thisWeekDates, setThisWeekDates] = useState<Date[]>([]);
     const [nextWeekDates, setNextWeekDates] = useState<Date[]>([]);
 
     const [thisWeekShifts, setThisWeekShifts] = useState<Shift[]>([]);
     const [nextWeekShifts, setNextWeekShifts] = useState<Shift[]>([]);
-
-    useEffect(()=>{
-        const accountStr = sessionStorage.getItem("account");
-        if(accountStr){
-            const account = JSON.parse(accountStr) as Account;
-            setCurrentAccount(account)
-        }
-    }, [account?.role])
 
   useEffect(()=>{
     if (!staff) return;
@@ -49,18 +67,18 @@ const SchedulePage: React.FC = () => {
     }
 
     //Load shift by staff
-    const shiftIds = shiftsStaffs.filter((s) => s.staffId === staff?.id).map((s) => s.shiftId);
+    const shiftIds = shiftsStaffs.filter((s) => s.staff_id === staff?.id).map((s) => s.shift_id);
 
     let thisWeekShifts = shifts.filter(shift=>(shiftIds.includes(shift.id)))
 
     thisWeekShifts = thisWeekShifts.filter(shift=>{
-          return(shift.startTime <= getEndOfWeekDate() && shift.startTime >= getStartOfWeekDate() );
+          return(shift.start_time <= getEndOfWeekDate() && shift.start_time >= getStartOfWeekDate() );
     })
 
     let nextWeekShift = shifts.filter(shift=>(shiftIds.includes(shift.id)))
     
     nextWeekShift = nextWeekShift.filter(shift =>{
-        return(shift.startTime >= getStartOfNextWeekDate() && shift.startTime <= getEndOfNextWeekDate())
+        return(shift.start_time >= getStartOfNextWeekDate() && shift.start_time <= getEndOfNextWeekDate())
     })
     
     setThisWeekShifts(thisWeekShifts);
@@ -87,7 +105,7 @@ const SchedulePage: React.FC = () => {
         const now = new Date()
         const todayShift: Shift[] = [];
         thisWeekShifts.map((shift) => {
-            if(shift.startTime.toDateString() == now.toDateString() && shift.startTime.getTime() <= now.getTime() && shift.endTime.getTime() > now.getTime()){
+            if(shift.start_time.toDateString() == now.toDateString() && shift.start_time.getTime() <= now.getTime() && shift.end_time.getTime() > now.getTime()){
                 todayShift.push(shift);
             }
         });
@@ -113,7 +131,7 @@ const SchedulePage: React.FC = () => {
                     {thisWeekDates.map((date)=>{
                         const todayShift: Shift[] = [];
                         thisWeekShifts.forEach((shift) => {
-                            if(shift.startTime.toDateString() == date.toDateString()){
+                            if(shift.start_time.toDateString() == date.toDateString()){
                                 todayShift.push(shift);
                             }
                         })
@@ -125,8 +143,8 @@ const SchedulePage: React.FC = () => {
                                     <div className='flex flex-col space-y-[10px]'>
                                         {todayShift.map((shift)=>(
                                             <div key={shift.id} className='p-5 shadow rounded-[8px]'>
-                                                <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
-                                                <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
+                                                <h3>{extractFullDate(shift.start_time)} | {extractTime(shift.start_time)} - {extractTime(shift.end_time)}</h3>
+                                                <p>Expected work time: {caculateWorkTime(shift.start_time, shift.end_time).hours}  hours {caculateWorkTime(shift.start_time, shift.end_time).minutes} minutes</p>
                                             </div>
                                         ))}
                                     </div>
@@ -141,7 +159,7 @@ const SchedulePage: React.FC = () => {
                     {nextWeekDates.map((date)=>{
                         const todayShift: Shift[] = [];
                         nextWeekShifts.forEach((shift) => {
-                            if(shift.startTime.toDateString() == date.toDateString()){
+                            if(shift.start_time.toDateString() == date.toDateString()){
                                 todayShift.push(shift);
                             }
                         })
@@ -153,8 +171,8 @@ const SchedulePage: React.FC = () => {
                                 <div className='flex flex-col space-y-[10px]'>
                                     {todayShift.map((shift)=>(
                                         <div key={shift.id} className='p-5 shadow rounded-[8px]'>
-                                            <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
-                                            <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
+                                            <h3>{extractFullDate(shift.start_time)} | {extractTime(shift.start_time)} - {extractTime(shift.end_time)}</h3>
+                                            <p>Expected work time: {caculateWorkTime(shift.start_time, shift.end_time).hours}  hours {caculateWorkTime(shift.start_time, shift.end_time).minutes} minutes</p>
                                         </div>
                                     ))}
                                 </div>
@@ -174,9 +192,9 @@ const SchedulePage: React.FC = () => {
                                 {currentShifts.map((shift)=>(
                                     <div>
                                         <div key={shift.id} className='p-5 bg-accent_blue shadow rounded-[8px] text-light_gray'>
-                                            <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
-                                            <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
-                                            <p>Expected work time left: {caculateWorkTime(new Date(), shift.endTime).hours} hours {caculateWorkTime(new Date(), shift.endTime).minutes + 1} minutes</p>
+                                            <h3>{extractFullDate(shift.start_time)} | {extractTime(shift.start_time)} - {extractTime(shift.end_time)}</h3>
+                                            <p>Expected work time: {caculateWorkTime(shift.start_time, shift.end_time).hours}  hours {caculateWorkTime(shift.start_time, shift.end_time).minutes} minutes</p>
+                                            <p>Expected work time left: {caculateWorkTime(new Date(), shift.end_time).hours} hours {caculateWorkTime(new Date(), shift.end_time).minutes + 1} minutes</p>
                                         </div>
                                     </div>
                                 ))}

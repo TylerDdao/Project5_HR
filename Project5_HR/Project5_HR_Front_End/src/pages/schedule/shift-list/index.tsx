@@ -9,63 +9,69 @@ import { Link } from 'react-router-dom';
 const ShiftListPage: React.FC = () => {
     const [staff, setCurrentStaff] = useState<Staff>();
     const [account, setCurrentAccount] = useState<Account>();
-
-    useEffect(()=>{
-        if(account?.role != "Manager"){
-            alert("You don't have permission to access this page");
-            window.location.href = "/dashboad"
-        }
-    })
-
-    useEffect(()=>{
-        const accountStr = sessionStorage.getItem("account");
-        if(accountStr){
-            const account = JSON.parse(accountStr) as Account;
-            setCurrentAccount(account)
-        }
-    }, [account?.role])
-
     const [shiftList, setShiftList] = useState<Shift[]>([]);
 
-    useEffect(()=>{
-        if(!staff){
-            return
+    const fetchShifts = async () => {
+        try {
+            const token = sessionStorage.getItem("token");
+
+            const response = await fetch(`${import.meta.env.VITE_SERVER}/api/shift_detail`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    ...(token ? { "Authorization": `Bearer ${token}` } : {})
+                },
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                const shiftData = result.shifts as Shift[];
+
+                // Convert start_time and end_time to Date objects
+                const shiftsWithDates = shiftData.map(shift => ({
+                    ...shift,
+                    start_time: new Date(shift.start_time),
+                    end_time: new Date(shift.end_time)
+                }));
+                setShiftList(shiftsWithDates);
+            } else {
+                alert("Failed to load shift details");
+                throw new Error(result.message || "Failed to load shift details");
+            }
+
+        } catch (err) {
+            console.error("Error loading shift details:", err);
         }
+    };
 
-        const now = new Date()
-        const todayShift: Shift[] = shifts.filter((shift)=>{
-            return(shift.startTime.toDateString() == now.toDateString() && shift.startTime.getTime() <= now.getTime() && shift.endTime.getTime() > now.getTime())
-        });
-        setCurrentShifts(todayShift);
-
-        const today = new Date();
-        const shiftList = shifts.filter((shift)=>{
-            return(shift.startTime > today);
-        })
-
-        setShiftList(shiftList);
-
-    }, [staff])
-
-    
-
-  useEffect(()=>{
-    if (!staff) return;
-  }, [staff])
-
-    const [currentShifts, setCurrentShifts] = useState<Shift[]>([]);
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            const now = new Date()
-            const todayShift: Shift[] = shifts.filter((shift)=>{
-                return(shift.startTime.toDateString() == now.toDateString() && shift.startTime.getTime() <= now.getTime() && shift.endTime.getTime() > now.getTime())
+        fetchShifts();
+        const accountStr = sessionStorage.getItem("account");
+        const staffStr = sessionStorage.getItem("staff");
+
+        if (accountStr) {
+            const parsedAccount = JSON.parse(accountStr) as Account;
+            setCurrentAccount(parsedAccount);
+
+            if (parsedAccount.role !== "Manager") {
+                alert("You don't have permission to access this page");
+                window.location.href = "/dashboard";
+            }
+        } else {
+            alert("You are not logged in");
+            window.location.href = "/dashboard";
+        }
+
+        if (staffStr) {
+            const parsedStaff = JSON.parse(staffStr) as Staff;
+            setCurrentStaff({
+                ...parsedStaff,
+                hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
             });
-            setCurrentShifts(todayShift);
-        }, 1000);
-    
-        return () => clearInterval(timer);
-      });
+        }
+    }, []);
 
   return (
     <div className='flex'>
@@ -77,31 +83,35 @@ const ShiftListPage: React.FC = () => {
             <Link to={"/schedule"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
             <div className="border border-charcoal w-[100px] my-[30px]"></div>
 
-            <h2>Active Shift</h2>
-            <div className='flex flex-col space-y-[10px]'>
-                {currentShifts.map((shift)=>(
-                    <Link to={`/schedule/${shift.id}`}>
-                        <div key={shift.id} className='p-5 shadow rounded-[8px] text-light_gray bg-accent_blue'>
-                            <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
-                            <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
-                            <p>Expected work time left: {caculateWorkTime(new Date(), shift.endTime).hours} hours {caculateWorkTime(new Date(), shift.endTime).minutes + 1} minutes</p>
-                        </div>
-                    </Link>
-                ))}
-            </div>
-
-            <div className="border border-charcoal w-[100px] my-[30px]"></div>
-
             <h2>Choose a shift for modification</h2>
             <div className='flex flex-col space-y-[10px]'>
-                {shiftList.map((shift)=>(
-                    <Link to={`/schedule/${shift.id}`}>
-                        <div key={shift.id} className='p-5 shadow rounded-[8px] text-charcoal'>
-                            <h3>{extractFullDate(shift.startTime)} | {extractTime(shift.startTime)} - {extractTime(shift.endTime)}</h3>
-                            <p>Expected work time: {caculateWorkTime(shift.startTime, shift.endTime).hours}  hours {caculateWorkTime(shift.startTime, shift.endTime).minutes} minutes</p>
-                        </div>
-                    </Link>
-                ))}
+                {shiftList.map((shift)=>{
+                    const now = new Date()
+                    const workTimeLeft = shift.end_time.getTime() - now.getTime();
+                    if(shift.start_time.toDateString() <= now.toDateString() && shift.end_time.toDateString() >= now.toDateString() && shift.start_time.getTime() <= now.getTime() && shift.end_time.getTime() > now.getTime()){
+                        // shift.start_time.toDateString() <= now.toDateString() && shift.end_time.toDateString() >= now.toDateString() && 
+                        return(
+                            <Link to={`/schedule/${shift.id}`} key={shift.id}>
+                                <div className='p-5 shadow rounded-[8px] text-light_gray bg-accent_blue'>
+                                    <h3>{extractFullDate(shift.start_time)} | {extractTime(shift.start_time)} - {extractTime(shift.end_time)}</h3>
+                                    <p>Expected work time: {caculateWorkTime(shift.start_time, shift.end_time).hours}  hours {caculateWorkTime(shift.start_time, shift.end_time).minutes} minutes</p>
+                                    <p>Shift is currently active</p>
+                                    <p>Expected work time left: {caculateWorkTime(now, shift.end_time).hours} hours {caculateWorkTime(now, shift.end_time).minutes} minutes</p>
+                                </div>
+                            </Link>
+                        )
+                    }
+                    else{
+                        return(
+                            <Link to={`/schedule/${shift.id}`} key={shift.id}>
+                                <div className='p-5 shadow rounded-[8px] text-charcoal'>
+                                    <h3>{extractFullDate(shift.start_time)} | {extractTime(shift.start_time)} - {extractTime(shift.end_time)}</h3>
+                                    <p>Expected work time: {caculateWorkTime(shift.start_time, shift.end_time).hours}  hours {caculateWorkTime(shift.start_time, shift.end_time).minutes} minutes</p>
+                                </div>
+                            </Link>
+                        )
+                    }
+                })}
             </div>
 
         </div>
