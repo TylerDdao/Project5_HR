@@ -1,7 +1,7 @@
 export async function verifyLogin(staffId: string, password: string): Promise<void> {
   const body = { staff_id: staffId, password };
   try {
-    const response = await fetch(`${import.meta.env.VITE_SERVER}/login`, {
+    const response = await fetch(`${import.meta.env.VITE_SERVER}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)

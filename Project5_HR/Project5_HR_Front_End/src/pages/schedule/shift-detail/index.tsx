@@ -8,52 +8,101 @@ import { Link, useParams } from 'react-router-dom';
 
 const ShiftDetailPage: React.FC = () => {
     const {shiftId} = useParams<{ shiftId: string }>()
-
-    const [staff, setCurrentStaff] = useState<Staff>();
-        const [account, setCurrentAccount] = useState<Account>();
-
-    useEffect(()=>{
-        const accountStr = sessionStorage.getItem("account");
-        if(accountStr){
-            const account = JSON.parse(accountStr) as Account;
-            setCurrentAccount(account)
-        }
-    }, [account?.role])
-
     const [shift, setShift] = useState<Shift>();
     const [isActive, setIsActive] = useState<Boolean>(false)
     const [associatedStaffs, setAssociatedStaffs] = useState<Staff[]>();
+    const [hasStaffs, setHasStaffs] = useState<Boolean>(true);
 
-    useEffect(()=>{
-        setShift(shifts.find((shift)=>{return(shift.id.toString() == shiftId)}))
+    const handleLoadingShiftDetail = async () => {
+        try {
+            const token = sessionStorage.getItem("token");
 
-        const staffIds = shiftsStaffs.filter((ss)=>{return(ss.shiftId == shift?.id)})
-        console.log(staffIds);
-    }, [])
+            const response = await fetch(`${import.meta.env.VITE_SERVER}/api/shift_detail?shift_id=1`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                ...(token ? { "Authorization": `Bearer ${token}` } : {})
+            },
+            });
 
-    useEffect(()=>{
-        const now = new Date()
-        if(shift?.startTime.toDateString() == now.toDateString() && shift.startTime.getTime() <= now.getTime() && shift.endTime.getTime() > now.getTime()){
-            setIsActive(true);
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+            const staffs = result.staffs as Staff[];
+            const shiftData = result.shift as Shift;
+            const shiftWithDates = {
+                ...shiftData,
+                start_time: new Date(shiftData.start_time),
+                end_time: new Date(shiftData.end_time)
+            };
+            setShift(shiftWithDates);
+
+            setAssociatedStaffs(staffs)
+            if(staffs.length == 0){
+                setHasStaffs(false);
+            }
+            } else {
+            alert("Failed to load shift details");
+            throw new Error(result.message || "Failed to load shift details");
+            }
+
+        } catch (err) {
+            console.error("Error loading shift details:", err);
         }
-        else{
-            setIsActive(false);
-        }
-    }, [shift])
+    };
+
+
+    const [staff, setCurrentStaff] = useState<Staff>();
+    const [account, setCurrentAccount] = useState<Account>();
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            const now = new Date()
-            if(shift?.startTime.toDateString() == now.toDateString() && shift.startTime.getTime() <= now.getTime() && shift.endTime.getTime() > now.getTime()){
-                setIsActive(true);
-            }
-            else{
-                setIsActive(false);
-            }
-        }, 1000);
+        handleLoadingShiftDetail()
+        const accountStr = sessionStorage.getItem("account");
+        const staffStr = sessionStorage.getItem("staff");
 
-        return () => clearInterval(timer);
-    });
+        if (accountStr) {
+            const parsedAccount = JSON.parse(accountStr) as Account;
+            setCurrentAccount(parsedAccount);
+
+            if (parsedAccount.role !== "Manager") {
+                alert("You don't have permission to access this page");
+                window.location.href = "/dashboard";
+            }
+        } else {
+            alert("You are not logged in");
+            window.location.href = "/dashboard";
+        }
+
+        if (staffStr) {
+            const parsedStaff = JSON.parse(staffStr) as Staff;
+            setCurrentStaff({
+                ...parsedStaff,
+                hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
+            });
+        }
+    }, []);
+
+    // const [shift, setShift] = useState<Shift>();
+    // const [isActive, setIsActive] = useState<Boolean>(false)
+    // const [associatedStaffs, setAssociatedStaffs] = useState<Staff[]>();
+
+    // useEffect(()=>{
+    //     setShift(shifts.find((shift)=>{return(shift.id.toString() == shiftId)}))
+    //     const staffIds = shiftsStaffs.filter((ss)=>{return(ss.shift_id == shift?.id)})
+    //     console.log(staffIds);
+    // }, [])
+
+    useEffect(() => {
+    const checkActive = () => {
+        if (!shift) return false;
+        const now = new Date();
+        return shift.start_time.getTime() <= now.getTime() && now.getTime() < shift.end_time.getTime();
+    };
+
+    setIsActive(checkActive());
+    const timer = setInterval(() => setIsActive(checkActive()), 1000);
+    return () => clearInterval(timer);
+    }, [shift]);
 
   return (
     <div className='flex'>
@@ -79,12 +128,12 @@ const ShiftDetailPage: React.FC = () => {
                     <h2>Start Time</h2>
                     {isActive?(
                         <div className='flex space-x-[10px]'>
-                            <div className='p-[5px] shadow rounded rounded-md'><p>{extractFullDate(shift?.startTime)}</p></div>
-                            <div className='p-[5px] shadow rounded rounded-md'><p>{extractTime(shift?.startTime)}</p></div>
+                            <div className='p-[5px] shadow rounded rounded-md'><p>{extractFullDate(shift?.start_time)}</p></div>
+                            <div className='p-[5px] shadow rounded rounded-md'><p>{extractTime(shift?.start_time)}</p></div>
                         </div>
                     ):(
                         <div className='flex space-x-[10px]'>
-                            <input className='w-fit bg-charcoal text-light_gray' type='datetime-local' defaultValue={shift? new Date(shift.startTime).toISOString().slice(0, 16):''} />
+                            <input className='w-fit bg-charcoal text-light_gray' type='datetime-local' defaultValue={shift? new Date(shift.start_time).toISOString().slice(0, 16):''} />
                         </div>
                     )}
                 </div>
@@ -93,13 +142,28 @@ const ShiftDetailPage: React.FC = () => {
                     <h2>End Time</h2>
                     {isActive?(
                         <div className='flex space-x-[10px]'>
-                            <div className='p-[5px] shadow rounded rounded-md'><p>{extractFullDate(shift?.endTime)}</p></div>
-                            <div className='p-[5px] shadow rounded rounded-md'><p>{extractTime(shift?.endTime)}</p></div>
+                            <div className='p-[5px] shadow rounded rounded-md'><p>{extractFullDate(shift?.end_time)}</p></div>
+                            <div className='p-[5px] shadow rounded rounded-md'><p>{extractTime(shift?.end_time)}</p></div>
                         </div>
                     ):(
                         <div className='flex space-x-[10px]'>
-                            <input className='w-fit bg-charcoal text-light_gray' type='datetime-local' defaultValue={shift? new Date(shift.endTime).toISOString().slice(0, 16):''} />
+                            <input className='w-fit bg-charcoal text-light_gray' type='datetime-local' defaultValue={shift? new Date(shift.end_time).toISOString().slice(0, 16):''} />
                         </div>
+                    )}
+                </div>
+
+                <div className='flex flex-col space-y-[5px]'>
+                    <h2>Assigned Staffs</h2>
+                    {associatedStaffs ?(
+                        associatedStaffs.map((staff)=>(
+                            <div>{staff.name}</div>
+                        ))
+                    ):(
+                        hasStaffs ? (
+                            <h3>Loading staffs...</h3>
+                        ):(
+                            <h3>No staff were assigned to this shift</h3>
+                        )
                     )}
                 </div>
             </div>
