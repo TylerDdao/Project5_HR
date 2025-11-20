@@ -12,10 +12,23 @@ export function getCurrentDateTime(): string {
 
   // Format using locale (e.g., "Nov 02, 2025, 10:45 PM")
   const formatted = now.toLocaleString('en-US', options);
-
-  // Replace the comma between date and time with a dash for your format
-  return formatted.replace(',', ' -');
+  return formatted;
 }
+
+export function toUTCString(date: Date | undefined){
+  if (!date) return null;
+  return new Date(
+    Date.UTC(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds()
+    )
+  ).toISOString(); // Returns ISO string in UTC
+};
+
 
 export function extractDate(dateString?: string | Date): string{
     const date = dateString ? new Date(dateString) : new Date();

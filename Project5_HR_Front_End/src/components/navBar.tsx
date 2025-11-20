@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
-import type { Account, Role, Staff } from "../data/type";
+import type { Account, AccountType, Staff } from "../data/type";
 import { staffs } from "../data/dummyData";
 
-const navLinks: Record<Role, { name: string; path: string }[]> = {
+const navLinks: Record<AccountType, { name: string; path: string }[]> = {
   Manager: [
     { name: "Dashboard", path: "/dashboard" },
     { name: "Schedule", path: "/schedule" },
@@ -38,14 +38,10 @@ const NavBar: React.FC = () => {
         }
     }, [])
     
-    const role = (account?.role as Role) || "Employee";
+    const role = (account?.account_type as AccountType) || "Employee";
     const name = staff?.name || "Unknown";
-
-    
-  
-  
     const links = navLinks[role];
-    const location = useLocation(); // ✅ get current URL path
+    const location = useLocation();
 
     const handleLogout = () => {
         sessionStorage.clear();
@@ -74,15 +70,11 @@ const NavBar: React.FC = () => {
                 className={`p-[10px] rounded-xl text-center w-fit min-w-[300px] transition 
                     ${
                     isActive
-                        ? "bg-accent_blue text-light_gray"
-                        : "bg-light_gray text-charcoal hover:bg-gray-300"
+                        ? "bg-accent_blue"
+                        : "bg-light_gray hover:bg-gray-300"
                     }`}
                 >
-                <h3 className={` ${
-                    isActive
-                        ? "text-light_gray"
-                        : "text-charcoal"
-                    }`}>{link.name}</h3>
+                <h3 className={`${isActive ? "text-light_gray" : "text-charcoal"}`}>{link.name}</h3>
                 </Link>
             );
             })}
@@ -90,7 +82,7 @@ const NavBar: React.FC = () => {
 
         <div className="flex flex-col justify-end h-full space-y-[10px] items-center mt-auto">
             <button
-              className='bg-light_gray w-full'
+              className='bg-light_gray hover:bg-gray-300 w-full transition' 
             >
               <h3 className='text-charcoal'>My Account</h3>
             </button>

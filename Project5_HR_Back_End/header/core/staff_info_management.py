@@ -1,68 +1,68 @@
 from typing import List, Optional
-from employee import Employee
+from header.core.staff import Staff
 from persistence.file_repository import FileRepository
 
-class EmployeeInfoManagement:
+class StaffInfoManagement:
     """
-    EmployeeInfoManagement class for managing employee records.
+    StaffInfoManagement class for managing staff records.
 
     Attributes:
-        employees (list[Employee]): List of employee objects.
+        staff (list[Staff]): List of staff objects.
         repository (FileRepository): Handles saving/loading data.
-        data_file_path (str): Path to employee data file.
+        data_file_path (str): Path to staff data file.
     """
 
     def __init__(self, repo: FileRepository = None):
         """
-        Constructor for EmployeeInfoManagement.
+        Constructor for StaffInfoManagement.
 
         Args:
             repo (FileRepository, optional): Existing repository instance.
         """
-        self.employees: List[Employee] = []
+        self.staffs: List[Staff] = []
         self.repository = repo if repo else FileRepository()
         self.data_file_path = "employees.txt"
 
     # ----------------------------
     # Internal helper
     # ----------------------------
-    def _find_by_id(self, emp_id: int) -> Optional[Employee]:
+    def _find_by_id(self, staff_id: int) -> Optional[Staff]:
         """
-        Find employee by ID.
+        Find staff by ID.
 
         Args:
-            emp_id (int): Employee ID.
+            staff_id (int): Staff ID.
 
         Returns:
             Employee | None: Employee object if found.
         """
-        for emp in self.employees:
-            if emp.staff_id == emp_id:
-                return emp
+        for staff in self.staffs:
+            if staff.get_staff_id() == staff_id:
+                return staff
         return None
 
     # ----------------------------
     # CRUD Operations
     # ----------------------------
-    def add_staff(self, e: Employee) -> None:
+    def add_staff(self, s: Staff) -> None:
         """Add a new employee."""
-        if self._find_by_id(e.staff_id):
-            print(f"Employee with ID {e.staff_id} already exists. Add cancelled.")
+        if self._find_by_id(s.get_staff_id()):
+            print(f"Employee with ID {s.get_staff_id()} already exists. Add cancelled.")
             return
 
-        self.employees.append(e)
-        print(f"Employee {e.name} added successfully.")
+        self.staffs.append(s)
+        print(f"Employee {s.get_name()} added successfully.")
         self.save_to_file()
 
-    def update_staff(self, emp_id: int):
+    def update_staff(self, staff_id: int):
         """Update employee details."""
-        e = self._find_by_id(emp_id)
-        if not e:
-            print(f"Employee with ID {emp_id} not found.")
+        s = self._find_by_id(staff_id)
+        if not s:
+            print(f"Employee with ID {staff_id} not found.")
             return
 
         while True:
-            print(f"\nUpdating employee {e.name} (ID {e.staff_id})")
+            print(f"\nUpdating employee {s.get_name()} (ID {s.get_staff_id})")
             print("1. Name")
             print("2. Position")
             print("3. Phone Number")
@@ -72,16 +72,20 @@ class EmployeeInfoManagement:
             choice = input("Enter your choice: ")
 
             if choice == "1":
-                e.name = input("Enter new name: ")
+                staff_name = input("Enter new name: ")
+                s.set_name(staff_name)
                 print("Name updated.")
             elif choice == "2":
-                e.position = input("Enter new position: ")
+                staff_position = input("Enter new position: ")
+                s.set_position(staff_position)
                 print("Position updated.")
             elif choice == "3":
-                e.phone_num = input("Enter new phone number: ")
+                staff_phone_num = input("Enter new phone number: ")
+                s.set_phone_num(staff_phone_num)
                 print("Phone number updated.")
             elif choice == "4":
-                e.hire_date = input("Enter new hire date (YYYY-MM-DD): ")
+                staff_hire_date = input("Enter new hire date (YYYY-MM-DD): ")
+                s.set_hire_date(staff_hire_date)
                 print("Hire date updated.")
             elif choice == "0":
                 print("Exiting update menu.")
@@ -91,19 +95,19 @@ class EmployeeInfoManagement:
 
         self.save_to_file()
 
-    def get_staff(self, emp_id: int) -> Optional[Employee]:
+    def get_staff(self, staff_id: int) -> Optional[Staff]:
         """Return an Employee object by ID."""
-        return self._find_by_id(emp_id)
+        return self._find_by_id(staff_id)
 
-    def remove_staff(self, emp_id: int) -> None:
+    def remove_staff(self, staff_id: int) -> None:
         """Remove employee by ID."""
-        for i, e in enumerate(self.employees):
-            if e.staff_id == emp_id:
-                print(f"Employee {e.name} removed.")
-                del self.employees[i]
+        for i, s in enumerate(self.staffs):
+            if s.get_staff_id() == staff_id:
+                print(f"Employee {s.get_name()} removed.")
+                del self.staffs[i]
                 self.save_to_file()
                 return
-        print(f"Employee with ID {emp_id} not found.")
+        print(f"Employee with ID {staff_id} not found.")
 
     def display_all_employees(self):
         """Print all employee records."""
@@ -137,16 +141,16 @@ class EmployeeInfoManagement:
             print("No existing employee data found.")
             return
 
-        self.employees.clear()
+        self.staffs.clear()
         lines = self.repository.read_lines(self.data_file_path)
 
         for ln in lines:
             if ln.strip():
-                emp = Employee.deserialize(ln.strip())
-                if emp.staff_id != 0:
-                    self.employees.append(emp)
+                staff = Staff.deserialize(ln.strip())
+                if staff.get_staff_id() != 0:
+                    self.staffs.append(staff)
 
-        print(f"Loaded {len(self.employees)} employees from file.")
+        print(f"Loaded {len(self.staffs)} employees from file.")
 
     # ----------------------------
     # Management Menu
@@ -180,7 +184,7 @@ class EmployeeInfoManagement:
                 phone = input("Enter phone number: ")
                 date = input("Enter hire date (YYYY-MM-DD): ")
 
-                self.add_staff(Employee(emp_id, name, pos, phone, date))
+                self.add_staff(Staff(emp_id, name, pos, phone, date))
 
             elif choice == "2":
                 emp_id = int(input("Enter Employee ID to update: "))

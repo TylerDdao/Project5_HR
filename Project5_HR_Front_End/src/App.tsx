@@ -43,6 +43,7 @@ import HomePage from './pages/home';
 import ShiftListPage from './pages/schedule/shift-list';
 import CreateShiftPage from './pages/schedule/create-shift';
 import ShiftDetailPage from './pages/schedule/shift-detail';
+import ShiftHistoryPage from './pages/schedule/shift-history';
 
 export default function App() {
   return (
@@ -56,6 +57,7 @@ export default function App() {
               <Route path="/schedule" element={<SchedulePage/>}/>
               <Route path="/schedule/shift-list" element={<ShiftListPage/>}/>
               <Route path="/schedule/create-shift" element={<CreateShiftPage/>}/>
+              <Route path="/schedule/shift-history" element={<ShiftHistoryPage/>}/>
               <Route path="/schedule/:shiftId" element={<ShiftDetailPage/>}/>
 
               <Route path="/login" element={<LoginPage />} />

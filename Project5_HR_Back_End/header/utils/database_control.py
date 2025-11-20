@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2 import sql
 from typing import Optional
 from header.core.account import Account
-from header.core.employee import Employee
+from header.core.staff import Staff
 from header.core.payroll import Payroll
 from header.core.shift import Shift
 
@@ -68,7 +68,7 @@ class DatabaseControl:
                 cur.execute(
                     "INSERT INTO accounts (staff_id, password, account_type) "
                     "VALUES (%s, %s, %s) RETURNING account_id;",
-                    (account.staff_id, account.password, account.account_type)
+                    (account.get_staff_id(), account.get_password(), account.get_account_type())
                 )
                 account_id = cur.fetchone()[0]
                 self.connection.commit()
@@ -98,7 +98,7 @@ class DatabaseControl:
             print(f"Error inserting payroll: {e}")
             return None
 
-    def insert_staff(self, staff: Employee) -> Optional[int]:
+    def insert_staff(self, staff: Staff) -> Optional[int]:
         """@brief Insert a new employee"""
         try:
             self.set_connection()
@@ -114,6 +114,56 @@ class DatabaseControl:
                 staff_id = cur.fetchone()[0]
                 self.connection.commit()
                 return staff_id
+        except Exception as e:
+            print(f"Error inserting employee: {e}")
+            return None
+        
+    def insert_shift(self, shift: Shift) -> Optional[int]:
+        """@brief Insert a new shift"""
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+
+            with self.connection.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO shifts (start_time, end_time) "
+                    "VALUES (%s, %s) RETURNING shift_id;",
+                    (shift.get_start_time(), shift.get_end_time(),)
+                )
+                shift_id = cur.fetchone()[0]
+                staff_ids = shift.get_staffs()
+                for staff_id in staff_ids:
+                    cur.execute("INSERT INTO shifts_staffs (shift_id, staff_id) VALUES (%s, %s)", (shift_id, staff_id,))
+                self.connection.commit()
+                return shift_id
+        except Exception as e:
+            print(f"Error inserting employee: {e}")
+            return None
+        
+    def update_shift(self, shift: Shift) -> Optional[int]:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            
+            with self.connection.cursor() as cur:
+                shift_id = shift.get_shift_id()
+                start_time = shift.get_start_time()
+                end_time = shift.get_end_time()
+
+                cur.execute("""
+                    UPDATE shifts
+                    SET start_time = %s, end_time = %s
+                    WHERE shift_id = %s;
+                """, (start_time, end_time, shift_id,))
+
+                cur.execute("DELETE FROM shifts_staffs WHERE shift_id = %s", (shift_id,))
+                staff_ids = shift.get_staffs()
+                for staff_id in staff_ids:
+                    cur.execute("INSERT INTO shifts_staffs (shift_id, staff_id) VALUES (%s, %s)", (shift_id, staff_id,))
+                self.connection.commit()
+                return True
         except Exception as e:
             print(f"Error inserting employee: {e}")
             return None
@@ -135,7 +185,7 @@ class DatabaseControl:
             print(f"Error retrieving account: {e}")
             return None
 
-    def get_staff(self, staff_id: int) -> Optional[Employee]:
+    def get_staff_by_id(self, staff_id: int) -> Optional[Staff]:
         """@brief Retrieve an employee by staff_id"""
         try:
             self.set_connection()
@@ -146,7 +196,7 @@ class DatabaseControl:
                 cur.execute("SELECT * FROM employees WHERE staff_id = %s;", (staff_id,))
                 row = cur.fetchone()
                 if row:
-                    return Employee(row[0], row[1], row[2], row[3], row[4].isoformat())
+                    return Staff(row[0], row[1], row[2], row[3], row[4].isoformat())
             return None
         except Exception as e:
             print(f"Error retrieving employee: {e}")
@@ -214,7 +264,7 @@ class DatabaseControl:
             print(f"Error retrieving shift: {e}")
             return None
         
-    def get_all_shifts(self) -> Optional[list[dict]]:
+    def get_scheduled_and_active_shifts(self) -> Optional[list[dict]]:
         try:
             self.set_connection()
             if not self.connection:
@@ -224,7 +274,9 @@ class DatabaseControl:
                 cur.execute("""
                     SELECT shift_id, start_time, end_time
                     FROM shifts
-                    ORDER BY start_time;
+                    WHERE start_time > NOW() OR (start_time < NOW() AND end_time > NOW())
+                    ORDER BY start_time
+                    LIMIT 1000;
                 """,)
                 
                 rows = cur.fetchall()
@@ -241,6 +293,153 @@ class DatabaseControl:
                 
                 return shifts
 
+        except Exception as e:
+            print(f"Error retrieving shift: {e}")
+            return None
+        
+    def get_done_shifts(self) -> Optional[list[dict]]:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            
+            with self.connection.cursor() as cur:
+                cur.execute("""
+                    SELECT shift_id, start_time, end_time
+                    FROM shifts
+                    WHERE end_time < NOW()
+                    ORDER BY start_time
+                    LIMIT 1000;
+                """,)
+                
+                rows = cur.fetchall()
+                if not rows:
+                    return None
+
+                shifts = []
+                for r in rows:
+                    shifts.append({
+                        "shift_id": r[0],
+                        "start_time": r[1].isoformat(),
+                        "end_time": r[2].isoformat()
+                    })
+                
+                return shifts
+
+        except Exception as e:
+            print(f"Error retrieving shift: {e}")
+            return None
+        
+    def get_this_week_shifts(self, staff_id: int) -> Optional[list[dict]]:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            with self.connection.cursor() as cur:
+                cur.execute("""SELECT s.*
+                                FROM shifts s
+                                JOIN shifts_staffs ss ON s.shift_id = ss.shift_id
+                                WHERE ss.staff_id = %s  -- replace 1 with the staff ID you want
+                                AND s.start_time >= date_trunc('week', CURRENT_DATE)
+                                AND s.start_time < date_trunc('week', CURRENT_DATE) + INTERVAL '7 days';
+                            """, (staff_id,))
+                rows =cur.fetchall()
+                if not rows:
+                    return None
+                
+                shifts=[]
+                for r in rows:
+                    shifts.append({
+                        "shift_id": r[0],
+                        "start_time": r[1].isoformat(),
+                        "end_time": r[2].isoformat()
+                    })
+                return shifts
+        except Exception as e:
+            print(f"Error retrieving shift: {e}")
+            return None
+        
+    def get_next_week_shifts(self, staff_id: int) -> Optional[list[dict]]:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            with self.connection.cursor() as cur:
+                cur.execute("""SELECT s.*
+                                FROM shifts s
+                                JOIN shifts_staffs ss ON s.shift_id = ss.shift_id
+                                WHERE ss.staff_id = %s  -- replace 1 with the staff ID
+                                AND s.start_time >= date_trunc('week', CURRENT_DATE) + INTERVAL '1 week'
+                                AND s.start_time < date_trunc('week', CURRENT_DATE) + INTERVAL '2 week';
+                            """, (staff_id,))
+                rows =cur.fetchall()
+                if not rows:
+                    return None
+                
+                shifts=[]
+                for r in rows:
+                    shifts.append({
+                        "shift_id": r[0],
+                        "start_time": r[1].isoformat(),
+                        "end_time": r[2].isoformat()
+                    })
+                return shifts
+        except Exception as e:
+            print(f"Error retrieving shift: {e}")
+            return None
+        
+    def get_staffs(self, page:int)-> Optional[list[dict]]:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            with self.connection.cursor() as cur:
+                cur.execute("""SELECT * FROM employees LIMIT 100 OFFSET %s
+                            """,((page-1)*100,))
+                rows =cur.fetchall()
+                if not rows:
+                    return None
+                
+                staffs=[]
+                for r in rows:
+                    staffs.append({
+                        "staff_id": r[0],
+                        "name": r[1],
+                        "position": r[2],
+                        "phone_number": r[3],
+                        "hire_date": r[4].isoformat()
+                    })
+                return staffs
+        except Exception as e:
+            print(f"Error retrieving shift: {e}")
+            return None
+        
+    def get_total_staffs(self):
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            with self.connection.cursor() as cur:
+                cur.execute("""SELECT COUNT(*) FROM employees
+                            """,)
+                row =cur.fetchone()
+                return row[0]
+        except Exception as e:
+            print(f"Error retrieving shift: {e}")
+            return None
+        
+    def verify_shift_id(self, shift_id: int)->bool:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            with self.connection.cursor() as cur:
+                cur.execute("""SELECT COUNT(*) FROM shifts WHERE shift_id = %s""", (shift_id,))
+                row =cur.fetchone()
+                if row is None:
+                    return True
+                else:
+                    return False
         except Exception as e:
             print(f"Error retrieving shift: {e}")
             return None
