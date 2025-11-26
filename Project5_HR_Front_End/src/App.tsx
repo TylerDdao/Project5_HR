@@ -37,6 +37,7 @@
 import DesignPage from './pages/design';
 import DashboardPage from './pages/dashboard'; // Notice you don't need to write '/index.tsx'
 import LoginPage from './pages/login';
+import EmployeeInfoPage from "./pages/employee_info";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SchedulePage from './pages/schedule';
 import HomePage from './pages/home';
