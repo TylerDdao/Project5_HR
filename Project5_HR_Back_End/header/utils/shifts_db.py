@@ -145,3 +145,39 @@ class ShiftsDatabase:
         except Exception as e:
             print(f"Error querying shifts: {e}")
             return None
+        
+    def get_all_shifts(self) -> Optional[list[dict]]:
+        #return all shifts 
+        #list[dict] return list of shift documents 
+        if self.client is None or self._database is None:
+            error = self.connect()
+            if error:
+                return None
+        
+        try:
+            shifts = list(self._shifts.find({}).sort('start_time",1'))
+            if not shifts:
+                return None
+            
+            for shift in shifts:
+                shift["_id"] = str(shift["_id"])
+                return shifts
+            
+        except Exception as e:
+            print(f"Error querying shifts: {e}")
+            return None
+    
+    def delete_shifts(self, shift_id: int) -> bool:
+        #delete shift doc by shift_id
+        if self.client is None or self._database is None:
+            error =self.connect()
+            if error:
+                return False
+            
+            try:
+                result = self._shifts.delete_one({"shift_id": shift_id})
+                return result.deleted_count > 0
+            except Exception as e:
+                print(f"Error deleting shift: {e}")
+                return False
+            
