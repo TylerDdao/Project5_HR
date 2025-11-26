@@ -1,0 +1,63 @@
+\doxysection{employeeinfo.\+h}
+\hypertarget{employeeinfo_8h_source}{}\label{employeeinfo_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ EMPLOYEE\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ EMPLOYEE\_H}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }Employee\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ staffId;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{string}\ name;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{string}\ position;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{string}\ phoneNum;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{string}\ hireDate;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ Employee();}
+\DoxyCodeLine{00021\ \ \ \ \ Employee(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ n,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ p,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ num,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ d);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ getStaffId()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setName(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ n);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{string}\ getName()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ setPosition(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ p);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{string}\ getPosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ setPhoneNum(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ num);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{string}\ getPhoneNum()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ setHireDate(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ d);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{string}\ getHireDate()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ display()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }EmployeeInfoManagement\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ \ \ vector<Employee>\ employees;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ readInt(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ prompt);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_employee}{Employee}}*\ findById(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ EmployeeInfoManagement();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ addStaff(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_employee}{Employee}}\&\ e);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ updateStaff(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_employee}{Employee}}*\ getStaff(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ removeStaff(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ displayAllEmployees()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ management();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ saveToFile()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ loadFromFile();}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//EMPLOYEE\_H}}
+
+\end{DoxyCode}
