@@ -6,7 +6,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import type { Account, Shift, Staff } from '../../../data/type';
 import { Link, useParams } from 'react-router-dom';
-import { parsedAccountandStaff } from '../../../utils/account';
+import { parsedStaff } from '../../../utils/account';
 
 const CreateShiftPage: React.FC = () => {
     const [shift, setShift] = useState<Shift>();
@@ -105,18 +105,15 @@ const CreateShiftPage: React.FC = () => {
     }
 
     useEffect(() => {
-        // Load account and staff
-        const parsedAccount = parsedAccountandStaff()?.parsedAccount
-        const parsedStaff = parsedAccountandStaff()?.parsedStaff
-        if(parsedAccount && parsedStaff){
-            if(parsedAccount.account_type != "Manager"){
+        const staff = parsedStaff()
+        if(staff){
+            if(staff.account?.account_type != "Manager"){
                 alert("You don't have permission!");
                 window.location.href = "/dashboard";
             }
-            setAccount(parsedAccount)
             setStaff({
-                ...parsedStaff,
-                hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
+                ...staff,
+                hire_date: staff.hire_date ? new Date(staff.hire_date) : undefined
             })
         }
         else{

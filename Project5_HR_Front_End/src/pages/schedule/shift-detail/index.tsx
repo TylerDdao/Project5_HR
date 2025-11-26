@@ -6,7 +6,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import type { Account, Shift, Staff } from '../../../data/type';
 import { Link, useParams } from 'react-router-dom';
-import { parsedAccountandStaff } from '../../../utils/account';
 
 const ShiftDetailPage: React.FC = () => {
     const {shiftId} = useParams<{ shiftId: string }>()
@@ -169,25 +168,6 @@ const ShiftDetailPage: React.FC = () => {
                 console.error("Error loading shift details:", err);
             }
         };
-        // Load account and staff
-        const parsedAccount = parsedAccountandStaff()?.parsedAccount
-        const parsedStaff = parsedAccountandStaff()?.parsedStaff
-        if(parsedAccount && parsedStaff){
-            if(parsedAccount.account_type != "Manager"){
-                alert("You don't have permission!");
-                window.location.href = "/dashboard";
-            }
-            setAccount(parsedAccount)
-            setStaff({
-                ...parsedStaff,
-                hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
-            })
-        }
-        else{
-            alert("Something is wrong");
-            window.location.href = "/";
-        }
-
         handleLoadingShiftDetail()
     }, []);
 

@@ -49,29 +49,29 @@ const ShiftHistoryPage: React.FC = () => {
 
     useEffect(() => {
         fetchShifts();
-        const accountStr = sessionStorage.getItem("account");
-        const staffStr = sessionStorage.getItem("staff");
+        // const accountStr = sessionStorage.getItem("account");
+        // const staffStr = sessionStorage.getItem("staff");
 
-        if (accountStr) {
-            const parsedAccount = JSON.parse(accountStr) as Account;
-            setCurrentAccount(parsedAccount);
+        // if (accountStr) {
+        //     const parsedAccount = JSON.parse(accountStr) as Account;
+        //     setCurrentAccount(parsedAccount);
 
-            if (parsedAccount.account_type !== "Manager") {
-                alert("You don't have permission to access this page");
-                window.location.href = "/dashboard";
-            }
-        } else {
-            alert("You are not logged in");
-            window.location.href = "/dashboard";
-        }
+        //     if (parsedAccount.account_type !== "Manager") {
+        //         alert("You don't have permission to access this page");
+        //         window.location.href = "/dashboard";
+        //     }
+        // } else {
+        //     alert("You are not logged in");
+        //     window.location.href = "/dashboard";
+        // }
 
-        if (staffStr) {
-            const parsedStaff = JSON.parse(staffStr) as Staff;
-            setCurrentStaff({
-                ...parsedStaff,
-                hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
-            });
-        }
+        // if (staffStr) {
+        //     const parsedStaff = JSON.parse(staffStr) as Staff;
+        //     setCurrentStaff({
+        //         ...parsedStaff,
+        //         hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
+        //     });
+        // }
     }, []);
 
   return (

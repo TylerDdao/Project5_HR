@@ -6,36 +6,26 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import type { Account, Shift, Staff } from '../../data/type';
 import { shifts } from '../../data/dummyData';
-import { parsedAccountandStaff } from '../../utils/account';
+import { parsedStaff } from '../../utils/account';
 
 const DashboardPage: React.FC = () => {
   const [staff, setStaff] = useState<Staff>();
-      const [account, setAccount] = useState<Account>();
   
-      const [thisWeekShifts, setThisWeekShifts] = useState<Shift[]>([]);
-      const [nextWeekShifts, setNextWeekShifts] = useState<Shift[]>([]);
-      const [currentShifts, setCurrentShifts] = useState<Shift[]>([])
+  const [thisWeekShifts, setThisWeekShifts] = useState<Shift[]>([]);
+  const [nextWeekShifts, setNextWeekShifts] = useState<Shift[]>([]);
+  const [currentShifts, setCurrentShifts] = useState<Shift[]>([])
 
-      const [moneyEarned, setMoneyEarned] = useState<number>(-1);
-      const [hoursWorked, setHoursWorked] = useState<number>(-1)
-  
-      const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date())
-  
+  const [moneyEarned, setMoneyEarned] = useState<number>(-1);
+  const [hoursWorked, setHoursWorked] = useState<number>(-1)
+
+  const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date())
+
       //Load staff and account
       useEffect(()=>{
-          const parsedAccount = parsedAccountandStaff()?.parsedAccount
-          const parsedStaff = parsedAccountandStaff()?.parsedStaff
-          if(parsedAccount && parsedStaff){
-              setAccount(parsedAccount)
-              setStaff({
-                  ...parsedStaff,
-                  hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
-              })
-          }
-          else{
-              alert("Something is wrong");
-              window.location.href = "/";
-          }
+        const staff = parsedStaff()
+        if(staff){
+          setStaff({...staff, hire_date: staff.hire_date ? new Date(staff.hire_date) : undefined})
+        }
       }, [])
   
       //Load this week and next week shifts

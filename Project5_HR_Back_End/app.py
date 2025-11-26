@@ -4,12 +4,15 @@ import jwt
 import datetime
 import random
 
-from header.utils.database_control import DatabaseControl
+from header.utils.mongo_database import DatabaseControl
+from header.utils.shifts_db import ShiftsDatabase
+from header.utils.staffs_db import StaffsDatabase
+
 from header.core.staff import Staff
 from header.core.account import Account
 from header.core.shift import Shift
 
-db = DatabaseControl()
+# db = DatabaseControl()
 
 # Token for Tyler
 # eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGFmZiI6eyJzdGFmZl9pZCI6MSwibmFtZSI6IlR5bGVyIiwiaGlyZV9kYXRlIjoiMjAyNS0xMC0zMSIsInBob25lX251bWJlciI6IjU0ODM4NDM2ODEifSwiYWNjb3VudCI6eyJhY2NvdW50X2lkIjoxLCJhY2NvdW50X3R5cGUiOiJNYW5hZ2VyIn19.Rp7MQWOUT5V4SpgeWXD15O3KED_pkMX9UTkSkRuE-bI
@@ -63,49 +66,23 @@ def get_token():
     payload["token"] = token
     return jsonify({"success": True, "message": "Login successful", **payload}), 200
 
-# @app.route("/verify-token", methods=["GET"])
-# def verify_token():
-#     auth = request.headers.get("Authorization")
-#     if token_checker(auth):
-#         decoded = token_decoder(auth)
-#         user = decoded.get("user")
-#         account = decoded.get("account")
-#         print(user["name"], account["id"])
-#         return "ok", 200
-#     else:
-#         return jsonify({"success": False, "message": "Invalid token"}), 401
-        
-
 @app.route("/api/login", methods=["POST"])
 def login():
     try:
+        db = StaffsDatabase()
         data = request.json
         staff_id = data.get("staff_id")
         password = data.get("password")
 
-        ok = db.verify_login(staff_id, password)
-        if ok:
-            a = Account()
-            a = db.get_account(staff_id)
-            e = Staff()
-            e = db.get_staff_by_id(staff_id)
-            
+        staff = db.verify_login(staff_id, password)
+        if staff is not None:
             payload = {
-                "staff": {
-                    "staff_id": e.get_staff_id(),
-                    "name": e.get_name(),
-                    "hire_date": e.get_hire_date(),
-                    "phone_number": e.get_phone_num()
-                },
-                "account": {
-                    "account_id": a.get_account_id(),
-                    "account_type": a.get_account_type()
-                },
+                "staff": staff,
                 "iss": ISSUER
             }
             token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
             payload["token"] = token
-            return jsonify({"success": True, "message": "Login successful", **payload}), 200
+            return jsonify({"success": True, **payload}), 200
 
         else:
             return jsonify({"success": False, "message": "Invalid staff ID or password"}), 401
@@ -121,44 +98,24 @@ def get_shift_detail():
         return jsonify({"success": False, "message": "Invalid token"}), 403
 
     shift_id = request.args.get("shift_id", type=int)
-    status = request.args.get("status", type=str)
-
-    if not shift_id:
-        if status == "scheduled":
-            shifts = db.get_scheduled_and_active_shifts()
-            
-            return jsonify({
-                "success": True,
-                "shifts": shifts or [],
-            }), 200
-        elif status == "done":
-            shifts = db.get_done_shifts()
-            return jsonify({
-                "success": True,
-                "shifts": shifts or [],
-            }), 200
-        else:
-            return jsonify({"success": False, "message": "Missing shift status"}), 404
-            
     try:
-        # Get shift info
-        shift = db.get_shift_by_id(shift_id)
-        if not shift:
-            return jsonify({"success": False, "message": "Shift not found"}), 404
-
-        # Get employees assigned to the shift
-        staffs = db.get_staffs_by_shift_id(shift_id)
-
-        return jsonify({
-            "success": True,
-            "shift": shift,
-            "staffs": staffs or []
-        }), 200
+        if shift_id is None:
+            db = ShiftsDatabase()
+            active_shifts = db.get_active_shifts()
+            scheduled_shifts = db.get_scheduled_shifts()
+            payload = {
+                "active_shifts": active_shifts,
+                "scheduled_shifts": scheduled_shifts
+            }
+            return jsonify({"success": True, **payload}), 200
+                
+        
+        return jsonify({"success": False}), 400
 
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"success": False, "message": "Internal server error"}), 500
-    
+
 @app.route("/api/assigned_shifts", methods=["GET"])
 def get_assigned_shifts():
     auth = request.headers.get("Authorization")
@@ -171,22 +128,24 @@ def get_assigned_shifts():
         return jsonify({"success": False, "message": "Missing staff ID"}), 400
     
     try:
-        # Get shift info
-        this_week_shifts = db.get_this_week_shifts(staff_id)
-        if not this_week_shifts:
+        db = ShiftsDatabase()
+        shifts = db.get_assigned_shifts(staff_id)
+        if not shifts:
             return jsonify({"success": False, "message": "Shifts not found"}), 404
-        next_week_shifts = db.get_next_week_shifts(staff_id)
 
         return jsonify({
             "success": True,
-            "this_week_shifts": this_week_shifts,
-            "next_week_shifts": next_week_shifts or []
+            "this_week_shifts": shifts["this_week_shifts"],
+            "next_week_shifts": shifts["next_week_shifts"] or []
         }), 200
 
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"success": False, "message": "Internal server error"}), 500
-    
+
+
+
+
 @app.route("/api/update_shift", methods=["PUT"])
 def update_shift():
     auth = request.headers.get("Authorization")
@@ -301,10 +260,6 @@ def get_payroll_detail():
     if payroll_id is None:
         payrolls = db.get_payrolls_by_staff_id(staff_id=staff_id)
         return jsonify({"success": True, "payrolls": payrolls}), 200
-    
-    
-        
-
 
 if __name__ == "__main__":
     app.run(port=5000)

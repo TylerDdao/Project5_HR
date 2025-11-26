@@ -15,7 +15,7 @@ import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import type { Account, Shift, Staff } from '../../data/type';
 import { shifts as rawShifts, shiftsStaffs } from '../../data/dummyData';
 import { Link } from 'react-router-dom';
-import { parsedAccountandStaff } from '../../utils/account';
+import { parsedStaff } from '../../utils/account';
 
 const SchedulePage: React.FC = () => {
     const [staff, setStaff] = useState<Staff>();
@@ -31,13 +31,11 @@ const SchedulePage: React.FC = () => {
 
     //Load staff and account
     useEffect(()=>{
-        const parsedAccount = parsedAccountandStaff()?.parsedAccount
-        const parsedStaff = parsedAccountandStaff()?.parsedStaff
-        if(parsedAccount && parsedStaff){
-            setAccount(parsedAccount)
+        const staff = parsedStaff()
+        if(staff){
             setStaff({
-                ...parsedStaff,
-                hire_date: parsedStaff.hire_date ? new Date(parsedStaff.hire_date) : undefined
+                ...staff,
+                hire_date: staff.hire_date ? new Date(staff.hire_date) : undefined
             })
         }
         else{
@@ -218,11 +216,11 @@ const SchedulePage: React.FC = () => {
                     <button className="bg-accent_blue text-light_gray">Create Shift</button>
                   </Link>
                   <Link to="/schedule/shift-list">
-                    <button className="bg-light_gray text-accent_blue">Modify Shift</button>
+                    <button className="bg-light_gray text-accent_blue hover:bg-gray-300 transition">Modify Shift</button>
                   </Link>
                 </div>
                 <Link to="/schedule/shift-history">
-                  <button className="bg-light_gray text-accent_blue w-full">Shift History</button>
+                  <button className="bg-light_gray text-accent_blue w-full hover:bg-gray-300 transition">Shift History</button>
                 </Link>
               </div>
             )}

@@ -3,16 +3,17 @@ import { Link, useLocation } from "react-router-dom";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import type { Account, AccountType, Staff } from "../data/type";
 import { staffs } from "../data/dummyData";
+import { parsedStaff } from "../utils/account";
 
 const navLinks: Record<AccountType, { name: string; path: string }[]> = {
-  Manager: [
+  manager: [
     { name: "Dashboard", path: "/dashboard" },
     { name: "Schedule", path: "/schedule" },
     { name: "Payroll", path: "/payroll" },
     { name: "Employee Management", path: "/employee_management" },
     { name: "Communication", path: "/communication" },
   ],
-  Employee: [
+  employee: [
     { name: "Dashboard", path: "/dashboard" },
     { name: "Schedule", path: "/schedule" },
     { name: "Payroll", path: "/payroll" },
@@ -22,23 +23,14 @@ const navLinks: Record<AccountType, { name: string; path: string }[]> = {
 
 const NavBar: React.FC = () => {
     const [staff, setCurrentStaff] = useState<Staff>();
-    const [account, setCurrentAccount] = useState<Account>();
     useEffect(()=>{
-        setCurrentStaff(staffs[0]);
-
-        const staffStr = sessionStorage.getItem("staff");
-        if (staffStr) {
-            const staff = JSON.parse(staffStr) as Staff;
-            setCurrentStaff(staff);
-        }
-        const accountStr = sessionStorage.getItem("account");
-        if(accountStr){
-            const account = JSON.parse(accountStr) as Account;
-            setCurrentAccount(account)
+        const staff = parsedStaff();
+        if(staff){
+          setCurrentStaff({...staff, hire_date: staff.hire_date ? new Date(staff.hire_date) : undefined})
         }
     }, [])
     
-    const role = (account?.account_type as AccountType) || "Employee";
+    const role = (staff?.account?.account_type as AccountType) || "employee";
     const name = staff?.name || "Unknown";
     const links = navLinks[role];
     const location = useLocation();
@@ -54,7 +46,15 @@ const NavBar: React.FC = () => {
             <AssignmentIndIcon className="text-light_gray !text-[37.5px] mr-[10px]" />
             <div className="text-light_gray">
             <h3>{name}</h3>
-            <div className="label">Role: {role}</div>
+            {staff?.account?.account_type == "manager" ? (
+              <div className="label">Role: Manager</div>
+            ):(
+              staff?.account?.account_type == "employee" ? (
+                <div className="label">Role: Employee</div>
+              ):(
+                <div className="label">Role: Undefined</div>
+              )
+            )}
             </div>
         </div>
 

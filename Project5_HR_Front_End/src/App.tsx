@@ -44,8 +44,35 @@ import ShiftListPage from './pages/schedule/shift-list';
 import CreateShiftPage from './pages/schedule/create-shift';
 import ShiftDetailPage from './pages/schedule/shift-detail';
 import ShiftHistoryPage from './pages/schedule/shift-history';
+// import PayrollPage from './pages/payroll';
+import { useEffect, useState } from 'react';
+import { parsedStaff } from './utils/account';
+import type { Staff } from './data/type';
 
 export default function App() {
+  const [staff, setStaff] = useState<Staff>();
+  useEffect(()=>{
+    const currentPath = window.location.pathname;
+    const staff = parsedStaff()
+    if(staff){
+        setStaff({
+            ...staff,
+            hire_date: staff.hire_date ? new Date(staff.hire_date) : undefined
+        })
+        sessionStorage.setItem("account_type", staff.account?.account_type || "employee")
+    }
+    else{
+        const publicRoutes = ["/login", "/"];
+
+      if (!staff) {
+          if (!publicRoutes.includes(currentPath)) {
+              window.location.href = "/login";
+          }
+          return;
+      }
+    }
+  }, [])
+
   return (
     <BrowserRouter>
       <div className="">
@@ -59,6 +86,8 @@ export default function App() {
               <Route path="/schedule/create-shift" element={<CreateShiftPage/>}/>
               <Route path="/schedule/shift-history" element={<ShiftHistoryPage/>}/>
               <Route path="/schedule/:shiftId" element={<ShiftDetailPage/>}/>
+
+              {/* <Route path='/payroll' element={<PayrollPage/>}/> */}
 
               <Route path="/login" element={<LoginPage />} />
               <Route path='/design' element={<DesignPage/>}/>

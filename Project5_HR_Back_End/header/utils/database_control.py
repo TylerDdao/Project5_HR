@@ -57,26 +57,7 @@ class DatabaseControl:
             print(f"Error verifying login: {e}")
             return False
 
-    def insert_account(self, account: Account) -> Optional[int]:
-        """@brief Insert a new account into the database"""
-        try:
-            self.set_connection()
-            if not self.connection:
-                return None
-
-            with self.connection.cursor() as cur:
-                cur.execute(
-                    "INSERT INTO accounts (staff_id, password, account_type) "
-                    "VALUES (%s, %s, %s) RETURNING account_id;",
-                    (account.get_staff_id(), account.get_password(), account.get_account_type())
-                )
-                account_id = cur.fetchone()[0]
-                self.connection.commit()
-                return account_id
-        except Exception as e:
-            print(f"Error inserting account: {e}")
-            return None
-
+    # Payrolls
     def insert_payroll(self, payroll: Payroll) -> Optional[int]:
         """@brief Insert a new payroll record"""
         try:
@@ -96,6 +77,53 @@ class DatabaseControl:
                 return payroll_id
         except Exception as e:
             print(f"Error inserting payroll: {e}")
+            return None
+        
+    def get_payrolls_by_staff_id(self, staff_id) -> Optional[list[dict]]:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            
+            with self.connection.cursor() as cur:
+                cur.execute("SELECT * FROM payrolls WHERE staff_id = %s", (staff_id,))
+                rows = cur.fetchall()
+                payrolls = []
+                for r in rows:
+                    payrolls.append({
+                        "payroll_id": r[0],
+                        "staff_id": r[1],
+                        "wage_rate": r[2],
+                        "hour_worked": r[3],
+                        "bonus": r[4],
+                        "deduction": r[5],
+                        "created_at": r[6]
+                    })
+                return payrolls
+        except Exception as e:
+            print(f"Error retrieving payrolls: {e}")
+            return None
+
+
+    # Staffs 
+    def insert_account(self, account: Account) -> Optional[int]:
+        """@brief Insert a new account into the database"""
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+
+            with self.connection.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO accounts (staff_id, password, account_type) "
+                    "VALUES (%s, %s, %s) RETURNING account_id;",
+                    (account.get_staff_id(), account.get_password(), account.get_account_type())
+                )
+                account_id = cur.fetchone()[0]
+                self.connection.commit()
+                return account_id
+        except Exception as e:
+            print(f"Error inserting account: {e}")
             return None
 
     def insert_staff(self, staff: Staff) -> Optional[int]:
@@ -118,6 +146,115 @@ class DatabaseControl:
             print(f"Error inserting employee: {e}")
             return None
         
+    def get_account(self, staff_id: int) -> Optional[Account]:
+        """@brief Retrieve an account by staff_id"""
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+
+            with self.connection.cursor() as cur:
+                cur.execute("SELECT * FROM accounts WHERE staff_id = %s;", (staff_id,))
+                row = cur.fetchone()
+                if row:
+                    return Account(row[0], row[1], row[2], row[3])
+            return None
+        except Exception as e:
+            print(f"Error retrieving account: {e}")
+            return None
+
+    def get_staff_by_id(self, staff_id: int) -> Optional[Staff]:
+        """@brief Retrieve an employee by staff_id"""
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+
+            with self.connection.cursor() as cur:
+                cur.execute("SELECT * FROM employees WHERE staff_id = %s;", (staff_id,))
+                row = cur.fetchone()
+                if row:
+                    return Staff(row[0], row[1], row[2], row[3], row[4].isoformat())
+            return None
+        except Exception as e:
+            print(f"Error retrieving staffs: {e}")
+            return None
+        
+    def get_staffs_by_shift_id(self, shift_id: int) -> Optional[list[dict]]:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            
+            with self.connection.cursor() as cur:
+                cur.execute("""
+                    SELECT e.staff_id, e.name, e.position, e.phone_number, e.hire_date
+                    FROM employees e
+                    JOIN shifts_staffs ss ON e.staff_id = ss.staff_id
+                    WHERE ss.shift_id = %s
+                """, (shift_id,))
+                
+                rows = cur.fetchall()
+                if not rows:
+                    return None
+
+                # Convert to list of dicts
+                staffs = []
+                for r in rows:
+                    staffs.append({
+                        "staff_id": r[0],
+                        "name": r[1],
+                        "position": r[2],
+                        "phone_number": r[3],
+                        "hire_date": r[4].isoformat()
+                    })
+                return staffs
+
+        except Exception as e:
+            print(f"Error retrieving staffs: {e}")
+            return None
+        
+    def get_staffs(self, page:int)-> Optional[list[dict]]:
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            with self.connection.cursor() as cur:
+                cur.execute("""SELECT * FROM employees LIMIT 100 OFFSET %s
+                            """,((page-1)*100,))
+                rows =cur.fetchall()
+                if not rows:
+                    return None
+                
+                staffs=[]
+                for r in rows:
+                    staffs.append({
+                        "staff_id": r[0],
+                        "name": r[1],
+                        "position": r[2],
+                        "phone_number": r[3],
+                        "hire_date": r[4].isoformat()
+                    })
+                return staffs
+        except Exception as e:
+            print(f"Error retrieving shift: {e}")
+            return None
+        
+    def get_total_staffs(self):
+        try:
+            self.set_connection()
+            if not self.connection:
+                return None
+            with self.connection.cursor() as cur:
+                cur.execute("""SELECT COUNT(*) FROM employees
+                            """,)
+                row =cur.fetchone()
+                return row[0]
+        except Exception as e:
+            print(f"Error retrieving shift: {e}")
+            return None
+        
+    # Shifts
     def insert_shift(self, shift: Shift) -> Optional[int]:
         """@brief Insert a new shift"""
         try:
@@ -166,74 +303,6 @@ class DatabaseControl:
                 return True
         except Exception as e:
             print(f"Error inserting employee: {e}")
-            return None
-
-    def get_account(self, staff_id: int) -> Optional[Account]:
-        """@brief Retrieve an account by staff_id"""
-        try:
-            self.set_connection()
-            if not self.connection:
-                return None
-
-            with self.connection.cursor() as cur:
-                cur.execute("SELECT * FROM accounts WHERE staff_id = %s;", (staff_id,))
-                row = cur.fetchone()
-                if row:
-                    return Account(row[0], row[1], row[2], row[3])
-            return None
-        except Exception as e:
-            print(f"Error retrieving account: {e}")
-            return None
-
-    def get_staff_by_id(self, staff_id: int) -> Optional[Staff]:
-        """@brief Retrieve an employee by staff_id"""
-        try:
-            self.set_connection()
-            if not self.connection:
-                return None
-
-            with self.connection.cursor() as cur:
-                cur.execute("SELECT * FROM employees WHERE staff_id = %s;", (staff_id,))
-                row = cur.fetchone()
-                if row:
-                    return Staff(row[0], row[1], row[2], row[3], row[4].isoformat())
-            return None
-        except Exception as e:
-            print(f"Error retrieving employee: {e}")
-            return None
-        
-    def get_staffs_by_shift_id(self, shift_id: int) -> Optional[list[dict]]:
-        try:
-            self.set_connection()
-            if not self.connection:
-                return None
-            
-            with self.connection.cursor() as cur:
-                cur.execute("""
-                    SELECT e.staff_id, e.name, e.position, e.phone_number, e.hire_date
-                    FROM employees e
-                    JOIN shifts_staffs ss ON e.staff_id = ss.staff_id
-                    WHERE ss.shift_id = %s
-                """, (shift_id,))
-                
-                rows = cur.fetchall()
-                if not rows:
-                    return None
-
-                # Convert to list of dicts
-                staffs = []
-                for r in rows:
-                    staffs.append({
-                        "staff_id": r[0],
-                        "name": r[1],
-                        "position": r[2],
-                        "phone_number": r[3],
-                        "hire_date": r[4].isoformat()
-                    })
-                return staffs
-
-        except Exception as e:
-            print(f"Error retrieving staffs: {e}")
             return None
 
     def get_shift_by_id(self, shift_id: int) -> Optional[dict]:
@@ -384,62 +453,6 @@ class DatabaseControl:
                         "end_time": r[2].isoformat()
                     })
                 return shifts
-        except Exception as e:
-            print(f"Error retrieving shift: {e}")
-            return None
-        
-    def get_staffs(self, page:int)-> Optional[list[dict]]:
-        try:
-            self.set_connection()
-            if not self.connection:
-                return None
-            with self.connection.cursor() as cur:
-                cur.execute("""SELECT * FROM employees LIMIT 100 OFFSET %s
-                            """,((page-1)*100,))
-                rows =cur.fetchall()
-                if not rows:
-                    return None
-                
-                staffs=[]
-                for r in rows:
-                    staffs.append({
-                        "staff_id": r[0],
-                        "name": r[1],
-                        "position": r[2],
-                        "phone_number": r[3],
-                        "hire_date": r[4].isoformat()
-                    })
-                return staffs
-        except Exception as e:
-            print(f"Error retrieving shift: {e}")
-            return None
-        
-    def get_total_staffs(self):
-        try:
-            self.set_connection()
-            if not self.connection:
-                return None
-            with self.connection.cursor() as cur:
-                cur.execute("""SELECT COUNT(*) FROM employees
-                            """,)
-                row =cur.fetchone()
-                return row[0]
-        except Exception as e:
-            print(f"Error retrieving shift: {e}")
-            return None
-        
-    def verify_shift_id(self, shift_id: int)->bool:
-        try:
-            self.set_connection()
-            if not self.connection:
-                return None
-            with self.connection.cursor() as cur:
-                cur.execute("""SELECT COUNT(*) FROM shifts WHERE shift_id = %s""", (shift_id,))
-                row =cur.fetchone()
-                if row is None:
-                    return True
-                else:
-                    return False
         except Exception as e:
             print(f"Error retrieving shift: {e}")
             return None

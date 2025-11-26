@@ -95,6 +95,7 @@ const ShiftListPage: React.FC = () => {
                                     <p>Expected work time: {caculateWorkTime(shift.start_time, shift.end_time).hours}  hours {caculateWorkTime(shift.start_time, shift.end_time).minutes} minutes</p>
                                     <p>Shift is currently active</p>
                                     <p>Time left: {caculateWorkTime(now, shift.end_time).hours} hours {caculateWorkTime(now, shift.end_time).minutes} minutes</p>
+                                    <h3>Shift ID: {shift.shift_id}</h3>
                                 </div>
                             </Link>
                         )
@@ -102,9 +103,10 @@ const ShiftListPage: React.FC = () => {
                     else{
                         return(
                             <Link to={`/schedule/${shift.shift_id}`} key={shift.shift_id}>
-                                <div className='p-5 shadow rounded-[8px] text-charcoal'>
+                                <div className='p-5 shadow rounded-[8px] text-charcoal hover:bg-gray-300 transition'>
                                     <h3>{extractFullDate(shift.start_time)} | {extractTime(shift.start_time)} - {extractTime(shift.end_time)}</h3>
                                     <p>Expected work time: {caculateWorkTime(shift.start_time, shift.end_time).hours}  hours {caculateWorkTime(shift.start_time, shift.end_time).minutes} minutes</p>
+                                    <h3>Shift ID: {shift.shift_id}</h3>
                                 </div>
                             </Link>
                         )
