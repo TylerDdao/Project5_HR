@@ -50,19 +50,21 @@ export default function App() {
     <BrowserRouter>
       <div className="">
         <main className="">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/dashboard" element={<DashboardPage />} />
-              
-              <Route path="/schedule" element={<SchedulePage/>}/>
-              <Route path="/schedule/shift-list" element={<ShiftListPage/>}/>
-              <Route path="/schedule/create-shift" element={<CreateShiftPage/>}/>
-              <Route path="/schedule/shift-history" element={<ShiftHistoryPage/>}/>
-              <Route path="/schedule/:shiftId" element={<ShiftDetailPage/>}/>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
 
-              <Route path="/login" element={<LoginPage />} />
-              <Route path='/design' element={<DesignPage/>}/>
-            </Routes>
+            <Route path="/schedule" element={<SchedulePage />} />
+            <Route path="/schedule/shift-list" element={<ShiftListPage />} />
+            <Route path="/schedule/create-shift" element={<CreateShiftPage />} />
+            <Route path="/schedule/shift-history" element={<ShiftHistoryPage />} />
+            <Route path="/schedule/:shiftId" element={<ShiftDetailPage />} />
+
+            <Route path="/login" element={<LoginPage />} />
+            <Route path='/design' element={<DesignPage />} />
+            <Route path="/employee_management" element={<EmployeeInfoPage />} />
+
+          </Routes>
         </main>
       </div>
     </BrowserRouter>
