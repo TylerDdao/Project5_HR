@@ -39,7 +39,6 @@ import DashboardPage from './pages/dashboard'; // Notice you don't need to write
 import LoginPage from './pages/login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SchedulePage from './pages/schedule';
-import HomePage from './pages/home';
 import ShiftListPage from './pages/schedule/shift-list';
 import CreateShiftPage from './pages/schedule/create-shift';
 import ShiftDetailPage from './pages/schedule/shift-detail';
@@ -78,9 +77,7 @@ export default function App() {
       <div className="">
         <main className="">
             <Routes>
-              <Route path="/" element={<HomePage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
-              
               <Route path="/schedule" element={<SchedulePage/>}/>
               <Route path="/schedule/shift-list" element={<ShiftListPage/>}/>
               <Route path="/schedule/create-shift" element={<CreateShiftPage/>}/>

@@ -2,21 +2,21 @@ version: '3.8'
 services:
   backend:
     build:
-      context: .
-      dockerfile: Project5_HR/Dockerfile.backend
+      context: Project5_HR_Back_End
+      dockerfile: Dockerfile.backend
     ports:
       - "5000:5000"
     networks:
       - app-network
     env_file:
-      - ./Project5_HR/.env
+      - Project5_HR_Back_End/.env
 
   frontend:
     build:
-      context: .
-      dockerfile: Project5_HR/Dockerfile.frontend
+      context: Project5_HR_Front_End
+      dockerfile: Dockerfile.frontend
     ports:
-      - "3000:3000"
+      - "3000:80"
     depends_on:
       - backend
     networks:

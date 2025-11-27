@@ -8,6 +8,7 @@ from header.utils.mongo_database import DatabaseControl
 from header.utils.shifts_db import ShiftsDatabase
 from header.utils.staffs_db import StaffsDatabase
 
+
 from header.core.staff import Staff
 from header.core.account import Account
 from header.core.shift import Shift
@@ -22,7 +23,7 @@ SECRET_KEY = "secret"
 ISSUER = "project5_hr"
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
+CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
 
 # Utility functions
 def token_checker(auth_header):
@@ -45,7 +46,7 @@ def token_decoder(auth_header):
 # Routes
 @app.route("/")
 def home():
-    return "Hello world"
+    return "Hello world, backend is up!"
 
 @app.route("/token", methods=["GET"])
 def get_token():
@@ -262,4 +263,4 @@ def get_payroll_detail():
         return jsonify({"success": True, "payrolls": payrolls}), 200
 
 if __name__ == "__main__":
-    app.run(port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)

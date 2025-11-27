@@ -301,10 +301,6 @@ def get_payroll_detail():
     if payroll_id is None:
         payrolls = db.get_payrolls_by_staff_id(staff_id=staff_id)
         return jsonify({"success": True, "payrolls": payrolls}), 200
-    
-    
-        
-
 
 if __name__ == "__main__":
     app.run(port=5000)
