@@ -1,0 +1,75 @@
+\doxysection{file\+\_\+repository.\+File\+Repository Class Reference}
+\hypertarget{classfile__repository_1_1_file_repository}{}\label{classfile__repository_1_1_file_repository}\index{file\_repository.FileRepository@{file\_repository.FileRepository}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfile__repository_1_1_file_repository_a85f1463ec5c7b9759fc21e4e390d1232}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+None \mbox{\hyperlink{classfile__repository_1_1_file_repository_acaee52013d3da29c59058d70ec1b177f}{Save\+To\+File}} (self, str data, str filename)
+\item 
+str \mbox{\hyperlink{classfile__repository_1_1_file_repository_af2c322fefeee3ea40b10cca2ca53be54}{Load\+From\+File}} (self, str filename)
+\item 
+bool \mbox{\hyperlink{classfile__repository_1_1_file_repository_aad99e85a8d20274e068a33d3c25789e4}{File\+Exists}} (self, str filename)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classfile__repository_1_1_file_repository_a81b9b5af9cbcd9d421b90be9f6d917e8}{Read\+Lines}} (self, str filename)
+\item 
+None \mbox{\hyperlink{classfile__repository_1_1_file_repository_a92f1083d420b4285a46cc65866cb23e6}{Write\+Lines}} (self, List\mbox{[}str\mbox{]} lines, str filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A file-based repository that handles saving/loading text data.
+Mirrors the behavior of the C++ FileRepository class.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classfile__repository_1_1_file_repository_a85f1463ec5c7b9759fc21e4e390d1232}\label{classfile__repository_1_1_file_repository_a85f1463ec5c7b9759fc21e4e390d1232} 
+\index{file\_repository.FileRepository@{file\_repository.FileRepository}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!file\_repository.FileRepository@{file\_repository.FileRepository}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily file\+\_\+repository.\+File\+Repository.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classfile__repository_1_1_file_repository_aad99e85a8d20274e068a33d3c25789e4}\label{classfile__repository_1_1_file_repository_aad99e85a8d20274e068a33d3c25789e4} 
+\index{file\_repository.FileRepository@{file\_repository.FileRepository}!FileExists@{FileExists}}
+\index{FileExists@{FileExists}!file\_repository.FileRepository@{file\_repository.FileRepository}}
+\doxysubsubsection{\texorpdfstring{FileExists()}{FileExists()}}
+{\footnotesize\ttfamily  bool file\+\_\+repository.\+File\+Repository.\+File\+Exists (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if a file exists.\end{DoxyVerb}
+ \Hypertarget{classfile__repository_1_1_file_repository_af2c322fefeee3ea40b10cca2ca53be54}\label{classfile__repository_1_1_file_repository_af2c322fefeee3ea40b10cca2ca53be54} 
+\index{file\_repository.FileRepository@{file\_repository.FileRepository}!LoadFromFile@{LoadFromFile}}
+\index{LoadFromFile@{LoadFromFile}!file\_repository.FileRepository@{file\_repository.FileRepository}}
+\doxysubsubsection{\texorpdfstring{LoadFromFile()}{LoadFromFile()}}
+{\footnotesize\ttfamily  str file\+\_\+repository.\+File\+Repository.\+Load\+From\+File (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Load entire file contents as a string.\end{DoxyVerb}
+ \Hypertarget{classfile__repository_1_1_file_repository_a81b9b5af9cbcd9d421b90be9f6d917e8}\label{classfile__repository_1_1_file_repository_a81b9b5af9cbcd9d421b90be9f6d917e8} 
+\index{file\_repository.FileRepository@{file\_repository.FileRepository}!ReadLines@{ReadLines}}
+\index{ReadLines@{ReadLines}!file\_repository.FileRepository@{file\_repository.FileRepository}}
+\doxysubsubsection{\texorpdfstring{ReadLines()}{ReadLines()}}
+{\footnotesize\ttfamily  List\mbox{[}str\mbox{]} file\+\_\+repository.\+File\+Repository.\+Read\+Lines (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read file lines into a list of strings, skipping empty lines.\end{DoxyVerb}
+ \Hypertarget{classfile__repository_1_1_file_repository_acaee52013d3da29c59058d70ec1b177f}\label{classfile__repository_1_1_file_repository_acaee52013d3da29c59058d70ec1b177f} 
+\index{file\_repository.FileRepository@{file\_repository.FileRepository}!SaveToFile@{SaveToFile}}
+\index{SaveToFile@{SaveToFile}!file\_repository.FileRepository@{file\_repository.FileRepository}}
+\doxysubsubsection{\texorpdfstring{SaveToFile()}{SaveToFile()}}
+{\footnotesize\ttfamily  None file\+\_\+repository.\+File\+Repository.\+Save\+To\+File (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{data,  }\item[{str}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Save raw text data to a file.\end{DoxyVerb}
+ \Hypertarget{classfile__repository_1_1_file_repository_a92f1083d420b4285a46cc65866cb23e6}\label{classfile__repository_1_1_file_repository_a92f1083d420b4285a46cc65866cb23e6} 
+\index{file\_repository.FileRepository@{file\_repository.FileRepository}!WriteLines@{WriteLines}}
+\index{WriteLines@{WriteLines}!file\_repository.FileRepository@{file\_repository.FileRepository}}
+\doxysubsubsection{\texorpdfstring{WriteLines()}{WriteLines()}}
+{\footnotesize\ttfamily  None file\+\_\+repository.\+File\+Repository.\+Write\+Lines (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{List\mbox{[}str\mbox{]}}]{lines,  }\item[{str}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write a list of strings to a file, each on a new line.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project5\+\_\+\+HR\+\_\+\+Back\+\_\+\+End/header/persistence/\mbox{\hyperlink{file__repository_8py}{file\+\_\+repository.\+py}}\end{DoxyCompactItemize}

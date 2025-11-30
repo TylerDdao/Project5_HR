@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['employee_0',['Employee',['../class_employee.html#a003c7bd08c40924e381eb0750cbb906f',1,'Employee::Employee()'],['../class_employee.html#a55f088512a30df390d7a37e8e4d8b3a8',1,'Employee::Employee(int id, const string &amp;n, const string &amp;p, const string &amp;num, const string &amp;d)'],['../class_employee.html#a003c7bd08c40924e381eb0750cbb906f',1,'Employee::Employee()'],['../class_employee.html#a55f088512a30df390d7a37e8e4d8b3a8',1,'Employee::Employee(int id, const string &amp;n, const string &amp;p, const string &amp;num, const string &amp;d)']]],
-  ['employeeexists_1',['EmployeeExists',['../class_employee_info_management.html#a3ff72c2dea437ead15f3adaf605d35c5',1,'EmployeeInfoManagement']]],
-  ['employeeinfomanagement_2',['EmployeeInfoManagement',['../class_employee_info_management.html#a64a5092f4cc5fd5bedbfb931a1896e77',1,'EmployeeInfoManagement::EmployeeInfoManagement()'],['../class_employee_info_management.html#a64a5092f4cc5fd5bedbfb931a1896e77',1,'EmployeeInfoManagement::EmployeeInfoManagement()'],['../class_employee_info_management.html#aace7a4fb17b8f919889a237506aedb24',1,'EmployeeInfoManagement::EmployeeInfoManagement(FileRepository *repo)']]]
+  ['deserialize_0',['deserialize',['../classstaff_1_1_staff.html#a43dc558f8f3f3616c605a080789980b0',1,'staff::Staff']]],
+  ['display_1',['display',['../classstaff_1_1_staff.html#ac98ddf8ec2e7d32e4b67b34a2a4051ef',1,'staff::Staff']]],
+  ['display_5fall_5femployees_2',['display_all_employees',['../classstaff__info__management_1_1_staff_info_management.html#aa5a21e1d94061fab7bb68d6b2e6843bc',1,'staff_info_management::StaffInfoManagement']]]
 ];

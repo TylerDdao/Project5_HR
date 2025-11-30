@@ -1,0 +1,169 @@
+\doxysection{staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management Class Reference}
+\hypertarget{classstaff__info__management_1_1_staff_info_management}{}\label{classstaff__info__management_1_1_staff_info_management}\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_ab9f0bd2ff70679c27a06acb44ba9532d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, File\+Repository repo=None)
+\item 
+None \mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_a866187dc590fdedbee7c0548c531f064}{add\+\_\+staff}} (self, Staff s)
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_af6cac9dea02c9e581500eb633e279f72}{update\+\_\+staff}} (self, int staff\+\_\+id)
+\item 
+Optional\mbox{[}Staff\mbox{]} \mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_ae9f35f3f81c84040c056769dea27b014}{get\+\_\+staff}} (self, int staff\+\_\+id)
+\item 
+None \mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_acbd931642d885ad7d85ad1d4a692a11d}{remove\+\_\+staff}} (self, int staff\+\_\+id)
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_aa5a21e1d94061fab7bb68d6b2e6843bc}{display\+\_\+all\+\_\+employees}} (self)
+\item 
+bool \mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_ac3b2bcfb50c868b233a2f80075876b46}{employee\+\_\+exists}} (self, int emp\+\_\+id)
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_a5e1e609ea0abe09370200f8b002d1327}{save\+\_\+to\+\_\+file}} (self)
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_a139a440046d779449b2f00a9a4f6be88}{load\+\_\+from\+\_\+file}} (self)
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_a8956cb853a74d21521f050a2a2861c18}{management}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_a152464ff11ea757b8b67dc3f081f0f4c}{repository}}
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_a2a18db1d784c09fd4d019266960f163a}{data\+\_\+file\+\_\+path}}
+\item 
+\mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_ad994da17165dedf872731584bb2cc2c2}{staffs}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Optional\mbox{[}Staff\mbox{]} \mbox{\hyperlink{classstaff__info__management_1_1_staff_info_management_a786e53280abc2b24e661bd1d1364c7b7}{\+\_\+find\+\_\+by\+\_\+id}} (self, int staff\+\_\+id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}StaffInfoManagement class for managing staff records.
+
+Attributes:
+    staff (list[Staff]): List of staff objects.
+    repository (FileRepository): Handles saving/loading data.
+    data_file_path (str): Path to staff data file.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classstaff__info__management_1_1_staff_info_management_ab9f0bd2ff70679c27a06acb44ba9532d}\label{classstaff__info__management_1_1_staff_info_management_ab9f0bd2ff70679c27a06acb44ba9532d} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{File\+Repository }]{repo = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Constructor for StaffInfoManagement.
+
+Args:
+    repo (FileRepository, optional): Existing repository instance.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classstaff__info__management_1_1_staff_info_management_a786e53280abc2b24e661bd1d1364c7b7}\label{classstaff__info__management_1_1_staff_info_management_a786e53280abc2b24e661bd1d1364c7b7} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!\_find\_by\_id@{\_find\_by\_id}}
+\index{\_find\_by\_id@{\_find\_by\_id}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{\_find\_by\_id()}{\_find\_by\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}Staff\mbox{]} staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+\_\+find\+\_\+by\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Find staff by ID.
+
+Args:
+    staff_id (int): Staff ID.
+
+Returns:
+    Employee | None: Employee object if found.
+\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_a866187dc590fdedbee7c0548c531f064}\label{classstaff__info__management_1_1_staff_info_management_a866187dc590fdedbee7c0548c531f064} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!add\_staff@{add\_staff}}
+\index{add\_staff@{add\_staff}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{add\_staff()}{add\_staff()}}
+{\footnotesize\ttfamily  None staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+add\+\_\+staff (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Staff}]{s }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a new employee.\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_aa5a21e1d94061fab7bb68d6b2e6843bc}\label{classstaff__info__management_1_1_staff_info_management_aa5a21e1d94061fab7bb68d6b2e6843bc} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!display\_all\_employees@{display\_all\_employees}}
+\index{display\_all\_employees@{display\_all\_employees}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{display\_all\_employees()}{display\_all\_employees()}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+display\+\_\+all\+\_\+employees (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Print all employee records.\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_ac3b2bcfb50c868b233a2f80075876b46}\label{classstaff__info__management_1_1_staff_info_management_ac3b2bcfb50c868b233a2f80075876b46} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!employee\_exists@{employee\_exists}}
+\index{employee\_exists@{employee\_exists}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{employee\_exists()}{employee\_exists()}}
+{\footnotesize\ttfamily  bool staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+employee\+\_\+exists (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{emp\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if employee exists.\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_ae9f35f3f81c84040c056769dea27b014}\label{classstaff__info__management_1_1_staff_info_management_ae9f35f3f81c84040c056769dea27b014} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!get\_staff@{get\_staff}}
+\index{get\_staff@{get\_staff}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{get\_staff()}{get\_staff()}}
+{\footnotesize\ttfamily  Optional\mbox{[}Staff\mbox{]} staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+get\+\_\+staff (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return an Employee object by ID.\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_a139a440046d779449b2f00a9a4f6be88}\label{classstaff__info__management_1_1_staff_info_management_a139a440046d779449b2f00a9a4f6be88} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!load\_from\_file@{load\_from\_file}}
+\index{load\_from\_file@{load\_from\_file}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{load\_from\_file()}{load\_from\_file()}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+load\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Load employees from file.\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_a8956cb853a74d21521f050a2a2861c18}\label{classstaff__info__management_1_1_staff_info_management_a8956cb853a74d21521f050a2a2861c18} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!management@{management}}
+\index{management@{management}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{management()}{management()}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+management (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run interactive console menu.\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_acbd931642d885ad7d85ad1d4a692a11d}\label{classstaff__info__management_1_1_staff_info_management_acbd931642d885ad7d85ad1d4a692a11d} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!remove\_staff@{remove\_staff}}
+\index{remove\_staff@{remove\_staff}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{remove\_staff()}{remove\_staff()}}
+{\footnotesize\ttfamily  None staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+remove\+\_\+staff (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove employee by ID.\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_a5e1e609ea0abe09370200f8b002d1327}\label{classstaff__info__management_1_1_staff_info_management_a5e1e609ea0abe09370200f8b002d1327} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!save\_to\_file@{save\_to\_file}}
+\index{save\_to\_file@{save\_to\_file}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{save\_to\_file()}{save\_to\_file()}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+save\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Save all employee data to file.\end{DoxyVerb}
+ \Hypertarget{classstaff__info__management_1_1_staff_info_management_af6cac9dea02c9e581500eb633e279f72}\label{classstaff__info__management_1_1_staff_info_management_af6cac9dea02c9e581500eb633e279f72} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!update\_staff@{update\_staff}}
+\index{update\_staff@{update\_staff}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{update\_staff()}{update\_staff()}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+update\+\_\+staff (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Update employee details.\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classstaff__info__management_1_1_staff_info_management_a2a18db1d784c09fd4d019266960f163a}\label{classstaff__info__management_1_1_staff_info_management_a2a18db1d784c09fd4d019266960f163a} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!data\_file\_path@{data\_file\_path}}
+\index{data\_file\_path@{data\_file\_path}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{data\_file\_path}{data\_file\_path}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+data\+\_\+file\+\_\+path}
+
+\Hypertarget{classstaff__info__management_1_1_staff_info_management_a152464ff11ea757b8b67dc3f081f0f4c}\label{classstaff__info__management_1_1_staff_info_management_a152464ff11ea757b8b67dc3f081f0f4c} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!repository@{repository}}
+\index{repository@{repository}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{repository}{repository}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+repository}
+
+\Hypertarget{classstaff__info__management_1_1_staff_info_management_ad994da17165dedf872731584bb2cc2c2}\label{classstaff__info__management_1_1_staff_info_management_ad994da17165dedf872731584bb2cc2c2} 
+\index{staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}!staffs@{staffs}}
+\index{staffs@{staffs}!staff\_info\_management.StaffInfoManagement@{staff\_info\_management.StaffInfoManagement}}
+\doxysubsubsection{\texorpdfstring{staffs}{staffs}}
+{\footnotesize\ttfamily staff\+\_\+info\+\_\+management.\+Staff\+Info\+Management.\+staffs}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project5\+\_\+\+HR\+\_\+\+Back\+\_\+\+End/header/core/\mbox{\hyperlink{staff__info__management_8py}{staff\+\_\+info\+\_\+management.\+py}}\end{DoxyCompactItemize}

@@ -15,12 +15,9 @@ import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import type { Account, Shift, Staff } from '../../data/type';
 import { shifts as rawShifts, shiftsStaffs } from '../../data/dummyData';
 import { Link } from 'react-router-dom';
-import { parsedStaff } from '../../utils/account';
+import { parsedStaff, useSetStaff } from '../../utils/account';
 
 const SchedulePage: React.FC = () => {
-    const [staff, setStaff] = useState<Staff>();
-    const [account, setAccount] = useState<Account>();
-
     const [thisWeekDates, setThisWeekDates] = useState<Date[]>([]);
     const [nextWeekDates, setNextWeekDates] = useState<Date[]>([]);
     const [thisWeekShifts, setThisWeekShifts] = useState<Shift[]>([]);
@@ -29,20 +26,10 @@ const SchedulePage: React.FC = () => {
 
     const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date())
 
-    //Load staff and account
-    useEffect(()=>{
-        const staff = parsedStaff()
-        if(staff){
-            setStaff({
-                ...staff,
-                hire_date: staff.hire_date ? new Date(staff.hire_date) : undefined
-            })
-        }
-        else{
-            alert("Something is wrong");
-            window.location.href = "/";
-        }
-    }, [])
+    const { staff, handleStaff } = useSetStaff();
+    useEffect(() => {
+      handleStaff();
+    }, []);
 
     //Load this week and next week shifts
     useEffect(()=>{
@@ -94,13 +81,15 @@ const SchedulePage: React.FC = () => {
 
     //Refresh time and active shift
     useEffect(() => {
-        const timer = setInterval(() => 
-            {
-                const now = new Date()
-                setCurrentDateTime(now);
-                const currentShifts = thisWeekShifts.filter(shift=>(shift.start_time.getTime() <= now.getTime() && shift.end_time.getTime() > now.getTime()))
-                setCurrentShifts(currentShifts);
-            }, 1000);
+        const currentShifts = thisWeekShifts.filter(
+            shift => shift.start_time.getTime() <= currentDateTime.getTime() &&
+                    shift.end_time.getTime() > currentDateTime.getTime()
+        );
+        setCurrentShifts(currentShifts);
+    }, [thisWeekShifts, currentDateTime]);
+
+    useEffect(() => {
+        const timer = setInterval(() => setCurrentDateTime(new Date()), 1000);
         return () => clearInterval(timer);
     }, []);
 
@@ -125,16 +114,13 @@ const SchedulePage: React.FC = () => {
                     <h3>{extractFullDate(date)}</h3>
                     {todayShift.length > 0 ? (
                       todayShift.map(shift => (
-                        <div key={shift.shift_id} className="p-5 shadow rounded-[8px]">
-                          <h3>
-                            {extractFullDate(shift.start_time!)} | {extractTime(shift.start_time!)} -{' '}
-                            {extractTime(shift.end_time!)}
-                          </h3>
-                          <p>
-                            Expected work time: {caculateWorkTime(shift.start_time!, shift.end_time!).hours} hours{' '}
-                            {caculateWorkTime(shift.start_time!, shift.end_time!).minutes} minutes
-                          </p>
-                        </div>
+                        <Link to={`/schedule/${shift.shift_id}`} key={shift.shift_id}>
+                          <div className="p-5 shadow rounded-[8px] text-charcoal">
+                            <h3>Start Time: {extractFullDate(shift.start_time)} @ {extractTime(shift.start_time)}</h3>
+                            <h3>End Time: {extractFullDate(shift.end_time)} @ {extractTime(shift.end_time)}</h3>
+                            <p>Expected work time: {caculateWorkTime(shift.start_time!, shift.end_time!).hours} hours {caculateWorkTime(shift.start_time!, shift.end_time!).minutes} minutes</p>
+                          </div>
+                        </Link>
                       ))
                     ) : (
                       <div>
@@ -158,16 +144,13 @@ const SchedulePage: React.FC = () => {
                     <h3>{extractFullDate(date)}</h3>
                     {nextWeek.length > 0 ? (
                       nextWeek.map(shift => (
-                        <div key={shift.shift_id} className="p-5 shadow rounded-[8px]">
-                          <h3>
-                            {extractFullDate(shift.start_time!)} | {extractTime(shift.start_time!)} -{' '}
-                            {extractTime(shift.end_time!)}
-                          </h3>
-                          <p>
-                            Expected work time: {caculateWorkTime(shift.start_time!, shift.end_time!).hours} hours{' '}
-                            {caculateWorkTime(shift.start_time!, shift.end_time!).minutes} minutes
-                          </p>
-                        </div>
+                        <Link to={`schedule/${shift.shift_id}`} key={shift.shift_id}>
+                          <div  className="p-5 shadow rounded-[8px] text-charcoal">
+                            <h3>Start Time: {extractFullDate(shift.start_time)} @ {extractTime(shift.start_time)}</h3>
+                            <h3>End Time: {extractFullDate(shift.end_time)} @ {extractTime(shift.end_time)}</h3>
+                            <p>Expected work time: {caculateWorkTime(shift.start_time!, shift.end_time!).hours} hours {caculateWorkTime(shift.start_time!, shift.end_time!).minutes} minutes</p>
+                          </div>
+                        </Link>
                       ))
                     ) : (
                       <div>
@@ -208,7 +191,7 @@ const SchedulePage: React.FC = () => {
               )}
             </div>
 
-            {account?.account_type === 'Manager' && (
+            {staff?.account?.account_type === 'manager' && (
               <div className="flex flex-col space-y-[10px]">
                 <h1>Shift Management</h1>
                 <div className="flex space-x-[10px]">
@@ -218,10 +201,10 @@ const SchedulePage: React.FC = () => {
                   <Link to="/schedule/shift-list">
                     <button className="bg-light_gray text-accent_blue hover:bg-gray-300 transition">Modify Shift</button>
                   </Link>
+                  <Link to="/schedule/shift-history">
+                    <button className="bg-light_gray text-accent_blue hover:bg-gray-300 transition">Shift History</button>
+                  </Link>
                 </div>
-                <Link to="/schedule/shift-history">
-                  <button className="bg-light_gray text-accent_blue w-full hover:bg-gray-300 transition">Shift History</button>
-                </Link>
               </div>
             )}
           </div>

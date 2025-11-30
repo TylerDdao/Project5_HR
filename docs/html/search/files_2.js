@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['datetimehelper_2ecpp_0',['DateTimeHelper.cpp',['../_date_time_helper_8cpp.html',1,'']]],
-  ['datetimehelper_2eh_1',['DateTimeHelper.h',['../_date_time_helper_8h.html',1,'']]]
+  ['database_5fcontrol_2epy_0',['database_control.py',['../database__control_8py.html',1,'']]]
 ];

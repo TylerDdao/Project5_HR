@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['listmessages_0',['ListMessages',['../class_communication_hub.html#a44e6492bb2816eb43e572f56a3e40a52',1,'CommunicationHub']]],
-  ['loadfromfile_1',['LoadFromFile',['../class_communication_hub.html#a8468865420449c32b8fd4f80e5202b15',1,'CommunicationHub::LoadFromFile()'],['../class_employee_info_management.html#ad64008f6c966f7968e2c7eb34a39e8e7',1,'EmployeeInfoManagement::LoadFromFile()'],['../class_file_repository.html#abcc6f46a27ec75e3df7c05e83d412fea',1,'FileRepository::LoadFromFile()'],['../class_i_repository.html#a4d6ae70f40ec2ef5026b27ef8e156711',1,'IRepository::LoadFromFile()']]],
-  ['loadfromfile_2',['loadFromFile',['../class_employee_info_management.html#afb00a48763b5221aafc68ad746a04a43',1,'EmployeeInfoManagement']]]
+  ['insert_5faccount_0',['insert_account',['../classdatabase__control_1_1_database_control.html#a5a3f4915078faaae6d25c01f15cf5bcc',1,'database_control::DatabaseControl']]],
+  ['insert_5fpayroll_1',['insert_payroll',['../classdatabase__control_1_1_database_control.html#abc42d766d6c509829e756004d13ca2b4',1,'database_control.DatabaseControl.insert_payroll()'],['../classpayrolls_1_1_payroll_database.html#a1159fa6ec586e475b289381c8f4a9813',1,'payrolls.PayrollDatabase.insert_payroll()']]],
+  ['insert_5fshift_2',['insert_shift',['../classdatabase__control_1_1_database_control.html#aac3ce9195bd56b94acdf8a324c4c0048',1,'database_control.DatabaseControl.insert_shift()'],['../classshifts__db_1_1_shifts_database.html#ae10f1c5654feb0e0055adbcf9e5ec70b',1,'shifts_db.ShiftsDatabase.insert_shift()']]],
+  ['insert_5fstaff_3',['insert_staff',['../classdatabase__control_1_1_database_control.html#a06231aae84adbcef617378fd9d9b81d0',1,'database_control::DatabaseControl']]]
 ];

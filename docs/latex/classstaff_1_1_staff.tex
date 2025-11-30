@@ -1,0 +1,225 @@
+\doxysection{staff.\+Staff Class Reference}
+\hypertarget{classstaff_1_1_staff}{}\label{classstaff_1_1_staff}\index{staff.Staff@{staff.Staff}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_ab952ddfa8ad60db415f41b0ef3b5942f}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, staff\+\_\+id=0, name="{}"{}, position="{}"{}, phone\+\_\+num="{}"{}, hire\+\_\+date="{}"{})
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a69557984a256250a14cafdbe87f4a971}{get\+\_\+staff\+\_\+id}} (self)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a130c6ab8ffe2b9ffb09feda6f268d9e3}{get\+\_\+name}} (self)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a38b830e4e439388e19890c1a85c16a81}{get\+\_\+position}} (self)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a3bc905abaf0ddd206f7f305c8d98df85}{get\+\_\+phone\+\_\+num}} (self)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a2ebf2e7e99a8feac12eaab93cfea1dc7}{get\+\_\+hire\+\_\+date}} (self)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a4410491cd0974747194042c81b21ea2c}{set\+\_\+staff\+\_\+id}} (self, id)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a540339a8bfa851eefe4c788e3d982e2e}{set\+\_\+name}} (self, name)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a2e617367bd2bf12bef21dfbc2945a184}{set\+\_\+position}} (self, position)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a42ad65b06fff436d6faa816463caea7b}{set\+\_\+phone\+\_\+num}} (self, phone\+\_\+num)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a7c385271d139d26af1b2ef76a4be0025}{set\+\_\+hire\+\_\+date}} (self, hire\+\_\+date)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_ac98ddf8ec2e7d32e4b67b34a2a4051ef}{display}} (self)
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_afbc5819476c040c08d34539745155850}{serialize}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a43dc558f8f3f3616c605a080789980b0}{deserialize}} (data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a3e64a9c1c118d31abfc4474247e18413}{\+\_\+staff\+\_\+id}}
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_ad168094124bbd0bf7fbccf8656227cee}{\+\_\+name}}
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a4e3a2bfd69350e22d5535885d47773de}{\+\_\+position}}
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a14041b7e4301ba87f362631323734594}{\+\_\+phone\+\_\+num}}
+\item 
+\mbox{\hyperlink{classstaff_1_1_staff_a2399a5981a412f1eca5fa165b7634f83}{\+\_\+hire\+\_\+date}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@brief This is the Staff Class
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classstaff_1_1_staff_ab952ddfa8ad60db415f41b0ef3b5942f}\label{classstaff_1_1_staff_ab952ddfa8ad60db415f41b0ef3b5942f} 
+\index{staff.Staff@{staff.Staff}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily staff.\+Staff.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{staff\+\_\+id = {\ttfamily 0},  }\item[{}]{name = {\ttfamily "{}"{}},  }\item[{}]{position = {\ttfamily "{}"{}},  }\item[{}]{phone\+\_\+num = {\ttfamily "{}"{}},  }\item[{}]{hire\+\_\+date = {\ttfamily "{}"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Constructor for Staff
+@param staff_id Staff ID
+@param name Staff name
+@param position Staff position
+@param phone_num Staff phone number
+@param hire_date Staff hire date
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classstaff_1_1_staff_a43dc558f8f3f3616c605a080789980b0}\label{classstaff_1_1_staff_a43dc558f8f3f3616c605a080789980b0} 
+\index{staff.Staff@{staff.Staff}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily staff.\+Staff.\+deserialize (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}@brief Create an staff object from a CSV string
+@param data CSV data string
+@return Staff object
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_ac98ddf8ec2e7d32e4b67b34a2a4051ef}\label{classstaff_1_1_staff_ac98ddf8ec2e7d32e4b67b34a2a4051ef} 
+\index{staff.Staff@{staff.Staff}!display@{display}}
+\index{display@{display}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily staff.\+Staff.\+display (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Display staff details
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a2ebf2e7e99a8feac12eaab93cfea1dc7}\label{classstaff_1_1_staff_a2ebf2e7e99a8feac12eaab93cfea1dc7} 
+\index{staff.Staff@{staff.Staff}!get\_hire\_date@{get\_hire\_date}}
+\index{get\_hire\_date@{get\_hire\_date}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{get\_hire\_date()}{get\_hire\_date()}}
+{\footnotesize\ttfamily staff.\+Staff.\+get\+\_\+hire\+\_\+date (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Get staff hire date
+@return hireDate:string
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a130c6ab8ffe2b9ffb09feda6f268d9e3}\label{classstaff_1_1_staff_a130c6ab8ffe2b9ffb09feda6f268d9e3} 
+\index{staff.Staff@{staff.Staff}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily staff.\+Staff.\+get\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Get staff name
+@return name:string
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a3bc905abaf0ddd206f7f305c8d98df85}\label{classstaff_1_1_staff_a3bc905abaf0ddd206f7f305c8d98df85} 
+\index{staff.Staff@{staff.Staff}!get\_phone\_num@{get\_phone\_num}}
+\index{get\_phone\_num@{get\_phone\_num}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{get\_phone\_num()}{get\_phone\_num()}}
+{\footnotesize\ttfamily staff.\+Staff.\+get\+\_\+phone\+\_\+num (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Get staff phone number
+@return phoneNum:string
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a38b830e4e439388e19890c1a85c16a81}\label{classstaff_1_1_staff_a38b830e4e439388e19890c1a85c16a81} 
+\index{staff.Staff@{staff.Staff}!get\_position@{get\_position}}
+\index{get\_position@{get\_position}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{get\_position()}{get\_position()}}
+{\footnotesize\ttfamily staff.\+Staff.\+get\+\_\+position (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Get staff position
+@return position:string
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a69557984a256250a14cafdbe87f4a971}\label{classstaff_1_1_staff_a69557984a256250a14cafdbe87f4a971} 
+\index{staff.Staff@{staff.Staff}!get\_staff\_id@{get\_staff\_id}}
+\index{get\_staff\_id@{get\_staff\_id}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{get\_staff\_id()}{get\_staff\_id()}}
+{\footnotesize\ttfamily staff.\+Staff.\+get\+\_\+staff\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Get staff ID
+@return staffId:int
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_afbc5819476c040c08d34539745155850}\label{classstaff_1_1_staff_afbc5819476c040c08d34539745155850} 
+\index{staff.Staff@{staff.Staff}!serialize@{serialize}}
+\index{serialize@{serialize}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily staff.\+Staff.\+serialize (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Convert staff data into CSV format
+@return Serialized staff data
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a7c385271d139d26af1b2ef76a4be0025}\label{classstaff_1_1_staff_a7c385271d139d26af1b2ef76a4be0025} 
+\index{staff.Staff@{staff.Staff}!set\_hire\_date@{set\_hire\_date}}
+\index{set\_hire\_date@{set\_hire\_date}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{set\_hire\_date()}{set\_hire\_date()}}
+{\footnotesize\ttfamily staff.\+Staff.\+set\+\_\+hire\+\_\+date (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{hire\+\_\+date }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Set staff hire date
+@param hire_date Staff hire date
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a540339a8bfa851eefe4c788e3d982e2e}\label{classstaff_1_1_staff_a540339a8bfa851eefe4c788e3d982e2e} 
+\index{staff.Staff@{staff.Staff}!set\_name@{set\_name}}
+\index{set\_name@{set\_name}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{set\_name()}{set\_name()}}
+{\footnotesize\ttfamily staff.\+Staff.\+set\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Set staff name
+@param name Staff name
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a42ad65b06fff436d6faa816463caea7b}\label{classstaff_1_1_staff_a42ad65b06fff436d6faa816463caea7b} 
+\index{staff.Staff@{staff.Staff}!set\_phone\_num@{set\_phone\_num}}
+\index{set\_phone\_num@{set\_phone\_num}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{set\_phone\_num()}{set\_phone\_num()}}
+{\footnotesize\ttfamily staff.\+Staff.\+set\+\_\+phone\+\_\+num (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{phone\+\_\+num }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Set staff phone number
+@param phone_num Staff phone number
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a2e617367bd2bf12bef21dfbc2945a184}\label{classstaff_1_1_staff_a2e617367bd2bf12bef21dfbc2945a184} 
+\index{staff.Staff@{staff.Staff}!set\_position@{set\_position}}
+\index{set\_position@{set\_position}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{set\_position()}{set\_position()}}
+{\footnotesize\ttfamily staff.\+Staff.\+set\+\_\+position (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{position }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Set staff position
+@param position Staff position
+\end{DoxyVerb}
+ \Hypertarget{classstaff_1_1_staff_a4410491cd0974747194042c81b21ea2c}\label{classstaff_1_1_staff_a4410491cd0974747194042c81b21ea2c} 
+\index{staff.Staff@{staff.Staff}!set\_staff\_id@{set\_staff\_id}}
+\index{set\_staff\_id@{set\_staff\_id}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{set\_staff\_id()}{set\_staff\_id()}}
+{\footnotesize\ttfamily staff.\+Staff.\+set\+\_\+staff\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{id }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classstaff_1_1_staff_a2399a5981a412f1eca5fa165b7634f83}\label{classstaff_1_1_staff_a2399a5981a412f1eca5fa165b7634f83} 
+\index{staff.Staff@{staff.Staff}!\_hire\_date@{\_hire\_date}}
+\index{\_hire\_date@{\_hire\_date}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{\_hire\_date}{\_hire\_date}}
+{\footnotesize\ttfamily staff.\+Staff.\+\_\+hire\+\_\+date\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classstaff_1_1_staff_ad168094124bbd0bf7fbccf8656227cee}\label{classstaff_1_1_staff_ad168094124bbd0bf7fbccf8656227cee} 
+\index{staff.Staff@{staff.Staff}!\_name@{\_name}}
+\index{\_name@{\_name}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{\_name}{\_name}}
+{\footnotesize\ttfamily staff.\+Staff.\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classstaff_1_1_staff_a14041b7e4301ba87f362631323734594}\label{classstaff_1_1_staff_a14041b7e4301ba87f362631323734594} 
+\index{staff.Staff@{staff.Staff}!\_phone\_num@{\_phone\_num}}
+\index{\_phone\_num@{\_phone\_num}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{\_phone\_num}{\_phone\_num}}
+{\footnotesize\ttfamily staff.\+Staff.\+\_\+phone\+\_\+num\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classstaff_1_1_staff_a4e3a2bfd69350e22d5535885d47773de}\label{classstaff_1_1_staff_a4e3a2bfd69350e22d5535885d47773de} 
+\index{staff.Staff@{staff.Staff}!\_position@{\_position}}
+\index{\_position@{\_position}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{\_position}{\_position}}
+{\footnotesize\ttfamily staff.\+Staff.\+\_\+position\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classstaff_1_1_staff_a3e64a9c1c118d31abfc4474247e18413}\label{classstaff_1_1_staff_a3e64a9c1c118d31abfc4474247e18413} 
+\index{staff.Staff@{staff.Staff}!\_staff\_id@{\_staff\_id}}
+\index{\_staff\_id@{\_staff\_id}!staff.Staff@{staff.Staff}}
+\doxysubsubsection{\texorpdfstring{\_staff\_id}{\_staff\_id}}
+{\footnotesize\ttfamily staff.\+Staff.\+\_\+staff\+\_\+id\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project5\+\_\+\+HR\+\_\+\+Back\+\_\+\+End/header/core/\mbox{\hyperlink{staff_8py}{staff.\+py}}\end{DoxyCompactItemize}

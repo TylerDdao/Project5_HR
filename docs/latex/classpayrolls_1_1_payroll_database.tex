@@ -1,0 +1,143 @@
+\doxysection{payrolls.\+Payroll\+Database Class Reference}
+\hypertarget{classpayrolls_1_1_payroll_database}{}\label{classpayrolls_1_1_payroll_database}\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpayrolls_1_1_payroll_database_aa54aad5dbd17498907b787dd25061ec4}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, uri="{}mongodb\+://127.\+0.\+0.\+1\+:27017/?direct\+Connection=true\&server\+Selection\+Timeout\+MS=2000\&app\+Name=mongosh+2.\+5.\+9"{}, str database\+\_\+name="{}project5\+\_\+hr"{})
+\item 
+Optional\mbox{[}Exception\mbox{]} \mbox{\hyperlink{classpayrolls_1_1_payroll_database_abb506bf5096061e525228b216af537ef}{connect}} (self)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classpayrolls_1_1_payroll_database_a4d3a9e3696f011a00fc9c67cf4c0614e}{get\+\_\+my\+\_\+payroll}} (self, int staff\+\_\+id)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classpayrolls_1_1_payroll_database_aff891d7d54a2d07916d11a7c5bedd8ec}{get\+\_\+payroll\+\_\+by\+\_\+id}} (self, int payroll\+\_\+id)
+\item 
+bool \mbox{\hyperlink{classpayrolls_1_1_payroll_database_adbc145ab38a010a3cd8505b1fa461fb9}{cancel\+\_\+payroll}} (self, int payroll\+\_\+id)
+\item 
+Optional\mbox{[}dict\mbox{]} \mbox{\hyperlink{classpayrolls_1_1_payroll_database_a86772f6d35ee985d61fdb90bf774b6b1}{get\+\_\+shift\+\_\+record\+\_\+by\+\_\+id}} (self, int id)
+\item 
+int \mbox{\hyperlink{classpayrolls_1_1_payroll_database_a5575b1ad9c6e5994a74ef0c1d88b42f3}{start\+\_\+shift\+\_\+record}} (self, Shift\+Record shift\+\_\+record)
+\item 
+bool \mbox{\hyperlink{classpayrolls_1_1_payroll_database_a0e078047ec1b7f0b78f0d1de64fecb3e}{end\+\_\+shift\+\_\+record}} (self, Shift\+Record shift\+\_\+record)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classpayrolls_1_1_payroll_database_a799b6e0d5249f4b7ce27effd4ce110e7}{get\+\_\+this\+\_\+week\+\_\+shift\+\_\+records}} (self, int staff\+\_\+id)
+\item 
+bool \mbox{\hyperlink{classpayrolls_1_1_payroll_database_a1159fa6ec586e475b289381c8f4a9813}{insert\+\_\+payroll}} (self, Payroll payroll)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpayrolls_1_1_payroll_database_a655fd9b48064a27b3f3eb54d8279a60b}{\+\_\+uri}}
+\item 
+\mbox{\hyperlink{classpayrolls_1_1_payroll_database_a4b68575206d836b129e9092c1d5c3e75}{\+\_\+database\+\_\+name}}
+\item 
+\mbox{\hyperlink{classpayrolls_1_1_payroll_database_a4c7d5a8839d7af73196c7c80d293ab06}{\+\_\+client}}
+\item 
+\mbox{\hyperlink{classpayrolls_1_1_payroll_database_aa123d60ea5954b7d5f4494c1fde6f192}{\+\_\+database}}
+\item 
+\mbox{\hyperlink{classpayrolls_1_1_payroll_database_a80ab11f51066b7feb54b1e38d8745d8a}{\+\_\+payrolls}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classpayrolls_1_1_payroll_database_aa54aad5dbd17498907b787dd25061ec4}\label{classpayrolls_1_1_payroll_database_aa54aad5dbd17498907b787dd25061ec4} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily payrolls.\+Payroll\+Database.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{uri = {\ttfamily "{}mongodb\+://127.0.0.1\+:27017/?directConnection=true\&serverSelectionTimeoutMS=2000\&appName=mongosh+2.5.9"{}},  }\item[{str }]{database\+\_\+name = {\ttfamily "{}project5\+\_\+hr"{}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpayrolls_1_1_payroll_database_adbc145ab38a010a3cd8505b1fa461fb9}\label{classpayrolls_1_1_payroll_database_adbc145ab38a010a3cd8505b1fa461fb9} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!cancel\_payroll@{cancel\_payroll}}
+\index{cancel\_payroll@{cancel\_payroll}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{cancel\_payroll()}{cancel\_payroll()}}
+{\footnotesize\ttfamily  bool payrolls.\+Payroll\+Database.\+cancel\+\_\+payroll (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{payroll\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_abb506bf5096061e525228b216af537ef}\label{classpayrolls_1_1_payroll_database_abb506bf5096061e525228b216af537ef} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!connect@{connect}}
+\index{connect@{connect}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily  Optional\mbox{[}Exception\mbox{]} payrolls.\+Payroll\+Database.\+connect (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Connect to MongoDB and keep the client open.\end{DoxyVerb}
+ \Hypertarget{classpayrolls_1_1_payroll_database_a0e078047ec1b7f0b78f0d1de64fecb3e}\label{classpayrolls_1_1_payroll_database_a0e078047ec1b7f0b78f0d1de64fecb3e} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!end\_shift\_record@{end\_shift\_record}}
+\index{end\_shift\_record@{end\_shift\_record}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{end\_shift\_record()}{end\_shift\_record()}}
+{\footnotesize\ttfamily  bool payrolls.\+Payroll\+Database.\+end\+\_\+shift\+\_\+record (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Shift\+Record}]{shift\+\_\+record }\end{DoxyParamCaption})}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_a4d3a9e3696f011a00fc9c67cf4c0614e}\label{classpayrolls_1_1_payroll_database_a4d3a9e3696f011a00fc9c67cf4c0614e} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!get\_my\_payroll@{get\_my\_payroll}}
+\index{get\_my\_payroll@{get\_my\_payroll}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_my\_payroll()}{get\_my\_payroll()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} payrolls.\+Payroll\+Database.\+get\+\_\+my\+\_\+payroll (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_aff891d7d54a2d07916d11a7c5bedd8ec}\label{classpayrolls_1_1_payroll_database_aff891d7d54a2d07916d11a7c5bedd8ec} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!get\_payroll\_by\_id@{get\_payroll\_by\_id}}
+\index{get\_payroll\_by\_id@{get\_payroll\_by\_id}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_payroll\_by\_id()}{get\_payroll\_by\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} payrolls.\+Payroll\+Database.\+get\+\_\+payroll\+\_\+by\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{payroll\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_a86772f6d35ee985d61fdb90bf774b6b1}\label{classpayrolls_1_1_payroll_database_a86772f6d35ee985d61fdb90bf774b6b1} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!get\_shift\_record\_by\_id@{get\_shift\_record\_by\_id}}
+\index{get\_shift\_record\_by\_id@{get\_shift\_record\_by\_id}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_shift\_record\_by\_id()}{get\_shift\_record\_by\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}dict\mbox{]} payrolls.\+Payroll\+Database.\+get\+\_\+shift\+\_\+record\+\_\+by\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_a799b6e0d5249f4b7ce27effd4ce110e7}\label{classpayrolls_1_1_payroll_database_a799b6e0d5249f4b7ce27effd4ce110e7} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!get\_this\_week\_shift\_records@{get\_this\_week\_shift\_records}}
+\index{get\_this\_week\_shift\_records@{get\_this\_week\_shift\_records}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_this\_week\_shift\_records()}{get\_this\_week\_shift\_records()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} payrolls.\+Payroll\+Database.\+get\+\_\+this\+\_\+week\+\_\+shift\+\_\+records (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_a1159fa6ec586e475b289381c8f4a9813}\label{classpayrolls_1_1_payroll_database_a1159fa6ec586e475b289381c8f4a9813} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!insert\_payroll@{insert\_payroll}}
+\index{insert\_payroll@{insert\_payroll}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{insert\_payroll()}{insert\_payroll()}}
+{\footnotesize\ttfamily bool payrolls.\+Payroll\+Database.\+insert\+\_\+payroll (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Payroll}]{payroll }\end{DoxyParamCaption})}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_a5575b1ad9c6e5994a74ef0c1d88b42f3}\label{classpayrolls_1_1_payroll_database_a5575b1ad9c6e5994a74ef0c1d88b42f3} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!start\_shift\_record@{start\_shift\_record}}
+\index{start\_shift\_record@{start\_shift\_record}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{start\_shift\_record()}{start\_shift\_record()}}
+{\footnotesize\ttfamily  int payrolls.\+Payroll\+Database.\+start\+\_\+shift\+\_\+record (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Shift\+Record}]{shift\+\_\+record }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classpayrolls_1_1_payroll_database_a4c7d5a8839d7af73196c7c80d293ab06}\label{classpayrolls_1_1_payroll_database_a4c7d5a8839d7af73196c7c80d293ab06} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!\_client@{\_client}}
+\index{\_client@{\_client}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{\_client}{\_client}}
+{\footnotesize\ttfamily payrolls.\+Payroll\+Database.\+\_\+client\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_aa123d60ea5954b7d5f4494c1fde6f192}\label{classpayrolls_1_1_payroll_database_aa123d60ea5954b7d5f4494c1fde6f192} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!\_database@{\_database}}
+\index{\_database@{\_database}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{\_database}{\_database}}
+{\footnotesize\ttfamily payrolls.\+Payroll\+Database.\+\_\+database\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_a4b68575206d836b129e9092c1d5c3e75}\label{classpayrolls_1_1_payroll_database_a4b68575206d836b129e9092c1d5c3e75} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!\_database\_name@{\_database\_name}}
+\index{\_database\_name@{\_database\_name}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{\_database\_name}{\_database\_name}}
+{\footnotesize\ttfamily payrolls.\+Payroll\+Database.\+\_\+database\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_a80ab11f51066b7feb54b1e38d8745d8a}\label{classpayrolls_1_1_payroll_database_a80ab11f51066b7feb54b1e38d8745d8a} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!\_payrolls@{\_payrolls}}
+\index{\_payrolls@{\_payrolls}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{\_payrolls}{\_payrolls}}
+{\footnotesize\ttfamily payrolls.\+Payroll\+Database.\+\_\+payrolls\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classpayrolls_1_1_payroll_database_a655fd9b48064a27b3f3eb54d8279a60b}\label{classpayrolls_1_1_payroll_database_a655fd9b48064a27b3f3eb54d8279a60b} 
+\index{payrolls.PayrollDatabase@{payrolls.PayrollDatabase}!\_uri@{\_uri}}
+\index{\_uri@{\_uri}!payrolls.PayrollDatabase@{payrolls.PayrollDatabase}}
+\doxysubsubsection{\texorpdfstring{\_uri}{\_uri}}
+{\footnotesize\ttfamily payrolls.\+Payroll\+Database.\+\_\+uri\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project5\+\_\+\+HR\+\_\+\+Back\+\_\+\+End/header/utils/\mbox{\hyperlink{payrolls_8py}{payrolls.\+py}}\end{DoxyCompactItemize}

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { caculateWorkTime, extractDate, extractFullDate, extractTime, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay, toUTCString } from '../../../utils/time';
+import {extractFullDate, extractTime, toLocalTimeString} from '../../../utils/time';
 import NavBar from '../../../components/navBar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import type { Account, Shift, Staff } from '../../../data/type';
 import { Link, useParams } from 'react-router-dom';
+import { useSetStaff } from '../../../utils/account';
 
 const ShiftDetailPage: React.FC = () => {
     const {shiftId} = useParams<{ shiftId: string }>()
@@ -20,13 +21,15 @@ const ShiftDetailPage: React.FC = () => {
     const [isNextPage, setIsNextPage] = useState<Boolean>(false);
     const [totalPages, setTotalPages] = useState<number>(1);
 
-    const [staff, setStaff] = useState<Staff>();
-    const [account, setAccount] = useState<Account>();
-
     const [updatedShift, setUpdatedShift] = useState<Shift>();
 
     const [removedStaffs, setRemovedStaffs] = useState<Staff[]>([]);
     const [newlyAddedStaffs, setNewlyAddedStaffs] = useState<Staff[]>([]);
+
+    const { staff, handleStaff } = useSetStaff();
+    useEffect(() => {
+        handleStaff();
+    }, []);
 
    const handleShiftChange = async () => {
         if(updatedShift?.start_time && updatedShift.end_time){
@@ -54,8 +57,8 @@ const ShiftDetailPage: React.FC = () => {
                         ...(token ? { "Authorization": `Bearer ${token}` } : {}),
                     },
                     body: JSON.stringify({
-                        start_time: toUTCString(updatedShift?.start_time),
-                        end_time: toUTCString(updatedShift?.end_time),
+                        start_time: updatedShift?.start_time.toISOString(),
+                        end_time: updatedShift?.end_time.toISOString(),
                         staffs: assignedIds,
                     }),
                 }
@@ -66,6 +69,10 @@ const ShiftDetailPage: React.FC = () => {
             if (response.ok && result.success) {
                 alert("Shift Updated");
                 window.location.href = "/schedule/shift-list";
+            }
+            else{
+                alert("Error loading shift")
+                window.location.href = '/scheddule'
             }
         } catch (err) {
             console.error("Error updating shift:", err);
@@ -145,7 +152,7 @@ const ShiftDetailPage: React.FC = () => {
                 const result = await response.json();
 
                 if (response.ok && result.success) {
-                const staffs = result.staffs as Staff[];
+                const staffs = result.shift.staffs as Staff[];
                 const shiftData = result.shift as Shift;
                 const shiftWithDate = {
                     ...shiftData,
@@ -188,6 +195,38 @@ const ShiftDetailPage: React.FC = () => {
         }
     }, [shift]);
 
+    const handleDeleteShift = async() =>{
+        if(!staff) return;
+        if(isActive){
+            alert("Shift is active")
+            return
+        }
+        const option = confirm("Do you want to delete shift?")
+        if(!option) return;
+
+        const token = sessionStorage.getItem("token");
+        const response = await fetch(`${import.meta.env.VITE_SERVER}/api/delete_shift?shift_id=${shiftId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            ...(token ? { "Authorization": `Bearer ${token}` } : {})
+        },
+        });
+
+        const data = await response.json();
+        if(data.success){
+            alert("Shift deleted")
+            window.location.href = '/schedule'
+        }
+        else{
+            alert("Can not delete shift")
+        }
+    }
+
+    useEffect(() => {
+        console.log(staff?.account?.account_type)
+    }, [shift]);
+
   return (
     <div className='flex'>
         <div>
@@ -195,7 +234,11 @@ const ShiftDetailPage: React.FC = () => {
         </div>
 
         <div className='flex flex-col ml-[400px] p-5'>
-            <Link to={"/schedule"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
+            {isDone ? (
+                <Link to={"/schedule/shift-history"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
+            ):(
+                <Link to={"/schedule"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
+            )}
             <div className="border border-charcoal w-[100px] my-[30px]"></div>
 
             <div className='flex flex-col space-y-[30px]'>
@@ -218,7 +261,7 @@ const ShiftDetailPage: React.FC = () => {
                     ):(
                         <h2>Start Time</h2>
                     )}
-                    {isActive || isDone ?(
+                    {isActive || isDone || staff?.account?.account_type !="manager" ?(
                         <div className='flex space-x-[10px]'>
                             <div className='p-[5px] shadow rounded rounded-md' onClick={()=>{alert("You can't modify an active shift or a done shift")}}><p>{extractFullDate(shift?.start_time)}</p></div>
                             <div className='p-[5px] shadow rounded rounded-md' onClick={()=>{alert("You can't modify an active shift or a done shift")}}><p>{extractTime(shift?.start_time)}</p></div>
@@ -230,7 +273,7 @@ const ShiftDetailPage: React.FC = () => {
                                     <h3>Current start time: {extractFullDate(shift?.start_time)} - {extractTime(shift?.start_time)}</h3>
                                 )}
                                 <div>
-                                    <input id='start_time' className='w-fit bg-charcoal text-light_gray' type='datetime-local' defaultValue={shift? new Date(shift.start_time).toISOString().slice(0, 16):''} onChange={(e)=>setUpdatedShift({...updatedShift!, start_time: new Date(e.target.value)})}/>
+                                    <input id='start_time' className='w-fit bg-charcoal text-light_gray' type='datetime-local' defaultValue={shift?toLocalTimeString(new Date(shift.start_time)):''} onChange={(e)=>setUpdatedShift({...updatedShift!, start_time: new Date(e.target.value)})}/>
                                 </div>
                             </div>
                         </div>
@@ -243,7 +286,7 @@ const ShiftDetailPage: React.FC = () => {
                     ):(
                         <h2>End Time</h2>
                     )}
-                    {isActive || isDone ?(
+                    {isActive || isDone || staff?.account?.account_type !="manager" ?(
                         <div className='flex space-x-[10px]'>
                             <div className='p-[5px] shadow rounded rounded-md' onClick={()=>{alert("You can't modify an active shift or a done shift")}}><p>{extractFullDate(shift?.end_time)}</p></div>
                             <div className='p-[5px] shadow rounded rounded-md' onClick={()=>{alert("You can't modify an active shift or a done shift")}}><p>{extractTime(shift?.end_time)}</p></div>
@@ -255,7 +298,7 @@ const ShiftDetailPage: React.FC = () => {
                                     <h3>Current end time: {extractFullDate(shift?.end_time)} - {extractTime(shift?.end_time)}</h3>
                                 )}
                                 <div>
-                                    <input id='end_time' className='w-fit bg-charcoal text-light_gray' type='datetime-local' defaultValue={shift? new Date(shift.end_time).toISOString().slice(0, 16):''} onChange={(e)=>setUpdatedShift({...updatedShift!, end_time: new Date(e.target.value)})}/>
+                                    <input id='end_time' className='w-fit bg-charcoal text-light_gray' type='datetime-local' defaultValue={shift?toLocalTimeString(new Date(shift.end_time)):''} onChange={(e)=>setUpdatedShift({...updatedShift!, end_time: new Date(e.target.value)})}/>
                                 </div>
                             </div>
                         </div>
@@ -292,7 +335,7 @@ const ShiftDetailPage: React.FC = () => {
                                         </div>
                                     </div>
                                 )}
-                                {!isActive && !isDone  && (
+                                {!isActive && !isDone && staff?.account?.account_type =="manager" && (
                                     !removedStaffs.includes(staff) ? (
                                         <button className='flex flex-col p-2 items-center bg-tomato_red rounded-[8px]' onClick={()=>{handleDeleteStaff(staff)}}>
                                             <span className="material-symbols-outlined text-light_gray" style={{ fontSize: '40' }}>cancel</span>
@@ -312,17 +355,17 @@ const ShiftDetailPage: React.FC = () => {
                             <h3>No staff were assigned to this shift</h3>
                         )
                     )}
-                    {!isActive && !isDone &&(
+                    {!isActive && !isDone && staff?.account?.account_type =="manager" &&(
                         <button className='bg-accent_blue text-light_gray' onClick={handleLoadStaffLists}><h3>Add Staff</h3></button>
                     )}
                 </div>
             </div>
 
-            {!isActive && !isDone && (
+            {!isActive && !isDone && staff?.account?.account_type =="manager" &&(
                 <div className='flex space-x-[30px] mt-[50px]'>
                     <button className='bg-forest_green text-light_gray' onClick={handleShiftChange}><h2>Save</h2></button>
                     <Link to={'/schedule/shift-list'}><button className='text-charcoal'><h2>Cancel</h2></button></Link>
-                    <button className='bg-tomato_red text-light_gray'><h2>Delete</h2></button>
+                    <button className='bg-tomato_red text-light_gray' onClick={handleDeleteShift}><h2>Delete</h2></button>
                 </div>
             )}
 
@@ -346,7 +389,7 @@ const ShiftDetailPage: React.FC = () => {
                             </div>
                         ):(
                             newlyAddedStaffs.some(s => s.staff_id === staff.staff_id) ? (
-                                <div className='p-2 shadow rounded-[8px] bg-accent_blue text-light_gray' onClick={()=>{handleAddStaffs(staff)}}>
+                                <div className='p-2 shadow rounded-[8px] bg-accent_blue text-light_gray cursor-pointer' onClick={()=>{handleAddStaffs(staff)}}>
                                     <div className='flex items-center space-x-[10px]'>
                                         <AccountCircleIcon fontSize='large'/>
                                         <div>
@@ -356,7 +399,7 @@ const ShiftDetailPage: React.FC = () => {
                                     </div>
                                 </div>
                             ):(
-                                <div className='p-2 shadow rounded-[8px]' onClick={()=>{handleAddStaffs(staff)}}>
+                                <div className='p-2 shadow rounded-[8px] cursor-pointer hover:bg-gray-300 transition' onClick={()=>{handleAddStaffs(staff)}}>
                                     <div className='flex items-center space-x-[10px]'>
                                         <AccountCircleIcon fontSize='large'/>
                                         <div>

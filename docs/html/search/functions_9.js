@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['main_0',['main',['../source_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'source.cpp']]],
-  ['management_1',['Management',['../class_employee_info_management.html#a539260f04b98de4054621112cddcd603',1,'EmployeeInfoManagement']]],
-  ['management_2',['management',['../class_employee_info_management.html#acde88862a28659ceda909efd8d8db90e',1,'EmployeeInfoManagement']]],
-  ['markread_3',['MarkRead',['../class_message.html#a5907d0380780b1acba49bc12d914ea49',1,'Message']]],
-  ['message_4',['Message',['../class_message.html#a4fc4f717b634e66070366cb7722d7761',1,'Message::Message()'],['../class_message.html#a9af4a02fb4824ec4fcdfdff5f690e133',1,'Message::Message(int msgId, int sender, const string &amp;content, const string &amp;timestamp)']]],
-  ['minus_5',['minus',['../test_8h.html#a7efb7829a38193d14ed076437966cf13',1,'test.h']]]
+  ['load_5ffrom_5ffile_0',['load_from_file',['../classstaff__info__management_1_1_staff_info_management.html#a139a440046d779449b2f00a9a4f6be88',1,'staff_info_management.StaffInfoManagement.load_from_file()'],['../classirepository_1_1_i_repository.html#a68a97c39159d9fe66923f905573c9df2',1,'irepository.IRepository.load_from_file()']]],
+  ['loadfromfile_1',['LoadFromFile',['../classfile__repository_1_1_file_repository.html#af2c322fefeee3ea40b10cca2ca53be54',1,'file_repository::FileRepository']]],
+  ['login_2',['login',['../namespaceapp.html#a76d282343b497eaa7b6c29ff26930ba5',1,'app.login()'],['../namespacebackend.html#a450b5a160936cbf1e4a7cb282331668e',1,'backend.login()']]]
 ];

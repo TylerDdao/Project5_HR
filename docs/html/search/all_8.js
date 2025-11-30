@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['listmessages_0',['ListMessages',['../class_communication_hub.html#a44e6492bb2816eb43e572f56a3e40a52',1,'CommunicationHub']]],
-  ['loadfromfile_1',['LoadFromFile',['../class_communication_hub.html#a8468865420449c32b8fd4f80e5202b15',1,'CommunicationHub::LoadFromFile()'],['../class_employee_info_management.html#ad64008f6c966f7968e2c7eb34a39e8e7',1,'EmployeeInfoManagement::LoadFromFile()'],['../class_file_repository.html#abcc6f46a27ec75e3df7c05e83d412fea',1,'FileRepository::LoadFromFile()'],['../class_i_repository.html#a4d6ae70f40ec2ef5026b27ef8e156711',1,'IRepository::LoadFromFile()']]],
-  ['loadfromfile_2',['loadFromFile',['../class_employee_info_management.html#afb00a48763b5221aafc68ad746a04a43',1,'EmployeeInfoManagement']]]
+  ['home_0',['home',['../namespaceapp.html#ad9c2cdedb81925392375e58250fc2ffb',1,'app.home()'],['../namespacebackend.html#a3e26bd3cc46029c639370568caf866c9',1,'backend.home()']]],
+  ['host_1',['host',['../classdatabase__control_1_1_database_control.html#a1898de4c8a8b352cdd53c55fe06a0c24',1,'database_control.DatabaseControl.host'],['../namespaceapp.html#a7fa7c11c7474c128736b1d34b15a0d5e',1,'app.host']]],
+  ['hour_5fworked_2',['hour_worked',['../classpayroll_1_1_payroll.html#a25ca29fe7e0d1a7d1fe9e0c055ba8878',1,'payroll::Payroll']]]
 ];

@@ -1,0 +1,134 @@
+\doxysection{shifts\+\_\+db.\+Shifts\+Database Class Reference}
+\hypertarget{classshifts__db_1_1_shifts_database}{}\label{classshifts__db_1_1_shifts_database}\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classshifts__db_1_1_shifts_database_a6f31cf849d02a388f3bd70c55ccaf75a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, uri="{}mongodb\+://127.\+0.\+0.\+1\+:27017/?direct\+Connection=true\&server\+Selection\+Timeout\+MS=2000\&app\+Name=mongosh+2.\+5.\+9"{}, str database\+\_\+name="{}project5\+\_\+hr"{})
+\item 
+Optional\mbox{[}Exception\mbox{]} \mbox{\hyperlink{classshifts__db_1_1_shifts_database_a17fd9d9688a03de156de612d5960ff5a}{connect}} (self)
+\item 
+Optional\mbox{[}dict\mbox{]} \mbox{\hyperlink{classshifts__db_1_1_shifts_database_a03078c2fe706b53fabe22662610af48e}{get\+\_\+shift\+\_\+by\+\_\+id}} (self, int id)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classshifts__db_1_1_shifts_database_a2cf0c056d0c20094b0577c894c40d16a}{get\+\_\+active\+\_\+shifts}} (self)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classshifts__db_1_1_shifts_database_a0800fe639107f85efb08486287093851}{get\+\_\+scheduled\+\_\+shifts}} (self)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classshifts__db_1_1_shifts_database_a287d21b078daf4afa4d24d145526cd24}{get\+\_\+assigned\+\_\+shifts}} (self, int staff\+\_\+id)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classshifts__db_1_1_shifts_database_a0e8b534f7ebf6a15cefeddc80d6fbb03}{get\+\_\+done\+\_\+shifts}} (self)
+\item 
+bool \mbox{\hyperlink{classshifts__db_1_1_shifts_database_a019a3ae4f68dc76ae91de9ec7bdbcfa2}{update\+\_\+shift}} (self, Shift shift)
+\item 
+Optional\mbox{[}str\mbox{]} \mbox{\hyperlink{classshifts__db_1_1_shifts_database_ae10f1c5654feb0e0055adbcf9e5ec70b}{insert\+\_\+shift}} (self, Shift shift)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classshifts__db_1_1_shifts_database_a3da33fcdd325011c77af92ed52024e52}{\+\_\+uri}}
+\item 
+\mbox{\hyperlink{classshifts__db_1_1_shifts_database_ae8d0542f42dbca15826412512453cb35}{\+\_\+database\+\_\+name}}
+\item 
+\mbox{\hyperlink{classshifts__db_1_1_shifts_database_ac601bd41b62b1b31e71e1e416ef1cbb9}{\+\_\+client}}
+\item 
+\mbox{\hyperlink{classshifts__db_1_1_shifts_database_a8953e73821e6e1a58fcdcdafcf272b9d}{\+\_\+database}}
+\item 
+\mbox{\hyperlink{classshifts__db_1_1_shifts_database_a0580c178f00a606ea312ee5ba05e0742}{\+\_\+shifts}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classshifts__db_1_1_shifts_database_a6f31cf849d02a388f3bd70c55ccaf75a}\label{classshifts__db_1_1_shifts_database_a6f31cf849d02a388f3bd70c55ccaf75a} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily shifts\+\_\+db.\+Shifts\+Database.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{uri = {\ttfamily "{}mongodb\+://127.0.0.1\+:27017/?directConnection=true\&serverSelectionTimeoutMS=2000\&appName=mongosh+2.5.9"{}},  }\item[{str }]{database\+\_\+name = {\ttfamily "{}project5\+\_\+hr"{}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classshifts__db_1_1_shifts_database_a17fd9d9688a03de156de612d5960ff5a}\label{classshifts__db_1_1_shifts_database_a17fd9d9688a03de156de612d5960ff5a} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!connect@{connect}}
+\index{connect@{connect}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily  Optional\mbox{[}Exception\mbox{]} shifts\+\_\+db.\+Shifts\+Database.\+connect (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a2cf0c056d0c20094b0577c894c40d16a}\label{classshifts__db_1_1_shifts_database_a2cf0c056d0c20094b0577c894c40d16a} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!get\_active\_shifts@{get\_active\_shifts}}
+\index{get\_active\_shifts@{get\_active\_shifts}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_active\_shifts()}{get\_active\_shifts()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} shifts\+\_\+db.\+Shifts\+Database.\+get\+\_\+active\+\_\+shifts (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a287d21b078daf4afa4d24d145526cd24}\label{classshifts__db_1_1_shifts_database_a287d21b078daf4afa4d24d145526cd24} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!get\_assigned\_shifts@{get\_assigned\_shifts}}
+\index{get\_assigned\_shifts@{get\_assigned\_shifts}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_assigned\_shifts()}{get\_assigned\_shifts()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} shifts\+\_\+db.\+Shifts\+Database.\+get\+\_\+assigned\+\_\+shifts (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a0e8b534f7ebf6a15cefeddc80d6fbb03}\label{classshifts__db_1_1_shifts_database_a0e8b534f7ebf6a15cefeddc80d6fbb03} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!get\_done\_shifts@{get\_done\_shifts}}
+\index{get\_done\_shifts@{get\_done\_shifts}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_done\_shifts()}{get\_done\_shifts()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} shifts\+\_\+db.\+Shifts\+Database.\+get\+\_\+done\+\_\+shifts (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a0800fe639107f85efb08486287093851}\label{classshifts__db_1_1_shifts_database_a0800fe639107f85efb08486287093851} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!get\_scheduled\_shifts@{get\_scheduled\_shifts}}
+\index{get\_scheduled\_shifts@{get\_scheduled\_shifts}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_scheduled\_shifts()}{get\_scheduled\_shifts()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} shifts\+\_\+db.\+Shifts\+Database.\+get\+\_\+scheduled\+\_\+shifts (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a03078c2fe706b53fabe22662610af48e}\label{classshifts__db_1_1_shifts_database_a03078c2fe706b53fabe22662610af48e} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!get\_shift\_by\_id@{get\_shift\_by\_id}}
+\index{get\_shift\_by\_id@{get\_shift\_by\_id}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_shift\_by\_id()}{get\_shift\_by\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}dict\mbox{]} shifts\+\_\+db.\+Shifts\+Database.\+get\+\_\+shift\+\_\+by\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_ae10f1c5654feb0e0055adbcf9e5ec70b}\label{classshifts__db_1_1_shifts_database_ae10f1c5654feb0e0055adbcf9e5ec70b} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!insert\_shift@{insert\_shift}}
+\index{insert\_shift@{insert\_shift}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{insert\_shift()}{insert\_shift()}}
+{\footnotesize\ttfamily  Optional\mbox{[}str\mbox{]} shifts\+\_\+db.\+Shifts\+Database.\+insert\+\_\+shift (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Shift}]{shift }\end{DoxyParamCaption})}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a019a3ae4f68dc76ae91de9ec7bdbcfa2}\label{classshifts__db_1_1_shifts_database_a019a3ae4f68dc76ae91de9ec7bdbcfa2} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!update\_shift@{update\_shift}}
+\index{update\_shift@{update\_shift}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{update\_shift()}{update\_shift()}}
+{\footnotesize\ttfamily  bool shifts\+\_\+db.\+Shifts\+Database.\+update\+\_\+shift (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Shift}]{shift }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classshifts__db_1_1_shifts_database_ac601bd41b62b1b31e71e1e416ef1cbb9}\label{classshifts__db_1_1_shifts_database_ac601bd41b62b1b31e71e1e416ef1cbb9} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!\_client@{\_client}}
+\index{\_client@{\_client}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_client}{\_client}}
+{\footnotesize\ttfamily shifts\+\_\+db.\+Shifts\+Database.\+\_\+client\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a8953e73821e6e1a58fcdcdafcf272b9d}\label{classshifts__db_1_1_shifts_database_a8953e73821e6e1a58fcdcdafcf272b9d} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!\_database@{\_database}}
+\index{\_database@{\_database}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_database}{\_database}}
+{\footnotesize\ttfamily shifts\+\_\+db.\+Shifts\+Database.\+\_\+database\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_ae8d0542f42dbca15826412512453cb35}\label{classshifts__db_1_1_shifts_database_ae8d0542f42dbca15826412512453cb35} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!\_database\_name@{\_database\_name}}
+\index{\_database\_name@{\_database\_name}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_database\_name}{\_database\_name}}
+{\footnotesize\ttfamily shifts\+\_\+db.\+Shifts\+Database.\+\_\+database\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a0580c178f00a606ea312ee5ba05e0742}\label{classshifts__db_1_1_shifts_database_a0580c178f00a606ea312ee5ba05e0742} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!\_shifts@{\_shifts}}
+\index{\_shifts@{\_shifts}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_shifts}{\_shifts}}
+{\footnotesize\ttfamily shifts\+\_\+db.\+Shifts\+Database.\+\_\+shifts\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classshifts__db_1_1_shifts_database_a3da33fcdd325011c77af92ed52024e52}\label{classshifts__db_1_1_shifts_database_a3da33fcdd325011c77af92ed52024e52} 
+\index{shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}!\_uri@{\_uri}}
+\index{\_uri@{\_uri}!shifts\_db.ShiftsDatabase@{shifts\_db.ShiftsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_uri}{\_uri}}
+{\footnotesize\ttfamily shifts\+\_\+db.\+Shifts\+Database.\+\_\+uri\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project5\+\_\+\+HR\+\_\+\+Back\+\_\+\+End/header/utils/\mbox{\hyperlink{shifts__db_8py}{shifts\+\_\+db.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,135 @@
+\doxysection{staffs\+\_\+db.\+Staffs\+Database Class Reference}
+\hypertarget{classstaffs__db_1_1_staffs_database}{}\label{classstaffs__db_1_1_staffs_database}\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstaffs__db_1_1_staffs_database_abe2569ea58b2fafaeda6fd33c30f8445}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, uri="{}mongodb\+://127.\+0.\+0.\+1\+:27017/?direct\+Connection=true\&server\+Selection\+Timeout\+MS=2000\&app\+Name=mongosh+2.\+5.\+9"{}, str database\+\_\+name="{}project5\+\_\+hr"{})
+\item 
+Optional\mbox{[}Exception\mbox{]} \mbox{\hyperlink{classstaffs__db_1_1_staffs_database_a729838e4dd0f2e07b7efadb551c81f2b}{connect}} (self)
+\item 
+Optional\mbox{[}dict\mbox{]} \mbox{\hyperlink{classstaffs__db_1_1_staffs_database_ab2cf02b2ebcf698117108dd44d992548}{verify\+\_\+login}} (self, int staff\+\_\+id, str password)
+\item 
+Optional\mbox{[}dict\mbox{]} \mbox{\hyperlink{classstaffs__db_1_1_staffs_database_a770527fd26ec4c9939ee313a8158b4cd}{get\+\_\+staff\+\_\+by\+\_\+id}} (self, staff\+\_\+id)
+\item 
+list\mbox{[}dict\mbox{]} \mbox{\hyperlink{classstaffs__db_1_1_staffs_database_ad10e5e12cb5919c875640372e002c726}{get\+\_\+staffs\+\_\+by\+\_\+ids}} (self, list\mbox{[}int\mbox{]} staff\+\_\+ids)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classstaffs__db_1_1_staffs_database_a1b5a5360846a6d90342a0e0309500cd9}{get\+\_\+staffs}} (self, int page)
+\item 
+bool \mbox{\hyperlink{classstaffs__db_1_1_staffs_database_ae0213467ef43fc19825d147cbae2e9f9}{set\+\_\+clock\+\_\+in}} (self, int staff\+\_\+id)
+\item 
+bool \mbox{\hyperlink{classstaffs__db_1_1_staffs_database_a5c53e72b86ba07c37babb41b2212fc3e}{set\+\_\+clock\+\_\+out}} (self, int staff\+\_\+id)
+\item 
+Optional\mbox{[}int\mbox{]} \mbox{\hyperlink{classstaffs__db_1_1_staffs_database_a29bd848d8185502c03cb1afa181c8be6}{get\+\_\+total\+\_\+staffs}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstaffs__db_1_1_staffs_database_ac7916ece6ec6b41146b025a58c169457}{\+\_\+uri}}
+\item 
+\mbox{\hyperlink{classstaffs__db_1_1_staffs_database_adf80410842b9fe089beacb923075e4a8}{\+\_\+database\+\_\+name}}
+\item 
+\mbox{\hyperlink{classstaffs__db_1_1_staffs_database_aa5b8b5d30199c86f8472e8b69af6240d}{\+\_\+client}}
+\item 
+\mbox{\hyperlink{classstaffs__db_1_1_staffs_database_ae4af3c0eacd4954669fcc72067d09ef2}{\+\_\+database}}
+\item 
+\mbox{\hyperlink{classstaffs__db_1_1_staffs_database_af0cf287e686a199239a8ca4a887ae53d}{\+\_\+staffs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classstaffs__db_1_1_staffs_database_abe2569ea58b2fafaeda6fd33c30f8445}\label{classstaffs__db_1_1_staffs_database_abe2569ea58b2fafaeda6fd33c30f8445} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily staffs\+\_\+db.\+Staffs\+Database.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{uri = {\ttfamily "{}mongodb\+://127.0.0.1\+:27017/?directConnection=true\&serverSelectionTimeoutMS=2000\&appName=mongosh+2.5.9"{}},  }\item[{str }]{database\+\_\+name = {\ttfamily "{}project5\+\_\+hr"{}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classstaffs__db_1_1_staffs_database_a729838e4dd0f2e07b7efadb551c81f2b}\label{classstaffs__db_1_1_staffs_database_a729838e4dd0f2e07b7efadb551c81f2b} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!connect@{connect}}
+\index{connect@{connect}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily  Optional\mbox{[}Exception\mbox{]} staffs\+\_\+db.\+Staffs\+Database.\+connect (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Connect to MongoDB and keep the client open.\end{DoxyVerb}
+ \Hypertarget{classstaffs__db_1_1_staffs_database_a770527fd26ec4c9939ee313a8158b4cd}\label{classstaffs__db_1_1_staffs_database_a770527fd26ec4c9939ee313a8158b4cd} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!get\_staff\_by\_id@{get\_staff\_by\_id}}
+\index{get\_staff\_by\_id@{get\_staff\_by\_id}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_staff\_by\_id()}{get\_staff\_by\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}dict\mbox{]} staffs\+\_\+db.\+Staffs\+Database.\+get\+\_\+staff\+\_\+by\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_a1b5a5360846a6d90342a0e0309500cd9}\label{classstaffs__db_1_1_staffs_database_a1b5a5360846a6d90342a0e0309500cd9} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!get\_staffs@{get\_staffs}}
+\index{get\_staffs@{get\_staffs}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_staffs()}{get\_staffs()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} staffs\+\_\+db.\+Staffs\+Database.\+get\+\_\+staffs (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{page }\end{DoxyParamCaption})}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_ad10e5e12cb5919c875640372e002c726}\label{classstaffs__db_1_1_staffs_database_ad10e5e12cb5919c875640372e002c726} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!get\_staffs\_by\_ids@{get\_staffs\_by\_ids}}
+\index{get\_staffs\_by\_ids@{get\_staffs\_by\_ids}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_staffs\_by\_ids()}{get\_staffs\_by\_ids()}}
+{\footnotesize\ttfamily  list\mbox{[}dict\mbox{]} staffs\+\_\+db.\+Staffs\+Database.\+get\+\_\+staffs\+\_\+by\+\_\+ids (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{list\mbox{[}int\mbox{]}}]{staff\+\_\+ids }\end{DoxyParamCaption})}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_a29bd848d8185502c03cb1afa181c8be6}\label{classstaffs__db_1_1_staffs_database_a29bd848d8185502c03cb1afa181c8be6} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!get\_total\_staffs@{get\_total\_staffs}}
+\index{get\_total\_staffs@{get\_total\_staffs}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{get\_total\_staffs()}{get\_total\_staffs()}}
+{\footnotesize\ttfamily  Optional\mbox{[}int\mbox{]} staffs\+\_\+db.\+Staffs\+Database.\+get\+\_\+total\+\_\+staffs (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_ae0213467ef43fc19825d147cbae2e9f9}\label{classstaffs__db_1_1_staffs_database_ae0213467ef43fc19825d147cbae2e9f9} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!set\_clock\_in@{set\_clock\_in}}
+\index{set\_clock\_in@{set\_clock\_in}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{set\_clock\_in()}{set\_clock\_in()}}
+{\footnotesize\ttfamily  bool staffs\+\_\+db.\+Staffs\+Database.\+set\+\_\+clock\+\_\+in (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_a5c53e72b86ba07c37babb41b2212fc3e}\label{classstaffs__db_1_1_staffs_database_a5c53e72b86ba07c37babb41b2212fc3e} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!set\_clock\_out@{set\_clock\_out}}
+\index{set\_clock\_out@{set\_clock\_out}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{set\_clock\_out()}{set\_clock\_out()}}
+{\footnotesize\ttfamily  bool staffs\+\_\+db.\+Staffs\+Database.\+set\+\_\+clock\+\_\+out (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_ab2cf02b2ebcf698117108dd44d992548}\label{classstaffs__db_1_1_staffs_database_ab2cf02b2ebcf698117108dd44d992548} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!verify\_login@{verify\_login}}
+\index{verify\_login@{verify\_login}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{verify\_login()}{verify\_login()}}
+{\footnotesize\ttfamily  Optional\mbox{[}dict\mbox{]} staffs\+\_\+db.\+Staffs\+Database.\+verify\+\_\+login (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id,  }\item[{str}]{password }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classstaffs__db_1_1_staffs_database_aa5b8b5d30199c86f8472e8b69af6240d}\label{classstaffs__db_1_1_staffs_database_aa5b8b5d30199c86f8472e8b69af6240d} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!\_client@{\_client}}
+\index{\_client@{\_client}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_client}{\_client}}
+{\footnotesize\ttfamily staffs\+\_\+db.\+Staffs\+Database.\+\_\+client\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_ae4af3c0eacd4954669fcc72067d09ef2}\label{classstaffs__db_1_1_staffs_database_ae4af3c0eacd4954669fcc72067d09ef2} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!\_database@{\_database}}
+\index{\_database@{\_database}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_database}{\_database}}
+{\footnotesize\ttfamily staffs\+\_\+db.\+Staffs\+Database.\+\_\+database\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_adf80410842b9fe089beacb923075e4a8}\label{classstaffs__db_1_1_staffs_database_adf80410842b9fe089beacb923075e4a8} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!\_database\_name@{\_database\_name}}
+\index{\_database\_name@{\_database\_name}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_database\_name}{\_database\_name}}
+{\footnotesize\ttfamily staffs\+\_\+db.\+Staffs\+Database.\+\_\+database\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_af0cf287e686a199239a8ca4a887ae53d}\label{classstaffs__db_1_1_staffs_database_af0cf287e686a199239a8ca4a887ae53d} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!\_staffs@{\_staffs}}
+\index{\_staffs@{\_staffs}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_staffs}{\_staffs}}
+{\footnotesize\ttfamily staffs\+\_\+db.\+Staffs\+Database.\+\_\+staffs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classstaffs__db_1_1_staffs_database_ac7916ece6ec6b41146b025a58c169457}\label{classstaffs__db_1_1_staffs_database_ac7916ece6ec6b41146b025a58c169457} 
+\index{staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}!\_uri@{\_uri}}
+\index{\_uri@{\_uri}!staffs\_db.StaffsDatabase@{staffs\_db.StaffsDatabase}}
+\doxysubsubsection{\texorpdfstring{\_uri}{\_uri}}
+{\footnotesize\ttfamily staffs\+\_\+db.\+Staffs\+Database.\+\_\+uri\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project5\+\_\+\+HR\+\_\+\+Back\+\_\+\+End/header/utils/\mbox{\hyperlink{staffs__db_8py}{staffs\+\_\+db.\+py}}\end{DoxyCompactItemize}

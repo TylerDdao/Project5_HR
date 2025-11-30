@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['_7eaccount_0',['~Account',['../class_account.html#a569c9ef0e42b9157690b4ceb646daba8',1,'Account']]],
-  ['_7ecommunicationhub_1',['~CommunicationHub',['../class_communication_hub.html#af5cc10d7a8a688c688b11e41006b7a1f',1,'CommunicationHub']]],
-  ['_7eemployeeinfomanagement_2',['~EmployeeInfoManagement',['../class_employee_info_management.html#a5906ed2c1c537c1c4d8467758d27a76f',1,'EmployeeInfoManagement']]],
-  ['_7eirepository_3',['~IRepository',['../class_i_repository.html#a7ac8805a0256fe49e35d3dbbb118c326',1,'IRepository']]],
-  ['_7epayroll_4',['~Payroll',['../class_payroll.html#a2e65c9df1862a3393000377673b578e4',1,'Payroll']]]
+  ['update_5fshift_0',['update_shift',['../classdatabase__control_1_1_database_control.html#a39689c6e9e6742fbd72d42889605d525',1,'database_control.DatabaseControl.update_shift()'],['../classshifts__db_1_1_shifts_database.html#a019a3ae4f68dc76ae91de9ec7bdbcfa2',1,'shifts_db.ShiftsDatabase.update_shift()'],['../namespaceapp.html#a59b5988861a862617248da9897d3dea4',1,'app.update_shift()'],['../namespacebackend.html#a2ade659d23d18f2780d33bcbbf12e699',1,'backend.update_shift()']]],
+  ['update_5fstaff_1',['update_staff',['../classstaff__info__management_1_1_staff_info_management.html#af6cac9dea02c9e581500eb633e279f72',1,'staff_info_management::StaffInfoManagement']]],
+  ['user_2',['user',['../classdatabase__control_1_1_database_control.html#a0501e90ca688ce679690f707e8de2240',1,'database_control::DatabaseControl']]]
 ];

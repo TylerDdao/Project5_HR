@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['test_5fclass_0',['TEST_CLASS',['../namespace_account___test.html#a02f765e8dc91a9ffc7dc22a2a4825eac',1,'Account_Test::TEST_CLASS()'],['../namespace_communication_tests.html#ae2d3154491ab04c9d90503a6f9a31b47',1,'CommunicationTests::TEST_CLASS(MessageTests)'],['../namespace_communication_tests.html#a73c98d3a6299f3247afa0f8790ea4dfa',1,'CommunicationTests::TEST_CLASS(ConversationTests)'],['../namespace_communication_tests.html#a7dbc78a5daad00add5bd2bf802550568',1,'CommunicationTests::TEST_CLASS(CommunicationHubTests)'],['../namespace_project5_h_r_test.html#a38b1b59a7527b12a9a9a91fbf564d422',1,'Project5HRTest::TEST_CLASS()']]]
+  ['token_5fchecker_0',['token_checker',['../namespaceapp.html#ab3b16b63987cf323989006523a506c35',1,'app.token_checker()'],['../namespacebackend.html#a524f5f9ca33814ce899262964c53188f',1,'backend.token_checker()']]],
+  ['token_5fdecoder_1',['token_decoder',['../namespaceapp.html#a8383ad8cf5bd1b0d95c4cf2b43ea8315',1,'app.token_decoder()'],['../namespacebackend.html#aed262d6a5c6bc90910080e2426721427',1,'backend.token_decoder()']]]
 ];

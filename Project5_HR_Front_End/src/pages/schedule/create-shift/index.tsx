@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { caculateWorkTime, extractDate, extractFullDate, extractTime, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay, toUTCString } from '../../../utils/time';
+import { caculateWorkTime, extractDate, extractFullDate, extractTime, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay } from '../../../utils/time';
 import NavBar from '../../../components/navBar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import type { Account, Shift, Staff } from '../../../data/type';
 import { Link, useParams } from 'react-router-dom';
-import { parsedStaff } from '../../../utils/account';
+import { isManager, parsedStaff, useSetStaff } from '../../../utils/account';
 
 const CreateShiftPage: React.FC = () => {
     const [shift, setShift] = useState<Shift>();
@@ -17,16 +17,29 @@ const CreateShiftPage: React.FC = () => {
     const [isNextPage, setIsNextPage] = useState<Boolean>(false);
     const [totalPages, setTotalPages] = useState<number>(1);
 
-    const [staff, setStaff] = useState<Staff>();
-    const [account, setAccount] = useState<Account>();
+    const { staff, handleStaff } = useSetStaff();
+        useEffect(() => {
+            handleStaff();
+        }, []);
+    
+        useEffect(() => {
+        if (staff) {
+            if (!isManager(staff)) {
+            alert("You don't have permission");
+            window.location.href = "/";
+            }
+        }
+        }, [staff]);
 
    const handleCreateShift = async () => {
-        if(shift?.start_time && shift.end_time){
-            if(shift?.start_time.getTime() >= shift?.end_time.getTime()){
-                alert("Shift end time must be after start time");
-                return
-            }   
+        if(!shift?.start_time && !shift?.end_time){
+            alert("All fields must be filled");
+            return;
         }
+        if(shift?.start_time.getTime() >= shift?.end_time.getTime()){
+            alert("Shift end time must be after start time");
+            return
+        }   
         try {
             const finalStaffList = (associatedStaffs ?? []).map(staff=>staff.staff_id)
 
@@ -41,8 +54,8 @@ const CreateShiftPage: React.FC = () => {
                         ...(token ? { "Authorization": `Bearer ${token}` } : {}),
                     },
                     body: JSON.stringify({
-                        start_time: toUTCString(shift?.start_time),
-                        end_time: toUTCString(shift?.end_time),
+                        start_time: shift?.start_time.toISOString(),
+                        end_time: shift?.end_time.toISOString(),
                         staffs: finalStaffList,
                     }),
                 }
@@ -52,7 +65,7 @@ const CreateShiftPage: React.FC = () => {
 
             if (response.ok && result.success) {
                 alert(`Shift created, shift ID: ${result.shift_id}`);
-                window.location.href = "/schedule/shift-list";
+                // window.location.href = "/schedule/shift-list";
             }
         } catch (err) {
             console.error("Error updating shift:", err);
@@ -105,21 +118,6 @@ const CreateShiftPage: React.FC = () => {
     }
 
     useEffect(() => {
-        const staff = parsedStaff()
-        if(staff){
-            if(staff.account?.account_type != "Manager"){
-                alert("You don't have permission!");
-                window.location.href = "/dashboard";
-            }
-            setStaff({
-                ...staff,
-                hire_date: staff.hire_date ? new Date(staff.hire_date) : undefined
-            })
-        }
-        else{
-            alert("Something is wrong");
-            window.location.href = "/";
-        }
         handleLoadStaffLists()
     }, []);
 
@@ -163,7 +161,7 @@ const CreateShiftPage: React.FC = () => {
 
             <div className='flex space-x-[30px] mt-[50px]'>
                 <button className='bg-forest_green text-light_gray' onClick={handleCreateShift}><h2>Confirm and create</h2></button>
-                <Link to={'/schedule/shift-list'}><button className='text-charcoal hover:bg-gray-300 transition'><h2>Cancel</h2></button></Link>
+                <Link to={'/schedule'}><button className='text-charcoal hover:bg-gray-300 transition'><h2>Cancel</h2></button></Link>
             </div>
 
         </div>
@@ -173,7 +171,7 @@ const CreateShiftPage: React.FC = () => {
             <div className='flex flex-col space-y-[10px] mt-[10px]'>
                 {staffsList.map((staff)=>(
                     associatedStaffs.some(s => s.staff_id === staff.staff_id) ? (
-                    <div className='p-2 shadow rounded-[8px] bg-accent_blue text-light_gray' onClick={()=>{handleAddStaffs(staff)}}>
+                    <div className='p-2 shadow rounded-[8px] bg-accent_blue text-light_gray cursor-pointer' onClick={()=>{handleAddStaffs(staff)}} key={staff.staff_id}>
                             <div className='flex items-center space-x-[10px]'>
                                 <AccountCircleIcon fontSize='large'/>
                                 <div>
@@ -183,7 +181,7 @@ const CreateShiftPage: React.FC = () => {
                             </div>
                         </div>
                     ):(
-                        <div className='p-2 shadow rounded-[8px] hover:bg-gray-300 transition' onClick={()=>{handleAddStaffs(staff)}}>
+                        <div className='p-2 shadow rounded-[8px] hover:bg-gray-300 transition cursor-pointer' onClick={()=>{handleAddStaffs(staff)}} key={staff.staff_id}>
                             <div className='flex items-center space-x-[10px]'>
                                 <AccountCircleIcon fontSize='large'/>
                                 <div>
@@ -199,7 +197,7 @@ const CreateShiftPage: React.FC = () => {
                 <h3 className='text-center'>Page {staffsPage.toString()} / {totalPages.toString()}</h3>
                 <div className='flex justify-between'>
                     {staffsPage > 1 ? (
-                            <button><span className="material-symbols-outlined">chevron_left</span></button>
+                            <button><span className="material-symbols-outlined" onClick={()=>{setStaffsPage(staffsPage-1); handleLoadStaffLists()}}>chevron_left</span></button>
                         ):(
                             <button className='bg-medium_gray text-light_gray'><span className="material-symbols-outlined">chevron_left</span></button>
                         )
