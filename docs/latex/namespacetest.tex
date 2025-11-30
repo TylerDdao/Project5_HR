@@ -1,0 +1,40 @@
+\doxysection{test Namespace Reference}
+\hypertarget{namespacetest}{}\label{namespacetest}\index{test@{test}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetest_ada003ab31300a40ff31463ef5931b601}{now}} = datetime.\+now()
+\item 
+\mbox{\hyperlink{namespacetest_a91581320d3845d415287dc774401172d}{start\+\_\+of\+\_\+month}} = now.\+replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+\item 
+\mbox{\hyperlink{namespacetest_ad6fdb3fca6ad52df543e655038948b96}{last\+\_\+day}} = calendar.\+monthrange(now.\+year, now.\+month)\mbox{[}1\mbox{]}
+\item 
+\mbox{\hyperlink{namespacetest_a436c1c0859c725ec5db0f889ec87e46a}{end\+\_\+of\+\_\+month}} = now.\+replace(day=\mbox{\hyperlink{namespacetest_ad6fdb3fca6ad52df543e655038948b96}{last\+\_\+day}}, hour=23, minute=59, second=59, microsecond=999999)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacetest_a436c1c0859c725ec5db0f889ec87e46a}\label{namespacetest_a436c1c0859c725ec5db0f889ec87e46a} 
+\index{test@{test}!end\_of\_month@{end\_of\_month}}
+\index{end\_of\_month@{end\_of\_month}!test@{test}}
+\doxysubsubsection{\texorpdfstring{end\_of\_month}{end\_of\_month}}
+{\footnotesize\ttfamily test.\+end\+\_\+of\+\_\+month = now.\+replace(day=\mbox{\hyperlink{namespacetest_ad6fdb3fca6ad52df543e655038948b96}{last\+\_\+day}}, hour=23, minute=59, second=59, microsecond=999999)}
+
+\Hypertarget{namespacetest_ad6fdb3fca6ad52df543e655038948b96}\label{namespacetest_ad6fdb3fca6ad52df543e655038948b96} 
+\index{test@{test}!last\_day@{last\_day}}
+\index{last\_day@{last\_day}!test@{test}}
+\doxysubsubsection{\texorpdfstring{last\_day}{last\_day}}
+{\footnotesize\ttfamily test.\+last\+\_\+day = calendar.\+monthrange(now.\+year, now.\+month)\mbox{[}1\mbox{]}}
+
+\Hypertarget{namespacetest_ada003ab31300a40ff31463ef5931b601}\label{namespacetest_ada003ab31300a40ff31463ef5931b601} 
+\index{test@{test}!now@{now}}
+\index{now@{now}!test@{test}}
+\doxysubsubsection{\texorpdfstring{now}{now}}
+{\footnotesize\ttfamily test.\+now = datetime.\+now()}
+
+\Hypertarget{namespacetest_a91581320d3845d415287dc774401172d}\label{namespacetest_a91581320d3845d415287dc774401172d} 
+\index{test@{test}!start\_of\_month@{start\_of\_month}}
+\index{start\_of\_month@{start\_of\_month}!test@{test}}
+\doxysubsubsection{\texorpdfstring{start\_of\_month}{start\_of\_month}}
+{\footnotesize\ttfamily test.\+start\+\_\+of\+\_\+month = now.\+replace(day=1, hour=0, minute=0, second=0, microsecond=0)}
+

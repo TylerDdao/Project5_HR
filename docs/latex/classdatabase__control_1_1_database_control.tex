@@ -1,0 +1,240 @@
+\doxysection{database\+\_\+control.\+Database\+Control Class Reference}
+\hypertarget{classdatabase__control_1_1_database_control}{}\label{classdatabase__control_1_1_database_control}\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_a09ad9cd7f5bb4f64f71ce689f55146ac}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \mbox{\hyperlink{classdatabase__control_1_1_database_control_a0501e90ca688ce679690f707e8de2240}{user}}="{}postgres"{}, str \mbox{\hyperlink{classdatabase__control_1_1_database_control_afbcb8fc67c2926ffc239a2eedf4f36b8}{password}}="{}Nam@326389"{}, str \mbox{\hyperlink{classdatabase__control_1_1_database_control_a1898de4c8a8b352cdd53c55fe06a0c24}{host}}="{}localhost"{}, str \mbox{\hyperlink{classdatabase__control_1_1_database_control_afa0445885b1558b70197f95a5986162f}{port}}="{}5432"{}, str \mbox{\hyperlink{classdatabase__control_1_1_database_control_a457c5c7ec9f5515283fa00b9473768b3}{database\+\_\+name}}="{}project5\+\_\+hr"{})
+\item 
+bool \mbox{\hyperlink{classdatabase__control_1_1_database_control_a54c5f67a45a24cf1274b9e9a158be43f}{set\+\_\+connection}} (self)
+\item 
+bool \mbox{\hyperlink{classdatabase__control_1_1_database_control_a1f89965fc1d28eba29d34af2af926964}{verify\+\_\+login}} (self, str staff\+\_\+id, str \mbox{\hyperlink{classdatabase__control_1_1_database_control_afbcb8fc67c2926ffc239a2eedf4f36b8}{password}})
+\item 
+Optional\mbox{[}int\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_abc42d766d6c509829e756004d13ca2b4}{insert\+\_\+payroll}} (self, Payroll payroll)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a58ecb231530c9f508063bf76c56f266e}{get\+\_\+payrolls\+\_\+by\+\_\+staff\+\_\+id}} (self, staff\+\_\+id)
+\item 
+Optional\mbox{[}int\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a5a3f4915078faaae6d25c01f15cf5bcc}{insert\+\_\+account}} (self, Account account)
+\item 
+Optional\mbox{[}int\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a06231aae84adbcef617378fd9d9b81d0}{insert\+\_\+staff}} (self, Staff staff)
+\item 
+Optional\mbox{[}Account\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a3b020c24d7a0e6c58274341c06f808f7}{get\+\_\+account}} (self, int staff\+\_\+id)
+\item 
+Optional\mbox{[}Staff\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_aec1cd559986c1208cf8bfc66d7d5d5bc}{get\+\_\+staff\+\_\+by\+\_\+id}} (self, int staff\+\_\+id)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a776935213cb0c58dcba55a005be1d530}{get\+\_\+staffs\+\_\+by\+\_\+shift\+\_\+id}} (self, int shift\+\_\+id)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a6569c42a661451d417b2bde0a4840526}{get\+\_\+staffs}} (self, int page)
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_aced356bef377e08dc1f7569bbe8b36d9}{get\+\_\+total\+\_\+staffs}} (self)
+\item 
+Optional\mbox{[}int\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_aac3ce9195bd56b94acdf8a324c4c0048}{insert\+\_\+shift}} (self, Shift shift)
+\item 
+Optional\mbox{[}int\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a39689c6e9e6742fbd72d42889605d525}{update\+\_\+shift}} (self, Shift shift)
+\item 
+Optional\mbox{[}dict\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a24299afd3a8f834a5a275d60c3315b36}{get\+\_\+shift\+\_\+by\+\_\+id}} (self, int shift\+\_\+id)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a145130e152ac1494fbb3a061cd1358e0}{get\+\_\+scheduled\+\_\+and\+\_\+active\+\_\+shifts}} (self)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a901b1a5b31cc06df79760a600de7b5b0}{get\+\_\+done\+\_\+shifts}} (self)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a350b7573e1f3475044b8c0d1fade9756}{get\+\_\+this\+\_\+week\+\_\+shifts}} (self, int staff\+\_\+id)
+\item 
+Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} \mbox{\hyperlink{classdatabase__control_1_1_database_control_a70d5a5e41ff6b88aec145c8aa02bbe21}{get\+\_\+next\+\_\+week\+\_\+shifts}} (self, int staff\+\_\+id)
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_aaef70bc36010e7344e8ce891795a00a2}{\+\_\+\+\_\+del\+\_\+\+\_\+}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_a0501e90ca688ce679690f707e8de2240}{user}}
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_afbcb8fc67c2926ffc239a2eedf4f36b8}{password}}
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_a1898de4c8a8b352cdd53c55fe06a0c24}{host}}
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_afa0445885b1558b70197f95a5986162f}{port}}
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_a457c5c7ec9f5515283fa00b9473768b3}{database\+\_\+name}}
+\item 
+\mbox{\hyperlink{classdatabase__control_1_1_database_control_aa5213b797f7b7113f658408b4f9d2823}{connection}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdatabase__control_1_1_database_control_a09ad9cd7f5bb4f64f71ce689f55146ac}\label{classdatabase__control_1_1_database_control_a09ad9cd7f5bb4f64f71ce689f55146ac} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str }]{user = {\ttfamily "{}postgres"{}},  }\item[{str }]{password = {\ttfamily "{}Nam@326389"{}},  }\item[{str }]{host = {\ttfamily "{}localhost"{}},  }\item[{str }]{port = {\ttfamily "{}5432"{}},  }\item[{str }]{database\+\_\+name = {\ttfamily "{}project5\+\_\+hr"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Initialize DatabaseControl\end{DoxyVerb}
+ \Hypertarget{classdatabase__control_1_1_database_control_aaef70bc36010e7344e8ce891795a00a2}\label{classdatabase__control_1_1_database_control_aaef70bc36010e7344e8ce891795a00a2} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!\_\_del\_\_@{\_\_del\_\_}}
+\index{\_\_del\_\_@{\_\_del\_\_}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Destructor to close connection\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdatabase__control_1_1_database_control_a3b020c24d7a0e6c58274341c06f808f7}\label{classdatabase__control_1_1_database_control_a3b020c24d7a0e6c58274341c06f808f7} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_account@{get\_account}}
+\index{get\_account@{get\_account}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_account()}{get\_account()}}
+{\footnotesize\ttfamily  Optional\mbox{[}Account\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+account (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Retrieve an account by staff_id\end{DoxyVerb}
+ \Hypertarget{classdatabase__control_1_1_database_control_a901b1a5b31cc06df79760a600de7b5b0}\label{classdatabase__control_1_1_database_control_a901b1a5b31cc06df79760a600de7b5b0} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_done\_shifts@{get\_done\_shifts}}
+\index{get\_done\_shifts@{get\_done\_shifts}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_done\_shifts()}{get\_done\_shifts()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+done\+\_\+shifts (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a70d5a5e41ff6b88aec145c8aa02bbe21}\label{classdatabase__control_1_1_database_control_a70d5a5e41ff6b88aec145c8aa02bbe21} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_next\_week\_shifts@{get\_next\_week\_shifts}}
+\index{get\_next\_week\_shifts@{get\_next\_week\_shifts}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_next\_week\_shifts()}{get\_next\_week\_shifts()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+next\+\_\+week\+\_\+shifts (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a58ecb231530c9f508063bf76c56f266e}\label{classdatabase__control_1_1_database_control_a58ecb231530c9f508063bf76c56f266e} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_payrolls\_by\_staff\_id@{get\_payrolls\_by\_staff\_id}}
+\index{get\_payrolls\_by\_staff\_id@{get\_payrolls\_by\_staff\_id}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_payrolls\_by\_staff\_id()}{get\_payrolls\_by\_staff\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+payrolls\+\_\+by\+\_\+staff\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a145130e152ac1494fbb3a061cd1358e0}\label{classdatabase__control_1_1_database_control_a145130e152ac1494fbb3a061cd1358e0} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_scheduled\_and\_active\_shifts@{get\_scheduled\_and\_active\_shifts}}
+\index{get\_scheduled\_and\_active\_shifts@{get\_scheduled\_and\_active\_shifts}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_scheduled\_and\_active\_shifts()}{get\_scheduled\_and\_active\_shifts()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+scheduled\+\_\+and\+\_\+active\+\_\+shifts (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a24299afd3a8f834a5a275d60c3315b36}\label{classdatabase__control_1_1_database_control_a24299afd3a8f834a5a275d60c3315b36} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_shift\_by\_id@{get\_shift\_by\_id}}
+\index{get\_shift\_by\_id@{get\_shift\_by\_id}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_shift\_by\_id()}{get\_shift\_by\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}dict\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+shift\+\_\+by\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{shift\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_aec1cd559986c1208cf8bfc66d7d5d5bc}\label{classdatabase__control_1_1_database_control_aec1cd559986c1208cf8bfc66d7d5d5bc} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_staff\_by\_id@{get\_staff\_by\_id}}
+\index{get\_staff\_by\_id@{get\_staff\_by\_id}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_staff\_by\_id()}{get\_staff\_by\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}Staff\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+staff\+\_\+by\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Retrieve an employee by staff_id\end{DoxyVerb}
+ \Hypertarget{classdatabase__control_1_1_database_control_a6569c42a661451d417b2bde0a4840526}\label{classdatabase__control_1_1_database_control_a6569c42a661451d417b2bde0a4840526} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_staffs@{get\_staffs}}
+\index{get\_staffs@{get\_staffs}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_staffs()}{get\_staffs()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+staffs (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{page }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a776935213cb0c58dcba55a005be1d530}\label{classdatabase__control_1_1_database_control_a776935213cb0c58dcba55a005be1d530} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_staffs\_by\_shift\_id@{get\_staffs\_by\_shift\_id}}
+\index{get\_staffs\_by\_shift\_id@{get\_staffs\_by\_shift\_id}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_staffs\_by\_shift\_id()}{get\_staffs\_by\_shift\_id()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+staffs\+\_\+by\+\_\+shift\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{shift\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a350b7573e1f3475044b8c0d1fade9756}\label{classdatabase__control_1_1_database_control_a350b7573e1f3475044b8c0d1fade9756} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_this\_week\_shifts@{get\_this\_week\_shifts}}
+\index{get\_this\_week\_shifts@{get\_this\_week\_shifts}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_this\_week\_shifts()}{get\_this\_week\_shifts()}}
+{\footnotesize\ttfamily  Optional\mbox{[}list\mbox{[}dict\mbox{]}\mbox{]} database\+\_\+control.\+Database\+Control.\+get\+\_\+this\+\_\+week\+\_\+shifts (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{staff\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_aced356bef377e08dc1f7569bbe8b36d9}\label{classdatabase__control_1_1_database_control_aced356bef377e08dc1f7569bbe8b36d9} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!get\_total\_staffs@{get\_total\_staffs}}
+\index{get\_total\_staffs@{get\_total\_staffs}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{get\_total\_staffs()}{get\_total\_staffs()}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+get\+\_\+total\+\_\+staffs (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a5a3f4915078faaae6d25c01f15cf5bcc}\label{classdatabase__control_1_1_database_control_a5a3f4915078faaae6d25c01f15cf5bcc} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!insert\_account@{insert\_account}}
+\index{insert\_account@{insert\_account}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{insert\_account()}{insert\_account()}}
+{\footnotesize\ttfamily  Optional\mbox{[}int\mbox{]} database\+\_\+control.\+Database\+Control.\+insert\+\_\+account (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Account}]{account }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Insert a new account into the database\end{DoxyVerb}
+ \Hypertarget{classdatabase__control_1_1_database_control_abc42d766d6c509829e756004d13ca2b4}\label{classdatabase__control_1_1_database_control_abc42d766d6c509829e756004d13ca2b4} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!insert\_payroll@{insert\_payroll}}
+\index{insert\_payroll@{insert\_payroll}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{insert\_payroll()}{insert\_payroll()}}
+{\footnotesize\ttfamily  Optional\mbox{[}int\mbox{]} database\+\_\+control.\+Database\+Control.\+insert\+\_\+payroll (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Payroll}]{payroll }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Insert a new payroll record\end{DoxyVerb}
+ \Hypertarget{classdatabase__control_1_1_database_control_aac3ce9195bd56b94acdf8a324c4c0048}\label{classdatabase__control_1_1_database_control_aac3ce9195bd56b94acdf8a324c4c0048} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!insert\_shift@{insert\_shift}}
+\index{insert\_shift@{insert\_shift}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{insert\_shift()}{insert\_shift()}}
+{\footnotesize\ttfamily  Optional\mbox{[}int\mbox{]} database\+\_\+control.\+Database\+Control.\+insert\+\_\+shift (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Shift}]{shift }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Insert a new shift\end{DoxyVerb}
+ \Hypertarget{classdatabase__control_1_1_database_control_a06231aae84adbcef617378fd9d9b81d0}\label{classdatabase__control_1_1_database_control_a06231aae84adbcef617378fd9d9b81d0} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!insert\_staff@{insert\_staff}}
+\index{insert\_staff@{insert\_staff}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{insert\_staff()}{insert\_staff()}}
+{\footnotesize\ttfamily  Optional\mbox{[}int\mbox{]} database\+\_\+control.\+Database\+Control.\+insert\+\_\+staff (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Staff}]{staff }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Insert a new employee\end{DoxyVerb}
+ \Hypertarget{classdatabase__control_1_1_database_control_a54c5f67a45a24cf1274b9e9a158be43f}\label{classdatabase__control_1_1_database_control_a54c5f67a45a24cf1274b9e9a158be43f} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!set\_connection@{set\_connection}}
+\index{set\_connection@{set\_connection}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{set\_connection()}{set\_connection()}}
+{\footnotesize\ttfamily  bool database\+\_\+control.\+Database\+Control.\+set\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Establish a connection to the database\end{DoxyVerb}
+ \Hypertarget{classdatabase__control_1_1_database_control_a39689c6e9e6742fbd72d42889605d525}\label{classdatabase__control_1_1_database_control_a39689c6e9e6742fbd72d42889605d525} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!update\_shift@{update\_shift}}
+\index{update\_shift@{update\_shift}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{update\_shift()}{update\_shift()}}
+{\footnotesize\ttfamily  Optional\mbox{[}int\mbox{]} database\+\_\+control.\+Database\+Control.\+update\+\_\+shift (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Shift}]{shift }\end{DoxyParamCaption})}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a1f89965fc1d28eba29d34af2af926964}\label{classdatabase__control_1_1_database_control_a1f89965fc1d28eba29d34af2af926964} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!verify\_login@{verify\_login}}
+\index{verify\_login@{verify\_login}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{verify\_login()}{verify\_login()}}
+{\footnotesize\ttfamily  bool database\+\_\+control.\+Database\+Control.\+verify\+\_\+login (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{staff\+\_\+id,  }\item[{str}]{password }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Verify login credentials\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdatabase__control_1_1_database_control_aa5213b797f7b7113f658408b4f9d2823}\label{classdatabase__control_1_1_database_control_aa5213b797f7b7113f658408b4f9d2823} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!connection@{connection}}
+\index{connection@{connection}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+connection}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a457c5c7ec9f5515283fa00b9473768b3}\label{classdatabase__control_1_1_database_control_a457c5c7ec9f5515283fa00b9473768b3} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!database\_name@{database\_name}}
+\index{database\_name@{database\_name}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{database\_name}{database\_name}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+database\+\_\+name}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a1898de4c8a8b352cdd53c55fe06a0c24}\label{classdatabase__control_1_1_database_control_a1898de4c8a8b352cdd53c55fe06a0c24} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!host@{host}}
+\index{host@{host}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+host}
+
+\Hypertarget{classdatabase__control_1_1_database_control_afbcb8fc67c2926ffc239a2eedf4f36b8}\label{classdatabase__control_1_1_database_control_afbcb8fc67c2926ffc239a2eedf4f36b8} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!password@{password}}
+\index{password@{password}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+password}
+
+\Hypertarget{classdatabase__control_1_1_database_control_afa0445885b1558b70197f95a5986162f}\label{classdatabase__control_1_1_database_control_afa0445885b1558b70197f95a5986162f} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!port@{port}}
+\index{port@{port}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+port}
+
+\Hypertarget{classdatabase__control_1_1_database_control_a0501e90ca688ce679690f707e8de2240}\label{classdatabase__control_1_1_database_control_a0501e90ca688ce679690f707e8de2240} 
+\index{database\_control.DatabaseControl@{database\_control.DatabaseControl}!user@{user}}
+\index{user@{user}!database\_control.DatabaseControl@{database\_control.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily database\+\_\+control.\+Database\+Control.\+user}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project5\+\_\+\+HR\+\_\+\+Back\+\_\+\+End/header/utils/\mbox{\hyperlink{database__control_8py}{database\+\_\+control.\+py}}\end{DoxyCompactItemize}

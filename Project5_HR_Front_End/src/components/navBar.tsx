@@ -10,7 +10,7 @@ const navLinks: Record<AccountType, { name: string; path: string }[]> = {
     { name: "Dashboard", path: "/dashboard" },
     { name: "Schedule", path: "/schedule" },
     { name: "Payroll", path: "/payroll" },
-    { name: "Employee Management", path: "/employee_management" },
+    { name: "Staff Management", path: "/staff" },
     { name: "Communication", path: "/communication" },
   ],
   employee: [
@@ -82,7 +82,8 @@ const NavBar: React.FC = () => {
 
         <div className="flex flex-col justify-end h-full space-y-[10px] items-center mt-auto">
             <button
-              className='bg-light_gray hover:bg-gray-300 w-full transition' 
+              className='bg-light_gray hover:bg-gray-300 transition w-full ' 
+              onClick={()=>window.location.href='/my-account'}
             >
               <h3 className='text-charcoal'>My Account</h3>
             </button>

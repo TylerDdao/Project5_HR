@@ -12,7 +12,7 @@ class Payroll:
         total_earned (float): Final payroll amount after calculation.
     """
 
-    def __init__(self, staff_id=0, wage_rate=0.0, hour_worked=0.0, bonus=0.0, deduction=0.0):
+    def __init__(self, staff_id=0, wage_rate=0.0, hours_worked=0.0, bonus=0.0, deduction=0.0, start_date: str | None = None, end_date: str | None = None):
         """
         Constructor for Payroll class.
 
@@ -23,13 +23,14 @@ class Payroll:
             bonus (float): Bonus value.
             deduction (float): Deduction value.
         """
-        self.payroll_id = 0
-        self.staff_id = staff_id
-        self.wage_rate = wage_rate
-        self.hour_worked = hour_worked
-        self.bonus = bonus
-        self.deduction = deduction
-        self.total_earned = (hour_worked * wage_rate) + bonus - deduction
+        self._payroll_id = 0
+        self._staff_id = staff_id
+        self._wage_rate = wage_rate
+        self._hours_worked = hours_worked
+        self._bonus = bonus
+        self._deduction = deduction
+        self._start_date = start_date
+        self.end_date = end_date
 
     # ------------------------
     # Setters
@@ -45,9 +46,9 @@ class Payroll:
         self.staff_id = staff_id
         return True
 
-    def set_hour_worked(self, hour_worked: float) -> bool:
+    def set_hours_worked(self, hours_worked: float) -> bool:
         """Set the number of hours worked."""
-        self.hour_worked = hour_worked
+        self.hours_worked = hours_worked
         return True
 
     def set_wage_rate(self, wage_rate: float) -> bool:
@@ -64,10 +65,13 @@ class Payroll:
         """Set the deduction."""
         self.deduction = deduction
         return True
-
-    def set_total_earned(self) -> bool:
-        """Recalculate and update the total earned amount."""
-        self.total_earned = (self.hour_worked * self.wage_rate) + self.bonus - self.deduction
+    
+    def set_start_date(self, start_date: str) -> bool:
+        self._start_date = start_date
+        return True
+    
+    def set_end_date(self, end_date: str) -> bool:
+        self.end_date = end_date
         return True
 
     # ------------------------
@@ -86,9 +90,9 @@ class Payroll:
         """Return the wage rate."""
         return self.wage_rate
 
-    def get_hour_worked(self) -> float:
+    def get_hours_worked(self) -> float:
         """Return hours worked."""
-        return self.hour_worked
+        return self.hours_worked
 
     def get_bonus(self) -> float:
         """Return the bonus."""
@@ -97,7 +101,9 @@ class Payroll:
     def get_deduction(self) -> float:
         """Return the deduction."""
         return self.deduction
-
-    def get_total_earned(self) -> float:
-        """Return the total earned."""
-        return self.total_earned
+    
+    def get_start_date(self) -> str:
+        return self._start_date
+    
+    def get_end_date(self) -> str:
+        return self.end_date

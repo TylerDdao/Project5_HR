@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['communicationhub_0',['CommunicationHub',['../class_communication_hub.html',1,'']]],
-  ['conversation_1',['Conversation',['../class_conversation.html',1,'']]]
+  ['databasecontrol_0',['DatabaseControl',['../classdatabase__control_1_1_database_control.html',1,'database_control.DatabaseControl'],['../classmongo__database_1_1_database_control.html',1,'mongo_database.DatabaseControl']]]
 ];

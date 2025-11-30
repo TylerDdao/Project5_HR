@@ -15,20 +15,34 @@ export function getCurrentDateTime(): string {
   return formatted;
 }
 
-export function toUTCString(date: Date | undefined){
-  if (!date) return null;
-  return new Date(
-    Date.UTC(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate(),
-      date.getHours(),
-      date.getMinutes(),
-      date.getSeconds()
-    )
-  ).toISOString(); // Returns ISO string in UTC
+// export function toUTCString(date: Date | undefined){
+//   if (!date) return null;
+//   return new Date(
+//     Date.UTC(
+//       date.getFullYear(),
+//       date.getMonth(),
+//       date.getDate(),
+//       date.getHours(),
+//       date.getMinutes(),
+//       date.getSeconds()
+//     )
+//   ).toISOString(); // Returns ISO string in UTC
+// };
+
+export function formatDateForInput(date: string | Date | undefined){
+    if (!date) return "";
+    const d = new Date(date);
+    const month = (d.getMonth() + 1).toString().padStart(2, "0");
+    const day = d.getDate().toString().padStart(2, "0");
+    return `${d.getFullYear()}-${month}-${day}`;
 };
 
+export function toLocalTimeString(timeString?: string | Date): string{
+  const time = timeString ? new Date(timeString) : new Date()
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const localString = `${time.getFullYear()}-${pad(time.getMonth()+1)}-${pad(time.getDate())}T${pad(time.getHours())}:${pad(time.getMinutes())}:${pad(time.getSeconds())}`;
+  return localString;
+}
 
 export function extractDate(dateString?: string | Date): string{
     const date = dateString ? new Date(dateString) : new Date();

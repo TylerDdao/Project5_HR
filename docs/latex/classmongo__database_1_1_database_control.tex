@@ -1,0 +1,88 @@
+\doxysection{mongo\+\_\+database.\+Database\+Control Class Reference}
+\hypertarget{classmongo__database_1_1_database_control}{}\label{classmongo__database_1_1_database_control}\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmongo__database_1_1_database_control_a6389909540fc7a6acd2f5d5aab8148a1}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, uri="{}mongodb\+://127.\+0.\+0.\+1\+:27017/?direct\+Connection=true\&server\+Selection\+Timeout\+MS=2000\&app\+Name=mongosh+2.\+5.\+9"{}, str database\+\_\+name="{}project5\+\_\+hr"{})
+\item 
+Optional\mbox{[}Exception\mbox{]} \mbox{\hyperlink{classmongo__database_1_1_database_control_ad2186290074717a5ca66918fbf12d261}{connect}} (self)
+\item 
+Optional\mbox{[}dict\mbox{]} \mbox{\hyperlink{classmongo__database_1_1_database_control_ab9bb0639760f3b10289ec9f676bdb45f}{check\+\_\+staff}} (self, str name)
+\item 
+bool \mbox{\hyperlink{classmongo__database_1_1_database_control_a31346947142a84c64fdcfe76d531e678}{verify\+\_\+login}} (self, str staff\+\_\+id, str password)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmongo__database_1_1_database_control_a4ce3091ad5ee251a2f96eda7ceba5969}{\+\_\+uri}}
+\item 
+\mbox{\hyperlink{classmongo__database_1_1_database_control_a24143030654c49c5eadd0aada41b74d7}{\+\_\+database\+\_\+name}}
+\item 
+\mbox{\hyperlink{classmongo__database_1_1_database_control_ae7600af5a970247eb32cef4989cde0c6}{\+\_\+client}}
+\item 
+\mbox{\hyperlink{classmongo__database_1_1_database_control_aeea0183711806802775dcb5368d628db}{\+\_\+database}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classmongo__database_1_1_database_control_a6389909540fc7a6acd2f5d5aab8148a1}\label{classmongo__database_1_1_database_control_a6389909540fc7a6acd2f5d5aab8148a1} 
+\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily mongo\+\_\+database.\+Database\+Control.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{uri = {\ttfamily "{}mongodb\+://127.0.0.1\+:27017/?directConnection=true\&serverSelectionTimeoutMS=2000\&appName=mongosh+2.5.9"{}},  }\item[{str }]{database\+\_\+name = {\ttfamily "{}project5\+\_\+hr"{}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmongo__database_1_1_database_control_ab9bb0639760f3b10289ec9f676bdb45f}\label{classmongo__database_1_1_database_control_ab9bb0639760f3b10289ec9f676bdb45f} 
+\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}!check\_staff@{check\_staff}}
+\index{check\_staff@{check\_staff}!mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{check\_staff()}{check\_staff()}}
+{\footnotesize\ttfamily  Optional\mbox{[}dict\mbox{]} mongo\+\_\+database.\+Database\+Control.\+check\+\_\+staff (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Query for a staff member by name.\end{DoxyVerb}
+ \Hypertarget{classmongo__database_1_1_database_control_ad2186290074717a5ca66918fbf12d261}\label{classmongo__database_1_1_database_control_ad2186290074717a5ca66918fbf12d261} 
+\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}!connect@{connect}}
+\index{connect@{connect}!mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily  Optional\mbox{[}Exception\mbox{]} mongo\+\_\+database.\+Database\+Control.\+connect (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Connect to MongoDB and keep the client open.\end{DoxyVerb}
+ \Hypertarget{classmongo__database_1_1_database_control_a31346947142a84c64fdcfe76d531e678}\label{classmongo__database_1_1_database_control_a31346947142a84c64fdcfe76d531e678} 
+\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}!verify\_login@{verify\_login}}
+\index{verify\_login@{verify\_login}!mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{verify\_login()}{verify\_login()}}
+{\footnotesize\ttfamily bool mongo\+\_\+database.\+Database\+Control.\+verify\+\_\+login (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{staff\+\_\+id,  }\item[{str}]{password }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmongo__database_1_1_database_control_ae7600af5a970247eb32cef4989cde0c6}\label{classmongo__database_1_1_database_control_ae7600af5a970247eb32cef4989cde0c6} 
+\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}!\_client@{\_client}}
+\index{\_client@{\_client}!mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{\_client}{\_client}}
+{\footnotesize\ttfamily mongo\+\_\+database.\+Database\+Control.\+\_\+client\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classmongo__database_1_1_database_control_aeea0183711806802775dcb5368d628db}\label{classmongo__database_1_1_database_control_aeea0183711806802775dcb5368d628db} 
+\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}!\_database@{\_database}}
+\index{\_database@{\_database}!mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{\_database}{\_database}}
+{\footnotesize\ttfamily mongo\+\_\+database.\+Database\+Control.\+\_\+database\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classmongo__database_1_1_database_control_a24143030654c49c5eadd0aada41b74d7}\label{classmongo__database_1_1_database_control_a24143030654c49c5eadd0aada41b74d7} 
+\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}!\_database\_name@{\_database\_name}}
+\index{\_database\_name@{\_database\_name}!mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{\_database\_name}{\_database\_name}}
+{\footnotesize\ttfamily mongo\+\_\+database.\+Database\+Control.\+\_\+database\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classmongo__database_1_1_database_control_a4ce3091ad5ee251a2f96eda7ceba5969}\label{classmongo__database_1_1_database_control_a4ce3091ad5ee251a2f96eda7ceba5969} 
+\index{mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}!\_uri@{\_uri}}
+\index{\_uri@{\_uri}!mongo\_database.DatabaseControl@{mongo\_database.DatabaseControl}}
+\doxysubsubsection{\texorpdfstring{\_uri}{\_uri}}
+{\footnotesize\ttfamily mongo\+\_\+database.\+Database\+Control.\+\_\+uri\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project5\+\_\+\+HR\+\_\+\+Back\+\_\+\+End/header/utils/\mbox{\hyperlink{mongo__database_8py}{mongo\+\_\+database.\+py}}\end{DoxyCompactItemize}

@@ -1,17 +1,10 @@
 var searchData=
 [
-  ['employee_0',['Employee',['../class_employee.html',1,'Employee'],['../class_employee.html#a003c7bd08c40924e381eb0750cbb906f',1,'Employee::Employee()'],['../class_employee.html#a55f088512a30df390d7a37e8e4d8b3a8',1,'Employee::Employee(int id, const string &amp;n, const string &amp;p, const string &amp;num, const string &amp;d)'],['../class_employee.html#a003c7bd08c40924e381eb0750cbb906f',1,'Employee::Employee()'],['../class_employee.html#a55f088512a30df390d7a37e8e4d8b3a8',1,'Employee::Employee(int id, const string &amp;n, const string &amp;p, const string &amp;num, const string &amp;d)']]],
-  ['employee_2ecpp_1',['Employee.cpp',['../_employee_8cpp.html',1,'']]],
-  ['employee_2eh_2',['Employee.h',['../_employee_8h.html',1,'']]],
-  ['employee_5fh_3',['EMPLOYEE_H',['../_employee_8h.html#ae4eeed7fde1f46ea165b9897acfd1cf4',1,'EMPLOYEE_H:&#160;Employee.h'],['../employeeinfo_8h.html#ae4eeed7fde1f46ea165b9897acfd1cf4',1,'EMPLOYEE_H:&#160;employeeinfo.h']]],
-  ['employee_5finfo_5fmanagement_5fh_4',['EMPLOYEE_INFO_MANAGEMENT_H',['../_employee_info_management_8h.html#a3faf1415562546a7e33f5340b9017196',1,'EmployeeInfoManagement.h']]],
-  ['employee_5finfo_5ftests_2ecpp_5',['Employee_Info_Tests.cpp',['../_employee___info___tests_8cpp.html',1,'']]],
-  ['employeeexists_6',['EmployeeExists',['../class_employee_info_management.html#a3ff72c2dea437ead15f3adaf605d35c5',1,'EmployeeInfoManagement']]],
-  ['employeeinfo_2ecpp_7',['employeeinfo.cpp',['../employeeinfo_8cpp.html',1,'']]],
-  ['employeeinfo_2eh_8',['employeeinfo.h',['../employeeinfo_8h.html',1,'']]],
-  ['employeeinfomanagement_9',['EmployeeInfoManagement',['../class_employee_info_management.html',1,'EmployeeInfoManagement'],['../class_employee_info_management.html#a64a5092f4cc5fd5bedbfb931a1896e77',1,'EmployeeInfoManagement::EmployeeInfoManagement()'],['../class_employee_info_management.html#a64a5092f4cc5fd5bedbfb931a1896e77',1,'EmployeeInfoManagement::EmployeeInfoManagement()'],['../class_employee_info_management.html#aace7a4fb17b8f919889a237506aedb24',1,'EmployeeInfoManagement::EmployeeInfoManagement(FileRepository *repo)']]],
-  ['employeeinfomanagement_2ecpp_10',['EmployeeInfoManagement.cpp',['../_employee_info_management_8cpp.html',1,'']]],
-  ['employeeinfomanagement_2eh_11',['EmployeeInfoManagement.h',['../_employee_info_management_8h.html',1,'']]],
-  ['eslint_20configuration_12',['Expanding the ESLint configuration',['../C:/Users/huiyi/OneDrive - Conestoga College/Documents/year 3/Proj V/gp proj/Project5_HR/Project5_HR_Front_End/README.md#autotoc_md2',1,'']]],
-  ['expanding_20the_20eslint_20configuration_13',['Expanding the ESLint configuration',['../C:/Users/huiyi/OneDrive - Conestoga College/Documents/year 3/Proj V/gp proj/Project5_HR/Project5_HR_Front_End/README.md#autotoc_md2',1,'']]]
+  ['calculate_5fsalary_0',['calculate_salary',['../namespaceapp.html#aa5e9d8cfd508890a0b3a727d19d47b3c',1,'app']]],
+  ['cancel_5fpayroll_1',['cancel_payroll',['../classpayrolls_1_1_payroll_database.html#adbc145ab38a010a3cd8505b1fa461fb9',1,'payrolls.PayrollDatabase.cancel_payroll()'],['../namespaceapp.html#a329a656be4a33d2f3a4f1932b7856915',1,'app.cancel_payroll()']]],
+  ['check_5fstaff_2',['check_staff',['../classmongo__database_1_1_database_control.html#ab9bb0639760f3b10289ec9f676bdb45f',1,'mongo_database::DatabaseControl']]],
+  ['connect_3',['connect',['../classmongo__database_1_1_database_control.html#ad2186290074717a5ca66918fbf12d261',1,'mongo_database.DatabaseControl.connect()'],['../classpayrolls_1_1_payroll_database.html#abb506bf5096061e525228b216af537ef',1,'payrolls.PayrollDatabase.connect()'],['../classshift__records_1_1_shift_record_database.html#a350528cd64b1faa5a66cf0568467c95a',1,'shift_records.ShiftRecordDatabase.connect()'],['../classshifts__db_1_1_shifts_database.html#a17fd9d9688a03de156de612d5960ff5a',1,'shifts_db.ShiftsDatabase.connect()'],['../classstaffs__db_1_1_staffs_database.html#a729838e4dd0f2e07b7efadb551c81f2b',1,'staffs_db.StaffsDatabase.connect()']]],
+  ['connection_4',['connection',['../classdatabase__control_1_1_database_control.html#aa5213b797f7b7113f658408b4f9d2823',1,'database_control::DatabaseControl']]],
+  ['create_5fpayroll_5',['create_payroll',['../namespaceapp.html#a1ec758f0f7d1abe6fa2028000af4e07a',1,'app']]],
+  ['create_5fshift_6',['create_shift',['../namespaceapp.html#a92a3b6bd47f49c6a37b7f92c5f9b6672',1,'app.create_shift()'],['../namespacebackend.html#ac17b4a3064260a09682780f851ae7750',1,'backend.create_shift()']]]
 ];

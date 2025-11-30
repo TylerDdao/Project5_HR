@@ -34,7 +34,6 @@
 
 // export default App
 
-import DesignPage from './pages/design';
 import DashboardPage from './pages/dashboard'; // Notice you don't need to write '/index.tsx'
 import LoginPage from './pages/login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -47,6 +46,17 @@ import ShiftHistoryPage from './pages/schedule/shift-history';
 import { useEffect, useState } from 'react';
 import { parsedStaff } from './utils/account';
 import type { Staff } from './data/type';
+import PayrollPage from './pages/payroll';
+import PayrollListPage from './pages/payroll/payroll-list';
+import CreatePayrollPage from './pages/payroll/create-payroll';
+// import PayrollHistoryPage from './pages/payroll/payroll-history';
+import PayrollDetailPage from './pages/payroll/payroll-detail';
+import CommunicationPage from './pages/communication';
+import MailPage from './pages/communication/my-mail';
+import StaffPage from './pages/staff';
+import AddStaffPage from './pages/staff/add-staff';
+import StaffInfoPage from './pages/staff/staff-info';
+import MyAccountPage from './pages/my-account';
 
 export default function App() {
   const [staff, setStaff] = useState<Staff>();
@@ -84,10 +94,23 @@ export default function App() {
               <Route path="/schedule/shift-history" element={<ShiftHistoryPage/>}/>
               <Route path="/schedule/:shiftId" element={<ShiftDetailPage/>}/>
 
+              <Route path="/payroll" element={<PayrollPage/>}/>
+              <Route path="/payroll/payroll-list" element={<PayrollListPage/>}/>
+              <Route path="/payroll/create-payroll" element={<CreatePayrollPage/>}/>
+              <Route path="/payroll/:payrollId" element={<PayrollDetailPage/>}/>
+
+              <Route path="/communication" element={<CommunicationPage/>}/>
+              <Route path="/communication/my-mail" element={<MailPage/>}/>
+
+              <Route path='/staff' element={<StaffPage/>}/>
+              <Route path='/staff/add-staff' element={<AddStaffPage/>}/>
+              <Route path='/staff/:staffId' element={<StaffInfoPage/>}/>
+
+              <Route path='/my-account' element={<MyAccountPage/>}/>
+
               {/* <Route path='/payroll' element={<PayrollPage/>}/> */}
 
               <Route path="/login" element={<LoginPage />} />
-              <Route path='/design' element={<DesignPage/>}/>
             </Routes>
         </main>
       </div>
