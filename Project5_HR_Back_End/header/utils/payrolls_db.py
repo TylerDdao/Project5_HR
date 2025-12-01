@@ -1,3 +1,4 @@
+
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 from typing import Optional
@@ -5,19 +6,40 @@ from datetime import datetime, timezone, timedelta
 import random
 import calendar
 
-
 from header.core.shift_record import ShiftRecord
 from header.core.payroll import Payroll
 from header.utils.staffs_db import StaffsDatabase
-
 class PayrollDatabase:
+    
+    """
+    
+    \brief Handles MongoDB operation for payroolls collection.
+        This class manage all payroll-related database functionality
+        -> inserting payroll records 
+        -> retrieveing individual or multiple payrolls 
+        -> cancelling existing payroll entries
+        -> fetching monthly payroll summaried for staff
+        Payrool query with staff info retrieved from staff database when applicable.
+    
+    """
+    
     def __init__(self, uri="mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9", database_name: str = "project5_hr"):
+        
+        """
+        
+        \brief Constructor for PayrollDatabse.
+            Initialize database connection properties but does not open connection until required.
+            
+        \param uri MongoDB connection URI.
+        \param database_name Name of db that contain payroll record.
+        
+        """
+        
         self._uri = uri
         self._database_name = database_name
         self._client = None
         self._database = None
         self._payrolls = None
-
     def connect(self) -> Optional[Exception]:
         """Connect to MongoDB and keep the client open."""
         try:
@@ -34,25 +56,40 @@ class PayrollDatabase:
             return err
         
     def get_my_payroll(self, staff_id:int) -> Optional[list[dict]]:
+        
+        """
+        
+        \brief Retrieve payroll information for specific staff member.
+        
+           return
+           -> payroll from current month.
+           -> all payroll for staff meber employment history.
+           
+           MongoDB document Id converted to string for JSON.
+        
+        \param staff_id Unique staff identifier.
+        
+        \return Dictionay payload
+                ->this_month - list of payroll records for current month
+                -> all = list of all payroll records for staff or None in fail.
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
                 return None
-
         try:
             now = datetime.now()
             start_of_month = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-
             query = {
                 "staff_id": int(staff_id),
                 "created_at": {"$gte": start_of_month}
             }
-
             this_month_payrolls = list(self._payrolls.find(query))
             if this_month_payrolls:
                 for payroll in this_month_payrolls:
                     payroll["_id"] = str(payroll["_id"])
-
             query = {
                 "staff_id": int(staff_id)
             }
@@ -60,27 +97,34 @@ class PayrollDatabase:
             if all_payrolls:
                 for payroll in all_payrolls:
                     payroll["_id"] = str(payroll["_id"])
-
             if all_payrolls is None and this_month_payrolls is None:
                 return None
-
             payload ={
                 "this_month": this_month_payrolls,
                 "all": all_payrolls
             }
-
             return payload
-
         except Exception as e:
             print("Error loading payrolls:", e)
             return None
         
     def get_payroll_by_id(self, payroll_id:int) -> Optional[list[dict]]:
+        
+        """
+        
+        \brief Retrieve payroll entry by payroll ID.
+            Add recepient staff member name to returned payroll record.
+        
+        \param payroll_id Unique payroll identifier.
+        
+        \return Payroll document dic with receiver field added or None if fail.
+        
+        
+        """
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
                 return None
-
         try:
             query = {
                 "payroll_id": int(payroll_id),
@@ -93,33 +137,55 @@ class PayrollDatabase:
                 staff = staffDb.get_staff_by_id(payroll["staff_id"])
                 payroll["receiver"] = staff["name"]
             return payroll
-
         except Exception as e:
             print("Error loading payroll:", e)
             return None
         
     def cancel_payroll(self, payroll_id:int) -> bool:
+        
+        """
+        
+        \brief Cancel existing payroll entry.
+            Mark payroll record as cancelled by setting is_cancelled field to True
+        
+        \param payroll_id Unique communication identifier.
+        
+        \return True if payroll successfully updated or False if no payroll match found or error.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
                 return False
         try:
             query = {"payroll_id": int(payroll_id)}
-
             update_data = {
                 "$set": {
                     "is_canceled": True,
                 }
             }
             result = self._payrolls.update_one(query, update_data)
-
             return result.modified_count > 0
-
         except Exception as e:
             print(f"Error mdifying payroll: {e}")
             return None
                 
     def insert_payroll(self, payroll: Payroll) ->bool:
+        
+        """
+        
+        \brief Insert new payroll into database.
+            Generate unique 5-digit payroll ID and store all relevant payroll field from Payroll object.
+           
+        \param payroll Payroll domain object contain payment data.
+        
+        \return generated payroll_id if insertion succeed, else None.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -130,7 +196,6 @@ class PayrollDatabase:
                 id = random.randint(10000, 99999)
             
             print(payroll.get_wage_rate())
-
             query = {
                 "payroll_id": id,
                 "staff_id": payroll.get_staff_id(),
@@ -143,17 +208,27 @@ class PayrollDatabase:
                 "created_at": datetime.utcnow(),
                 "is_canceled": False
             }
-
             self._payrolls.insert_one(query)
             
             return id
-
         except Exception as e:
             print(f"Error querying shifts: {e}")
             return None
         
     def get_all_payrolls(self) -> list[dict]:
-        """Fetch all payroll documents from the database."""
+        
+        """
+        
+        \brief Fetch all payrolls reocrds from database.
+            Each payroll document return include
+            -> Srringified MongoDB onjectid
+            -> staff receiver name retrieved using staffdb.
+        
+        \return list of payroll documents.
+        
+        
+        """
+        
         try:
             self.connect()
             cursor = self._payrolls.find({})

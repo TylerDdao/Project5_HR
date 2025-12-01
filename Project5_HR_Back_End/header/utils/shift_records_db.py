@@ -18,7 +18,11 @@ class ShiftRecordDatabase:
         -> query weekly or date-range records
         -> fetching individual shift records by ID
 
+<<<<<<< Updated upstream
         Payrool query with staff info retrieved from staff database when applicable.
+=======
+        Payroll query with staff info retrieved from staff database when applicable.
+>>>>>>> Stashed changes
     
     """
     
@@ -30,7 +34,11 @@ class ShiftRecordDatabase:
             Initialize database config with no connection established.
             
         \param uri MongoDB connection URI.
+<<<<<<< Updated upstream
         \param database_name Name of db that contain shift record.
+=======
+        \param database_name Name of db that contain shift record
+>>>>>>> Stashed changes
         
         """
         
@@ -41,7 +49,9 @@ class ShiftRecordDatabase:
         self._shift_records = None
 
     def connect(self) -> Optional[Exception]:
+        
         """Connect to MongoDB and keep the client open."""
+        
         try:
             self._client = MongoClient(self._uri)
             self._client.admin.command("ping")
@@ -60,7 +70,11 @@ class ShiftRecordDatabase:
         """
         
         \brief Retrieve shift record by ID.
+<<<<<<< Updated upstream
            Convert MongoDB ObjectId to string if matching reocrd exist.
+=======
+           Convert MongoDB ObjectId to string if matching record exist.
+>>>>>>> Stashed changes
         
         \param if Unique shift record identifier.
         
@@ -90,7 +104,11 @@ class ShiftRecordDatabase:
         
         """
         
+<<<<<<< Updated upstream
         \brief Start new shift record
+=======
+        \brief Start new shift record.
+>>>>>>> Stashed changes
            Generate unique shift record ID and store
            -> staff ID
            -> check in time
@@ -133,7 +151,11 @@ class ShiftRecordDatabase:
         
         """
         
+<<<<<<< Updated upstream
         \brief End shift record
+=======
+        \brief End shift record.
+>>>>>>> Stashed changes
            Find existing shift record by ID and set checkout timestamp.
            
         \param shift_record ShiftRecord object contain shift_record_if and checkout timestamp.
@@ -172,7 +194,11 @@ class ShiftRecordDatabase:
           
         \param staff_id Staff member identifier.
         
+<<<<<<< Updated upstream
         \return List of shoft reocrds sorted by checkin time or None if fail.
+=======
+        \return List of shift records sorted by checkin time or None if fail.
+>>>>>>> Stashed changes
         
         
         """
@@ -217,7 +243,11 @@ class ShiftRecordDatabase:
         \param start_date Start of date range (datetime or ISO string).
         \param end_date End of date range (datetime or ISO string).
         
+<<<<<<< Updated upstream
         \retirn List of matching shift records sorted by check_in or None if fail.
+=======
+        \return List of matching shift records sorted by check_in or None if fail.
+>>>>>>> Stashed changes
         
         """
 
