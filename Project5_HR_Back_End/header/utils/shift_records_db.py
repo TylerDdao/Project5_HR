@@ -8,7 +8,32 @@ import random
 from header.core.shift_record import ShiftRecord
 
 class ShiftRecordDatabase:
+    
+    """
+    
+    \brief Handles MongoDB operation for shift_records collection.
+        This class manage creation and retrieval od staff shift attendance records
+        -> starting new shift
+        -> ending shift  
+        -> query weekly or date-range records
+        -> fetching individual shift records by ID
+
+        Payrool query with staff info retrieved from staff database when applicable.
+    
+    """
+    
     def __init__(self, uri="mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9", database_name: str = "project5_hr"):
+        
+        """
+        
+        \brief Constructor for ShiftRecordDatabase.
+            Initialize database config with no connection established.
+            
+        \param uri MongoDB connection URI.
+        \param database_name Name of db that contain shift record.
+        
+        """
+        
         self._uri = uri
         self._database_name = database_name
         self._client = None
@@ -31,6 +56,19 @@ class ShiftRecordDatabase:
             return err
         
     def get_shift_record_by_id(self, id: int) -> Optional[dict]:
+        
+        """
+        
+        \brief Retrieve shift record by ID.
+           Convert MongoDB ObjectId to string if matching reocrd exist.
+        
+        \param if Unique shift record identifier.
+        
+        \return Shift record document dic or None if not found or fail.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -49,6 +87,22 @@ class ShiftRecordDatabase:
             return None
         
     def start_shift_record(self, shift_record: ShiftRecord) -> int:
+        
+        """
+        
+        \brief Start new shift record
+           Generate unique shift record ID and store
+           -> staff ID
+           -> check in time
+           -> pending shift completion
+         
+        \param shift_record ShiftRecord object contain Staff ID and checkin timestamp.
+        
+        \return Generated shift_record_id if insertion successful or None if fail.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -76,6 +130,18 @@ class ShiftRecordDatabase:
             return None
         
     def end_shift_record(self, shift_record: ShiftRecord) -> bool:
+        
+        """
+        
+        \brief End shift record
+           Find existing shift record by ID and set checkout timestamp.
+           
+        \param shift_record ShiftRecord object contain shift_record_if and checkout timestamp.
+        
+        \return True if record updated or else False.
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -98,6 +164,18 @@ class ShiftRecordDatabase:
             return None
         
     def get_this_week_shift_records(self, staff_id: int) -> Optional[list[dict]]:
+        
+        """
+        
+        \brief Retrieve all shift records for current week for staff.
+           Week calculated from Monday 00:00 UTC to Sunday 23:59:59 UTC.
+          
+        \param staff_id Staff member identifier.
+        
+        \return List of shoft reocrds sorted by checkin time or None if fail.
+        
+        
+        """
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -126,10 +204,21 @@ class ShiftRecordDatabase:
             return None
         
     def get_shift_records_in_range(self, staff_id: int, start_date, end_date) -> Optional[list[dict]]:
+        
         """
-        Get all shift records for a staff ID where:
-        - check_in >= start_date
-        - check_out <= end_date
+        \brief  Get all shift records for a staff ID where:
+                -> check_in >= start_date
+                -> check_out <= end_date
+                -> chek_out must exist
+                
+                Accept datetime objects or ISO formatted date strings.
+                
+        \param staff_id Staff member identifier.
+        \param start_date Start of date range (datetime or ISO string).
+        \param end_date End of date range (datetime or ISO string).
+        
+        \retirn List of matching shift records sorted by check_in or None if fail.
+        
         """
 
         if self._client is None or self._database is None:
