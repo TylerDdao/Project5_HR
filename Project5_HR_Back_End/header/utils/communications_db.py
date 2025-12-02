@@ -13,7 +13,27 @@ from header.core.communication import Communication
 from header.utils.staffs_db import StaffsDatabase
 
 class CommunicationsDatabase:
+    
+    """
+    
+    \brief Handle MongoDB operation for communication collection.
+    The class manage all communication data (announcement and staff mail) including insert new messages and query sent or received communications.
+    Results post-procesed to add readable staff name from StaffsDatabase.
+    
+    """
+    
     def __init__(self, uri="mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9", database_name: str = "project5_hr"):
+        
+        """
+        
+        \brief Constructr for StaffsDatabse.
+            Initialize database connection properties but does not open connection until required.
+            
+        \param uri MongoDB connection URI.
+        \param database_name Name of db that contain communications collection.
+        
+        """
+        
         self._uri = uri
         self._database_name = database_name
         self._client = None
@@ -21,7 +41,9 @@ class CommunicationsDatabase:
         self._communications = None
 
     def connect(self) -> Optional[Exception]:
+        
         """Connect to MongoDB and keep the client open."""
+        
         try:
             self._client = MongoClient(self._uri)
             self._client.admin.command("ping")
@@ -36,6 +58,19 @@ class CommunicationsDatabase:
             return err
         
     def get_communication_by_id(self, communication_id: int) -> Optional[dict]:
+        
+        """
+        
+        \brief Retrieve single communication record by ID.
+            Convert MongoDB ObjectID to string if record found. 
+        
+        \param communication_id Unique communication identifier.
+        
+        \return communication document dic if found, else None.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -56,6 +91,20 @@ class CommunicationsDatabase:
             return None
         
     def insert_communication(self, communication: Communication) -> int:
+        
+        """
+        
+        \brief Insert new communication into database.
+            Generate random 5-digit communication ID and ensure uniqueness.
+            Communication object value are serialized and stored in MongoDB.
+        
+        \param communication Communication domain object contain message data.
+        
+        \return generated communication_id if insertion succeed, else None.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -98,6 +147,21 @@ class CommunicationsDatabase:
             return None
         
     def get_announcements(self) -> Optional[list[dict]]:
+        
+        """
+        
+        \brief Retrieve all announcements posted within last two months. 
+            Filter communication where
+            -> type == announcemnet
+            -> sent_at -> current date
+            
+            Look up sender namde from staff databse and insert into each return record.
+      
+        \return list of announcement document or None if fail.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -125,6 +189,24 @@ class CommunicationsDatabase:
             return None
         
     def get_received_mail(self, staff_id: int) -> Optional[list[dict]]:
+        
+        """
+        
+        \brief Retrieve all mail message received by staffmember.
+        
+            Filter communication where
+            -> type == mail
+            -> recipient_id == staff_id
+            
+            Add sender name from staff db to each message record.
+            
+        \param staff_id Staff member ID.
+        
+        \return List of received mail documents or None if fail.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
@@ -150,6 +232,24 @@ class CommunicationsDatabase:
             return None
         
     def get_sent_mail(self, staff_id: int) -> Optional[list[dict]]:
+        
+        """
+        
+        \brief Retrieve all mail sent by staff member.
+        
+            Filter communication where
+            -> type == mail
+            -> sender_id == staff_id
+            
+            Add recipient name from staff db to each message record.
+            
+        \param staff_id Staff member ID
+        
+        \return List of sent mail documents or None if fail.
+        
+        
+        """
+        
         if self._client is None or self._database is None:
             error = self.connect()
             if error:
