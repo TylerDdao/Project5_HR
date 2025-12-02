@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { caculateWorkTime, extractDate, extractFullDate, extractTime, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay } from '../../utils/time';
+import { extractDate, extractTime} from '../../utils/time';
 import NavBar from '../../components/navBar';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import type {  Account,  Payroll,  Shift, Staff } from '../../data/type';
-import { Link } from 'react-router-dom';
-import { isManager, parsedStaff, useSetStaff } from '../../utils/account';
+import type {  Staff } from '../../data/type';
+import { isManager, useSetStaff } from '../../utils/account';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const StaffPage: React.FC = () => {

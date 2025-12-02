@@ -5,7 +5,6 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { type Communication, type Account, type Shift, type Staff } from '../../data/type';
-import { shifts } from '../../data/dummyData';
 import { calculateTotalHours, parsedStaff } from '../../utils/account';
 import { Link } from 'react-router-dom';
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import type { Account, AccountType, Staff } from "../data/type";
-import { staffs } from "../data/dummyData";
 import { parsedStaff } from "../utils/account";
 
 const navLinks: Record<AccountType, { name: string; path: string }[]> = {

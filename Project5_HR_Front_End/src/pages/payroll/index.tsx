@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
-  caculateWorkTime,
   extractDate,
   extractFullDate,
-  extractTime,
-  getCurrentDateTime,
-  getEndOfNextWeekDate,
-  getEndOfWeekDate,
-  getStartOfNextWeekDate,
-  getStartOfWeekDate
+  extractTime
 } from '../../utils/time';
 import NavBar from '../../components/navBar';
-import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import { type Payroll } from '../../data/type';
-import { shifts as rawShifts, shiftsStaffs } from '../../data/dummyData';
 import { Link } from 'react-router-dom';
-import { parsedStaff, useSetStaff } from '../../utils/account';
+import { useSetStaff } from '../../utils/account';
 
 const PayrollPage: React.FC = () => {
   const [thisMonthPayrolls, setThisMonthPayrolls] = useState<Payroll[]>([])
