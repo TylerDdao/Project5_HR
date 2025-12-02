@@ -33,15 +33,14 @@ CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
 
 # Utility functions
 def token_checker(auth_header):
-    return True
-    # if not auth_header or not auth_header.startswith("Bearer "):
-    #     return False
-    # token = auth_header[7:]
-    # try:
-    #     jwt.decode(token, SECRET_KEY, algorithms=["HS256"], issuer=ISSUER)
-    #     return True
-    # except jwt.PyJWTError:
-    #     return False
+    if not auth_header or not auth_header.startswith("Bearer "):
+        return False
+    token = auth_header[7:]
+    try:
+        jwt.decode(token, SECRET_KEY, algorithms=["HS256"], issuer=ISSUER)
+        return True
+    except jwt.PyJWTError:
+        return False
 
 def token_decoder(auth_header):
     token = auth_header[7:]
