@@ -24,7 +24,3 @@
 *.idb
 *.ipdb
 *.iobj
-
-# Project-specific data files
-employees.txt
-data/
