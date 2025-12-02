@@ -20,6 +20,7 @@ import StaffPage from './pages/staff';
 import AddStaffPage from './pages/staff/add-staff';
 import StaffInfoPage from './pages/staff/staff-info';
 import MyAccountPage from './pages/my-account';
+import HomePage from './pages/home';
 
 export default function App() {
   const [staff, setStaff] = useState<Staff>();
@@ -50,6 +51,7 @@ export default function App() {
       <div className="">
         <main className="">
             <Routes>
+              <Route path='/' element={<HomePage/>}/>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/schedule" element={<SchedulePage/>}/>
               <Route path="/schedule/shift-list" element={<ShiftListPage/>}/>
