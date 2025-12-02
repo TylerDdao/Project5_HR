@@ -4,7 +4,6 @@ import {
   extractDate,
   extractFullDate,
   extractTime,
-  getCurrentDateTime,
   getEndOfNextWeekDate,
   getEndOfWeekDate,
   getStartOfNextWeekDate,
@@ -12,10 +11,9 @@ import {
 } from '../../utils/time';
 import NavBar from '../../components/navBar';
 import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
-import type { Account, Shift, Staff } from '../../data/type';
-import { shifts as rawShifts, shiftsStaffs } from '../../data/dummyData';
+import type { Shift } from '../../data/type';
 import { Link } from 'react-router-dom';
-import { parsedStaff, useSetStaff } from '../../utils/account';
+import { useSetStaff } from '../../utils/account';
 
 const SchedulePage: React.FC = () => {
     const [thisWeekDates, setThisWeekDates] = useState<Date[]>([]);

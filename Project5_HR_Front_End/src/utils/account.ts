@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Account, ShiftRecord, Staff } from "../data/type";
+import type { ShiftRecord, Staff } from "../data/type";
 
 export function parsedStaff(){
     const staffStr = sessionStorage.getItem("staff");

@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {extractFullDate, extractTime, toLocalTimeString} from '../../../utils/time';
+import {extractFullDate} from '../../../utils/time';
 import NavBar from '../../../components/navBar';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import type { Account, Payroll, Shift, Staff } from '../../../data/type';
-import { Link, useParams } from 'react-router-dom';
+import type { Payroll } from '../../../data/type';
+import {useParams } from 'react-router-dom';
 import { useSetStaff } from '../../../utils/account';
 
 const PayrollDetailPage: React.FC = () => {

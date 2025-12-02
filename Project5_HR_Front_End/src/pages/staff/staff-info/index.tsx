@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { caculateWorkTime, extractDate, extractFullDate, extractTime, formatDateForInput, getCurrentDateTime, getEndOfNextWeekDate, getEndOfWeekDate, getStartOfNextWeekDate, getStartOfWeekDate, getTodayWeekDay } from '../../../utils/time';
+import { formatDateForInput} from '../../../utils/time';
 import NavBar from '../../../components/navBar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import type { Account, Shift, Staff } from '../../../data/type';
+import type { Staff } from '../../../data/type';
 import { Link, useParams } from 'react-router-dom';
-import { isManager, parsedStaff, useSetStaff } from '../../../utils/account';
-import { hashSHA256 } from '../../../utils/security';
+import { isManager, useSetStaff } from '../../../utils/account';
 
 const StaffInfoPage: React.FC = () => {
     const {staffId} = useParams<{ staffId: string }>()

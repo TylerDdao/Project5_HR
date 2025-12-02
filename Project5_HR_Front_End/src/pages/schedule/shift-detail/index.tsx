@@ -3,8 +3,7 @@ import {extractFullDate, extractTime, toLocalTimeString} from '../../../utils/ti
 import NavBar from '../../../components/navBar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import type { Account, Shift, Staff } from '../../../data/type';
+import type { Shift, Staff } from '../../../data/type';
 import { Link, useParams } from 'react-router-dom';
 import { useSetStaff } from '../../../utils/account';
 
