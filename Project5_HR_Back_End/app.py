@@ -4,7 +4,6 @@ import jwt
 import datetime
 import random
 
-from header.utils.mongo_database import DatabaseControl
 from header.utils.shifts_db import ShiftsDatabase
 from header.utils.staffs_db import StaffsDatabase
 from header.utils.shift_records_db import ShiftRecordDatabase
