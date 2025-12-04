@@ -1,11 +1,27 @@
 # header/core/account.py
 
+
 class Account:
     """
-    @brief This is the Account class
+    @brief This is the Account class.
+        The Account class represent login credentials linked to staff member.
+        It stores authentication and role related info such as account ID, staff ID,
+        password and account type (e.g. Manager or Staff).
+        The class provides setter and getter methods for safely managing account data and
+        support user authentication, authorization and role based system access.
+
+        This class is used across system for login processing, permission handling and account
+        management workflows.
+
     """
 
-    def __init__(self, account_id:int=None, staff_id: int =None, password: str ="", account_type: str=""):
+    def __init__(
+        self,
+        account_id: int = None,
+        staff_id: int = None,
+        password: str = "",
+        account_type: str = "",
+    ):
         """
         @brief Constructor for Account
         @param account_id int: The account ID

@@ -1,5 +1,25 @@
 class ShiftRecord:
-    def __init__(self, shift_record_id: int = 0, staff_id: int = 0, shift_id: int = 0, check_in: str | None = None, check_out: str | None = None):
+    """
+    @brief Represents an attendance record for staff member working shift.
+        The ShiftRecord class link staff member to specific shift and track their work attendance times.
+        Each instance represents one staff member checking in and out of one shift.
+
+        This class is commonly used for:
+        -> Employee attendance tracking
+        -> Payroll hour calculation
+        -> Shift repoting and auditing
+        -> Databse persistence of worked shifts
+
+    """
+
+    def __init__(
+        self,
+        shift_record_id: int = 0,
+        staff_id: int = 0,
+        shift_id: int = 0,
+        check_in: str | None = None,
+        check_out: str | None = None,
+    ):
         """@brief Initialize a ShiftRecord object"""
         self._shift_record_id = shift_record_id
         self._staff_id = staff_id
@@ -30,7 +50,7 @@ class ShiftRecord:
         """@brief Set check-out time"""
         self._check_out = check_out
         return True
-    
+
     def get_shift_record_id(self) -> int:
         return self._shift_record_id
 

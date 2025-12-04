@@ -12,7 +12,16 @@ class Payroll:
         total_earned (float): Final payroll amount after calculation.
     """
 
-    def __init__(self, staff_id=0, wage_rate=0.0, hours_worked=0.0, bonus=0.0, deduction=0.0, start_date: str | None = None, end_date: str | None = None):
+    def __init__(
+        self,
+        staff_id=0,
+        wage_rate=0.0,
+        hours_worked=0.0,
+        bonus=0.0,
+        deduction=0.0,
+        start_date: str | None = None,
+        end_date: str | None = None,
+    ):
         """
         Constructor for Payroll class.
 
@@ -65,11 +74,11 @@ class Payroll:
         """Set the deduction."""
         self.deduction = deduction
         return True
-    
+
     def set_start_date(self, start_date: str) -> bool:
         self._start_date = start_date
         return True
-    
+
     def set_end_date(self, end_date: str) -> bool:
         self.end_date = end_date
         return True
@@ -101,9 +110,9 @@ class Payroll:
     def get_deduction(self) -> float:
         """Return the deduction."""
         return self.deduction
-    
+
     def get_start_date(self) -> str:
         return self._start_date
-    
+
     def get_end_date(self) -> str:
         return self.end_date

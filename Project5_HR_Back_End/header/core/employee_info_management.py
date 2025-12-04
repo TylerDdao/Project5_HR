@@ -2,6 +2,7 @@ from typing import List, Optional
 from employee import Employee
 from persistence.file_repository import FileRepository
 
+
 class EmployeeInfoManagement:
     """
     EmployeeInfoManagement class for managing employee records.

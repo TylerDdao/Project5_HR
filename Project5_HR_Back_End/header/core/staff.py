@@ -2,12 +2,23 @@
 @brief This module defines the Staff class.
 """
 
+
 class Staff:
     """
     @brief This is the Staff Class
     """
 
-    def __init__(self, staff_id=0, name="", position="", phone_num="", hire_date="", wage_rate: float =0, account_type="employee", password="employee"):
+    def __init__(
+        self,
+        staff_id=0,
+        name="",
+        position="",
+        phone_num="",
+        hire_date="",
+        wage_rate: float = 0,
+        account_type="employee",
+        password="employee",
+    ):
         """
         @brief Constructor for Staff
         @param staff_id Staff ID
@@ -30,7 +41,7 @@ class Staff:
     # =========
     def get_password(self):
         return self._password
-    
+
     def get_account_type(self):
         return self._account_type
 
@@ -76,13 +87,13 @@ class Staff:
     # Setters
     # =========
     def set_password(self, password):
-        self._password=password
-        
+        self._password = password
+
     def set_account_type(self, account_type):
         self._account_type = account_type
 
     def set_wage_rate(self, wage_rate):
-        self._wage_rate=wage_rate
+        self._wage_rate = wage_rate
 
     def set_staff_id(self, id):
         self._staff_id = id

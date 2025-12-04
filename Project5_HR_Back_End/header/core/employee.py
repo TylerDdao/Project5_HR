@@ -1,11 +1,18 @@
 """
-@brief This module defines the Employee class.
+@brief This module defines the Employee class used in HR management system
+    The Employee class represents single staff member and stores the core employment information
+    including identification, job position, contact data and hire date.
+    It provides controlled getter and setter ,ethods for accessing and updating
+    employee attrubutes with uitility functions for displaying details and
+    serializing/desrializing records for file or database storage.
+
+    This class serves as a foundational data model used thrpughout the system for staff management,
+    scheduling , attendance tracking and payroll processing.
+
 """
 
+
 class Employee:
-    """
-    @brief This is the Employee Class
-    """
 
     def __init__(self, staff_id=0, name="", position="", phone_num="", hire_date=""):
         """

@@ -2,6 +2,7 @@ from typing import List, Optional
 from header.core.staff import Staff
 from persistence.file_repository import FileRepository
 
+
 class StaffInfoManagement:
     """
     StaffInfoManagement class for managing staff records.

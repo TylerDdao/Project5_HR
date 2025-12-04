@@ -1,12 +1,18 @@
 import pytest
 import jwt
 import sys, os
+
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from app import app, SECRET_KEY, ISSUER
 
+
 @pytest.fixture
 def client():
+    """
+    @brief Create Flask test client for API integration testing.
+        Enable sending HTTP request to application endpoint without starting actual development server
+    """
     app.config["TESTING"] = True
     with app.test_client() as c:
         yield c
@@ -19,9 +25,9 @@ def manager_token():
         "staff": {
             "staff_id": 1,
             "name": "Manager Test",
-            "account": {"account_type": "manager"}
+            "account": {"account_type": "manager"},
         },
-        "iss": ISSUER
+        "iss": ISSUER,
     }
     return "Bearer " + jwt.encode(payload, SECRET_KEY, algorithm="HS256")
 
@@ -33,8 +39,8 @@ def employee_token():
         "staff": {
             "staff_id": 2,
             "name": "Employee Test",
-            "account": {"account_type": "employee"}
+            "account": {"account_type": "employee"},
         },
-        "iss": ISSUER
+        "iss": ISSUER,
     }
     return "Bearer " + jwt.encode(payload, SECRET_KEY, algorithm="HS256")
