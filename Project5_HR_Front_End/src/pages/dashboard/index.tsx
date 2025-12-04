@@ -60,6 +60,8 @@ const DashboardPage: React.FC = () => {
     const data = await response.json()
     if(data.success == true){
       const { hours, minutes } = calculateTotalHours(data.shift_records);
+      console.log(calculateTotalHours(data.shift_records))
+      console.log(staff)
       setHoursWorked(Number((hours + minutes / 60).toFixed(2))); // total hours as decimal
       if(staff.wage_rate){
         setMoneyEarned(Number((staff.wage_rate * (hours + minutes / 60)).toFixed(2)))

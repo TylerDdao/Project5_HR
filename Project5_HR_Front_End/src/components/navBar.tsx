@@ -46,14 +46,15 @@ const NavBar: React.FC = () => {
             <div className="text-light_gray">
             <h3>{name}</h3>
             {staff?.account?.account_type == "manager" ? (
-              <div className="label">Role: Manager</div>
+              <div className="label">Permission: Manager</div>
             ):(
               staff?.account?.account_type == "employee" ? (
-                <div className="label">Role: Employee</div>
+                <div className="label">Permission: Employee</div>
               ):(
-                <div className="label">Role: Undefined</div>
+                <div className="label">Permission: Undefined</div>
               )
             )}
+            <div className="label">Position: {staff?.position}</div>
             </div>
         </div>
 
