@@ -18,6 +18,8 @@ const MyAccountPage: React.FC = () => {
 
     const handleUpdatePassword = async() =>{
         if(!staff) return;
+        if(!oldPassword && !newPassword) return
+        
         const token = sessionStorage.getItem("token");
         const response = await fetch(`${import.meta.env.VITE_SERVER}/api/update_password`, {
         method: "PUT",

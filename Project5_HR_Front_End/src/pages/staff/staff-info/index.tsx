@@ -28,7 +28,13 @@ const StaffInfoPage: React.FC = () => {
 
         const data = await response.json();
         if(data.success){
-            setCurrentStaff(data.staff)
+            const staffData = data.staff;
+
+            if (staffData.hire_date) {
+                staffData.hire_date = new Date(staffData.hire_date);
+            }
+
+            setCurrentStaff(staffData);
         }
         else{
             alert("Can not save staff")
@@ -45,6 +51,7 @@ const StaffInfoPage: React.FC = () => {
             ...(token ? { "Authorization": `Bearer ${token}` } : {})
         },
         body: JSON.stringify({
+            "staff_id": currentStaff?.staff_id,
             "name": currentStaff?.name,
             "position": currentStaff?.position,
             "phone_number": currentStaff?.phone_number,
@@ -107,7 +114,7 @@ const StaffInfoPage: React.FC = () => {
         </div>
 
         <div className='flex flex-col ml-[400px] p-5'>
-            <Link to={"/schedule/shift-list"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
+            <Link to={"/staff"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
             <div className="border border-charcoal w-[100px] my-[30px]"></div>
 
             <div className='flex flex-col space-y-[30px]'>

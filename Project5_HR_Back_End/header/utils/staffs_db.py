@@ -69,7 +69,6 @@ class StaffsDatabase:
                 staff["_id"] = str(staff["_id"])
                 staff["hire_date"] = staff["hire_date"].isoformat()
 
-            print(staff)
             return staff
         except Exception as e:
             print(f"Error querying staff: {e}")
@@ -244,7 +243,7 @@ class StaffsDatabase:
             return id
 
         except Exception as e:
-            print(f"Error inserting shift: {e}")
+            print(f"Error inserting staff: {e}")
             return None
         
     def update_staff(self, staff: Staff) -> bool:
@@ -254,7 +253,7 @@ class StaffsDatabase:
                 return False
         try:
             query = {
-                "staff_id": int(staff.get_staff_id())
+                "staff_id": staff.get_staff_id()
             }
 
             doc = {
@@ -276,7 +275,7 @@ class StaffsDatabase:
             return result.modified_count > 0
 
         except Exception as e:
-            print(f"Error inserting shift: {e}")
+            print(f"Error inserting staff: {e}")
             return None
         
     def delete_staff(self, staff_id: int) -> bool:
@@ -299,7 +298,7 @@ class StaffsDatabase:
             if error:
                 return False
         try:
-            staff = self.verify_login(staff_id=int(staff_id), password=old_password)
+            staff = self.verify_login(staff_id=staff_id, password=old_password)
             if staff is None:
                 return False
             query = {
@@ -313,5 +312,5 @@ class StaffsDatabase:
             return result.modified_count > 0
 
         except Exception as e:
-            print(f"Error inserting shift: {e}")
+            print(f"Error inserting staff: {e}")
             return None

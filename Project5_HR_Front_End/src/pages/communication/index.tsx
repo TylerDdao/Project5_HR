@@ -94,9 +94,11 @@ const CommunicationPage: React.FC = () => {
       if(data.success){
         if(data.type == "mail"){
           alert("Mail sent")
+          window.location.reload()
         }
         else if(data.type == "announcement"){
           alert("Announcement posted")
+          window.location.reload()
         }
       }
   }
