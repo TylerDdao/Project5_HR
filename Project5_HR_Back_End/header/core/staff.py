@@ -1,11 +1,14 @@
-"""
-@brief This module defines the Staff class.
-"""
-
-
 class Staff:
     """
-    @brief This is the Staff Class
+    @brief This Staff Class represent individual employee and store both personal and
+           employement related details such as identification information, job role, contact
+           data, hire date, wage rate, login credentials and account type. It provides
+           getter and setter methods for managing staff attributes as well as utility functions
+           for displaying staff details and serializing/deserialiaing records for file or database storage.
+
+           This class is used throughout the system for staff management, authentication, shift scheduling,
+           payroll processing and attendance tracking.
+
     """
 
     def __init__(
