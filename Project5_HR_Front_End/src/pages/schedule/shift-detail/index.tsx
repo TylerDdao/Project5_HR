@@ -192,6 +192,7 @@ const ShiftDetailPage: React.FC = () => {
         const timer = setInterval(() => setIsActive(checkActive()), 1000);
         return () => clearInterval(timer);
         }
+
     }, [shift]);
 
     const handleDeleteShift = async() =>{
@@ -334,15 +335,25 @@ const ShiftDetailPage: React.FC = () => {
                                         </div>
                                     </div>
                                 )}
-                                {!isActive && !isDone && staff?.account?.account_type =="manager" && (
+                                {((!isActive || !isDone) || staff?.account?.account_type === "manager") && (
                                     !removedStaffs.includes(staff) ? (
-                                        <button className='flex flex-col p-2 items-center bg-tomato_red rounded-[8px]' onClick={()=>{handleDeleteStaff(staff)}}>
-                                            <span className="material-symbols-outlined text-light_gray" style={{ fontSize: '40' }}>cancel</span>
-                                        </button>
-                                    ):(
-                                        <button className='flex flex-col p-2 items-center bg-light_gray rounded-[8px]' onClick={()=>{handleUndoDeleteStaff(staff)}}>
-                                            <span className="material-symbols-outlined text-charcoal" style={{ fontSize: '40' }}>undo</span>
-                                        </button>
+                                    <button
+                                        className='flex flex-col p-2 items-center bg-tomato_red rounded-[8px]'
+                                        onClick={() => handleDeleteStaff(staff)}
+                                    >
+                                        <span className="material-symbols-outlined text-light_gray" style={{ fontSize: '40' }}>
+                                            cancel
+                                        </span>
+                                    </button>
+                                    ) : (
+                                    <button
+                                        className='flex flex-col p-2 items-center bg-light_gray rounded-[8px]'
+                                        onClick={() => handleUndoDeleteStaff(staff)}
+                                    >
+                                        <span className="material-symbols-outlined text-charcoal" style={{ fontSize: '40' }}>
+                                            undo
+                                        </span>
+                                    </button>
                                     )
                                 )}
                             </div>

@@ -65,12 +65,12 @@ const AddStaffPage: React.FC = () => {
         </div>
 
         <div className='flex flex-col ml-[400px] p-5'>
-            <Link to={"/schedule/shift-list"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
+            <Link to={"/staff"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
             <div className="border border-charcoal w-[100px] my-[30px]"></div>
 
             <div className='flex flex-col space-y-[30px]'>
                 <div className='flex flex-col space-y-[5px]'>
-                    <h2>Staff ID will be generated after shift is created</h2>
+                    <h2>Staff ID will be generated after staff is created</h2>
                 </div>
 
                 <div className='flex flex-col space-y-[5px]'>

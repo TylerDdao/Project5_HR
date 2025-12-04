@@ -63,7 +63,7 @@ const PayrollListPage: React.FC = () => {
         </div>
 
         <div className='flex flex-col ml-[400px] p-5'>
-            <Link to={"/schedule"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
+            <Link to={"/payroll"}><button className='text-light_gray bg-charcoal w-fit text-center'><ArrowBackIcon/> Back</button></Link>
             <div className="border border-charcoal w-[100px] my-[30px]"></div>
             <h2>All payroll</h2>
             {payrollList.map((payroll)=>(
