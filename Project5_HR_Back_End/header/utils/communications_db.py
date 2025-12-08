@@ -1,16 +1,20 @@
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 from typing import Optional
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta
 import random
-import calendar
 
 
-from header.core.shift_record import ShiftRecord
-from header.core.payroll import Payroll
 from header.core.communication import Communication
 
 from header.utils.staffs_db import StaffsDatabase
+
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+CONECTION_STRING = os.getenv("CONECTION_STRING") | "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9"
+DB_NAME=os.getenv("DB_NAME") | "project5_hr"
 
 class CommunicationsDatabase:
     
@@ -22,7 +26,7 @@ class CommunicationsDatabase:
     
     """
     
-    def __init__(self, uri="mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9", database_name: str = "project5_hr"):
+    def __init__(self, uri=CONECTION_STRING, database_name: str = DB_NAME):
         
         """
         
@@ -175,7 +179,7 @@ class CommunicationsDatabase:
                 "sent_at": { "$gte": two_months_ago }  # <-- filter
             }
             
-            announcements = list(self._communications.find(query).sort("start_time", 1))
+            announcements = list(self._communications.find(query).sort("sent_at", 1))
             if announcements:
                 staff_db = StaffsDatabase()
                 for announcement in announcements:
@@ -218,9 +222,10 @@ class CommunicationsDatabase:
                 "recipient_id": int(staff_id)
             }
             
-            mails = list(self._communications.find(query).sort("start_time", 1))
+            mails = list(self._communications.find(query).sort("sent_at", 1))
             if mails:
                 staff_db = StaffsDatabase()
+
                 for mail in mails:
                     mail["_id"] = str(mail["_id"])
                     staff = staff_db.get_staff_by_id(mail["sender_id"])
@@ -228,7 +233,7 @@ class CommunicationsDatabase:
             return mails
 
         except Exception as e:
-            print("Error loading payroll:", e)
+            print("Error loading mails:", e)
             return None
         
     def get_sent_mail(self, staff_id: int) -> Optional[list[dict]]:
@@ -261,7 +266,7 @@ class CommunicationsDatabase:
                 "sender_id": int(staff_id)
             }
             
-            mails = list(self._communications.find(query).sort("start_time", 1))
+            mails = list(self._communications.find(query).sort("sent_at", 1))
             if mails:
                 staff_db = StaffsDatabase()
                 for mail in mails:
@@ -272,5 +277,5 @@ class CommunicationsDatabase:
             return mails
 
         except Exception as e:
-            print("Error loading payroll:", e)
+            print("Error loading mails:", e)
             return None

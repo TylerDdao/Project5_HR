@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import jwt
-import datetime
-import random
+from dotenv import load_dotenv
+import os
 
 from header.utils.shifts_db import ShiftsDatabase
 from header.utils.staffs_db import StaffsDatabase
@@ -18,14 +18,10 @@ from header.core.shift_record import ShiftRecord
 from header.core.payroll import Payroll
 from header.core.communication import Communication
 
-# db = DatabaseControl()
+load_dotenv()
 
-# Token for Tyler
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGFmZiI6eyJfaWQiOiI2OTFmZTRkY2IwZjU2NjUyMTEwNGU4ODEiLCJzdGFmZl9pZCI6MiwibmFtZSI6IkJvYiBTbWl0aCIsImhpcmVfZGF0ZSI6IjIwMjQtMDUtMTBUMDA6MDA6MDAiLCJwaG9uZV9udW1iZXIiOiIrMS01NTUtNTY3OCIsInBvc2l0aW9uIjoiTWFuYWdlciIsImlzX3dvcmtpbmciOmZhbHNlLCJ3YWdlX3JhdGUiOjMwLjQ1LCJhY2NvdW50Ijp7InBhc3N3b3JkIjoiYTY2NWE0NTkyMDQyMmY5ZDQxN2U0ODY3ZWZkYzRmYjhhMDRhMWYzZmZmMWZhMDdlOTk4ZTg2ZjdmN2EyN2FlMyIsImFjY291bnRfdHlwZSI6Im1hbmFnZXIifX0sImlzcyI6InByb2plY3Q1X2hyIn0.jM3JxDQm-H3zKMRNir30Hgc6jXvqZpQpZzuZSIYddYs
-
-
-SECRET_KEY = "secret"
-ISSUER = "project5_hr"
+SECRET_KEY = os.getenv("SECRET_KEY") | "secret"
+ISSUER = os.getenv("ISSUER") | "project5_hr"
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000"], supports_credentials=True)

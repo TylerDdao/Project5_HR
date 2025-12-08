@@ -7,6 +7,13 @@ import random
 from header.core.shift import Shift
 from header.utils.staffs_db import StaffsDatabase
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+CONECTION_STRING = os.getenv("CONECTION_STRING") | "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9"
+DB_NAME=os.getenv("DB_NAME") | "project5_hr"
+
 class ShiftsDatabase:
     """
 
@@ -18,7 +25,7 @@ class ShiftsDatabase:
 
     """
 
-    def __init__(self, uri="mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9", database_name: str = "project5_hr"):
+    def __init__(self, uri=CONECTION_STRING, database_name: str = DB_NAME):
         """
     
         \brief Construtor for ShiftsDB.
