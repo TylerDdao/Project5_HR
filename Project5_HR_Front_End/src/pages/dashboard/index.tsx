@@ -283,6 +283,7 @@ const DashboardPage: React.FC = () => {
                 <h3>{a.subject}</h3>
                 <p>{a.body}</p>
                 <div className='caption'>Sent at: {extractFullDate(a.sent_at)}</div>
+                <div className='caption'>Sent by: {a.sender_name}</div>
               </div>
             ))
             ):(

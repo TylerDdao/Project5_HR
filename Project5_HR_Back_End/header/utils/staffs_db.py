@@ -2,24 +2,19 @@ from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
 from typing import Optional
 import random
-from datetime import datetime, timezone, timedelta
-
+from datetime import datetime
 
 from header.core.staff import Staff
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+CONECTION_STRING = os.getenv("CONECTION_STRING") | "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9"
+DB_NAME=os.getenv("DB_NAME") | "project5_hr"
 
 class StaffsDatabase:
-    """
-    @brief Handle MongoDB operations for staffs collection.
-        The class manage database connectivivty and provide functionality for staff authentication and staff record retrieval from staffs collection.
-
-    """
-
-    def __init__(
-        self,
-        uri="mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9",
-        database_name: str = "project5_hr",
-    ):
+    def __init__(self, uri=CONECTION_STRING, database_name: str = DB_NAME):
         """
 
         @brief Constructor for StaffsDatabse.
