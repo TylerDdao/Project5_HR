@@ -48,7 +48,24 @@ Architecture:
 - Doxygen
 
 # Running the application using Docker
-- You just need to have Docker running on your local machine, no other installation required.
+## Create .env file with:
+```
+SECRET_KEY=[Your secret key here]
+ISSUER=project5_hr
+
+CONNECTION_STRING=[Your MongoDB server's connection string here]
+DB_NAME=project5_hr
+```
+## Define database collections
+- Manually create 5 collections:
+  - `staffs`
+  - `shifts`
+  - `payrolls`
+  - `shift_records`
+  - `communications`
+- You will also need to manually insert a staff inside the staffs collection so you can log in, the password inserted in the collection shall be hashed by SHA256.
+## Build the image and run a container
+- You just need to have Docker running on your local machine and finish all the steps listed above, no other installation required.
 - To build and run the container: `docker compose up --build`
 
 - Backend runs on `http://localhost:5000`
@@ -73,9 +90,13 @@ cd Project5_HR_Back_End
 `pip install -r requirements.txt`
 
 ### Create .env file with:
-- MONGO_URI=[Your mongo server's connection string]
-- MONGO_DB_NAME=project5_hr
-- SECRET_KEY=[Your secret key here]
+```
+SECRET_KEY=[Your secret key here]
+ISSUER=project5_hr
+
+CONNECTION_STRING=[Your MongoDB server's connection string here]
+DB_NAME=project5_hr
+```
 
 ## Frontend Setup
 cd Project5_HR_Front_End
