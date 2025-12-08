@@ -65,9 +65,9 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Create .env file with:
-# MONGO_URI=mongodb://localhost:27017/
-# MONGO_DB_NAME=project5_hr
-# SECRET_KEY=your_secret_key_here
+## MONGO_URI=[Your mongo server's connection string]
+## MONGO_DB_NAME=project5_hr
+## SECRET_KEY=[Your secret key here]
 
 ### Frontend Setup
 
