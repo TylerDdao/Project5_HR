@@ -49,7 +49,7 @@ Architecture:
 
 # Running the application using Docker
 - You just need to have Docker running on your local machine, no other installation required.
-- To build and run the container: `docker-compose up --build`
+- To build and run the container: `docker compose up --build`
 
 - Backend runs on `http://localhost:5000`
 - Frontend runs on `http://localhost:3000`
